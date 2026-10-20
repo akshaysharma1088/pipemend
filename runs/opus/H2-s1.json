@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H2-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H2-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1367,
+  "cache_read": 157194,
+  "cache_create": 21359
+ },
+ "raw_response": "{\"diagnosis\": \"Starting with the 2026-01-18 delivery, the payments source sends amount corrections as new rows that reuse the txn_id with record_version incremented (30 rows have record_version=2). The silver step keeps both versions, which duplicates keys and double-counts amounts in every gold table.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) latest WHERE status = 'POSTED'\"}}",
+ "transcript_id": "af68701253fc6a7e5",
+ "condition": "full"
+}

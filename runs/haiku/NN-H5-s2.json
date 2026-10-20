@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H5-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203226,
+  "cache_create": 31062
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions keeps only status = 'POSTED' rows and ignores the 24 REVERSAL rows and their orig_txn_id links, so originals that were later reversed may still be counted in gold, most visibly in the newest batches. The evidence does not show whether those originals are POSTED or REVERSED, the sign and amount convention of REVERSAL rows, or how settlement nets them, so the correct netting rule cannot be confirmed.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ac24d3ae2cbacd9b6",
+ "condition": "no_change_notes"
+}

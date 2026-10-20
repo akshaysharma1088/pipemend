@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H4-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157212,
+  "cache_create": 21478
+ },
+ "raw_response": "{\"diagnosis\": \"Some raw_customers rows carry numeric region codes (01-04) instead of region names, so silver_customers has unexpected values. raw_region_map maps the codes to names (01=WEST, 02=EAST, 03=NORTH, 04=SOUTH), so silver_customers can translate them and gold_region_daily will then pick up the corrected values.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}",
+ "transcript_id": "a4ca0986fae2a1973",
+ "condition": "no_change_notes"
+}

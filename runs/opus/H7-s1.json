@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H7-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H7-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 679,
+  "cache_read": 157194,
+  "cache_create": 21193
+ },
+ "raw_response": "{\"diagnosis\": \"Starting with the 2026-01-18 source change, raw amounts arrive net of interchange fees, so gold totals for the latest business days are about 2 percent below the gross settlement figures. The fees vary by merchant category and the card network publishes them separately. They are not in the evidence, so the gross amounts cannot be rebuilt correctly here.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a672d65aad1eda0e8",
+ "condition": "full"
+}

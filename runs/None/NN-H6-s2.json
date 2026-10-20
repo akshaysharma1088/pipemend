@@ -1,0 +1,18 @@
+{
+ "tier": "None",
+ "case": "NN-H6-s2",
+ "requested_model": null,
+ "served_models": [
+  "<synthetic>"
+ ],
+ "tool_calls": [],
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_read": 0,
+  "cache_create": 0
+ },
+ "raw_response": "You've hit your session limit \u00b7 resets 2:20pm (America/Chicago)",
+ "transcript_id": "a758f833b3bdaf057",
+ "condition": "no_change_notes"
+}

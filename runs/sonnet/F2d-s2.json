@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157208,
+  "cache_create": 21104
+ },
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_ids, so the join in gold_mcc_daily fans out and inflates the count from 4600 to 5305. The profile doesn't show whether the duplicate rows carry the same mcc, and the table has no timestamp or version column, so I can't tell which mcc is correct for any merchant whose duplicates disagree.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a660e67a0b88e891d",
+ "condition": "full"
+}

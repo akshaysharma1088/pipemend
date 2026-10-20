@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H6-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H6-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 24,
+  "cache_read": 203220,
+  "cache_create": 30854
+ },
+ "raw_response": "{\"diagnosis\": \"Part of the 2026-01-18 delivery (batch 13) was sent twice with recalculated amounts, e.g. txn_id 904167 appears with 7.33 and 8.27. Deduplicating would silently pick one amount, and the source team has not confirmed which copy carries the final amount, so the correct data cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a152db2eef6f71a28",
+ "condition": "full"
+}

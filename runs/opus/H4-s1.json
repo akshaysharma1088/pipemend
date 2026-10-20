@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H4-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H4-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 873,
+  "cache_read": 157194,
+  "cache_create": 21553
+ },
+ "raw_response": "{\"diagnosis\": \"Customers moved to the new CRM (change note dated 2026-01-15) now send a numeric region code ('01' to '04') in place of a region name. silver_customers passes these codes through unchanged, so 60 customers land in invalid regions in silver_customers and gold_region_daily. raw_region_map holds a complete one-to-one mapping (01=WEST, 02=EAST, 03=NORTH, 04=SOUTH) for all four codes.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code\"}}",
+ "transcript_id": "ab14a88a851178cbb",
+ "condition": "full"
+}

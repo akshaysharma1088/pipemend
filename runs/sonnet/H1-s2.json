@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H1-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H1-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1658,
+  "cache_read": 157206,
+  "cache_create": 21087
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 arrived with lowercase status values ('posted'/'reversed') and '$'-prefixed amounts. The case-sensitive filter status = 'POSTED' dropped every row in the batch, and the '$' would also have broken the DECIMAL cast. Normalizing status case and stripping '$' from amount recovers the 323 posted rows. The 16 reversed rows stay excluded, as in other batches.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(replace(trim(amount), '$', ''), ',', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED'\"}}",
+ "transcript_id": "a8735f60b4caa846e",
+ "condition": "full"
+}

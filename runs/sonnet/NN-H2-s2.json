@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H2-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H2-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 30,
+  "cache_read": 157212,
+  "cache_create": 21262
+ },
+ "raw_response": "{\"diagnosis\": \"26 txn_ids were delivered twice, as record_version 1 and a later record_version 2 (26 extra rows, 4802 distinct ids). Silver filters to POSTED without deduplicating, so 25 ids show up twice. Silver should keep only the latest version of each txn_id and apply the POSTED filter after that.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}",
+ "transcript_id": "acb826ca5a1927052",
+ "condition": "no_change_notes"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F3d-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 30,
+  "cache_read": 203222,
+  "cache_create": 30786
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 delivered txn_ts in day-first DD/MM/YYYY form (for example '17/01/2026 06:02:01'), while the other batches use ISO format, and the unconditional CAST to TIMESTAMP fails on those rows. The min of the DD/MM strings starts at '17/', so every such value has a day above 12 and the day-first reading is unambiguous.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]{2}/[0-9]{2}/[0-9]{4} ') THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM raw_transactions WHERE status = 'POSTED') t;\"}}",
+ "transcript_id": "a7b9bcee66c2988a1",
+ "condition": "full"
+}

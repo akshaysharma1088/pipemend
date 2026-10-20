@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H3-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H3-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1388,
+  "cache_read": 157206,
+  "cache_create": 21787
+ },
+ "raw_response": "{\"diagnosis\": \"Since the 2026-01-15 rollout, the v2 collector emits txn_ts in UTC while legacy emits America/Chicago local time. The pipeline treats both as local, so v2 evening transactions land at 00:00-06:00 and on the next day's txn_date. That explains the 01-19 volume drop and the off-hours timestamps. The fix is to convert v2 timestamps to Chicago local time in silver_transactions.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "a53206086852bb547",
+ "condition": "full"
+}

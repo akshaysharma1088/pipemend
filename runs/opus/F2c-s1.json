@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F2c-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2398,
+  "cache_read": 157196,
+  "cache_create": 21046
+ },
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4886 rows but only 4866 distinct txn_id values. Batch 12 has a second ingest at 2026-01-17 22:00, which points to a partial redelivery of the same transactions. The silver step reads every raw row with no dedup, so the 18 repeated POSTED txn_ids are double-counted in every gold table.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [\"CREATE OR REPLACE VIEW txn_latest AS SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM txn_latest WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a061efa3881a31d28",
+ "condition": "full"
+}

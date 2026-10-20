@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F5c-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1470,
+  "cache_read": 157196,
+  "cache_create": 21376
+ },
+ "raw_response": "{\"diagnosis\": \"The payments source renamed status POSTED to SETTLED starting with batch 12 (change note 2026-01-16, meaning unchanged). The silver filter WHERE status = 'POSTED' therefore drops every row in batches 12-14. The counts fit this: SETTLED (1002) plus about 40 REVERSED rows accounts for the 1042 rows in batches 12-14, so SETTLED appears only after the rename and is not an older, separate status.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED')\"}}",
+ "transcript_id": "a40a9da3b68d8b7ae",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H5-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H5-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 28,
+  "cache_read": 157206,
+  "cache_create": 21445
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 the source sends a reversal as a separate REVERSAL record pointing to orig_txn_id, and the original stays POSTED. silver_transactions only drops originals marked REVERSED, so the 15 reversed originals are still counted and gold totals run high. The old convention excluded reversed originals entirely, so I exclude each original that a REVERSAL points to. The REVERSAL rows are already filtered out by status = 'POSTED'.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' AND txn_id NOT IN (SELECT orig_txn_id FROM raw_transactions WHERE status = 'REVERSAL' AND orig_txn_id IS NOT NULL);\"}}",
+ "transcript_id": "a5b408600a71f0fb9",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H6-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 4,
+  "output": 209,
+  "cache_read": 101613,
+  "cache_create": 15371
+ },
+ "raw_response": "{\"diagnosis\": \"The 19 duplicate txn_id values come from the PAY-77 source issue, where part of the latest delivery was sent twice during an amount recalculation. The two copies of each duplicated txn_id carry different amounts (for example 904167 has 7.33 and 8.27), and the source team has not said which copy is final. Keeping either copy, or summing them, could silently produce wrong amounts, so the correct data cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "aee37e795502b3dcf",
+ "condition": "full"
+}

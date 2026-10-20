@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F5b-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1534,
+  "cache_read": 157196,
+  "cache_create": 21626
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions ignores the currency column, so the 85 EUR transactions are summed into the USD gold totals at face value. raw_fx_rates holds a rate_to_usd for EUR (1.25, a single as_of date that covers the whole period), so the amounts can be converted to USD reliably.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount * f.rate_to_usd AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t JOIN raw_fx_rates f ON t.currency = f.currency WHERE t.status = 'POSTED'\"}}",
+ "transcript_id": "a4ceadd3e6eb7bcd8",
+ "condition": "full"
+}

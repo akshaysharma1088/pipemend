@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 22,
+  "cache_read": 203222,
+  "cache_create": 31314
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 is the only delivery with source_tz 'UTC' (378 rows, matching the 378-row batch). The silver step ignores source_tz, so those timestamps are stored as UTC while the other batches are Chicago local time. The 99 rows at 00:00-06:00 UTC on 2026-01-19 are 18:00-24:00 Chicago time on 2026-01-18, and the silver table then dates them 2026-01-19.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(local_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(local_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT txn_id, customer_id, merchant_id, amount, CASE WHEN source_tz = 'UTC' THEN CAST(timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}",
+ "transcript_id": "af79c3b0c6ea8ebaf",
+ "condition": "full"
+}

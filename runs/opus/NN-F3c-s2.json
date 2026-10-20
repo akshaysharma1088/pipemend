@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "NN-F3c-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 28,
+  "cache_read": 157202,
+  "cache_create": 21047
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions builds txn_date from ingest_ts, which is always 02:00 on the day after the transaction, so every POSTED row (4600) lands one day late. The DATE_CONSISTENCY monitor defines txn_date as the date of txn_ts, so txn_date should come from txn_ts. The gold daily tables inherit the shifted dates.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a87505423bd3a795e",
+ "condition": "no_change_notes"
+}

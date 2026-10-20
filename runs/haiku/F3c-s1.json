@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 22,
+  "cache_read": 203222,
+  "cache_create": 30876
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from CAST(ingest_ts AS DATE), a change made in DE-398, but the DATE_CONSISTENCY contract and the column meaning require the date of txn_ts. Ingest runs one day after the transaction, so every POSTED row (4630) is off by one day, which also misdates the gold tables that group on txn_date.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "a21969d8a5734bb32",
+ "condition": "full"
+}

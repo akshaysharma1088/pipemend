@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "NN-F5c-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F5c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2181,
+  "cache_read": 157202,
+  "cache_create": 21289
+ },
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source sends status 'SETTLED' where it used to send 'POSTED'. SETTLED appears only in batches 12-14 (1002 rows, with the remaining ~40 REVERSED, which matches the usual reversal rate of about 4%), so the filter status = 'POSTED' drops every valid transaction in those batches. txn_ids are all distinct, so counting SETTLED as posted creates no duplicates.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED')\"}}",
+ "transcript_id": "a1fb0565f1ca9bb7c",
+ "condition": "no_change_notes"
+}

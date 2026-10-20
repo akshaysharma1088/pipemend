@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H3-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157212,
+  "cache_create": 21536
+ },
+ "raw_response": "{\"diagnosis\": \"The legacy collector's txn_ts values look shifted by roughly +6h against the v2 collector, and some are later than the batch's own ingest_ts (up to 04:10 on 01-19, against a 02:00 ingest). No change note explains the shift and the exact offset or its start date can't be determined from the evidence. The 01-19 volume alert is likely just a partial day, so a SQL fix could silently misassign txn_date.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ab37ae1d02b67fe1c",
+ "condition": "no_change_notes"
+}

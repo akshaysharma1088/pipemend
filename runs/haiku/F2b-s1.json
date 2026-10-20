@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 20,
+  "cache_read": 203222,
+  "cache_create": 30746
+ },
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 146 rows whose txn_id repeats an id already delivered in another batch (5012 rows, 4866 distinct ids), and 137 of those ids remain duplicated after the POSTED filter. The evidence does not show whether the repeats are identical redeliveries or conflicting versions (different amount, or a POSTED copy superseded by a REVERSED copy), so the correct dedupe rule cannot be determined.\", \"decision\": \"escalate\", \"confidence\": 0.65, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "afb402125668cf499",
+ "condition": "full"
+}

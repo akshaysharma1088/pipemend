@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H3-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H3-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2767,
+  "cache_read": 157194,
+  "cache_create": 21655
+ },
+ "raw_response": "{\"diagnosis\": \"The v2 collector, rolling out since 2026-01-16, emits txn_ts in UTC while legacy emits America/Chicago local time, so v2 rows land 6 hours late. That pushes evening transactions into 00:00-06:00 and onto the next day (for example, the 33 rows showing on 2026-01-19 and the v2 sample rows at 12:0x that should be 06:0x). The fix converts v2 timestamps to Chicago local time before deriving txn_ts and txn_date. All affected dates are in January, so standard time applies (UTC-6).\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "aba3f4f2ec082c454",
+ "condition": "full"
+}

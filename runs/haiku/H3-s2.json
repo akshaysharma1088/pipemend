@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H3-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H3-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 12,
+  "cache_read": 203220,
+  "cache_create": 31542
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 onward includes collector 'v2' rows whose txn_ts is UTC, while legacy rows are America/Chicago local time. The samples confirm a 6-hour offset (v2 12:00 corresponds to legacy 06:00), so v2 timestamps are shifted and their txn_date is wrong. Converting v2 timestamps to Chicago local time fixes the 00:00-06:00 clustering and moves the 36 rows misdated to 2026-01-19 back to their correct local dates.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}",
+ "transcript_id": "a5c0ff4ae763537f1",
+ "condition": "full"
+}

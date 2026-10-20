@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 30998
+ },
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so 6 merchants are duplicated and the silver_merchants join in gold_mcc_daily fans out transactions (4600 to 5305 rows). The evidence does not show whether the duplicate rows carry the same mcc or conflicting ones, so the correct single mcc per merchant cannot be determined and the merchant dimension needs review by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "af49f51ecb7f34215",
+ "condition": "full"
+}

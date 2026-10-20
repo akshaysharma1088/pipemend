@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H5-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157212,
+  "cache_create": 21326
+ },
+ "raw_response": "{\"diagnosis\": \"15 REVERSAL rows (status 'REVERSAL', orig_txn_id set) point to originals that are still POSTED. The POSTED-only filter drops the reversal rows but keeps the originals, so reversed purchases are counted in gold and totals run high. Older reversals are already excluded because their originals are flagged REVERSED.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id = t.txn_id);\"}}",
+ "transcript_id": "a829f78c433ebb555",
+ "condition": "no_change_notes"
+}

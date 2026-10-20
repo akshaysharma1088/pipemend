@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H7-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1280,
+  "cache_read": 158734,
+  "cache_create": 22871
+ },
+ "raw_response": "{\"diagnosis\": \"Raw data looks internally consistent: txn_ids are unique, there are no nulls, only two statuses exist, and every batch was delivered on schedule. The pipeline logic (POSTED only, cast to DECIMAL) also looks sound. The roughly 2 percent shortfall on only the most recent business days points to transactions that the source has not delivered yet, or to a difference between the settlement file and the source definition (for example how reversals are handled). Neither can be fixed or confirmed from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ac1c39dece1d808d1",
+ "condition": "no_change_notes"
+}

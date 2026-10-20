@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H5-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157212,
+  "cache_create": 21332
+ },
+ "raw_response": "{\"diagnosis\": \"The silver filter keeps only status='POSTED' and drops the 24 REVERSAL rows. Their originals (orig_txn_id 904142-904802, in the latest batches) are still POSTED, so the reversed purchases stay in silver and inflate gold for the most recent days. Silver should exclude POSTED transactions that have a matching REVERSAL row.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions rv WHERE rv.status = 'REVERSAL' AND rv.orig_txn_id = r.txn_id);\"}}",
+ "transcript_id": "ae33262446e4b303b",
+ "condition": "no_change_notes"
+}

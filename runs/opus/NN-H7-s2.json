@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H7-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1096,
+  "cache_read": 158734,
+  "cache_create": 22877
+ },
+ "raw_response": "{\"diagnosis\": \"Nothing in the evidence explains the roughly 2 percent shortfall on recent days. Delivery batches are complete and normal-sized, txn_id is unique, there is one currency, and no source or pipeline changes were made. The gap probably comes from data the source has not yet delivered, such as late-arriving or settlement-only transactions, or from a different rule for counting REVERSED rows. Neither can be confirmed or corrected from what is shown.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a31bd35e5a877716a",
+ "condition": "no_change_notes"
+}

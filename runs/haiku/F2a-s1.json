@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 30830
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00 on 2026-01-17, appending about 317 second copies of transactions already loaded at 02:00 (668 rows against a normal ~350). txn_id is a dense unique range, so these are retransmissions, and silver_transactions never deduplicates on txn_id, which inflates 2026-01-16 and every gold table. Copies are confirmed identical only in one sample, so the dedupe keeps the latest ingest_ts per txn_id and then applies the POSTED filter.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(d.txn_id AS BIGINT) AS txn_id, d.customer_id, CAST(d.merchant_id AS INTEGER) AS merchant_id, CAST(d.amount AS DECIMAL(12,2)) AS amount, CAST(d.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(d.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT r.*, row_number() OVER (PARTITION BY r.txn_id ORDER BY r.ingest_ts DESC) AS rn FROM raw_transactions r) d WHERE d.rn = 1 AND d.status = 'POSTED';\"}}",
+ "transcript_id": "a790e473d0a8e49da",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2b-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157208,
+  "cache_create": 21052
+ },
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 5012 rows but only 4866 distinct txn_id values, with ids contiguous from 900001 to 904866. That points to the same transactions being re-delivered in later batches, so the duplicates come from the source and are not a join fan-out in the pipeline. The fix keeps one row per txn_id, the latest delivery by ingest_ts then batch_id, before filtering to POSTED. The evidence doesn't show whether duplicate rows differ in amount or status, so I'm assuming the latest delivery is authoritative.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}",
+ "transcript_id": "ae9e0f2a4ca284a91",
+ "condition": "full"
+}

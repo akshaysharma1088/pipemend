@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H2-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H2-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 26,
+  "cache_read": 203220,
+  "cache_create": 31304
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 payments-source sends amount corrections as new rows with the same txn_id and record_version 2, and silver_transactions keeps every version, so 25 txn_ids are duplicated. The fix keeps only the latest version per txn_id (highest record_version, then latest ingest_ts and batch_id) before the POSTED filter, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) latest WHERE rn = 1 AND status = 'POSTED';\"}}",
+ "transcript_id": "a68b251fd04f6239f",
+ "condition": "full"
+}

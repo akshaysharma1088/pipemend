@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "NN-H6-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H6-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 714,
+  "cache_read": 158734,
+  "cache_create": 22825
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 has 19 txn_ids that appear twice with the same customer, merchant and timestamp but different amounts (for example 904167 at 7.33 and 8.27), so these are conflicting records, not exact duplicates. Nothing in the evidence (same batch, same ingest_ts, no version column) shows which amount is correct, so deduplicating would mean guessing financial values.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "af9dc7332eb28d020",
+ "condition": "no_change_notes"
+}

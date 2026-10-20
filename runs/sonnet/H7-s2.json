@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H7-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 4,
+  "output": 177,
+  "cache_read": 101613,
+  "cache_create": 15389
+ },
+ "raw_response": "{\"diagnosis\": \"From 2026-01-18 payments-source reports amount net of interchange fees. Fee rates vary by merchant category and are published separately, so the gross amounts that match the settlement file cannot be rebuilt from the data shown. The roughly 2 percent shortfall on the most recent days fits this change, but the fee rates are not in the raw tables.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ae903c0e15c9c8bb0",
+ "condition": "full"
+}

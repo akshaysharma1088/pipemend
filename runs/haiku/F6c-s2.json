@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 26,
+  "cache_read": 203222,
+  "cache_create": 31126
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers.region holds customer email addresses for some customers (for example user9793@examplemail.com and user6104@examplemail.com), so silver_customers.region is corrupted at the source and the true region for those customers cannot be recovered from the evidence. Because the source appears to have written contact data into a region field, this needs the source team to re-deliver corrected customer data and a human to assess the privacy exposure before any change.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a1e94ae0f9775b6cf",
+ "condition": "full"
+}

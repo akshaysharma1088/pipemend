@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 197,
+  "cache_read": 203222,
+  "cache_create": 31116
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 (377 rows) is the only batch with source_tz 'UTC', while the other batches are America/Chicago local time, and the pipeline casts txn_ts without converting it. The UTC rows are shifted 6 hours ahead of local time, so evening transactions land on the next day at 00:00-06:00. Converting UTC rows to America/Chicago in silver_transactions should move them back to their correct local date and hour.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(r.txn_id AS BIGINT) AS txn_id, r.customer_id, CAST(r.merchant_id AS INTEGER) AS merchant_id, CAST(r.amount AS DECIMAL(12,2)) AS amount, r.local_ts AS txn_ts, CAST(r.local_ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN source_tz = 'UTC' THEN CAST((txn_ts AT TIME ZONE 'UTC') AT TIME ZONE 'America/Chicago' AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions) AS r WHERE r.status = 'POSTED';\"}}",
+ "transcript_id": "aa7133889f18822fe",
+ "condition": "full"
+}

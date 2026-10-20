@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H7-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 20,
+  "cache_read": 203226,
+  "cache_create": 30854
+ },
+ "raw_response": "{\"diagnosis\": \"The silver_transactions step drops the 236 REVERSED rows (about 4.9% of raw rows), which is a plausible source of the roughly 2% gap. Whether settlement counts reversals, or whether the status values are stale, cannot be determined from the evidence, and the correct business rule for reversed transactions is ambiguous, so a human should confirm it with Finance and the source team.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "aa3b1dbb98b303ace",
+ "condition": "no_change_notes"
+}

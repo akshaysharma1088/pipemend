@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 10,
+  "cache_read": 203222,
+  "cache_create": 31350
+ },
+ "raw_response": "{\"diagnosis\": \"The payments source renamed status POSTED to SETTLED starting with batch 12 (ingested 2026-01-17), but silver_transactions still filters on status = 'POSTED', so batches 12-14 are dropped entirely. The change note says the meaning is unchanged, so the filter should accept both values while still excluding REVERSED, as before.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED')\"}}",
+ "transcript_id": "ad7e8388e4788b7a8",
+ "condition": "full"
+}

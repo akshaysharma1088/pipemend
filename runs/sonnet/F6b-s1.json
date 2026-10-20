@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 126,
+  "cache_read": 157208,
+  "cache_create": 21066
+ },
+ "raw_response": "{\"diagnosis\": \"On 2026-01-18 the mean amount (371.28) is far above the median (40.71), and the raw maximum is 17083.0. The cause could be a unit or scale error in some rows (for example cents instead of dollars) or real high-value transactions. The profiles show no duplicates, no schema or join problem, and no relevant change notes. Nothing shows which rows are wrong or what the correct amounts are, so any rescaling or filtering would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "aa4fd068601a61778",
+ "condition": "full"
+}

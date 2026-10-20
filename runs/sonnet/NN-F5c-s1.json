@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F5c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157214,
+  "cache_create": 21287
+ },
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source delivers the status value 'SETTLED' instead of 'POSTED'. The silver filter status = 'POSTED' therefore drops every row from batches 12-14. The counts fit a rename: batches 1-11 hold 3832 rows, and POSTED (3652) plus the remaining REVERSED rows account for them. The 1034 rows in batches 12-14 split into 978 SETTLED and 56 REVERSED, which is the same reversal rate as before.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED')\"}}",
+ "transcript_id": "a4a0166b11256b3e8",
+ "condition": "no_change_notes"
+}

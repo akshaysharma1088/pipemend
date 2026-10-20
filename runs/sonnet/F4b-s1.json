@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F4b-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 28,
+  "cache_read": 157208,
+  "cache_create": 21092
+ },
+ "raw_response": "{\"diagnosis\": \"Recent batches deliver customer_id in lowercase (e.g. 'c00180'), so raw_transactions has 365 distinct ids against 200 in raw_customers. The case-sensitive join in gold_region_daily drops those rows, which explains 4630 vs 4267. The fix is to normalize customer_id to upper case in silver_transactions, which also corrects gold_customer_spend.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "af91f6fddc4d10cc2",
+ "condition": "full"
+}

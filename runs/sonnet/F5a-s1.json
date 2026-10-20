@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F5a-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157208,
+  "cache_create": 21342
+ },
+ "raw_response": "{\"diagnosis\": \"All 334 rows of batch 12 (txn_date 2026-01-16) are flagged amount_unit='USD_CENTS', so their amounts are in cents (e.g. 3258.0 is $32.58) while the pipeline treats them as dollars. This inflates the 2026-01-16 mean and the gold totals. The unit flag is explicit, so the fix is to divide those amounts by 100 in silver_transactions.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN CAST(amount AS DOUBLE) / 100.0 ELSE CAST(amount AS DOUBLE) END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a9523c9523d6656d8",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6d-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 128,
+  "cache_read": 157196,
+  "cache_create": 21140
+ },
+ "raw_response": "{\"diagnosis\": \"Source batches 13 and 14 (ingested 2026-01-18 and 2026-01-19) arrived with merchant_id NULL: 703 raw rows, 679 of them POSTED. Those rows drop out of the inner join to silver_merchants, so gold_mcc_daily is missing them. The merchant attribution is not in the raw data and no pipeline change explains it, so the correct values can't be derived.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a181f6d37d928950b",
+ "condition": "full"
+}

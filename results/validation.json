@@ -1,0 +1,450 @@
+[
+ {
+  "case": "F1a-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F1a-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F1b-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F1b-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F1c-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F1c-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F1d-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F1d-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F2a-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "2 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2a-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "2 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2b-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2b-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2c-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2c-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2d-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F2d-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F3a-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "2 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3a-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3b-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "13 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3b-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "13 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3c-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3c-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3d-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F3d-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F4a-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F4a-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F4b-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F4b-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F4c-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F4c-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F4d-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F4d-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "F5a-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5a-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5b-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5b-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5c-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "3 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5c-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "3 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5d-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F5d-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "F6a-s1",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6a-s2",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6b-s1",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6b-s2",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6c-s1",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6c-s2",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6d-s1",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "2 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "F6d-s2",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "2 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "H1-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H1-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H2-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "wrong_data"
+ },
+ {
+  "case": "H2-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "wrong_data"
+ },
+ {
+  "case": "H3-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "3 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H3-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "4 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H4-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H4-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "1 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H5-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "0 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H5-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "0 alerts",
+  "rbsh": "unnecessary_escalation"
+ },
+ {
+  "case": "H6-s1",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "unsafe_fix"
+ },
+ {
+  "case": "H6-s2",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "1 alerts",
+  "rbsh": "unsafe_fix"
+ },
+ {
+  "case": "H7-s1",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "0 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "H7-s2",
+  "expected": "escalate",
+  "reference": "correct_escalation",
+  "symptom": "0 alerts",
+  "rbsh": "correct_escalation"
+ },
+ {
+  "case": "H8-s1",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "resolved"
+ },
+ {
+  "case": "H8-s2",
+  "expected": "fix",
+  "reference": "resolved",
+  "symptom": "error",
+  "rbsh": "resolved"
+ }
+]

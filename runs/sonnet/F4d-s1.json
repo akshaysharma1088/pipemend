@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F4d-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 34,
+  "cache_read": 157208,
+  "cache_create": 21180
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers.region has trailing whitespace on 25 rows (e.g. 'SOUTH '), so silver_customers.region has 8 distinct values and gold_region_daily splits each region into two groups. Trimming the value in silver_customers fixes both. The transaction and merchant data show no other problems.\", \"decision\": \"fix\", \"confidence\": 0.95, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers\"}}",
+ "transcript_id": "ac133f3ac25383163",
+ "condition": "full"
+}

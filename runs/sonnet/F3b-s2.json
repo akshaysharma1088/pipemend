@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157208,
+  "cache_create": 22222
+ },
+ "raw_response": "{\"diagnosis\": \"The stale-event filter added under DE-412 (ingest_ts - txn_ts <= 26 hours) drops valid POSTED transactions. Every delivery batch carries about 3 days of normal lag, as the batch 11 to 14 samples show, so roughly 20 to 25 percent of each batch is lost. txn_id is unique across all 4802 raw rows, so there are no replayed duplicates that the filter could be catching. Restoring status = 'POSTED' as the only filter recovers the missing rows.\", \"decision\": \"fix\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a5812b02ac7c11cbb",
+ "condition": "full"
+}

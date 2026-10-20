@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157208,
+  "cache_create": 21146
+ },
+ "raw_response": "{\"diagnosis\": \"All 703 NULL merchant_id values in raw_transactions fall in batches 13 and 14 (377 + 326 rows, the two most recent deliveries), so the source stopped sending merchant_id. The 679 NULLs in silver are the POSTED rows from those batches. The correct merchants cannot be derived from the evidence, and the inner join in gold_mcc_daily drops these rows. The data needs to be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a2e40626e27c92889",
+ "condition": "full"
+}

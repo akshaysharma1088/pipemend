@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F1a-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 220,
+  "cache_read": 203222,
+  "cache_create": 30864
+ },
+ "raw_response": "{\"diagnosis\": \"The raw_transactions table no longer has an \\\"amount\\\" column; the source now delivers it as txn_amount (present in every sampled batch, with USD values in the expected dollar range and no change notes saying otherwise), so silver_transactions fails when it references amount. Mapping txn_amount to amount with the same type and output columns restores the silver and gold tables.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(txn_amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "a6dc187fd2983acf5",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F1b-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 26,
+  "cache_read": 157208,
+  "cache_create": 21066
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) delivers amount as a '$'-prefixed string such as '$40.14'. The cast to DECIMAL(12,2) fails on those rows. The values are otherwise ordinary USD amounts, so stripping the '$' recovers them exactly.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(trim(amount), '$', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "af21f9d245e920b0f",
+ "condition": "full"
+}

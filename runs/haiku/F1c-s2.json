@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F1c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 30734
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 delivered txn_ts as epoch milliseconds (e.g. '1768629721000' = 2026-01-17 06:02:01 UTC), while every other row uses 'YYYY-MM-DD HH:MM:SS' text, so the unconditional CAST to TIMESTAMP fails. The epoch values fall in the same 06:00 to 06:07 window as the neighboring batches, which supports reading them as UTC milliseconds, so they can be parsed with epoch_ms and kept in the same meaning.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), epoch_ms(TRY_CAST(txn_ts AS BIGINT))) AS txn_ts, CAST(COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), epoch_ms(TRY_CAST(txn_ts AS BIGINT))) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "a1373bde00b486afe",
+ "condition": "full"
+}

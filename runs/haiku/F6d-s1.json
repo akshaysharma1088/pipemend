@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 987,
+  "cache_read": 203222,
+  "cache_create": 30990
+ },
+ "raw_response": "{\"diagnosis\": \"All 378 NULL merchant_id values sit in delivery batch 14 (business date 2026-01-18), and 363 of them are POSTED rows. The inner join to silver_merchants in gold_mcc_daily drops exactly those 363 rows (4630 - 363 = 4267), so the gap is missing source data, not a join bug. The merchant_id must come from the source team or be re-delivered, and no SQL change can recover it correctly.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ab8c91970ccd5a8b9",
+ "condition": "full"
+}

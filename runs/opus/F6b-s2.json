@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6b-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 956,
+  "cache_read": 157196,
+  "cache_create": 21068
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) has whole-number amounts such as 1715.0 sitting next to normal values like 14.09 and 32.87. Some rows were probably delivered in cents rather than dollars, which is what pushed the mean to 302.31 against a median of 40.71. Nothing in the evidence says which rows are affected: no unit or currency flag exists, there is no source change note, and a value like 1715.0 could be a real large purchase. Any rescaling rule would be a guess, so the source team needs to confirm the amount units and re-deliver the batch.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a8bdb528c3c0ce949",
+ "condition": "full"
+}

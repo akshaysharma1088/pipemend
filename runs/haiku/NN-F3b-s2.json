@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203228,
+  "cache_create": 31990
+ },
+ "raw_response": "{\"diagnosis\": \"The silver_transactions filter drops POSTED transactions whose ingest_ts is more than 26 hours after txn_ts. The sample rows from batch 11 were ingested about 67 hours after their txn_ts, so late-arriving batches lose rows and daily counts come out low. Whether late rows should be included, and whether published gold tables should be restated, is a business rule the evidence does not settle, and the change notes do not explain why the alerts start at batch 3.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "aea804096e3569253",
+ "condition": "no_change_notes"
+}

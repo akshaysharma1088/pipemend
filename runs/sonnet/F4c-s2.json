@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157208,
+  "cache_create": 21446
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 table with 230 rows for 200 customers. The 30 non-current history rows (is_current=False, valid_from 2023-06-01) duplicate customers in silver_customers and fan out the join in gold_region_daily, giving 5286 rows against 4600 in silver. Every transaction falls after the current rows' valid_from of 2025-01-01, so filtering to the current row per customer gives the correct region.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}",
+ "transcript_id": "a4c5108b52ec131ad",
+ "condition": "full"
+}

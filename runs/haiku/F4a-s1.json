@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 24,
+  "cache_read": 203222,
+  "cache_create": 30982
+ },
+ "raw_response": "{\"diagnosis\": \"The 363 dropped rows are POSTED transactions whose customer_id does not match raw_customers (e.g. 'C3', 'C94', 'C180' in batch 14), so the inner join in gold_region_daily silently excludes them. The source appears to have changed its customer_id format in batch 14, and the correct mapping to the customer dimension cannot be confirmed from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a22ed1fa41d1d886c",
+ "condition": "full"
+}

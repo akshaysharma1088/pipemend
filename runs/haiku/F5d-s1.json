@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203222,
+  "cache_create": 30830
+ },
+ "raw_response": "{\"diagnosis\": \"Starting with delivery batch 12 (ingested 2026-01-17), raw_transactions.merchant_id contains identifiers in a new 'M-0xxx' format alongside the numeric ids, and the INTEGER cast in silver_transactions fails on them. The 'M-0102' to 102 mapping is only an inference, with no source change note documenting it, and it is unclear whether these are aliases or distinct merchants.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "af001ce2ae9c2aef3",
+ "condition": "full"
+}

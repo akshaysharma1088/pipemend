@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H3-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H3-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157206,
+  "cache_create": 21661
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-16 the v2 collector emits txn_ts in UTC while legacy emits America/Chicago local time. The pipeline treats both as local, so v2 rows are 6 hours ahead (CST in January). Evening v2 transactions land in the 00:00-06:00 window and roll into the next txn_date, which explains the 33-row 2026-01-19 and the off-hours alerts. Shifting v2 timestamps back 6 hours puts them on the legacy local-time basis, e.g. 12:12 UTC becomes 06:12 local, matching legacy start times.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a00050b6a6985ffae",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H5-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H5-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1931,
+  "cache_read": 157194,
+  "cache_create": 21445
+ },
+ "raw_response": "{\"diagnosis\": \"Since the 2026-01-17 source change, a reversal arrives as a separate record with status REVERSAL and an orig_txn_id that points to the original. The original row now stays POSTED, so silver_transactions still includes the 24 reversed originals, and the most recent days in the gold totals are too high. Before the change, these originals were set to REVERSED and filtered out.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [\"CREATE OR REPLACE VIEW helper_reversed_txn_ids AS SELECT DISTINCT CAST(orig_txn_id AS BIGINT) AS txn_id FROM raw_transactions WHERE status = 'REVERSAL' AND orig_txn_id IS NOT NULL\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(r.txn_id AS BIGINT) AS txn_id, r.customer_id, CAST(r.merchant_id AS INTEGER) AS merchant_id, CAST(r.amount AS DECIMAL(12,2)) AS amount, CAST(r.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(r.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND CAST(r.txn_id AS BIGINT) NOT IN (SELECT txn_id FROM helper_reversed_txn_ids)\"}}",
+ "transcript_id": "aaf914b13a0cc1671",
+ "condition": "full"
+}

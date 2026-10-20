@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6a-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 128,
+  "cache_read": 157196,
+  "cache_create": 21070
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingest 2026-01-19, covering business date 2026-01-18) delivered only 130 rows, against roughly 320 to 377 for every other batch. Its txn_id range 904477-904801 spans about 325 IDs, and the sample already shows a gap (904478 is missing), so this looks like a partial or truncated source delivery rather than a pipeline logic bug. The missing transactions are not in raw data, so no SQL change can recover them; the source team needs to re-deliver the complete batch for 2026-01-18.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ad8f666eb511ac3cc",
+ "condition": "full"
+}

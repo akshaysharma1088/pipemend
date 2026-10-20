@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157208,
+  "cache_create": 21052
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 was partly re-delivered: its ingest_ts range runs to 2026-01-17 22:00, not only 02:00. The replayed rows repeat existing txn_ids, so silver_transactions has duplicate keys and the gold tables double-count them. The txn_id range 900001-904866 is fully populated with no gaps, so deduplicating by txn_id, keeping the latest delivery, gives the correct data.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}",
+ "transcript_id": "a2440cd8ca4ee2854",
+ "condition": "full"
+}

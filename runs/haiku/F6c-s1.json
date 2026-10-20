@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203222,
+  "cache_create": 30904
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains email addresses (e.g. USER1692@EXAMPLEMAIL.COM) in place of region codes for some customers, so silver_customers carries them through into gold_region_daily. The correct region for those customers cannot be inferred from the evidence, and the email values are personal data that the source team must correct and re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ab9928aab76dcb0dc",
+ "condition": "full"
+}

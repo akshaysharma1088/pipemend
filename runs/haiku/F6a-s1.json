@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 20,
+  "cache_read": 203222,
+  "cache_create": 30962
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (the only batch with 2026-01-18 transactions) delivered 151 rows against a typical ~330-350 per batch, and its txn_id sample has gaps (904491-904495 missing), so the business date is partially delivered. The low volume is a missing-data problem at the source, not a pipeline logic error, and the correct data cannot be reconstructed from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a5327a592912b2504",
+ "condition": "full"
+}

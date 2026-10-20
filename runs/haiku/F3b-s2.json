@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203222,
+  "cache_create": 31924
+ },
+ "raw_response": "{\"diagnosis\": \"The 26-hour freshness filter added in DE-412 on 2026-01-17 drops valid, unique POSTED transactions whose ingest lags their txn_ts by about 2.8 days (for example batch 11 rows with txn 2026-01-13 ingested 2026-01-16), so silver is short by the monitored amounts. Whether these late arrivals are stale events that should be excluded or valid late data that must be kept is a business rule the evidence does not settle, and the source delivery lag itself needs confirmation.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a03305c51ea0ec2c9",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 30,
+  "cache_read": 111194,
+  "cache_create": 68167
+ },
+ "raw_response": "{\"diagnosis\": \"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR` drops about 25% of POSTED rows in every batch from 3 to 13. Those batches carry transactions up to roughly 3 days older than their ingest time, as in the batch 11 to 13 samples. Nothing in the evidence shows whether the 26-hour cutoff is an intended lateness rule or a bug. The change notes don't mention it, and the source's delivery lag may have changed around batch 3.\", \"decision\": \"escalate\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a9ea333a4464cd721",
+ "condition": "no_change_notes"
+}

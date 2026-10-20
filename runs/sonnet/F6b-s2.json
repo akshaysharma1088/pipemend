@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157208,
+  "cache_create": 21074
+ },
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 mean/median skew comes from batch 14 (ingested 2026-01-19), which contains outsized round-valued amounts such as 1715.0 against a typical value of about 40. The evidence does not show whether these are a unit or scale error (for example cents), duplicates, or genuine large purchases, and there is no per-batch amount profile or change note to show which rows are affected or how to correct them.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a6edbaed2adb1e70e",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F2c-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2094,
+  "cache_read": 157196,
+  "cache_create": 21052
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 has 400 rows, about 23 more than its txn_id range (904100 to 904476) can account for, and it carries two ingest_ts values (02:00 and 22:00). That points to a partial re-delivery of batch 13 rows, which silver_transactions passes through without deduplicating, so 22 POSTED txn_ids appear twice.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) r WHERE rn = 1 AND status = 'POSTED'\"}}",
+ "transcript_id": "ac85621c3577886f0",
+ "condition": "full"
+}

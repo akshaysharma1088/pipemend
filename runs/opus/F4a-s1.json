@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F4a-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1748,
+  "cache_read": 157196,
+  "cache_create": 21078
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) delivered customer_id without zero-padding ('C180', 'C3', 'C94' instead of 'C00180', etc.), so those roughly 363 posted rows fail the inner join to silver_customers, which uses 'C00001'..'C00200'. The 363 dropped rows match batch 14's 378 rows less its reversals. The values map one-to-one to the padded format, so normalizing the key in silver fixes gold_region_daily and also gold_customer_spend.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, CASE WHEN regexp_matches(customer_id, '^C[0-9]+$') THEN 'C' || lpad(substr(customer_id, 2), 5, '0') ELSE customer_id END AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "ad42c86b3dd8fe1d4",
+ "condition": "full"
+}

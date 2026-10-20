@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157208,
+  "cache_create": 21058
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 was delivered twice: it has 400 rows against about 377 expected from the txn_id ranges, and its ingest_ts runs from 02:00 to 22:00. The 22:00 redelivery repeated txn_ids that were already POSTED, and silver_transactions has no dedup step. I could not see whether the duplicate rows differ in content, so I keep the latest-ingested POSTED row per txn_id.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1\"}}",
+ "transcript_id": "ab81debdbf7eaf416",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6a-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 588,
+  "cache_read": 157196,
+  "cache_create": 21064
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14, the 2026-01-19 delivery that holds business date 2026-01-18, has only 151 rows, while the other batches have about 322 to 364. The sampled txn_ids skip numbers (904490 then 904496). This points to a partial or truncated upstream delivery, not a pipeline logic bug, and no recent change notes explain it.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a72c0851136c7dc2a",
+ "condition": "full"
+}

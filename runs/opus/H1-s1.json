@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H1-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H1-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1341,
+  "cache_read": 111174,
+  "cache_create": 67095
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 arrived in a new format: status is lowercase ('posted'/'reversed', 363+15=378 rows) and amount has a '$' prefix. The case-sensitive filter status = 'POSTED' dropped every row in the batch, so none reached silver. Normalizing the case and stripping the currency symbol recovers the data, and the business meaning stays the same (currency is USD for all rows).\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(replace(trim(amount), '$', ''), ',', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED'\"}}",
+ "transcript_id": "a8c11f90928c56aaf",
+ "condition": "full"
+}

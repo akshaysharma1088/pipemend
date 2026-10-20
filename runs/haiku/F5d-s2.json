@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 30974
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (and only the sampled rows so far) carries merchant_id values in a new 'M-0NNN' format that the silver cast to INTEGER cannot parse. The range (M-0139 max, 80 distinct IDs vs. 40 merchants) suggests M-0NNN maps to merchant NNN, but no change note documents a format change or confirms the mapping, so the correct key rule cannot be verified from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a2c27b7ed4af152a6",
+ "condition": "full"
+}

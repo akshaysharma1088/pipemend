@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F1c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 30,
+  "cache_read": 203222,
+  "cache_create": 30748
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 delivered txn_ts as 13-digit epoch-millisecond strings (e.g. '1768543592000'), which the CAST to TIMESTAMP rejects; the other batches use ISO strings. The epoch values convert to 2026-01-16 06:0x UTC, matching the time-of-day pattern of neighbouring batches, so they can be parsed as UTC milliseconds while keeping the ISO branch unchanged.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]{13}$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN regexp_matches(txn_ts, '^[0-9]{13}$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "adbe08e9da6e63ec5",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F5c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 14,
+  "cache_read": 203228,
+  "cache_create": 31046
+ },
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 (1,042 rows) carry status SETTLED or REVERSED, while silver_transactions keeps only status = 'POSTED', so none of them reach silver. Whether SETTLED should count as a valid transaction in silver and gold is a business rule the evidence does not settle, and no change notes record a status vocabulary change.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a285a30a20077475d",
+ "condition": "no_change_notes"
+}

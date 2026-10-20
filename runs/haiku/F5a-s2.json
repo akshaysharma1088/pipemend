@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5a-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 24,
+  "cache_read": 203222,
+  "cache_create": 31240
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 (377 rows, all with ingest 2026-01-18 and txn_ts on 2026-01-17) is labeled amount_unit = 'USD_CENTS', but its amounts are in cents (e.g. 1651.0 for what is clearly $16.51). Silver takes amount as-is, so those rows inflate the 2026-01-17 gold aggregates by about 100x.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN amount / 100.0 ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "af99f4662b781a8b3",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H8-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H8-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1482,
+  "cache_read": 157206,
+  "cache_create": 21017
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (756 rows vs about 340 normal) was re-delivered at 05:00 as a replay. The replayed copies carry txn_ts as epoch milliseconds, which breaks CAST to TIMESTAMP. Epoch 1768716186000 equals 2026-01-18 06:03:06 UTC, which matches the original row for txn_id 904489. So the data is duplicated (4866 distinct txn_id in 5244 rows), and the fix is to parse both timestamp formats and dedupe by txn_id.\", \"decision\": \"fix\", \"confidence\": 0.78, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN make_timestamp(CAST(txn_ts AS BIGINT) * 1000) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, status, ingest_ts FROM raw_transactions), dedup AS (SELECT * FROM parsed QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, txn_ts) = 1) SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM dedup WHERE status = 'POSTED'\"}}",
+ "transcript_id": "ae34b2e7d4726a0b1",
+ "condition": "full"
+}

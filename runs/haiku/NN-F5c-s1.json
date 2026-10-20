@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F5c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 20,
+  "cache_read": 203228,
+  "cache_create": 31054
+ },
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 contain only non-POSTED statuses (samples show SETTLED, and the 1,034 rows exceed the 978 SETTLED total, so REVERSED rows are mixed in too), while silver_transactions keeps only status = 'POSTED'. The status vocabulary appears to have changed at batch 12 with no change note, and whether SETTLED should count as POSTED, and how REVERSED should be handled, is a source or business decision.\",\n \"decision\": \"escalate\",\n \"confidence\": 0.8,\n \"pre_sql\": [],\n \"step_overrides\": {}}",
+ "transcript_id": "ac9b3be39e49edfae",
+ "condition": "no_change_notes"
+}

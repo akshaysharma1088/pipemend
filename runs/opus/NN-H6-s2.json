@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "NN-H6-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H6-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 3664,
+  "cache_read": 158734,
+  "cache_create": 22831
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingest 2026-01-19) holds 346 rows but only covers the new txn_id range 904477-904802, which is 326 ids. Earlier batches have exactly one row per id, so batch 14 carries 20 redelivered duplicate rows. The silver step does not deduplicate, so they reach silver as duplicate keys and inflate every gold aggregate.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1\"}}",
+ "transcript_id": "a66dbd58a2483e096",
+ "condition": "no_change_notes"
+}

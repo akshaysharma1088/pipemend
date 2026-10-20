@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F1d-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 30,
+  "cache_read": 203222,
+  "cache_create": 30790
+ },
+ "raw_response": "{\"diagnosis\": \"The silver_transactions filter `status = 'POSTED'` is case-sensitive, and batch 13 was delivered entirely in lowercase (298 'posted' + 24 'reversed' = its 322 rows), so none of its rows pass the filter. Normalizing the status with upper() before comparing restores the intended POSTED-only rule and leaves REVERSED rows excluded.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(status) = 'POSTED'\"}}",
+ "transcript_id": "a7593cea8f70134e1",
+ "condition": "full"
+}

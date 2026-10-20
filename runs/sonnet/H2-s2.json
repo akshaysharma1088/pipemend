@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H2-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H2-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157206,
+  "cache_create": 21371
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 the payments source sends amount corrections in the daily delivery as a repeat of the txn_id with record_version incremented (26 rows have version 2). silver_transactions keeps both versions, so the txn_id is duplicated and the gold totals are double counted. The fix is to keep only the latest version per txn_id, then apply the POSTED filter.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED';\"}}",
+ "transcript_id": "a7be10fb89588d9bc",
+ "condition": "full"
+}

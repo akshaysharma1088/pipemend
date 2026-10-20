@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H3-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 204,
+  "cache_read": 203226,
+  "cache_create": 31390
+ },
+ "raw_response": "{\"diagnosis\": \"The legacy collector's txn_ts values run about 6 hours behind the v2 collector's for the same daily pattern, which suggests a timezone or clock mismatch between collectors. The evidence cannot show which collector's timestamps are correct, whether the business date should shift, or why 2026-01-19 holds rows timestamped before the batch's own ingest time, so no correct remediation can be determined.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ad7713d6ff036f97e",
+ "condition": "no_change_notes"
+}

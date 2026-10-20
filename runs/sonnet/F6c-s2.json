@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157208,
+  "cache_create": 21242
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers.region holds customer email addresses (PII) in place of region values for a number of customers (19 distinct values, so far more than the 5 flagged). This looks like an upstream column mix-up or leak. The true region for these customers can't be determined from the evidence, and the exposed PII needs a human privacy decision.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "abf26c8b140acb19a",
+ "condition": "full"
+}

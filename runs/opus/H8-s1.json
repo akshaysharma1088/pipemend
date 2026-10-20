@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H8-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H8-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2799,
+  "cache_read": 157194,
+  "cache_create": 21011
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 got a second delivery at 05:00 (756 rows, about twice the normal ~350). That delivery re-sent 378 transactions with the same txn_ids (5244 rows but only 4866 distinct txn_ids) and wrote txn_ts as epoch milliseconds. 1768716186000 ms is exactly 2026-01-18 06:03:06 UTC, which matches the original row for txn 904489. The epoch values break the TIMESTAMP cast, and the duplicate rows would double-count those transactions in the gold tables.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [\"CREATE OR REPLACE VIEW stg_transactions_dedup AS SELECT * EXCLUDE (rn) FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN regexp_full_match(txn_ts, '[0-9]{13}') THEN make_timestamp(CAST(txn_ts AS BIGINT) * 1000) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM stg_transactions_dedup) s WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a37151b6d7bd536f6",
+ "condition": "full"
+}

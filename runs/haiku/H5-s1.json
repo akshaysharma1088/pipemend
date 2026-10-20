@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H5-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H5-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 220,
+  "cache_read": 203220,
+  "cache_create": 31206
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 payments-source sends reversals as separate REVERSAL records with orig_txn_id, and no longer updates the original. Silver filters only status = 'POSTED', so reversed originals stay in silver and gold while their reversal records are dropped, which inflates totals for the recent days. The fix is to exclude any POSTED transaction that a REVERSAL record points to, matching the legacy REVERSED-status exclusion.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id = t.txn_id);\"}}",
+ "transcript_id": "a9230d45b4f2e80e3",
+ "condition": "full"
+}

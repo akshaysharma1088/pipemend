@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157208,
+  "cache_create": 21152
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 was delivered twice (ingest_ts 02:00 and 05:00). Its 652 rows are 326 transactions each loaded twice, and the sample shows identical duplicate rows. silver_transactions has no dedup, so it carries 316 duplicate POSTED txn_ids and every gold table double-counts. Deduplicating on txn_id fixes silver and gold, and the unique count of 316 matches the normal daily volume.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}",
+ "transcript_id": "a6c35b5cf29b2b80f",
+ "condition": "full"
+}

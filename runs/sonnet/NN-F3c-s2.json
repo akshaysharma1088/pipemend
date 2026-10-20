@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3c-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 30,
+  "cache_read": 157214,
+  "cache_create": 21053
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from CAST(ingest_ts AS DATE), but batches are ingested at 02:00 the day after the transactions occurred, so every row's txn_date is one day late compared with the date of txn_ts. The correct txn_date is the date of txn_ts, and the gold tables that group by txn_date inherit the shift.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "aff1ea151c883bfe4",
+ "condition": "no_change_notes"
+}

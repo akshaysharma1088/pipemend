@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F5d-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 128,
+  "cache_read": 157196,
+  "cache_create": 21078
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) delivers merchant_id as a prefixed, zero-padded string like 'M-0131' instead of the plain integer '131'. The 80 distinct values are the same 40 merchants (100-139) in both formats, with max 'M-0139' matching merchant 139, so stripping the 'M-' prefix and casting gives the correct merchant_id.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(CASE WHEN merchant_id LIKE 'M-%' THEN substr(merchant_id, 3) ELSE merchant_id END AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a6653c9f1e9a2737a",
+ "condition": "full"
+}

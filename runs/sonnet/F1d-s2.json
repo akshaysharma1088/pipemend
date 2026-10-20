@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F1d-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 36,
+  "cache_read": 157208,
+  "cache_create": 21088
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 delivered status in lowercase ('posted' 363 rows, 'reversed' 14 rows), so the case-sensitive filter status = 'POSTED' dropped every row in the batch. Normalizing case recovers the 363 posted rows, and the lowercase 'reversed' rows stay excluded as before.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED'\"}}",
+ "transcript_id": "ab3b2d7b46f3ff655",
+ "condition": "full"
+}

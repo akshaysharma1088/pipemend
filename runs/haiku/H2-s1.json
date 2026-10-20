@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H2-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H2-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 20,
+  "cache_read": 203220,
+  "cache_create": 31162
+ },
+ "raw_response": "{\"diagnosis\": \"The 30 duplicate txn_ids are amount corrections from the 2026-01-18 payments-source change: each repeats the txn_id with record_version 2, and the original is record_version 1. The silver step keeps both versions, so the fix is to keep only the highest record_version per txn_id, applied before the POSTED filter so a correction that changes status is honored.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC) AS rn FROM raw_transactions) r WHERE rn = 1 AND status = 'POSTED';\"}}",
+ "transcript_id": "ac27fbb8bbaafe449",
+ "condition": "full"
+}

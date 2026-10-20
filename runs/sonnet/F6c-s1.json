@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 118,
+  "cache_read": 157208,
+  "cache_create": 21226
+ },
+ "raw_response": "{\"diagnosis\": \"Five raw_customers rows have an email address in the region column, so the source put a PII field into the wrong column and the real region is not in the data. The correct region cannot be inferred from the evidence. The row-level privacy issue and the corrected customer data need to come from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a8c57ea888fa3ceb7",
+ "condition": "full"
+}

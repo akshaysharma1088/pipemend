@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F4c-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 126,
+  "cache_read": 157196,
+  "cache_create": 21434
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 dimension with 230 rows for 200 customers: 30 old versions have is_current=false and valid_from 2023-06-01. silver_customers keeps every version, so the join fans out (5353 vs 4630). The current versions (valid_from 2025-01-01) cover every 2026 transaction, so filtering to is_current gives the correct region.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE\"}}",
+ "transcript_id": "a2210586807fc9116",
+ "condition": "full"
+}

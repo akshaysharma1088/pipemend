@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157208,
+  "cache_create": 21440
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 history table with 230 rows for 200 customers (30 have an old non-current row, is_current=False). silver_customers keeps all of them, so the join to gold_region_daily duplicates those customers' transactions (5353 vs 4630). Keeping only is_current rows gives one row per customer, since there are exactly 200 current rows for 200 distinct customers.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}",
+ "transcript_id": "a4cf9b068d6704cee",
+ "condition": "full"
+}

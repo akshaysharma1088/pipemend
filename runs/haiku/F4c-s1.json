@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 22,
+  "cache_read": 203222,
+  "cache_create": 31180
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers holds 30 superseded SCD2 rows (is_current = False, valid_from 2023-06-01) alongside one current row per customer, so the join in gold_region_daily on customer_id fans out transactions for those customers. Restricting the region join to current rows gives one region per customer, and this is the correct point-in-time match because every transaction (January 2026) is after the current row's valid_from of 2025-01-01.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"gold_region_daily\": \"CREATE OR REPLACE TABLE gold_region_daily AS SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total FROM silver_transactions t JOIN (SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current) c USING (customer_id) GROUP BY t.txn_date, c.region;\"}}",
+ "transcript_id": "aa8cc575ac24ebb85",
+ "condition": "full"
+}

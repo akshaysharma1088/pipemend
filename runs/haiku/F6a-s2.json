@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 22,
+  "cache_read": 203222,
+  "cache_create": 30838
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (the delivery carrying 2026-01-18 transactions) has only 130 rows against a typical batch of roughly 320 to 380, and the txn_id sequence has gaps inside it (904477, 904479, 904480). The silver row count of 127 is therefore the result of incomplete source delivery, not a pipeline logic error. Re-delivery of the missing batch 14 data is required, and no SQL change can recover rows that were never delivered.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "af98b010a683e87a2",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 31298
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers holds 30 superseded SCD2 rows (is_current = False, valid_from 2023-06-01) alongside the current row for those customers, so the join in gold_region_daily duplicates every transaction for them (5286 - 4600 = 686 extra rows). Deduplicating silver_customers to one row per customer, preferring the current version, removes the fan-out and keeps the same output columns.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers QUALIFY row_number() OVER (PARTITION BY customer_id ORDER BY is_current DESC, valid_from DESC) = 1\"}}",
+ "transcript_id": "a06c131ab32407549",
+ "condition": "full"
+}

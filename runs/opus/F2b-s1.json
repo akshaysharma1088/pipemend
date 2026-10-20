@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F2b-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 116,
+  "cache_read": 157196,
+  "cache_create": 21046
+ },
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 5012 rows but only 4866 distinct txn_ids. Every delivery batch carries more rows than its txn_id range, so about 146 records were delivered twice. The silver step casts and filters on status but never deduplicates, so 137 POSTED txn_ids are counted twice. The other 9 are REVERSED-only and get filtered out. All gold aggregates are inflated by the same duplicates.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC, txn_ts DESC, amount DESC) AS rn FROM raw_transactions) d WHERE rn = 1 AND status = 'POSTED'\"}}",
+ "transcript_id": "a090381f3f4998735",
+ "condition": "full"
+}

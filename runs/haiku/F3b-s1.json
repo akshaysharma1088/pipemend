@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 31890
+ },
+ "raw_response": "{\"diagnosis\": \"The silver_transactions step drops every row whose ingest_ts is more than 26 hours after txn_ts (the DE-412 stale-event filter added 2026-01-17). Batches land at 02:00 the next day but carry transactions from 1 to 3 days earlier, so the filter removes roughly 25% of each batch's valid POSTED rows. The correct staleness rule is a business decision that the evidence does not settle, and removing or changing the filter without the DE-412 owner could silently change which transactions reach silver and gold.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a05e9509fe5f3204d",
+ "condition": "full"
+}

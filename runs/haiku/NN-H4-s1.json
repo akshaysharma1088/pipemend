@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H4-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 26,
+  "cache_read": 203226,
+  "cache_create": 31156
+ },
+ "raw_response": "{\"diagnosis\": \"silver_customers copies raw_customers.region without decoding it, so 60 customers carry numeric codes '01' to '04' instead of names. raw_region_map supplies a unique one-to-one mapping for exactly those four codes (01 WEST, 02 EAST, 03 NORTH, 04 SOUTH), so decoding through it restores consistent region names in silver_customers and the gold_region_daily output that joins on it.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}",
+ "transcript_id": "a4535ed9765b0594d",
+ "condition": "no_change_notes"
+}

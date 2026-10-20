@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H5-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H5-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 28,
+  "cache_read": 157206,
+  "cache_create": 21451
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-17 the source sends a reversal as a separate REVERSAL record pointing to the original via orig_txn_id, and no longer updates the original. The original stays POSTED, so silver_transactions still counts it and gold totals run high for recent days. Before the change, reversed originals arrived as REVERSED and were filtered out.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions rv WHERE rv.status = 'REVERSAL' AND rv.orig_txn_id = r.txn_id);\"}}",
+ "transcript_id": "a2deac7960df87dcf",
+ "condition": "full"
+}

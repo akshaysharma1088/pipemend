@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use PipeMend, please cite it as below."
+title: "PipeMend: a benchmark for LLM remediation of data pipeline incidents"
+authors:
+  - family-names: Sharma
+    given-names: Akshay
+    affiliation: "Salesforce, Inc."
+version: 1.0.0
+date-released: 2026-10-19
+license: MIT
+repository-code: "https://github.com/akshaysharma1088/pipemend"

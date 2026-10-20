@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157208,
+  "cache_create": 21076
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19 02:00, holding the 2026-01-18 transactions) has only 130 rows against about 340 in every other batch. Its txn_ids should run 904477 to 904801, which is 325 ids, but 195 of them are missing (904478 is one). The txn_id range 900001 to 904801 has exactly 195 gaps overall, so all of the loss is in batch 14. The pipeline SQL is correct and the source delivered a partial batch.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a939d90996b50ede4",
+ "condition": "full"
+}

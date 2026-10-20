@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 12,
+  "cache_read": 203222,
+  "cache_create": 30806
+ },
+ "raw_response": "{\"diagnosis\": \"Starting with delivery batches 13 and 14 (ingested 2026-01-18 and 2026-01-19), raw_transactions rows arrive with merchant_id NULL: 703 raw rows, 679 of them POSTED and so in silver_transactions. The gold_mcc_daily inner join to silver_merchants silently drops those 679 rows (4600 - 679 = 3921). The correct merchant for these transactions cannot be derived from the evidence, so the feed must be fixed and re-delivered or a business rule for unknown merchants must be decided by a human.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a7db47265286e22a2",
+ "condition": "full"
+}

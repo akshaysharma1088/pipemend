@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H6-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H6-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 4,
+  "output": 255,
+  "cache_read": 101607,
+  "cache_create": 15365
+ },
+ "raw_response": "{\"diagnosis\": \"Under PAY-77, part of batch 13 was delivered twice, which produced 19 duplicate txn_ids in silver_transactions. The two copies have different amounts (for example 904167 at 7.33 vs 8.27), and the source team says it does not yet know which copy has the final amount.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "aa7c5afe9c099e6e5",
+ "condition": "full"
+}

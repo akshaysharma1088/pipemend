@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5a-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 300,
+  "cache_read": 203222,
+  "cache_create": 31246
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 (334 rows, ingested 2026-01-17, txn_ts on 2026-01-16) has amount_unit = 'USD_CENTS', so its amounts are in cents, but silver_transactions treats every amount as dollars. That inflates the 2026-01-16 mean, and the same error flows into all gold tables. Dividing USD_CENTS amounts by 100 in silver_transactions corrects the data; the other silver and gold steps are unchanged.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN amount / 100.0 ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}",
+ "transcript_id": "a87d56e282408d44f",
+ "condition": "full"
+}

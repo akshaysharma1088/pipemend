@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H3-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 124,
+  "cache_read": 157212,
+  "cache_create": 21662
+ },
+ "raw_response": "{\"diagnosis\": \"Timestamps appear shifted forward by a fixed offset (about 6 hours), so late-evening transactions roll into the next txn_date. The evidence is that nothing is stamped before 06:00 and Jan 19 04:49 rows sit in a batch ingested Jan 19 02:00. The evidence does not settle which collector is shifted or by how much. Legacy rows start at 06:00 while v2 rows in the samples start at 12:00, which suggests the two collectors may use different offsets. Changing txn_date logic on a guessed timezone could silently misassign transactions.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "aa3711707daa4c5d4",
+ "condition": "no_change_notes"
+}

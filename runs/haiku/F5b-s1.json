@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 26,
+  "cache_read": 203222,
+  "cache_create": 31390
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions copies raw amounts without using the currency column, so the 80 EUR transactions are summed as if they were USD and the gold totals are understated. The fix converts each amount to USD with rate_to_usd from raw_fx_rates, the only FX source in the evidence (single rate per currency, as_of 2026-01-01), which may be stale for the 2026-01-18 business date.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount * f.rate_to_usd AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t LEFT JOIN raw_fx_rates f ON f.currency = t.currency WHERE t.status = 'POSTED';\"}}",
+ "transcript_id": "a1f13d63c931810a6",
+ "condition": "full"
+}

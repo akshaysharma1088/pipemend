@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6d-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 128,
+  "cache_read": 157196,
+  "cache_create": 21146
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19, business date 2026-01-18) came in with merchant_id NULL on every row: 378 raw nulls match the batch's 378 rows, and 363 of those are POSTED. The inner join to silver_merchants drops those rows from gold_mcc_daily. The pipeline logic is not at fault. The source data is missing merchant_id, the raw data gives no way to recover it, and no change note explains the gap, so the source team needs to re-deliver batch 14 with merchant_id filled in.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a48e0c36e88acab10",
+ "condition": "full"
+}

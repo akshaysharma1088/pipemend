@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 22,
+  "cache_read": 111188,
+  "cache_create": 124058
+ },
+ "raw_response": "{\"diagnosis\": \"The `ingest_ts - txn_ts <= 26 HOUR` filter in silver_transactions silently drops roughly a quarter of each delivered batch, because batches arrive about three days after their transactions. Raw data is complete (txn_id is unique and the batch counts sum to 4866), but the filter's intended business meaning is undocumented and the 26-hour window is a deliberate-looking rule, so whether to remove it or re-scope it (which would change silver and gold totals) is a human decision.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a09e98ca23ae70e4f",
+ "condition": "no_change_notes"
+}

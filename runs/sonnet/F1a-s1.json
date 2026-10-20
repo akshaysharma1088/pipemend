@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F1a-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 32,
+  "cache_read": 111188,
+  "cache_create": 67116
+ },
+ "raw_response": "{\"diagnosis\": \"The source column was renamed from amount to txn_amount, so silver_transactions fails to bind amount. The txn_amount values are DOUBLE, USD only, with no nulls, so casting that column to DECIMAL(12,2) restores the original meaning.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(txn_amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a62758fd65cc9de0b",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 24,
+  "cache_read": 157214,
+  "cache_create": 22153
+ },
+ "raw_response": "{\"diagnosis\": \"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR` silently drops POSTED transactions that arrive late. Since batch 3, a large share of each batch has been delivered more than 26 hours after txn_ts, and the sampled rows show lags of about 67 to 68 hours. The filter is the only thing that explains the shortfall, because REVERSED rows are only about 4% of the data. txn_id is unique, so removing the filter cannot introduce duplicates.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a6b59546078a477f9",
+ "condition": "no_change_notes"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H6-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H6-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 4,
+  "output": 253,
+  "cache_read": 101607,
+  "cache_create": 15368
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) contains 20 txn_ids delivered twice during an amount recalculation (PAY-77), and the source team has said it does not yet know which copy has the final amount. So the correct amount for those transactions cannot be worked out from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "adc4bc3f373cca822",
+ "condition": "full"
+}

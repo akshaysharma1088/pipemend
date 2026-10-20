@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F5d-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2028,
+  "cache_read": 157196,
+  "cache_create": 21072
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 (ingest 2026-01-17) sent merchant_id as 'M-0NNN' (e.g. 'M-0102') instead of plain integers, which breaks the INTEGER cast. The other batches use numeric IDs 100-139, and the 80 distinct values equal 40 numeric IDs plus 40 prefixed forms with the same range (max 'M-0139'), so 'M-0102' maps to 102.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CASE WHEN merchant_id LIKE 'M-%' THEN CAST(substr(merchant_id, 3) AS INTEGER) ELSE CAST(merchant_id AS INTEGER) END AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a78e4197a75571ecc",
+ "condition": "full"
+}

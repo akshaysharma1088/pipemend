@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H8-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H8-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 3303,
+  "cache_read": 157194,
+  "cache_create": 21017
+ },
+ "raw_response": "{\"diagnosis\": \"At 2026-01-19 05:00 batch 14 was delivered a second time with txn_ts as epoch milliseconds. 4802 distinct txn_ids across 5128 rows leaves 326 extras, which is exactly half of batch 14's 652 rows. The epoch value 1768716104000 converts to 2026-01-18 06:01:44 UTC, the same time as the original row. The cast failed on these rows, and the duplicate txn_ids would double-count batch 14 even if the cast worked.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT r.*, CASE WHEN regexp_full_match(trim(txn_ts), '[0-9]+') THEN epoch_ms(CAST(trim(txn_ts) AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions r QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}",
+ "transcript_id": "aa86a22721cfb58e9",
+ "condition": "full"
+}

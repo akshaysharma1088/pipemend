@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6c-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 310,
+  "cache_read": 157196,
+  "cache_create": 21236
+ },
+ "raw_response": "{\"diagnosis\": \"The region column in raw_customers holds email addresses (PII) for some customers, so silver_customers and gold_region_daily carry personal data and wrong region values. The real regions for those customers can't be worked out from the evidence, and the PII exposure needs a privacy/compliance decision plus a corrected delivery from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ac9e6b8b94a878b53",
+ "condition": "full"
+}

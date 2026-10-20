@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H4-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H4-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 22,
+  "cache_read": 203220,
+  "cache_create": 31670
+ },
+ "raw_response": "{\"diagnosis\": \"Starting 2026-01-15, customers migrated from the new CRM carry numeric region codes ('01' to '04') in raw_customers.region, which silver_customers passes through unmapped. raw_region_map gives the authoritative code-to-name mapping (01 WEST, 02 EAST, 03 NORTH, 04 SOUTH), so a left join to it, with the existing upper(region) as fallback, restores the four region names without changing rows or columns.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON m.region_code = c.region;\"}}",
+ "transcript_id": "a2bfa48e7856fdf20",
+ "condition": "full"
+}

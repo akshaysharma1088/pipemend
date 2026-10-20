@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F4d-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 31070
+ },
+ "raw_response": "{\"diagnosis\": \"silver_customers applies upper(region) but not trim, so raw_customers values with trailing spaces ('EAST ', 'NORTH ', 'SOUTH ', 'WEST ') stay as separate region labels from their clean equivalents. Trimming before upper gives 4 clean regions and makes gold_region_daily aggregate correctly.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}",
+ "transcript_id": "a618cfc71f9849e64",
+ "condition": "full"
+}

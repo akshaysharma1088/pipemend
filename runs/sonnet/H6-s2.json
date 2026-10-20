@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H6-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 30,
+  "cache_read": 157206,
+  "cache_create": 21175
+ },
+ "raw_response": "{\"diagnosis\": \"The 20 duplicate txn_ids come from the latest delivery (batch 14) being sent twice during an amount recalculation (PAY-77). The two copies probably differ in amount, and nothing in the evidence shows which copy is final, so deduplicating would risk silently wrong totals.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a6d36b504bde52d28",
+ "condition": "full"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 14,
+  "cache_read": 203222,
+  "cache_create": 30942
+ },
+ "raw_response": "{\"diagnosis\": \"138 POSTED txn_ids appear more than once in raw_transactions (144 surplus rows overall, and batch 13 is oversized at 384 rows against about 345 typical), which looks like re-delivered records. The evidence does not show whether the duplicate copies are identical or differ in amount, timestamp or status, so no dedupe rule can be shown to produce correct data and the source team needs to confirm.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a1ed995afe798c4aa",
+ "condition": "full"
+}

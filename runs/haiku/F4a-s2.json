@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 24,
+  "cache_read": 203222,
+  "cache_create": 30766
+ },
+ "raw_response": "{\"diagnosis\": \"The 363 POSTED transactions that drop out of gold_region_daily (4600 vs 4237) fail the inner join to silver_customers. Their customer_id values use non-canonical forms such as 'C115', 'C91' and 'C99' instead of the 'C00nnn' keys in raw_customers, and transactions carry 364 distinct customer ids against 200 customer records, so some may have no dimension row at all. Whether to zero-pad these ids or keep unmatched rows under an unknown region is a source-team and business decision that the evidence does not settle.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a3300aac8cc2e2e70",
+ "condition": "full"
+}

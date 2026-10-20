@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H7-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157212,
+  "cache_create": 21108
+ },
+ "raw_response": "{\"diagnosis\": \"The evidence does not show why gold totals run about 2 percent below the settlement file. Raw has no duplicate txn_ids, batch volumes look normal, and no change note touches the source or pipeline. The only candidate is the 202 REVERSED rows (4.2 percent of rows) that silver drops, and whether settlement counts them is a business-rule question. Finance would need to reconcile at transaction level against the settlement file.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a4241b3f6c116a67f",
+ "condition": "no_change_notes"
+}

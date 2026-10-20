@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F5c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F5c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 208,
+  "cache_read": 203222,
+  "cache_create": 31108
+ },
+ "raw_response": "{\"diagnosis\": \"The payments-source feed renamed status POSTED to SETTLED starting with batch 12, but silver_transactions still filters on status = 'POSTED', so batches 12-14 are dropped entirely. The change note says the rename does not change meaning, so SETTLED should be accepted alongside POSTED while REVERSED stays excluded as before.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED')\"}}",
+ "transcript_id": "ad90fa0d5dacdb5f8",
+ "condition": "full"
+}

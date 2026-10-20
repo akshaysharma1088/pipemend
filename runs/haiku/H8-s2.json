@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H8-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H8-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 10,
+  "cache_read": 203220,
+  "cache_create": 30858
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 contains 652 rows where batch 13 had 377, and txn_ts mixes ISO strings with epoch-millisecond strings. The epoch value 1768716104000 is the same UTC instant as the ISO value 2026-01-18 06:01:44 for txn_id 904477, but 326 txn_ids appear twice (5128 rows, 4802 distinct), and the distinct txn_ts count shows most duplicates do not share an identical timestamp string, so I cannot verify they are exact copies. Parsing the epoch format alone would fix the cast error but could double count gold tables, and deduplicating by txn_id would be a business rule the evidence does not settle, so the source team needs to confirm and re-deliver batch 14.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a7f4b66c49847cf86",
+ "condition": "full"
+}

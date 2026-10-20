@@ -1,0 +1,154 @@
+You are the on-call data engineer for a batch data pipeline that runs in DuckDB.
+An incident is described below: the symptom, the pipeline SQL as currently deployed, profiles and
+samples of the raw input tables, and recent change notes. You cannot run queries; decide from the
+evidence shown.
+
+Choose one of two decisions.
+- "fix": propose a remediation that makes the silver and gold tables correct. Use this only when the
+  evidence is enough to determine the correct data.
+- "escalate": hand the incident to a human (for example, the source team) without changing the
+  pipeline. Use this when a correct fix cannot be determined from the evidence, when data is
+  missing and must be re-delivered, when the correct business rule is ambiguous, or when the issue
+  needs a human decision (for example, privacy or compliance).
+A wrong fix that silently produces incorrect data is the worst outcome. An unnecessary escalation
+costs an engineer's time but does not corrupt data.
+
+Rules for a fix:
+- You may replace one or more pipeline steps. Each replacement must be a single statement of the form
+  CREATE OR REPLACE TABLE <same step name> AS SELECT ...
+- You may also add "pre_sql" statements that run before the pipeline; they may only create helper
+  views or tables (CREATE [OR REPLACE] VIEW/TABLE name AS SELECT ...) with names not starting with raw_ or gold_.
+- Never modify or delete raw data: no UPDATE, DELETE, INSERT, DROP, ALTER or similar.
+- Keep the output columns and meaning of every table unchanged. Use DuckDB SQL.
+
+Reply with only one JSON object and no other text:
+{"diagnosis": "<one or two sentences>",
+ "decision": "fix" or "escalate",
+ "confidence": <number from 0 to 1 that your decision and remediation are correct>,
+ "pre_sql": [<zero or more SQL strings>],
+ "step_overrides": {"<step name>": "<SQL string>"}}
+
+=== INCIDENT ===
+INCIDENT H2-s2: nightly run of pipeline `card_txn_daily` for business date 2026-01-18
+
+SYMPTOM: the pipeline run succeeded, but data quality monitors raised alerts:
+  - DUPLICATE_KEYS: 25 txn_id values appear more than once in silver_transactions
+
+CURRENT PIPELINE (steps run in order):
+-- step: silver_transactions
+CREATE OR REPLACE TABLE silver_transactions AS
+SELECT CAST(txn_id AS BIGINT) AS txn_id,
+       customer_id,
+       CAST(merchant_id AS INTEGER) AS merchant_id,
+       CAST(amount AS DECIMAL(12,2)) AS amount,
+       CAST(txn_ts AS TIMESTAMP) AS txn_ts,
+       CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date
+FROM raw_transactions
+WHERE status = 'POSTED';
+-- step: silver_customers
+CREATE OR REPLACE TABLE silver_customers AS
+SELECT customer_id, upper(region) AS region
+FROM raw_customers;
+-- step: silver_merchants
+CREATE OR REPLACE TABLE silver_merchants AS
+SELECT CAST(merchant_id AS INTEGER) AS merchant_id, mcc
+FROM raw_merchants;
+-- step: gold_merchant_daily
+CREATE OR REPLACE TABLE gold_merchant_daily AS
+SELECT txn_date, merchant_id, count(*) AS n_txn, sum(amount) AS total
+FROM silver_transactions
+GROUP BY txn_date, merchant_id;
+-- step: gold_region_daily
+CREATE OR REPLACE TABLE gold_region_daily AS
+SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total
+FROM silver_transactions t JOIN silver_customers c USING (customer_id)
+GROUP BY t.txn_date, c.region;
+-- step: gold_mcc_daily
+CREATE OR REPLACE TABLE gold_mcc_daily AS
+SELECT t.txn_date, m.mcc, count(*) AS n_txn, sum(t.amount) AS total
+FROM silver_transactions t JOIN silver_merchants m USING (merchant_id)
+GROUP BY t.txn_date, m.mcc;
+-- step: gold_customer_spend
+CREATE OR REPLACE TABLE gold_customer_spend AS
+SELECT customer_id, count(*) AS n_txn, sum(amount) AS total
+FROM silver_transactions
+GROUP BY customer_id;
+
+RAW TABLES:
+
+raw_transactions (4828 rows)
+  txn_id BIGINT: nulls=0, distinct=4802, min=900001, max=904802
+  customer_id VARCHAR: nulls=0, distinct=200, min='C00001', max='C00200'
+  merchant_id BIGINT: nulls=0, distinct=40, min=100, max=139
+  amount DOUBLE: nulls=0, distinct=3570, min=2.34, max=744.06
+  currency VARCHAR: nulls=0, distinct=1, values='USD':4828
+  txn_ts TIMESTAMP: nulls=0, distinct=4788, min='2026-01-05 06:01:51', max='2026-01-18 22:59:19'
+  status VARCHAR: nulls=0, distinct=2, values='POSTED':4625, 'REVERSED':203
+  batch_id BIGINT: nulls=0, distinct=14, min=1, max=14
+  ingest_ts TIMESTAMP: nulls=0, distinct=14, min='2026-01-06 02:00:00', max='2026-01-19 02:00:00'
+  record_version BIGINT: nulls=0, distinct=2, values=1:4802, 2:26
+
+raw_customers (200 rows)
+  customer_id VARCHAR: nulls=0, distinct=200, min='C00001', max='C00200'
+  region VARCHAR: nulls=0, distinct=4, values='SOUTH':53, 'EAST':52, 'WEST':49, 'NORTH':46
+  signup_date DATE: nulls=0, distinct=180, min='2023-08-07', max='2025-12-04'
+
+raw_merchants (40 rows)
+  merchant_id BIGINT: nulls=0, distinct=40, min=100, max=139
+  merchant_name VARCHAR: nulls=0, distinct=40, min='Merchant 0', max='Merchant 9'
+  mcc VARCHAR: nulls=0, distinct=5, values='5411':11, '4111':11, '5812':9, '5999':5, '5541':4
+
+raw_transactions by delivery batch (batch_id, rows, min ingest_ts, max ingest_ts):
+  1, 353, 2026-01-06 02:00:00, 2026-01-06 02:00:00
+  2, 334, 2026-01-07 02:00:00, 2026-01-07 02:00:00
+  3, 362, 2026-01-08 02:00:00, 2026-01-08 02:00:00
+  4, 349, 2026-01-09 02:00:00, 2026-01-09 02:00:00
+  5, 324, 2026-01-10 02:00:00, 2026-01-10 02:00:00
+  6, 348, 2026-01-11 02:00:00, 2026-01-11 02:00:00
+  7, 354, 2026-01-12 02:00:00, 2026-01-12 02:00:00
+  8, 339, 2026-01-13 02:00:00, 2026-01-13 02:00:00
+  9, 322, 2026-01-14 02:00:00, 2026-01-14 02:00:00
+  10, 352, 2026-01-15 02:00:00, 2026-01-15 02:00:00
+  11, 323, 2026-01-16 02:00:00, 2026-01-16 02:00:00
+  12, 339, 2026-01-17 02:00:00, 2026-01-17 02:00:00
+  13, 377, 2026-01-18 02:00:00, 2026-01-18 02:00:00
+  14, 352, 2026-01-19 02:00:00, 2026-01-19 02:00:00
+
+SAMPLE ROWS:
+raw_transactions, batch 11:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts | record_version
+  903438 | C00014 | 130 | 36.11 | USD | 2026-01-15 06:04:45 | POSTED | 11 | 2026-01-16 02:00:00 | 1
+  903439 | C00058 | 100 | 4.86 | USD | 2026-01-15 06:14:03 | POSTED | 11 | 2026-01-16 02:00:00 | 1
+  903440 | C00168 | 111 | 21.68 | USD | 2026-01-15 06:18:05 | POSTED | 11 | 2026-01-16 02:00:00 | 1
+raw_transactions, batch 12:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts | record_version
+  903761 | C00124 | 116 | 55.39 | USD | 2026-01-16 06:00:17 | POSTED | 12 | 2026-01-17 02:00:00 | 1
+  903762 | C00065 | 112 | 63.11 | USD | 2026-01-16 06:00:46 | POSTED | 12 | 2026-01-17 02:00:00 | 1
+  903763 | C00010 | 118 | 31.29 | USD | 2026-01-16 06:06:52 | POSTED | 12 | 2026-01-17 02:00:00 | 1
+raw_transactions, batch 13:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts | record_version
+  904100 | C00115 | 116 | 16.51 | USD | 2026-01-17 06:02:01 | POSTED | 13 | 2026-01-18 02:00:00 | 1
+  904101 | C00091 | 129 | 66.85 | USD | 2026-01-17 06:06:43 | POSTED | 13 | 2026-01-18 02:00:00 | 1
+  904102 | C00187 | 131 | 11.77 | USD | 2026-01-17 06:07:01 | POSTED | 13 | 2026-01-18 02:00:00 | 1
+raw_transactions, batch 14:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts | record_version
+  904477 | C00061 | 131 | 14.09 | USD | 2026-01-18 06:01:44 | POSTED | 14 | 2026-01-19 02:00:00 | 1
+  904478 | C00006 | 103 | 32.87 | USD | 2026-01-18 06:02:27 | POSTED | 14 | 2026-01-19 02:00:00 | 1
+  904479 | C00177 | 121 | 17.15 | USD | 2026-01-18 06:05:12 | POSTED | 14 | 2026-01-19 02:00:00 | 1
+raw_customers:
+  customer_id | region | signup_date
+  C00001 | WEST | 2024-02-09
+  C00002 | SOUTH | 2024-11-18
+  C00003 | NORTH | 2024-02-04
+  C00004 | SOUTH | 2025-03-18
+raw_merchants:
+  merchant_id | merchant_name | mcc
+  100 | Merchant 0 | 5411
+  101 | Merchant 1 | 4111
+  102 | Merchant 2 | 4111
+  103 | Merchant 3 | 5812
+
+SOURCE AND DEPLOYMENT CHANGE NOTES:
+  - 2026-01-08 platform: Airflow upgraded to 2.10; no DAG changes.
+  - 2026-01-12 analytics: dashboard filters for region pages updated.
+  - 2026-01-18 payments-source: amount corrections are now sent inside the regular daily delivery; a corrected record repeats the txn_id with record_version incremented.

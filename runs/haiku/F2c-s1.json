@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s1",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 12,
+  "cache_read": 125328,
+  "cache_create": 137002
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 has 354 rows but its txn_id range covers only 334 ids, and its ingest_ts (22:00 on 2026-01-17) is off-schedule, so it appears to replay about 20 already-loaded transactions. Silver keeps every copy, which causes the duplicate keys and double-counts the gold tables. The fix keeps only the earliest-ingested POSTED copy of each txn_id, assuming replayed copies are identical, which the evidence does not show.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}",
+ "transcript_id": "a4f69ac5eadc753c3",
+ "condition": "full"
+}

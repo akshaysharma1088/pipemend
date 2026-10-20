@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157208,
+  "cache_create": 21098
+ },
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so the duplicate dimension rows fan out the join in gold_mcc_daily (5354 vs 4630). The change notes show no merchant reclassification, so the duplicates are most likely exact repeats. I am deduplicating silver_merchants with DISTINCT, which keeps any conflicting mcc values visible rather than hiding them.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}",
+ "transcript_id": "a1eef33fcbbb4e54c",
+ "condition": "full"
+}

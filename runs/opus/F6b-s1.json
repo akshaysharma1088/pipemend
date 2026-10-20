@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F6b-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 128,
+  "cache_read": 157196,
+  "cache_create": 21060
+ },
+ "raw_response": "{\"diagnosis\": \"On 2026-01-18 (batch 14) the mean amount is about 9x the median and the max raw amount is 17083.0. That suggests some rows have inflated amounts, possibly from a unit or scaling error such as cents instead of dollars, or a few genuine large purchases. The sampled batch 14 rows look normal, and nothing in the evidence shows which rows are affected, what caused it, or whether the values are wrong.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a7109b961fe176f9b",
+ "condition": "full"
+}

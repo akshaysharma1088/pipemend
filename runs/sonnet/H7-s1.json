@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H7-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 577,
+  "cache_read": 157206,
+  "cache_create": 21199
+ },
+ "raw_response": "{\"diagnosis\": \"On 2026-01-18 the payments source began reporting amount net of interchange fees, so gold totals for the latest days are about 2 percent below the settlement file. Fee rates vary by merchant category and are published separately by the card network, and that rate table is not in the evidence. The gross amounts therefore cannot be reconstructed, and the correct business rule (gross or net) needs a decision.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "afa292556c0be6010",
+ "condition": "full"
+}

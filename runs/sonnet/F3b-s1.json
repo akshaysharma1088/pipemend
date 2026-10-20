@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3b-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1506,
+  "cache_read": 157208,
+  "cache_create": 22216
+ },
+ "raw_response": "{\"diagnosis\": \"The DE-412 change on 2026-01-17 added a 26-hour staleness filter to silver_transactions. Late-arriving POSTED rows in batches 3-13 are now dropped, about 75-90 per batch beyond the roughly 5% that are REVERSED. Whether late events should be excluded is a business rule the evidence doesn't settle: the filter was added on purpose, but its threshold is inconsistent with the roughly 3-day arrival lag seen in the data.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a6af7085c3e1b357b",
+ "condition": "full"
+}

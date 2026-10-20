@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H2-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 4077,
+  "cache_read": 203226,
+  "cache_create": 31206
+ },
+ "raw_response": "{\"diagnosis\": \"The 26 extra raw_transactions rows are record_version 2 re-deliveries of existing txn_ids (25 ids duplicated, one appearing three times), and silver_transactions keeps every version. The correct resolution needs a human decision: whether the latest version should win and then be filtered to POSTED (so a REVERSED correction removes the transaction), and how to break the tie for the three-copy txn_id, which the evidence does not show.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a9d4f3dd7c341d462",
+ "condition": "no_change_notes"
+}

@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F3c-s1",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3c-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 986,
+  "cache_read": 157196,
+  "cache_create": 21114
+ },
+ "raw_response": "{\"diagnosis\": \"The DE-398 refactor on 2026-01-16 changed silver_transactions to take txn_date from ingest_ts. Each batch is ingested at 02:00 the day after its transactions, so every one of the 4630 POSTED rows is dated one day late, and every gold table grouped by txn_date is off by a day.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a851928c685678547",
+ "condition": "full"
+}

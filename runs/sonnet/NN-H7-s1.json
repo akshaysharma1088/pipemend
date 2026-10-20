@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H7-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 20,
+  "cache_read": 157212,
+  "cache_create": 21102
+ },
+ "raw_response": "{\"diagnosis\": \"Gold totals are about 2 percent below the settlement file for recent days, but nothing in the evidence shows why. Types and keys look clean, there are no duplicate txn_ids, and batch sizes are steady. The only plausible cause is the status filter (236 REVERSED rows, about 4.8 percent of the table, are excluded). Whether settlement counts them, or whether late-arriving or partially delivered recent data is involved, can't be determined from this profile.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ac4a163d33e4ff099",
+ "condition": "no_change_notes"
+}

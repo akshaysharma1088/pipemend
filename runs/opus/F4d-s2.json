@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F4d-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F4d-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 130,
+  "cache_read": 157196,
+  "cache_create": 21176
+ },
+ "raw_response": "{\"diagnosis\": \"raw_customers.region has trailing whitespace on 25 rows ('EAST ', 'WEST ', 'SOUTH ', 'NORTH '). silver_customers only applies upper(), so these rows become extra region values and gold_region_daily splits each region's totals across two groups.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers\", \"gold_region_daily\": \"CREATE OR REPLACE TABLE gold_region_daily AS SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total FROM silver_transactions t JOIN silver_customers c USING (customer_id) GROUP BY t.txn_date, c.region\"}}",
+ "transcript_id": "a07a3a165b5406539",
+ "condition": "full"
+}

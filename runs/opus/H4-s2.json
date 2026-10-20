@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "H4-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H4-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 749,
+  "cache_read": 157194,
+  "cache_create": 21559
+ },
+ "raw_response": "{\"diagnosis\": \"Customers migrated to the new CRM on 2026-01-15 carry numeric region codes ('01'-'04') in place of region names. silver_customers passes these codes through unchanged, so gold_region_daily ends up with code-labelled rows. raw_region_map covers all four codes and maps each one to an existing region name, so the correct values can be derived exactly.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = trim(m.region_code)\"}}",
+ "transcript_id": "ad473304e2a11fe70",
+ "condition": "full"
+}

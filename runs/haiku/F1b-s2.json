@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F1b-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F1b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 24,
+  "cache_read": 203222,
+  "cache_create": 30912
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 (the 2026-01-18 delivery) carries amounts formatted with a leading dollar sign (for example \\\"$14.09\\\"), while every earlier batch uses plain decimals, so the strict DECIMAL cast in silver_transactions fails. Stripping a leading \\\"$\\\" before the cast restores the intended value, and any other unexpected format still fails loudly instead of being silently converted.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(trim(amount), '^[$]', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a5dc49b72257682d1",
+ "condition": "full"
+}

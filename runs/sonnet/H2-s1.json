@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H2-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H2-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 22,
+  "cache_read": 157206,
+  "cache_create": 21365
+ },
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 the payments source sends amount corrections inside the daily delivery. A corrected record repeats the txn_id with record_version 2, and silver_transactions keeps both versions, which gives the 30 duplicate keys. The fix is to keep only the latest version per txn_id, before the POSTED filter, so a later non-POSTED version still removes the transaction.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED';\"}}",
+ "transcript_id": "acb675f8bde93e8d0",
+ "condition": "full"
+}

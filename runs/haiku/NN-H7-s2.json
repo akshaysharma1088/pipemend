@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H7-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203226,
+  "cache_create": 30820
+ },
+ "raw_response": "{\"diagnosis\": \"The only step that drops rows is the silver_transactions filter status = 'POSTED', which removes 202 REVERSED rows (about 4%). That would explain totals running low, but the evidence does not show whether settlement counts reversed transactions, and no monitor checks the status split, so the correct business rule cannot be confirmed from what is shown.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a9cc94ca591ec3dbb",
+ "condition": "no_change_notes"
+}

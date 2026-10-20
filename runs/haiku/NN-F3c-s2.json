@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-F3c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 26,
+  "cache_read": 203228,
+  "cache_create": 30860
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from CAST(ingest_ts AS DATE), and every batch's ingest_ts falls on the day after its txn_ts, so all 4600 POSTED rows fail the date-consistency check. txn_date should be the transaction date, so deriving it from txn_ts fixes the silver layer and the gold tables rebuild from it.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a611e39f797343dd6",
+ "condition": "no_change_notes"
+}

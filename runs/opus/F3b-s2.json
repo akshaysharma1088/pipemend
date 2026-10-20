@@ -1,0 +1,25 @@
+{
+ "tier": "opus",
+ "case": "F3b-s2",
+ "requested_model": "claude-opus-5-5",
+ "served_models": [
+  "claude-opus-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 5462,
+  "cache_read": 157196,
+  "cache_create": 22216
+ },
+ "raw_response": "{\"diagnosis\": \"The DE-412 stale-event filter (ingest_ts - txn_ts <= 26h), deployed 2026-01-17, drops legitimate late-arriving POSTED transactions: every batch from 3 onward carries distinct txn_ids that arrive about 3 days after txn_ts, so each earlier day loses about 80 rows. That loss pulls the 14-day median down to 267 and makes the complete 2026-01-17 count of 363 look like a spike. The txn_id and txn_ts profiles show these rows are unique events, not replays, so the filter should be removed and only the status filter kept.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}",
+ "transcript_id": "a47f89b3113081fbd",
+ "condition": "full"
+}

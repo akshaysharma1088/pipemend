@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "H1-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H1-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203220,
+  "cache_create": 30844
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 12 rows carry lowercase status values ('posted' and 'reversed'; the batch totals 339 = 323 posted + 16 reversed) and '$'-prefixed amounts, so the case-sensitive filter status = 'POSTED' drops every row before it reaches silver. The fix is to normalize status case and strip currency symbols before filtering and casting, leaving raw data untouched.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(amount, '[$,]', '', 'g') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}",
+ "transcript_id": "a9d14c53650f67862",
+ "condition": "full"
+}

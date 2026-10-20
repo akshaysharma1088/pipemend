@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H6-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/NN-H6-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 36,
+  "cache_read": 157212,
+  "cache_create": 21056
+ },
+ "raw_response": "{\"diagnosis\": \"19 txn_ids are duplicated in raw_transactions (4885 rows vs 4866 distinct ids). The sample shows txn_id 904167 twice in the same batch with identical customer, merchant and timestamp but different amounts (7.33 vs 8.27). No ingest_ts, batch or other field says which amount is correct, so deduplicating would silently pick one arbitrarily and could misstate amounts in every gold table.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ac26756ef7759a9d8",
+ "condition": "no_change_notes"
+}

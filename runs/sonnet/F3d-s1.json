@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F3d-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 28,
+  "cache_read": 157208,
+  "cache_create": 21158
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 13 (business date 2026-01-17) was delivered with txn_ts as DD/MM/YYYY HH:MM:SS instead of ISO format, so CAST to TIMESTAMP fails. The day value 17 makes the DD/MM reading unambiguous, and the batch's ingest date fits 17 Jan, so parsing both formats explicitly gives correct data.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT *, CASE WHEN regexp_matches(txn_ts, '^[0-9]{2}/[0-9]{2}/[0-9]{4} ') THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS ts_parsed FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts_parsed AS txn_ts, CAST(ts_parsed AS DATE) AS txn_date FROM parsed;\"}}",
+ "transcript_id": "af775629ae5288396",
+ "condition": "full"
+}

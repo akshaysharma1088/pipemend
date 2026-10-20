@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2a-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203222,
+  "cache_create": 30872
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14 was re-delivered at 05:00 on top of its 02:00 load, so about 316 POSTED transactions for 2026-01-18 appear twice in raw_transactions with identical values, and silver_transactions keeps both copies. Deduplicating on txn_id in the silver step restores one row per transaction (about 336 for that date, matching the 14-day median) and corrects the gold tables that read from silver.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1\"}}",
+ "transcript_id": "afc90813957fb1c46",
+ "condition": "full"
+}

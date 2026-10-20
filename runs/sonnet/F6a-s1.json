@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s1",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6a-s1.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 1070,
+  "cache_read": 157208,
+  "cache_create": 21070
+ },
+ "raw_response": "{\"diagnosis\": \"Batch 14, the only batch with 2026-01-18 transactions, is truncated. It has 151 rows against a normal 320-360. Its txn_ids run from 904490 to 904866, which is about 377 ids, with gaps such as 904491-904495. About 226 transactions are missing from raw and cannot be recovered by changing the SQL. The pipeline SQL is not at fault.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a5ddd37b04f5d6023",
+ "condition": "full"
+}

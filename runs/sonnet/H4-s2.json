@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "H4-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/H4-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 32,
+  "cache_read": 157206,
+  "cache_create": 21565
+ },
+ "raw_response": "{\"diagnosis\": \"Customers migrated to the new CRM (from 2026-01-15) carry numeric region codes 01-04 instead of region names. raw_region_map gives an unambiguous one-to-one mapping (01 WEST, 02 EAST, 03 NORTH, 04 SOUTH). silver_customers passes the codes through, so gold_region_daily has wrong region buckets.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}",
+ "transcript_id": "aa6be058e98dd7fe4",
+ "condition": "full"
+}

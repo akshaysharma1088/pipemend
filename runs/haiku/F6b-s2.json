@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F6b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 16,
+  "cache_read": 203222,
+  "cache_create": 30818
+ },
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 mean is inflated by a few very large amounts, such as 1715.0 in batch 14 and a max of 7428.0 across the raw table. The evidence does not show whether these are valid transactions, unit or sentinel errors, or test data, and the correct treatment (keep, exclude, or cap) is a business rule the evidence does not settle, so the source team should verify the raw amounts.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "ae84286c9c0a67199",
+ "condition": "full"
+}

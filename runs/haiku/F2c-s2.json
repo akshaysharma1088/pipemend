@@ -1,0 +1,25 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s2",
+ "requested_model": "claude-haiku-5-5",
+ "served_models": [
+  "claude-haiku-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2c-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 8,
+  "output": 18,
+  "cache_read": 203222,
+  "cache_create": 30780
+ },
+ "raw_response": "{\"diagnosis\": \"silver_transactions has no deduplication, and raw_transactions holds 23 extra rows for 22 repeated txn_ids. Batch 13 is oversized (400 rows against about 340 for other batches) and its ingest_ts runs to 22:00 on 2026-01-18, unlike the other batches, which all land at 02:00, so it looks like a partial re-delivery. The evidence does not show whether the duplicate copies are identical or conflict on amount or status, so choosing one would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}",
+ "transcript_id": "a9ed2b0d54aa897af",
+ "condition": "full"
+}

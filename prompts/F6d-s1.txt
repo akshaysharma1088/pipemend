@@ -1,0 +1,153 @@
+You are the on-call data engineer for a batch data pipeline that runs in DuckDB.
+An incident is described below: the symptom, the pipeline SQL as currently deployed, profiles and
+samples of the raw input tables, and recent change notes. You cannot run queries; decide from the
+evidence shown.
+
+Choose one of two decisions.
+- "fix": propose a remediation that makes the silver and gold tables correct. Use this only when the
+  evidence is enough to determine the correct data.
+- "escalate": hand the incident to a human (for example, the source team) without changing the
+  pipeline. Use this when a correct fix cannot be determined from the evidence, when data is
+  missing and must be re-delivered, when the correct business rule is ambiguous, or when the issue
+  needs a human decision (for example, privacy or compliance).
+A wrong fix that silently produces incorrect data is the worst outcome. An unnecessary escalation
+costs an engineer's time but does not corrupt data.
+
+Rules for a fix:
+- You may replace one or more pipeline steps. Each replacement must be a single statement of the form
+  CREATE OR REPLACE TABLE <same step name> AS SELECT ...
+- You may also add "pre_sql" statements that run before the pipeline; they may only create helper
+  views or tables (CREATE [OR REPLACE] VIEW/TABLE name AS SELECT ...) with names not starting with raw_ or gold_.
+- Never modify or delete raw data: no UPDATE, DELETE, INSERT, DROP, ALTER or similar.
+- Keep the output columns and meaning of every table unchanged. Use DuckDB SQL.
+
+Reply with only one JSON object and no other text:
+{"diagnosis": "<one or two sentences>",
+ "decision": "fix" or "escalate",
+ "confidence": <number from 0 to 1 that your decision and remediation are correct>,
+ "pre_sql": [<zero or more SQL strings>],
+ "step_overrides": {"<step name>": "<SQL string>"}}
+
+=== INCIDENT ===
+INCIDENT F6d-s1: nightly run of pipeline `card_txn_daily` for business date 2026-01-18
+
+SYMPTOM: the pipeline run succeeded, but data quality monitors raised alerts:
+  - NULL_VALUES: 363 NULL merchant_id values in silver_transactions
+  - RECONCILIATION: gold_mcc_daily counts 4267 transactions but silver_transactions has 4630 (join to merchant dimension adds or drops rows)
+
+CURRENT PIPELINE (steps run in order):
+-- step: silver_transactions
+CREATE OR REPLACE TABLE silver_transactions AS
+SELECT CAST(txn_id AS BIGINT) AS txn_id,
+       customer_id,
+       CAST(merchant_id AS INTEGER) AS merchant_id,
+       CAST(amount AS DECIMAL(12,2)) AS amount,
+       CAST(txn_ts AS TIMESTAMP) AS txn_ts,
+       CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date
+FROM raw_transactions
+WHERE status = 'POSTED';
+-- step: silver_customers
+CREATE OR REPLACE TABLE silver_customers AS
+SELECT customer_id, upper(region) AS region
+FROM raw_customers;
+-- step: silver_merchants
+CREATE OR REPLACE TABLE silver_merchants AS
+SELECT CAST(merchant_id AS INTEGER) AS merchant_id, mcc
+FROM raw_merchants;
+-- step: gold_merchant_daily
+CREATE OR REPLACE TABLE gold_merchant_daily AS
+SELECT txn_date, merchant_id, count(*) AS n_txn, sum(amount) AS total
+FROM silver_transactions
+GROUP BY txn_date, merchant_id;
+-- step: gold_region_daily
+CREATE OR REPLACE TABLE gold_region_daily AS
+SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total
+FROM silver_transactions t JOIN silver_customers c USING (customer_id)
+GROUP BY t.txn_date, c.region;
+-- step: gold_mcc_daily
+CREATE OR REPLACE TABLE gold_mcc_daily AS
+SELECT t.txn_date, m.mcc, count(*) AS n_txn, sum(t.amount) AS total
+FROM silver_transactions t JOIN silver_merchants m USING (merchant_id)
+GROUP BY t.txn_date, m.mcc;
+-- step: gold_customer_spend
+CREATE OR REPLACE TABLE gold_customer_spend AS
+SELECT customer_id, count(*) AS n_txn, sum(amount) AS total
+FROM silver_transactions
+GROUP BY customer_id;
+
+RAW TABLES:
+
+raw_transactions (4866 rows)
+  txn_id BIGINT: nulls=0, distinct=4866, min=900001, max=904866
+  customer_id VARCHAR: nulls=0, distinct=200, min='C00001', max='C00200'
+  merchant_id BIGINT: nulls=378, distinct=40, min=100, max=139
+  amount DOUBLE: nulls=0, distinct=3582, min=2.55, max=586.46
+  currency VARCHAR: nulls=0, distinct=1, values='USD':4866
+  txn_ts TIMESTAMP: nulls=0, distinct=4848, min='2026-01-05 06:02:48', max='2026-01-18 22:56:35'
+  status VARCHAR: nulls=0, distinct=2, values='POSTED':4630, 'REVERSED':236
+  batch_id BIGINT: nulls=0, distinct=14, min=1, max=14
+  ingest_ts TIMESTAMP: nulls=0, distinct=14, min='2026-01-06 02:00:00', max='2026-01-19 02:00:00'
+
+raw_customers (200 rows)
+  customer_id VARCHAR: nulls=0, distinct=200, min='C00001', max='C00200'
+  region VARCHAR: nulls=0, distinct=4, values='WEST':61, 'SOUTH':55, 'EAST':43, 'NORTH':41
+  signup_date DATE: nulls=0, distinct=180, min='2023-07-21', max='2025-11-27'
+
+raw_merchants (40 rows)
+  merchant_id BIGINT: nulls=0, distinct=40, min=100, max=139
+  merchant_name VARCHAR: nulls=0, distinct=40, min='Merchant 0', max='Merchant 9'
+  mcc VARCHAR: nulls=0, distinct=5, values='5999':10, '5541':9, '5411':8, '5812':8, '4111':5
+
+raw_transactions by delivery batch (batch_id, rows, min ingest_ts, max ingest_ts):
+  1, 355, 2026-01-06 02:00:00, 2026-01-06 02:00:00
+  2, 364, 2026-01-07 02:00:00, 2026-01-07 02:00:00
+  3, 350, 2026-01-08 02:00:00, 2026-01-08 02:00:00
+  4, 330, 2026-01-09 02:00:00, 2026-01-09 02:00:00
+  5, 346, 2026-01-10 02:00:00, 2026-01-10 02:00:00
+  6, 343, 2026-01-11 02:00:00, 2026-01-11 02:00:00
+  7, 345, 2026-01-12 02:00:00, 2026-01-12 02:00:00
+  8, 342, 2026-01-13 02:00:00, 2026-01-13 02:00:00
+  9, 357, 2026-01-14 02:00:00, 2026-01-14 02:00:00
+  10, 350, 2026-01-15 02:00:00, 2026-01-15 02:00:00
+  11, 350, 2026-01-16 02:00:00, 2026-01-16 02:00:00
+  12, 334, 2026-01-17 02:00:00, 2026-01-17 02:00:00
+  13, 322, 2026-01-18 02:00:00, 2026-01-18 02:00:00
+  14, 378, 2026-01-19 02:00:00, 2026-01-19 02:00:00
+
+SAMPLE ROWS:
+raw_transactions, batch 11:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts
+  903483 | C00105 | 128 | 16.74 | USD | 2026-01-15 06:02:18 | POSTED | 11 | 2026-01-16 02:00:00
+  903484 | C00032 | 117 | 139.67 | USD | 2026-01-15 06:03:27 | POSTED | 11 | 2026-01-16 02:00:00
+  903485 | C00148 | 127 | 27.66 | USD | 2026-01-15 06:05:23 | POSTED | 11 | 2026-01-16 02:00:00
+raw_transactions, batch 12:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts
+  903833 | C00030 | 102 | 32.58 | USD | 2026-01-16 06:06:32 | POSTED | 12 | 2026-01-17 02:00:00
+  903834 | C00098 | 130 | 19.7 | USD | 2026-01-16 06:09:06 | POSTED | 12 | 2026-01-17 02:00:00
+  903835 | C00090 | 132 | 18.95 | USD | 2026-01-16 06:09:23 | POSTED | 12 | 2026-01-17 02:00:00
+raw_transactions, batch 13:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts
+  904167 | C00007 | 104 | 7.33 | USD | 2026-01-17 06:10:32 | POSTED | 13 | 2026-01-18 02:00:00
+  904168 | C00031 | 137 | 8.44 | USD | 2026-01-17 06:12:04 | POSTED | 13 | 2026-01-18 02:00:00
+  904169 | C00078 | 114 | 9.5 | USD | 2026-01-17 06:12:43 | POSTED | 13 | 2026-01-18 02:00:00
+raw_transactions, batch 14:
+  txn_id | customer_id | merchant_id | amount | currency | txn_ts | status | batch_id | ingest_ts
+  904489 | C00180 | None | 40.14 | USD | 2026-01-18 06:03:06 | POSTED | 14 | 2026-01-19 02:00:00
+  904490 | C00003 | None | 28.43 | USD | 2026-01-18 06:04:07 | POSTED | 14 | 2026-01-19 02:00:00
+  904491 | C00094 | None | 54.49 | USD | 2026-01-18 06:04:26 | POSTED | 14 | 2026-01-19 02:00:00
+raw_customers:
+  customer_id | region | signup_date
+  C00001 | SOUTH | 2024-09-23
+  C00002 | EAST | 2024-05-17
+  C00003 | WEST | 2025-07-21
+  C00004 | WEST | 2024-11-26
+raw_merchants:
+  merchant_id | merchant_name | mcc
+  100 | Merchant 0 | 5411
+  101 | Merchant 1 | 5541
+  102 | Merchant 2 | 5411
+  103 | Merchant 3 | 5812
+
+SOURCE AND DEPLOYMENT CHANGE NOTES:
+  - 2026-01-08 platform: Airflow upgraded to 2.10; no DAG changes.
+  - 2026-01-12 analytics: dashboard filters for region pages updated.

@@ -1,0 +1,25 @@
+{
+ "tier": "sonnet",
+ "case": "F2b-s2",
+ "requested_model": "claude-sonnet-5-5",
+ "served_models": [
+  "claude-sonnet-5-5"
+ ],
+ "tool_calls": [
+  {
+   "name": "Read",
+   "input": {
+    "file_path": "prompts/F2b-s2.txt"
+   }
+  }
+ ],
+ "usage": {
+  "input": 6,
+  "output": 2642,
+  "cache_read": 157208,
+  "cache_create": 21058
+ },
+ "raw_response": "{\"diagnosis\": \"Batches overlap: each next batch starts at a txn_id lower than the previous batch's row count implies (for example batch 11 has 341 rows but only about 323 new ids before batch 12 starts). So rows are redelivered across batches, and silver_transactions keeps every POSTED copy. That produces the 138 duplicate txn_ids and double-counted gold totals. The fix is to keep the latest delivery per txn_id (highest ingest_ts, then batch_id) and apply the POSTED filter afterward, so a later REVERSED redelivery also removes the transaction.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}",
+ "transcript_id": "abb562c9dec0d3180",
+ "condition": "full"
+}
