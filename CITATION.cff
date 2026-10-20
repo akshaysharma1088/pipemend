@@ -7,5 +7,6 @@ authors:
     affiliation: "Salesforce, Inc."
 version: 1.0.0
 date-released: 2026-10-19
+doi: 10.5281/zenodo.23510784
 license: MIT
 repository-code: "https://github.com/akshaysharma1088/pipemend"
