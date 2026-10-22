@@ -7,6 +7,8 @@ human instead?
 It accompanies the paper *Fix or Page? Silent Harm and Safe Escalation When LLM
 Agents Remediate Data Pipeline Incidents* (Akshay Sharma, 2026).
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23510784.svg)](https://doi.org/10.5281/zenodo.23510784)
+
 ## What is in it
 
 - A small medallion pipeline (three raw tables, three silver steps, four gold
