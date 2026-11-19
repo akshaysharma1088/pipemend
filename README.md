@@ -4,8 +4,8 @@ PipeMend is a benchmark for one question: when an LLM agent fixes a broken data
 pipeline, is the data correct afterwards, and does the agent know when to page a
 human instead?
 
-It accompanies the paper *Fix or Page? Silent Harm and Safe Escalation When LLM
-Agents Remediate Data Pipeline Incidents* (Akshay Sharma, 2026).
+It accompanies the paper *PipeMend: Silent Data Corruption and the Role of Evidence
+When LLM Agents Repair Data Pipelines* (Akshay Sharma, 2026).
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23510784.svg)](https://doi.org/10.5281/zenodo.23510784)
 
