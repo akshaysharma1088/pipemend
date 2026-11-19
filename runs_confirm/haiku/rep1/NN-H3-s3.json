@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 918
+ },
+ "seconds": 4.34,
+ "raw_response": "{\"diagnosis\": \"The 36 anomalous 2026-01-19 rows are probably v2-collector records (batch 14) whose txn_ts is in a different timezone or offset from the legacy feed, since the v2 sample row shows an unusual 12:11 timestamp. The correct UTC-to-local conversion cannot be confirmed from the evidence, so the source team must confirm the v2 timestamp semantics before any data is corrected.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

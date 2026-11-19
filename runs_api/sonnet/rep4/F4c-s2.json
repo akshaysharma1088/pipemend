@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 568
+ },
+ "seconds": 4.45,
+ "raw_response": "The raw_customers table is an SCD2 dimension. It has 230 rows for 200 distinct customers, with 200 current rows (is_current = true, valid_from 2025-01-01) and 30 historical rows (is_current = false, valid_from 2023-06-01). The join in silver_customers takes every row, so the 30 customers with history are matched twice. That explains 5286 vs 4600.\n\nThe surplus is 686 rows, which is plausible for 30 customers with duplicated history (about 23 transactions each).\n\nThe fix is to keep only current rows in silver_customers. Every customer has exactly one current row (200 current rows across 200 distinct IDs), so this gives one row per customer.\n\nA possible question is whether the transactions should be attributed to the region in effect at transaction time. The historical rows have valid_from 2023-06-01, and the current ones 2025-01-01. The transactions are all from January 2026, after both valid_from dates, so the current row applies to all of them. Filtering on is_current is therefore correct.\n\nThe silver_customers output columns stay the same (customer_id, region).\n\n<br>\n\n```json\n{\"diagnosis\": \"raw_customers is an SCD2 dimension with 30 historical (is_current=false) rows in addition to the 200 current rows; silver_customers keeps all of them, so the region join duplicates transactions for those customers. Filtering to current rows gives one row per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}\n```"
+}

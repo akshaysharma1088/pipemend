@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 4361
+ },
+ "seconds": 19.36,
+ "raw_response": "{\"diagnosis\": \"The `v2` collector records txn_ts about 6 hours ahead of the `legacy` collector for the same time of day (for example, v2 at 12:12 where legacy shows 06:xx), so v2 timestamps appear to be UTC while legacy is local time. The 00:00-06:00 rows are v2 transactions shifted forward past midnight, and subtracting 6 hours for v2 rows should restore local time and move them back to the correct business date. The offset is inferred from the samples rather than confirmed by the source team.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}"
+}

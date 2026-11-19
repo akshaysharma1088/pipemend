@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1516
+ },
+ "seconds": 7.14,
+ "raw_response": "{\"diagnosis\": \"silver_merchants has 46 rows but only 40 distinct merchant_id values, so the join in gold_mcc_daily fans out each transaction for duplicated merchants (4699 transactions becoming 5416 rows). The evidence does not show whether the 6 duplicate merchant rows are identical or carry conflicting mcc values, and choosing one mcc per merchant is a business/source decision, so the merchant dimension should be confirmed with the source team before changing the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

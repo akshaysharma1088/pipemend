@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 1059
+ },
+ "seconds": 8.12,
+ "raw_response": "{\"diagnosis\":\"Batch 14 was delivered twice (ingest_ts 02:00 and 05:00) with identical rows. The 5128 raw rows hold only 4802 distinct txn_ids, and the 326 extra rows are all in batch 14. Silver has no dedup, so every 2026-01-18 POSTED transaction is doubled (316 pairs, 632 rows), and all gold tables are inflated.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

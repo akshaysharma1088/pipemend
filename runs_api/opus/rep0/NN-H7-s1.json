@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 469
+ },
+ "seconds": 5.03,
+ "raw_response": "{\"diagnosis\": \"Gold totals are about 2% below the settlement file for recent days. The pipeline logic shows no defect: row counts look roughly stable per batch, though batches 12 and 13 are slightly smaller, and no schema or status change is visible. The likely cause is incomplete delivery from the source or a business-rule mismatch with settlement, such as REVERSED handling or cutoff timing, and neither can be resolved from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {}}"
+}

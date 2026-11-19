@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4569,
+  "output": 1960
+ },
+ "seconds": 9.85,
+ "raw_response": "{\"diagnosis\": \"Silver drops rows where ingest_ts - txn_ts > 26 hours, and the raw sample shows batches 11-13 arriving about 68 hours after their transactions, so late-arriving rows are being silently excluded. The evidence doesn't reconcile (batch 11 sample rows should all be dropped, yet 261 reached silver), and whether late data should be kept or the 26-hour cutoff is intentional is a business decision, so this needs the source and data owners.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

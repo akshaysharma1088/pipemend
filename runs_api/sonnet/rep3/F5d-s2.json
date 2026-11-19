@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F5d-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 798
+ },
+ "seconds": 6.09,
+ "raw_response": "{\"diagnosis\": \"Batch 14 delivered merchant_id in a new format ('M-0131') instead of plain numbers ('131'). The 'M-0' prefix with the 3-digit number maps directly onto the 100-139 merchant keys, so the cast to INTEGER failed. Normalising the ID in silver_transactions fixes it.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(CASE WHEN merchant_id LIKE 'M-%' THEN substr(merchant_id, 3) ELSE merchant_id END AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

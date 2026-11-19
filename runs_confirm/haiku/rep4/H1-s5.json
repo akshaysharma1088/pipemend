@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H1-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 1441
+ },
+ "seconds": 6.69,
+ "raw_response": "{\"diagnosis\": \"Batch 12 arrived with lowercase status values ('posted', 345 of 345 rows, which accounts for all 324 lowercase 'posted' plus 21 lowercase 'reversed') and amounts with a '$' prefix. The silver filter `status = 'POSTED'` is case-sensitive, so every batch 12 row is dropped before any cast runs, and the run still succeeds. Normalizing status case and stripping '$' from amount in silver_transactions restores the rows without changing any output columns, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(trim(replace(amount, '$', '')) AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

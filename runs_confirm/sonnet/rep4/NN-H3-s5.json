@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 2775
+ },
+ "seconds": 24.23,
+ "raw_response": "{\"diagnosis\":\"Legacy-collector txn_ts values run from about 06:00 on day D to about 04:41 on D+1, and the latest ones are later than the batch's own ingest_ts of 02:00. That points to a timezone or clock offset in the timestamps, but the evidence does not show the offset, which collector or rows it affects, or which day boundary is correct. The same pattern appears in 37 rows on 01-18 and 41 rows on 01-19.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

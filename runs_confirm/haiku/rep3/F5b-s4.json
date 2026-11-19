@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4319,
+  "output": 848
+ },
+ "seconds": 4.15,
+ "raw_response": "{\"diagnosis\": \"83 raw_transactions rows are in EUR, but silver_transactions carries `amount` through without currency conversion, so gold totals mix EUR and USD. The only FX source is a single 2026-01-01 snapshot in raw_fx_rates, and the sample rows do not show whether EUR amounts are in transaction currency or already converted, so the correct conversion rule (snapshot vs. daily rate, rounding) cannot be confirmed from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

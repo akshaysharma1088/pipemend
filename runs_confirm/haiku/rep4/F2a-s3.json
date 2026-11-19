@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4100,
+  "output": 2339
+ },
+ "seconds": 10.23,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was delivered twice: a 02:00 load and a 05:00 re-delivery of the same transactions, so batch 13 has 654 rows against a normal ~340. The silver step does not deduplicate, so each re-delivered txn_id appears twice among POSTED rows, which doubles the 2026-01-17 volume and inflates the gold aggregates. Keeping one row per txn_id, using the earliest delivery, restores the expected volume (about 305 unique rows for 01-17 against a median of 329), but this assumes the duplicate copies are identical and not corrected values.\", \"decision\": \"fix\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts ASC, batch_id ASC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}"
+}

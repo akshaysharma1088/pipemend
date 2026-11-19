@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 746
+ },
+ "seconds": 6.26,
+ "raw_response": "{\"diagnosis\":\"The evidence does not show why gold is about 2% below settlement. The only filter that drops data is status='POSTED', which excludes 236 REVERSED rows, and the data does not say whether settlement includes them. Joins are lossless, there are no duplicate txn_ids, and batches arrive daily with normal row counts, so no deterministic fix can be derived.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4100,
+  "output": 2424
+ },
+ "seconds": 10.7,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was re-delivered at 2026-01-18 05:00 on top of its 02:00 load, so the same txn_ids appear twice in raw_transactions (5154 rows for 4827 distinct ids, and batch 13 has 654 rows versus about 340 for other batches). The silver step has no de-duplication, so every re-delivered transaction is double-counted in silver and in all gold tables built from it. Deduplicating on txn_id after the POSTED filter, keeping the earliest delivery, restores one row per transaction; the gold tables rebuild from silver, so only silver needs an override.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}"
+}

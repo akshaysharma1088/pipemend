@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3a-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 2046
+ },
+ "seconds": 15.94,
+ "raw_response": "{\"diagnosis\":\"Batch 12 (all 349 rows with source_tz='UTC') carries UTC timestamps, while every other batch is in America/Chicago local time (06:00-23:00 opening hours). Those rows are therefore shifted +6h, so part of the 2026-01-16 business day spills into 2026-01-17 and creates the volume and 00:00-06:00 anomalies. Converting UTC rows to Chicago local time (-6h in January/CST) fixes the dates.\",\"decision\":\"fix\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

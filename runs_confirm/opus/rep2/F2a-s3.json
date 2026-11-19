@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4100,
+  "output": 1037
+ },
+ "seconds": 10.04,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (business date 2026-01-17) was delivered twice, at 02:00 and 05:00. The rows are identical except for ingest_ts: 654 rows = 2 \u00d7 327, and the 327 extra rows across raw_transactions match the gap between row count and distinct txn_id. This doubles silver_transactions for 2026-01-17 (610 = 2 \u00d7 305 POSTED) and inflates every gold table built from it.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

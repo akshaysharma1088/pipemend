@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 885
+ },
+ "seconds": 4.39,
+ "raw_response": "{\"diagnosis\": \"The SQL looks correct: the POSTED filter, casts, and joins are all fine, and the raw keys are unique. The 2026-01-17 spike (mean 428.77 vs median 42.25) most likely comes from a few abnormally large amounts in raw batch 13, which is the only batch with txn_date 2026-01-17. Telling a real large transaction from a unit or scaling error needs the source team, and no pipeline change can determine the correct amounts.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

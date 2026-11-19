@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s1",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1252
+ },
+ "seconds": 5.69,
+ "raw_response": "{\"diagnosis\": \"The `v2` collector rows show txn_ts about 6 hours later than the `legacy` rows for similar activity (for example, 12:xx vs 06:xx), and the 00:00-06:00 spike on 2026-01-18 and 2026-01-19 points to a timestamp shift in one collector. The evidence does not establish the correct offset or whether v2 timestamps are UTC or local, and the source must re-deliver or confirm the correct times, so the pipeline should not be patched.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

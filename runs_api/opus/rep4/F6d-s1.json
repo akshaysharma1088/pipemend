@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 258
+ },
+ "seconds": 2.79,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 (business date 2026-01-18, 378 rows) arrived with merchant_id NULL on every row: the 378 raw NULLs equal the batch size, and the 363 POSTED ones account for the 4630 vs 4267 gap. No other column lets us recover merchant_id, so the source team must re-deliver the batch with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

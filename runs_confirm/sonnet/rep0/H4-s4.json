@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H4-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 513
+ },
+ "seconds": 4.42,
+ "raw_response": "The raw_region_map table gives an explicit mapping from numeric region codes to names, and the CRM change note confirms that migrated customers carry these codes. The fix is to map the codes in silver_customers.\n\nMapping check: the map's region_code values are '01' through '04', and its sample rows read 01\u2192WEST, 02\u2192EAST, 03\u2192NORTH, 04\u2192SOUTH. The profile counts are consistent: 4 distinct codes and 4 distinct names, one row each.\n\nA left join on the map is safe because the map has unique codes. For non-coded regions, the original value is kept via COALESCE. Uppercasing is preserved. The output columns stay the same (customer_id, region), and the row count is unchanged because the map keys are unique.\n\nRegion names are already uppercase, so applying upper() to the mapped name is harmless.\n\nThe step only needs to be replaced in silver_customers, since gold_region_daily reads from it.\n\n{\"diagnosis\": \"Customers migrated to the new CRM carry numeric region codes ('01'-'04') instead of region names; raw_region_map provides the code-to-name mapping, which silver_customers does not apply.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code\"}}"
+}

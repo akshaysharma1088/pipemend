@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 988
+ },
+ "seconds": 4.68,
+ "raw_response": "{\"diagnosis\": \"The pipeline SQL is internally consistent: customer and merchant keys are unique, and REVERSED rows are excluded as intended. The 2026-01-18 mean is inflated by a small set of extreme amounts in batch 14 (for example, 1715.0 against a typical value near 40), which may be a source-side unit or scaling error. The evidence cannot show which rows are wrong or what the correct amounts are, so any amount correction would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

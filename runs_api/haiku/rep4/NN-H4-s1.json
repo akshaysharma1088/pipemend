@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1040
+ },
+ "seconds": 4.9,
+ "raw_response": "{\"diagnosis\": \"About 60 customers in raw_customers have numeric region codes ('01'-'04') instead of names. The pipeline only applies upper(region), so the codes pass through to silver_customers and gold_region_daily. raw_region_map supplies a unique one-to-one mapping from these codes to region names, so a join on it fixes the values without changing the row set.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

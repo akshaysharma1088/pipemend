@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4182,
+  "output": 1097
+ },
+ "seconds": 8.05,
+ "raw_response": "{\"diagnosis\":\"Recent originals are still marked POSTED in the raw feed, while a separate REVERSAL row points to each one via orig_txn_id. The silver filter keeps only POSTED rows, so those reversed originals are still counted and recent gold totals are too high. Older reversals were already flipped to REVERSED, which is why only the latest days are off.\",\"decision\":\"fix\",\"confidence\":0.75,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions rv WHERE rv.status = 'REVERSAL' AND rv.orig_txn_id = r.txn_id);\"}}"
+}

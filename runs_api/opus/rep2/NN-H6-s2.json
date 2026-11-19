@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H6-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4056,
+  "output": 1577
+ },
+ "seconds": 14.91,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) has 346 rows but covers only 326 new txn_ids (904477\u2013904802), so 20 txn_ids were delivered twice. raw_transactions has 4822 rows but only 4802 distinct txn_ids, and these duplicate POSTED rows flow into silver and double-count in gold. The fix assumes they are exact re-deliveries of the same transactions; the samples do not show the duplicate rows, so this is not confirmed.\", \"decision\": \"fix\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

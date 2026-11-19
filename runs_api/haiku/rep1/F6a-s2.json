@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 641
+ },
+ "seconds": 3.02,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 volume drop is a partial upstream delivery, not a pipeline bug. Batch 14 (the only batch with txn_ts on 2026-01-18) has 130 rows versus a typical ~330-380 per batch, and the txn_id gaps (e.g., 904478 is absent) suggest truncation. The SQL correctly filters POSTED rows, so the missing transactions cannot be recovered from the evidence and must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.82, \"pre_sql\": [], \"step_overrides\": {}}"
+}

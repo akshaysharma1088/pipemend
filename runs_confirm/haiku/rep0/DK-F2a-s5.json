@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2a-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4386,
+  "output": 1355
+ },
+ "seconds": 5.43,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was delivered twice: 349 txn_ids appear in two copies that differ only in ingest_ts (02:00 and 05:00 on 2026-01-18), and silver_transactions passes both copies through. Deduplicating on txn_id in silver_transactions removes the duplicate keys, brings 2026-01-17 back to about 349 rows, and lets the gold tables recompute correctly.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1;\"}}"
+}

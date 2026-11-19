@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F3b-s1",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4573,
+  "output": 2126
+ },
+ "seconds": 22.1,
+ "raw_response": "{\"diagnosis\": \"Since batch 3, every delivery has carried about 85 transactions whose txn_ts is about 3 days before ingest_ts. The silver step's 26-hour freshness filter (ingest_ts - txn_ts <= 26 HOUR) drops them, which explains the RAW_TO_SILVER gaps. The evidence does not settle whether these late rows are legitimate transactions that should be counted or a source-side redelivery or timestamp problem: the filter looks deliberate, and the 01-18 volume spike (363 vs median 266) does not fit a simple late-arrival explanation. That makes it a business-rule and source question rather than a clear code bug.\", \"decision\": \"escalate\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {}}"
+}

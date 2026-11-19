@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H5-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4245,
+  "output": 976
+ },
+ "seconds": 6.68,
+ "raw_response": "{\"diagnosis\":\"Since 2026-01-18 the source sends a reversal as a separate REVERSAL row and no longer updates the original, so the original stays POSTED and silver/gold still count it. The old status filter only caught REVERSED originals, so reversed transactions are overstated in every gold table. The fix excludes POSTED originals that are referenced by a REVERSAL record's orig_txn_id.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions x WHERE x.status = 'REVERSAL' AND x.orig_txn_id = r.txn_id)\"}}"
+}

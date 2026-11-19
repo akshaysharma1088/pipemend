@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F4c-s4",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4473,
+  "output": 1132
+ },
+ "seconds": 5.19,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 history table: 200 customers have a current row (is_current=True, valid_from 2025-01-01) and 30 also have a superseded row (is_current=False, valid_from 2023-06-01). silver_customers keeps both, so the USING (customer_id) join in gold_region_daily fans out transactions for those 30 customers, inflating counts to 5279 against 4582 POSTED transactions. Filtering silver_customers to is_current gives exactly one row per customer, and because all transactions (Jan 2026) post-date the current row's valid_from, this is also the correct as-of region.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

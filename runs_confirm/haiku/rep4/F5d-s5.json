@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 613
+ },
+ "seconds": 3.25,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (and possibly later batches) delivers merchant_id values in a new 'M-0139' format, which breaks the INTEGER cast in silver_transactions. Mapping 'M-0139' to 139 is only a guess: no source documentation, change note, or reference table confirms that the prefixed IDs denote the same merchants, so the correct normalization is unknown.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

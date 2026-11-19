@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-H6-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4338,
+  "output": 334
+ },
+ "seconds": 14.88,
+ "raw_response": "{\"diagnosis\": \"22 txn_ids in raw_transactions appear twice with conflicting amounts. In the example both copies sit in the same batch (12) with the same ingest_ts, and batch 12 is unusually large, so there is no recency or ordering signal to tell which amount is correct. Any dedup rule (min, max, first) would be a guess and could silently corrupt silver and gold totals, so the source team needs to confirm the correct amounts or re-deliver the batch.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

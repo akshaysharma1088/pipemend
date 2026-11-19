@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 955
+ },
+ "seconds": 8.97,
+ "raw_response": "{\"diagnosis\":\"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR` was added on purpose under DE-412. It drops late-arriving POSTED transactions, many of which reach us about 3 days after txn_ts, in batches 3 to 14. The evidence does not show whether these late rows should be excluded or are legitimate transactions that belong in the aggregates.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

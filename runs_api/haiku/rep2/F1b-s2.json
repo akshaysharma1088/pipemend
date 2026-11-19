@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1b-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4064,
+  "output": 1642
+ },
+ "seconds": 7.87,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (the only batch containing rows dated 2026-01-18) writes amounts with a leading '$' (e.g. '$14.09'), while batches 1-13 use plain decimals, so the DECIMAL cast fails. Stripping the '$' symbol before casting gives the intended value, and the currency is USD throughout, so no conversion is needed.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(trim(amount), '[$,]', '', 'g') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

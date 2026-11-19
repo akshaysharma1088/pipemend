@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4078,
+  "output": 1012
+ },
+ "seconds": 9.44,
+ "raw_response": "{\"diagnosis\":\"raw_merchants has 46 rows for 40 distinct merchant_ids, and merchant_name is also distinct for only 40 of them, so the extra rows look like exact duplicates. The join in gold_mcc_daily therefore fans out, giving 5256 rows against 4558 in silver_transactions. I could not see the duplicate rows, so I assume they carry the same mcc. If they carry different mcc values, the fix will not remove the fan-out.\",\"decision\":\"fix\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{\"silver_merchants\":\"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 823
+ },
+ "seconds": 4.26,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-17 amount skew (mean 428.77 vs median 42.25) most likely comes from a small set of anomalous raw amounts, possibly a unit or scaling problem in the batch that carries 2026-01-17 transactions (batch 13). The evidence does not show which rows are wrong or what the correct values are, and the pipeline has no dedup or unit issue visible in the SQL, so the raw data needs to be checked by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4198,
+  "output": 669
+ },
+ "seconds": 6.06,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (business date 2026-01-17, 327 rows) arrived with amounts in cents; all 327 of its rows are flagged amount_unit='USD_CENTS'. The pipeline ignores amount_unit, so those amounts are inflated 100x (for example 2957.0 should be 29.57). The source labels the unit on each row, so the fix is to convert USD_CENTS rows to dollars in silver_transactions; the gold tables then rebuild correctly.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN amount / 100.0 ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

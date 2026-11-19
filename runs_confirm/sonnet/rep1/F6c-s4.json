@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 252
+ },
+ "seconds": 2.88,
+ "raw_response": "{\"diagnosis\":\"Some raw_customers.region values are email addresses (e.g. user2586@examplemail.com) instead of region codes, so the source put a different field, which is PII, into region. The true region for those customers cannot be recovered from the evidence, and the email exposure needs a privacy decision.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

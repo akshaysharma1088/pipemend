@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 589
+ },
+ "seconds": 5.62,
+ "raw_response": "The raw_customers table holds 230 rows for 200 distinct customers. 30 of them are historical rows with is_current=False and valid_from 2023-06-01, so they are SCD2 history. The join in silver_customers fans out those 30 customers, which explains 5415 vs 4699 (an extra 716 rows).\n\nThe fix is to keep only current rows in silver_customers. Each of the 200 customers has exactly one current row: is_current=True for 200 rows and 200 distinct customer_ids, and the 30 non-current rows are history for customers who also have a current row.\n\nOne check on the assumption: the 200 current rows with valid_from 2025-01-01 could in principle not be one per customer. But there are 200 distinct customers and 200 current rows, and all customers appear. If a customer had two current rows, another would have none, which is unlikely. The fix would be correct under that assumption.\n\nA point-in-time join would be the alternative. Transactions run from 2026-01-05 to 2026-01-18, and every current row has valid_from 2025-01-01, so all transactions fall after it. The current row is therefore right for all of them.\n\nThe fix is to filter silver_customers on is_current. Output columns stay unchanged.\n\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 historical (is_current=False) rows, so silver_customers has duplicate customer_ids and the join to gold_region_daily fans out. Filtering to current rows gives one row per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

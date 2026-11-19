@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 1019
+ },
+ "seconds": 4.97,
+ "raw_response": "{\"diagnosis\": \"Four customers in raw_customers have numeric region codes ('01'-'04') instead of names. raw_region_map supplies a one-to-one lookup for exactly those four codes, so silver_customers should translate codes through it, and the gold_region_daily table will then pick up the corrected names on rerun. The mapping is inferred from the lookup table, not confirmed by its owner, so confidence is moderate.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

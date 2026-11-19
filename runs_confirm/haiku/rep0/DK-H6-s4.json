@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H6-s4",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 370
+ },
+ "seconds": 2.02,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 21 txn_ids that appear twice within the same batch (batch 12, same ingest_ts) with conflicting amounts, and nothing in the evidence shows which amount is correct. Deduplicating in silver would silently pick one value, so the source team must confirm the correct amounts or re-deliver the batch.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

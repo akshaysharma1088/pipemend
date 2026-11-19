@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s1",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 389
+ },
+ "seconds": 4.32,
+ "raw_response": "{\"diagnosis\": \"Gold totals for recent business days are about 2% below the settlement file. The pipeline logic is the same for all days and shows no bug that explains the gap. Possible causes are incomplete recent deliveries (batch 13 is the smallest, at 322 rows), transactions not yet delivered, or a different status rule for reversals in the settlement file. None of these can be confirmed or corrected from the evidence, so the source team must reconcile against the settlement file.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

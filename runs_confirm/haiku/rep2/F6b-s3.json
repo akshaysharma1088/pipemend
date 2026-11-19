@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 778
+ },
+ "seconds": 3.74,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-17 mean amount is about 10x the median, but the evidence does not show which rows are wrong. Amounts range up to 14229 with no currency or unit issue visible in the samples, so the outliers could be bad data (for example, cents or a bad delivery) or legitimate large transactions. Any row-level correction would be guesswork, so the source team needs to confirm the affected batch and re-deliver if needed.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

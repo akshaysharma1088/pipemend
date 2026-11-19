@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 718
+ },
+ "seconds": 3.76,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 13 (ingest 2026-01-18), raw_transactions rows arrive with merchant_id NULL at source; 671 of the POSTED rows are affected. The gold_mcc_daily inner join drops exactly these rows (4699 - 671 = 4028), so the reconciliation gap is a symptom of the missing source merchant_id. The correct treatment (re-delivery, backfill, or an 'UNKNOWN' mcc bucket) cannot be determined from the evidence and needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

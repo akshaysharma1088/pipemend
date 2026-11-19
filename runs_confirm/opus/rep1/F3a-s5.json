@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3a-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 1304
+ },
+ "seconds": 11.73,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 arrived with source_tz='UTC'; every earlier batch used America/Chicago local time. The pipeline ignores source_tz, so batch 14's evening transactions (18:00-23:00 CST on 2026-01-18) land as 00:00-05:00 on 2026-01-19. Its first sample row at 12:00 UTC is 06:00 CST, which matches the opening time seen in earlier batches. The fix normalizes UTC rows to Chicago local time; January is CST, a fixed UTC-6 offset, with no DST in this data.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

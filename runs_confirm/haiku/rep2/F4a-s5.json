@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 900
+ },
+ "seconds": 4.59,
+ "raw_response": "{\"diagnosis\": \"gold_region_daily uses an inner join to silver_customers on customer_id, and batch 14 (and possibly other batches) contains malformed customer IDs such as 'C2', 'C139', and 'C76' that don't match the 'C00001' format in raw_customers. Those transactions are silently dropped, which explains the 4699 vs 4355 gap. The correct mapping for these IDs cannot be determined from the evidence, so the source team needs to confirm them.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

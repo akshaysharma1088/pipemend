@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4110,
+  "output": 1031
+ },
+ "seconds": 7.52,
+ "raw_response": "{\"diagnosis\":\"Batch 12 (ingested 2026-01-17) delivered txn_ts as DD/MM/YYYY HH:MM:SS instead of ISO format, so the CAST to TIMESTAMP fails. The format is unambiguous: day 16 cannot be a month, and the dates match the 2026-01-16 transaction day for that batch. The fix parses both formats explicitly.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nWITH parsed AS (\\n  SELECT *,\\n         COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), try_strptime(txn_ts, '%d/%m/%Y %H:%M:%S')) AS ts_parsed\\n  FROM raw_transactions\\n  WHERE status = 'POSTED'\\n)\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       CAST(ts_parsed AS TIMESTAMP) AS txn_ts,\\n       CAST(ts_parsed AS DATE) AS txn_date\\nFROM parsed;\"}}"
+}

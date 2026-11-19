@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4052,
+  "output": 4143
+ },
+ "seconds": 18.97,
+ "raw_response": "{\"diagnosis\": \"Raw txn_id ranges per batch are contiguous except that batch 14 (904614\u2013904975) overlaps batch 13 (904265\u2013904634) on 21 ids, exactly matching the 21 surplus raw rows (4996 rows vs 4975 distinct ids). This looks like a re-delivery of batch 13 rows, which the silver step does not deduplicate. The fix assumes the re-delivered copies are identical to the originals, which the evidence does not fully confirm.\", \"decision\": \"fix\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY batch_id, ingest_ts) = 1;\"}}"
+}

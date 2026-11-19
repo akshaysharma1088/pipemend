@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F1c-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4026,
+  "output": 993
+ },
+ "seconds": 7.62,
+ "raw_response": "{\"diagnosis\": \"Batch 14 delivered txn_ts as epoch milliseconds (e.g. 1768716261000 = 2026-01-18 06:04:21 UTC) while earlier batches use 'YYYY-MM-DD HH:MM:SS' strings. The CAST to TIMESTAMP fails on the epoch values. The converted times fit the usual 06:0x pattern for the next business day, so the unit and timezone are clear. The fix parses digit-only values with epoch_ms and leaves other values on the original cast.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH p AS (SELECT *, CASE WHEN regexp_matches(trim(txn_ts), '^[0-9]+$') THEN epoch_ms(CAST(trim(txn_ts) AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts_parsed FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts_parsed AS txn_ts, CAST(ts_parsed AS DATE) AS txn_date FROM p\"}}"
+}

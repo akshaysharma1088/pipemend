@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4570,
+  "output": 2465
+ },
+ "seconds": 12.19,
+ "raw_response": "{\"diagnosis\": \"The silver filter `ingest_ts - txn_ts <= 26 HOUR` drops posted transactions whose txn_ts is about three days before ingest_ts for batches 3 onward, which accounts for most of the gap beyond the intentional REVERSED exclusion. The 26-hour cutoff's intent is undocumented, and the alerts begin at batch 3, the same day as the 2026-01-08 Airflow upgrade, so it is unclear whether the cause is the business rule or a change in source/ingest timing. Escalate to the source and platform owners to confirm the intended cutoff and the ingest_ts semantics before changing data.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

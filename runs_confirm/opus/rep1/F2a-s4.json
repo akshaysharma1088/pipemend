@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2a-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 971
+ },
+ "seconds": 8.76,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) was delivered twice, at ingest_ts 02:00 and 05:00, giving 666 rows instead of about 333. Every POSTED transaction for that date appears exactly twice in silver (318 keys \u00d7 2 = 636 rows), and all gold aggregates for 2026-01-18 are doubled.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED';\"}}"
+}

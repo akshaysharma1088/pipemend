@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 643
+ },
+ "seconds": 6.55,
+ "raw_response": "{\"diagnosis\":\"The amount skew on 2026-01-17 (mean 428.77 vs median 42.25, max 14229) is not explained by anything in the evidence. There are no duplicate txn_ids, the batches are complete and one per day, the currency is a single value, and the join keys are intact. The samples show nothing unit-scaled or malformed, so these could be genuine large purchases or a source-side amount error such as cents vs dollars. I can't tell which, and rescaling or dropping the rows would risk silently corrupting the data.\",\"decision\":\"escalate\",\"confidence\":0.62,\"pre_sql\":[],\"step_overrides\":{}}"
+}

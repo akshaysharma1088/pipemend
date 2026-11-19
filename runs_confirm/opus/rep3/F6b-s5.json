@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6b-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 464
+ },
+ "seconds": 5.0,
+ "raw_response": "```json\n{\"diagnosis\": \"On 2026-01-18 (batch 14), mean amount is 267.68 against a median of 42.76, with a raw max of 11809.0. This means a subset of rows carries extreme amounts, possibly from a unit or scale error such as cents, or possibly genuine large transactions; the batch 14 sample rows look normal and there are no duplicate txn_ids. The evidence does not show which rows are wrong or what the correct values are, and no source change is documented, so the source team needs to confirm and re-deliver or correct the data.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}\n```"
+}

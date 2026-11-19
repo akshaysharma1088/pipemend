@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 596
+ },
+ "seconds": 4.81,
+ "raw_response": "{\"diagnosis\":\"Batch 14, the only batch with 2026-01-18 transactions, is truncated: it has 130 rows against about 340 normally. Batch 13 covers txn_ids 904100-904476 contiguously, so batch 14 should span 904477-904801, which is 325 ids. Only 130 rows arrived, so about 195 ids are missing. The silver filter and joins are correct, and the missing rows cannot be recovered from the evidence.\",\"decision\":\"escalate\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{}}"
+}

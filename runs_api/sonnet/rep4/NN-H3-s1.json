@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 3212
+ },
+ "seconds": 24.28,
+ "raw_response": "{\"diagnosis\":\"Rows from the new 'v2' collector appear to carry timestamps about 6 hours ahead of the legacy collector. Interleaved txn_ids show v2 at 12:03 next to legacy at 06:04, and the 00:00-06:00 rows are v2 late-evening transactions pushed past midnight. This misplaces txn_date, which explains the 33-row partial day for 2026-01-19 and the early-morning rows on 2026-01-18. I'm correcting v2 timestamps by -6h in silver. The 6-hour offset is inferred from ordering, not confirmed by the source team.\",\"decision\":\"fix\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

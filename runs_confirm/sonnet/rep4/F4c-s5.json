@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 499
+ },
+ "seconds": 5.36,
+ "raw_response": "The raw_customers table is an SCD2-style table with 230 rows for 200 distinct customers. 30 rows have is_current=False and valid_from 2023-06-01, and the other 200 have is_current=True. silver_customers does not filter on is_current, so the join duplicates transactions for the 30 customers that have history rows. That explains 5415 against 4699.\n\nThe fix is to keep only current rows in silver_customers. Each of the 200 customers has exactly one current row (200 current rows, 200 distinct customer_ids), so this gives one row per customer.\n\nA possible complication is that region at transaction time might matter. The historical rows start at 2023-06-01 and the current rows at 2025-01-01. All transactions are in January 2026, which is after the current valid_from, so the current row applies.\n\nThe gold_region_daily SQL stays the same, because it is correct once the dimension has one row per customer.\n\n\n{\"diagnosis\": \"raw_customers holds SCD2 history (230 rows for 200 customers; 30 non-current rows). silver_customers does not filter on is_current, so the join to the customer dimension duplicates transactions (5415 vs 4699). Keeping only current rows restores one row per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current\"}}"
+}

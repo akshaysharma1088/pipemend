@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H2-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4208,
+  "output": 681
+ },
+ "seconds": 6.36,
+ "raw_response": "{\"diagnosis\": \"On 2026-01-18 the payments source began sending amount corrections inside the daily delivery. Each correction repeats the txn_id with record_version incremented (30 rows with record_version=2, which matches the 30 duplicate keys), but silver_transactions keeps every version. The fix keeps only the latest record_version per txn_id, then applies the POSTED filter so a correction's status takes precedence.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) latest WHERE status = 'POSTED';\"}}"
+}

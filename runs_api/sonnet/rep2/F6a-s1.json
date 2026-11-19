@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 686
+ },
+ "seconds": 5.5,
+ "raw_response": "{\"diagnosis\":\"Batch 14 (ingested 2026-01-19, holding the 2026-01-18 transactions) has only 151 rows. Its txn_id range 904490\u2013904866 implies about 377 rows, while batches 1\u201313 have no txn_id gaps. About 226 rows are missing from the source delivery, including gaps right at the start of the batch (904490 then 904496). The silver SQL is correct, so no pipeline change can recover them.\",\"decision\":\"escalate\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{}}"
+}

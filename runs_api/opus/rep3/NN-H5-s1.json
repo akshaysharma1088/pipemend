@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H5-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4183,
+  "output": 1187
+ },
+ "seconds": 12.35,
+ "raw_response": "{\"diagnosis\": \"The source has started sending a new undocumented status, 'REVERSAL' (15 rows that point to original txn_ids via orig_txn_id, all originals in the 2026-01-18 batch). The originals are still 'POSTED', so gold totals are probably overstated, but the meaning of these rows is unconfirmed: we cannot tell whether reversals are full or partial, or which business date they should hit. They also do not obviously explain the reported inflation across several recent days or the oversized batch 14 (393 rows).\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

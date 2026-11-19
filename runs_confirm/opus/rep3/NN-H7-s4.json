@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 413
+ },
+ "seconds": 4.49,
+ "raw_response": "{\"diagnosis\": \"Gold totals for recent days are about 2% below the settlement file, but the evidence shows no pipeline defect. Batch sizes are steady (320-377 rows per day), and the status values and amounts look normal. The gap most likely comes from transactions missing in the source delivery, or from a settlement-versus-POSTED definition difference that cannot be resolved from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

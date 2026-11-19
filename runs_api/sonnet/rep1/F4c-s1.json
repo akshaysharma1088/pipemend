@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 635
+ },
+ "seconds": 5.22,
+ "raw_response": "The raw_customers table holds 230 rows for 200 distinct customers. 200 rows are is_current=True and 30 are historical (is_current=False, valid_from 2023-06-01). The silver_customers step takes all 230 rows, so the 30 customers with history appear twice. The join then duplicates their transactions, which explains 5353 vs 4630.\n\nThe fix is to keep only the current row per customer. Each customer has exactly 200 current rows for 200 distinct IDs, so is_current=True gives one row per customer. The historical rows have valid_from 2023-06-01, which is earlier than the current rows' 2025-01-01, which is consistent with them being old versions.\n\nA possible concern is whether the transactions, dated in January 2026, should map to the region as of the transaction date. Current rows are valid from 2025-01-01 and the old rows from 2023-06-01 with no end date. The current row is therefore valid for all of the transaction dates, so using it is correct.\n\nTo be safe, I'll add a dedupe: filter on is_current and, within that, pick one row per customer using row_number ordered by valid_from descending. The output columns stay customer_id and region.\n\n```json\n{\"diagnosis\": \"raw_customers is an SCD2-style table with 230 rows for 200 customers (30 non-current history rows); silver_customers keeps all versions so the join to the customer dimension duplicates transactions. Restrict to the current version per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM (SELECT customer_id, region, row_number() OVER (PARTITION BY customer_id ORDER BY is_current DESC, valid_from DESC) AS rn FROM raw_customers) WHERE rn = 1\"}}\n```"
+}

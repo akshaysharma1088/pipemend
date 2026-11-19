@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4198,
+  "output": 1131
+ },
+ "seconds": 4.48,
+ "raw_response": "{\"diagnosis\": \"The 327 raw_transactions rows with amount_unit = 'USD_CENTS' (all in batch 13, ingested 2026-01-18, which matches the 2026-01-17 anomaly) store amounts in cents, but silver_transactions ignores amount_unit and treats them as dollars, inflating amounts about 100x. Converting those rows by dividing by 100 before the DECIMAL cast restores consistent dollar amounts, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN amount / 100.0 ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

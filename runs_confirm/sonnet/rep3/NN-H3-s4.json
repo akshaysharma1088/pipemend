@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 3939
+ },
+ "seconds": 32.55,
+ "raw_response": "{\"diagnosis\":\"Rows from collector 'v2' have txn_ts shifted +6h. They start at 12:00 instead of 06:00, and txn_id order within a batch only matches time order after subtracting 6h. Late-evening v2 rows therefore wrap into 00:00-06:00 of the next date, which causes the off-hours alerts and the thin, wrongly dated 2026-01-19. Silver should correct v2 timestamps by -6h so txn_date is right.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN txn_ts - INTERVAL 6 HOUR ELSE txn_ts END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN collector = 'v2' THEN txn_ts - INTERVAL 6 HOUR ELSE txn_ts END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 1030
+ },
+ "seconds": 5.34,
+ "raw_response": "{\"diagnosis\": \"The 363 dropped rows come from the inner join in gold_region_daily: some raw_transactions.customer_id values use a non-standard format (for example 'C115', 'C91', 'C99') that does not match raw_customers IDs such as 'C00115'. The format change appears in later delivery batches, so the source is inconsistent. Padding the IDs would be a guess about the source's intended mapping, and the correct fix needs confirmation from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

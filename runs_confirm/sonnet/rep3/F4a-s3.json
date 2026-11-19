@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4a-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4071,
+  "output": 876
+ },
+ "seconds": 8.83,
+ "raw_response": "{\"diagnosis\":\"Batch 14 (ingested 2026-01-19) delivered customer_id unpadded (e.g. 'C52', 'C3', 'C143') instead of the 5-digit format 'C00052' used in raw_customers. The inner join in gold_region_daily silently dropped those rows (4558 vs 4234). Re-padding the numeric part in silver_transactions restores the join keys and also corrects gold_customer_spend, which was splitting customers across two ids.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, CASE WHEN regexp_matches(customer_id, '^C[0-9]+$') THEN 'C' || lpad(substr(customer_id, 2), 5, '0') ELSE customer_id END AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

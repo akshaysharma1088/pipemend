@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 994
+ },
+ "seconds": 4.73,
+ "raw_response": "{\"diagnosis\": \"Customers with numeric region codes '01'-'04' in raw_customers were not translated to region names, so silver_customers carries raw codes. raw_region_map provides an exact 1:1 code-to-name lookup for those four codes, so joining it fixes the domain values and the downstream gold_region_daily table.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, coalesce(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

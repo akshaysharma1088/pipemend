@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4613,
+  "output": 1266
+ },
+ "seconds": 13.69,
+ "raw_response": "{\"diagnosis\": \"The DE-412 change (2026-01-17) added a 26-hour staleness filter to silver_transactions. Since batch 3, every batch includes valid late-arriving transactions about 3 days old, with unique txn_ids, so they are not duplicates, and the filter silently drops them. Removing the filter restores every POSTED transaction to silver and to the gold aggregates.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

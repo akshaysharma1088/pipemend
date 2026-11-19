@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4061,
+  "output": 978
+ },
+ "seconds": 4.85,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 mean is about 9x the median, which points to a small number of very large amounts (raw max is 17083.0), most likely concentrated in batch 14, the only batch with rows dated 2026-01-18. Nothing in the evidence shows whether these are a unit or scaling defect, duplicates, or real high-value transactions, and txn_id is contiguous and unique, so there is no duplicate-load signal. Correcting or excluding them would require a business decision, and the source team must confirm the batch 14 values.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

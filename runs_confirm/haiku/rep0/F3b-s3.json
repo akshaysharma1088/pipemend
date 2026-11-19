@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 1719
+ },
+ "seconds": 8.38,
+ "raw_response": "{\"diagnosis\": \"The alerts track batches whose transactions were ingested about 68 hours after txn_ts. The `ingest_ts - txn_ts <= 26 HOUR` filter added under DE-412 on 2026-01-17 drops them, and because the step rebuilds from raw, it restates history. Whether these late-arriving transactions are stale and should be excluded, or are valid and should be kept, is a business rule that the evidence doesn't settle, so this needs the DE-412 owner's decision.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

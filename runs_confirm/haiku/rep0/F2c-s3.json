@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 1269
+ },
+ "seconds": 6.55,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4847 rows but only 4827 distinct txn_ids (contiguous 900001-904827), so 20 rows are duplicates. Batch 13 is anomalous: its ingest_ts runs to 2026-01-18 22:00 while every other batch lands at 02:00, which suggests a partial re-delivery. The evidence does not show whether the duplicate copies are identical or differ in amount or status, so the correct surviving row cannot be determined and the source team needs to confirm which delivery is authoritative.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

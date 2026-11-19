@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s4",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 3139
+ },
+ "seconds": 25.3,
+ "raw_response": "{\"diagnosis\":\"Since the v2 collector appeared (2026-01-16), timestamps are inconsistent. Legacy rows start at 06:00 and v2 rows at 12:00, and some rows are dated after their own ingest_ts (e.g. 2026-01-19 04:55 in a batch ingested 2026-01-19 02:00). That points to a collector timezone or offset problem, but the change notes do not say which collector is wrong or what the offset is, so a correct fix cannot be determined from the evidence.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

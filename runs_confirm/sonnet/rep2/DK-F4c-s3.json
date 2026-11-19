@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4475,
+  "output": 578
+ },
+ "seconds": 5.0,
+ "raw_response": "The customer dimension is an SCD2 table: 30 customers have two rows, one with is_current=False and one with is_current=True. Joining on customer_id alone therefore duplicates transactions for those customers. This explains why gold_region_daily has more rows than silver_transactions. The reconciliation gap is 5251 \u2212 4558 = 693, which is plausible for 30 customers out of 200 across all dates.\n\nThe fix is to keep only current rows in silver_customers. All 200 customers have exactly one is_current=True row, so the dimension becomes unique per customer_id.\n\nThere is a business question about whether to use the region as of each transaction date (a point-in-time join). The valid_from values are 2025-01-01 for current rows and 2023-06-01 for old rows. There is no valid_to column, but the old rows would have been valid from 2023-06 until 2025-01. All transactions fall in January 2026, so the current row applies to every transaction. Filtering to is_current is therefore correct.\n\nGold_customer_spend and the other gold tables are not affected. silver_customers keeps the same columns.\n\n```json\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 customers having both a historical (is_current=False) and a current row, so the join on customer_id fans out transactions. All transactions in 2026 fall after the current rows' valid_from, so filtering silver_customers to is_current rows gives one row per customer and the correct region.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE\"}}\n```"
+}

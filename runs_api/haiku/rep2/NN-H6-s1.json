@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s1",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 600
+ },
+ "seconds": 3.09,
+ "raw_response": "{\"diagnosis\": \"Batch 13 contains 19 txn_ids that appear twice with different amounts (e.g., txn_id 904167 at 7.33 and 8.27), and raw_transactions has 4885 rows but only 4866 distinct txn_ids. The evidence does not show whether these are re-delivered corrupted rows, which amount is correct, or true ID collisions, so no deduplication rule can be chosen safely. Escalate to the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

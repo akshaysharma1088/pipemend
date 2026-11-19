@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4604,
+  "output": 1472
+ },
+ "seconds": 10.8,
+ "raw_response": "{\"diagnosis\":\"The stale-event filter added under DE-412 (ingest_ts - txn_ts <= 26h) drops valid POSTED transactions. Since batch 3, upstream has delivered about 3 days after txn_ts, so roughly 25% of each batch is removed. The sampled dropped rows are all POSTED, with unique txn_ids and normal values, so they are not duplicates or bad data. I'm removing the filter and keeping the POSTED status filter.\",\"decision\":\"fix\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

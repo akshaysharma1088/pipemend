@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H1-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 818
+ },
+ "seconds": 6.74,
+ "raw_response": "{\"diagnosis\":\"Batch 14 arrived with lowercase status ('posted'/'reversed') and '$'-prefixed amounts. The case-sensitive filter status = 'POSTED' dropped every row in the batch. Normalizing status case and stripping the '$' from amount restores them. The 363 lowercase 'posted' plus 15 lowercase 'reversed' rows equal batch 14's 378 rows, so the format change is confined to that batch.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(trim(CAST(amount AS VARCHAR)), '$', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED'\"}}"
+}

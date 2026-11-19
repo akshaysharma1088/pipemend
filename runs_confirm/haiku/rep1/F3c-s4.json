@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4085,
+  "output": 1600
+ },
+ "seconds": 6.78,
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (CAST(ingest_ts AS DATE)), which is the next day's 02:00 batch load time for every row, so txn_date never matches the transaction date. This was introduced by the 2026-01-16 DE-398 refactor, and the 4582 flagged rows equal the POSTED row count, so every posted row is affected. Deriving txn_date from txn_ts restores the intended meaning, which the DATE_CONSISTENCY monitor checks, and the gold tables recompute from it.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

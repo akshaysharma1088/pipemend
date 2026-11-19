@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1578
+ },
+ "seconds": 11.84,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4886 rows but only 4866 distinct txn_ids, and the ids run contiguously from 900001 to 904866. Batch 12 also has ingest_ts values up to 22:00, which looks like a mid-day re-delivery of already-loaded rows. silver_transactions filters to POSTED without deduplicating, so these replays appear as duplicate txn_ids. The fix keeps only the latest delivery per txn_id before filtering to POSTED, so a later REVERSED version also wins correctly. I could not see the duplicate rows themselves, so this is inferred from the profile.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1 AND status = 'POSTED'\"}}"
+}

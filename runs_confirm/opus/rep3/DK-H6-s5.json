@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-H6-s5",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 279
+ },
+ "seconds": 2.69,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 21 txn_ids delivered twice in the same batch with identical ingest_ts, and the copies differ only in amount (e.g. 904282: 8.42 vs 8.75). Nothing in the evidence (batch_id, ingest_ts, change notes) shows which amount is correct, so any dedup rule would be a guess and could silently write wrong totals into the gold tables.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

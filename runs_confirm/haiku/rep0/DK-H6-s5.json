@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H6-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 368
+ },
+ "seconds": 2.67,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 21 txn_ids that appear more than once, and the copies differ only in amount, with identical batch_id and ingest_ts. Nothing in the evidence shows which amount is authoritative, so de-duplicating would silently pick a value and could corrupt the gold aggregates. The source team needs to confirm the correct amounts or re-deliver the affected rows.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

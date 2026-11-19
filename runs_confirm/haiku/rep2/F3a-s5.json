@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 3282
+ },
+ "seconds": 13.86,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (362 rows, all tagged source_tz='UTC') stores txn_ts in UTC, while the other 13 batches are America/Chicago local time. The pipeline treats every txn_ts as local, so the UTC rows land 5-6 hours early. That pushes about 104 transactions into 2026-01-19 00:00-06:00, outside merchant hours. Converting UTC rows to America/Chicago local time, matching the other batches, should fix the dates and hours.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN source_tz = 'UTC' THEN timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

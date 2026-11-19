@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2c-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 1088
+ },
+ "seconds": 8.44,
+ "raw_response": "{\"diagnosis\":\"Twenty txn_ids were delivered twice within batch 13, at 02:00 and again at 22:00. The copies differ only in amount, so the later delivery looks like a restated correction. Silver has no dedup step, so both copies were kept and the gold aggregates are inflated. I am keeping the latest ingest_ts per txn_id, but nothing in the change notes confirms that later copies are corrections, so this is an assumption.\",\"decision\":\"fix\",\"confidence\":0.68,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) r WHERE status = 'POSTED'\"}}"
+}

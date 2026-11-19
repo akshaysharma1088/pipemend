@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4b-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 1178
+ },
+ "seconds": 5.36,
+ "raw_response": "{\"diagnosis\": \"Some raw_transactions rows carry lowercase customer_ids (e.g. 'c00180') while raw_customers uses uppercase 'C00001'..'C00200', so the inner join in gold_region_daily silently drops those 363 POSTED transactions (4630 - 4267). Normalizing customer_id to uppercase in silver_transactions restores the match, since every lowercase ID maps to exactly one existing customer.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

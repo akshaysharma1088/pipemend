@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H8-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4041,
+  "output": 1670
+ },
+ "seconds": 14.53,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was re-delivered at 05:00: all 326 rows came twice (652 = 2\u00d7326, and the 326 extra rows explain distinct txn_id 4802 vs 5128 rows), and the resend writes txn_ts as epoch milliseconds. Those values do not cast to TIMESTAMP, and the duplicates would double-count batch-14 transactions. 1768716104000 ms converts to 2026-01-18 06:01:44 UTC, which exactly matches the original row's string timestamp, so both formats can be normalized and the rows deduplicated by txn_id.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT *, COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), epoch_ms(TRY_CAST(txn_ts AS BIGINT))) AS ts FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1) d WHERE status = 'POSTED';\"}}"
+}

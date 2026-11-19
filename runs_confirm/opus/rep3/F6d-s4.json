@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4101,
+  "output": 277
+ },
+ "seconds": 2.8,
+ "raw_response": "{\"diagnosis\": \"The latest delivery (batch 14, 333 rows, ingested 2026-01-19) arrived with merchant_id NULL on every row: the 333 raw NULLs equal the batch size, and 318 of them are POSTED. Those rows drop out of the merchant-dimension join in gold_mcc_daily (4582 - 318 = 4264). The merchant IDs are missing at the source and cannot be derived from the evidence, so the source team must re-deliver batch 14.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

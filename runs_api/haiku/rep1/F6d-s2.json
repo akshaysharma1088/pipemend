@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 642
+ },
+ "seconds": 3.13,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 (703 rows, 2026-01-17 and 2026-01-18 transactions) arrived with merchant_id entirely NULL at the source, and the 679 POSTED nulls are part of that. The inner join to silver_merchants in gold_mcc_daily drops these rows, which explains 4600 \u2212 679 = 3921. The correct merchant_id values cannot be recovered from the evidence, so the source must re-deliver or correct these batches.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

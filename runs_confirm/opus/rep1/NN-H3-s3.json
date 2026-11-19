@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H3-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 705
+ },
+ "seconds": 7.32,
+ "raw_response": "{\"diagnosis\": \"A new, undocumented 'v2' collector (135 rows, seen in batch 14) appears to deliver txn_ts in a different timezone or convention, likely UTC versus legacy local time. As a result, 36 POSTED transactions land on 2026-01-19 between 00:00 and 06:00, outside merchant opening hours, and are attributed to the wrong txn_date. The offset and the intended convention cannot be determined from the evidence, and no change note documents the collector switch, so the source team must confirm the timestamp semantics before any correction.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

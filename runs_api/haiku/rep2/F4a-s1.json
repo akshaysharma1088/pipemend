@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 1689
+ },
+ "seconds": 8.16,
+ "raw_response": "{\"diagnosis\": \"The 363 rows lost in the inner join to silver_customers are most likely transactions whose customer_id is malformed (e.g., 'C180', 'C3', 'C94' in batch 14) and don't match raw_customers' 'C00001'-'C00200' format. Whether these should be normalized, kept as unknown customers, or rejected depends on an upstream format change and on whether some IDs are genuinely unknown customers, which the evidence cannot settle.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

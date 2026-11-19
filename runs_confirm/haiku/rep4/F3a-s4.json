@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 3286
+ },
+ "seconds": 13.78,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (349 rows, all tagged source_tz='UTC') has txn_ts in UTC, while every other batch is America/Chicago local time. Those UTC timestamps are not converted, so about 6 hours of activity lands on the wrong business date (the 00:00-06:00 UTC rows fall on 2026-01-17 and look like off-hours activity). The fix is to convert UTC-tagged rows to Chicago local time (UTC-6 in January, CST) before deriving txn_date.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

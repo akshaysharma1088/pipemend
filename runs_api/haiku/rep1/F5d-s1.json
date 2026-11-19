@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4067,
+  "output": 1606
+ },
+ "seconds": 7.56,
+ "raw_response": "{\"diagnosis\": \"Some raw_transactions.merchant_id values use an 'M-' prefixed form (e.g. 'M-0102') that cannot be cast to INTEGER. Stripping the prefix maps them onto the 100-139 range of raw_merchants, which suggests the same merchants, but that mapping is inferred from the values and not confirmed by the source team.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(regexp_replace(merchant_id, '^M-', '') AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

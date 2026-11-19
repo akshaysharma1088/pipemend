@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 2695
+ },
+ "seconds": 12.55,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was delivered twice (02:00 and 05:00 on 2026-01-19), so about 326 transactions are re-sent with identical content, which the silver step never deduplicates. Deduplicating on txn_id after the POSTED filter, keeping the earliest ingest, should restore one row per transaction and correct the 2026-01-18 volume and the gold aggregates.\",\"decision\": \"fix\",\"confidence\": 0.7,\"pre_sql\": [],\"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts ASC) = 1;\"}}"
+}

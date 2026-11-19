@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H3-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4413,
+  "output": 1541
+ },
+ "seconds": 10.62,
+ "raw_response": "{\"diagnosis\":\"Since 2026-01-15 the v2 collector writes txn_ts in UTC, while legacy writes America/Chicago local time, so the two are mixed in one column. v2 transactions made after 18:00 Chicago land on the next UTC date and show up as 00:00-06:00 rows. This explains the odd-hours alerts and the thin 2026-01-19 date. The fix converts v2 timestamps to Chicago local time (UTC-6; all data is in January, so no DST) in silver_transactions. The gold tables read from silver, so they correct themselves.\",\"decision\":\"fix\",\"confidence\":0.86,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

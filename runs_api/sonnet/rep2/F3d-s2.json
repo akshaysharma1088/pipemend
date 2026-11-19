@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 1248
+ },
+ "seconds": 9.04,
+ "raw_response": "{\"diagnosis\":\"Batch 13 (ingested 2026-01-18) delivered txn_ts as 'DD/MM/YYYY HH:MM:SS' instead of ISO format. The day is 17, so it cannot be MM/DD, and the batch lines up with 2026-01-17 between batches 12 and 14. The cast in silver_transactions fails on these rows, so the fix is to parse both formats explicitly.\",\"decision\":\"fix\",\"confidence\":0.92,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nWITH parsed AS (\\n  SELECT txn_id, customer_id, merchant_id, amount,\\n         CASE WHEN txn_ts LIKE '%/%' THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S')\\n              ELSE CAST(txn_ts AS TIMESTAMP) END AS ts\\n  FROM raw_transactions\\n  WHERE status = 'POSTED'\\n)\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       CAST(ts AS TIMESTAMP) AS txn_ts,\\n       CAST(ts AS DATE) AS txn_date\\nFROM parsed;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4125,
+  "output": 411
+ },
+ "seconds": 2.24,
+ "raw_response": "{\"diagnosis\": \"The payments-source change of 2026-01-17 switched `amount` to net of interchange fees, which likely explains the roughly 2% drop in recent gold totals, and no monitor checks for this. The correct gross-up needs per-merchant-category fee rates that are published separately and are not in the evidence, and the exact cutoff batch is unconfirmed, so the correct figures cannot be derived here.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

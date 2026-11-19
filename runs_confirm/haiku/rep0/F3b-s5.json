@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4606,
+  "output": 1470
+ },
+ "seconds": 7.24,
+ "raw_response": "{\"diagnosis\": \"Since DE-412 (2026-01-17), silver_transactions drops POSTED rows whose txn_ts is more than 26 hours before ingest_ts. Batches 3\u201314 show roughly 3-day transaction-to-ingest lags, so the filter removes many of their rows. Whether these late events should be excluded, and whether the 26-hour threshold is correct, is a business rule that the evidence does not settle, so the correct data cannot be determined here.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

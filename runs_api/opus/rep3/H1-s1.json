@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H1-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 733
+ },
+ "seconds": 6.8,
+ "raw_response": "{\"diagnosis\": \"Batch 14 arrived in a new format. Its status values are lowercase ('posted' 363 + 'reversed' 15 = 378 rows), and its amounts carry a '$' prefix. Every batch 14 row therefore fails the case-sensitive status = 'POSTED' filter, so none reach silver. The meaning is clear (USD-only currency, same values in a different format), so I am normalizing status case and stripping the currency symbol before casting.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(replace(trim(CAST(amount AS VARCHAR)), '$', ''), ',', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

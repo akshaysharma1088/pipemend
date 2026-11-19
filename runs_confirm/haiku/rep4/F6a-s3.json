@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4064,
+  "output": 766
+ },
+ "seconds": 3.57,
+ "raw_response": "{\"diagnosis\": \"Batch 14, the only delivery covering transactions dated 2026-01-18, contains just 135 rows (about 131 POSTED) against a typical ~330-350 per batch, and its txn_ids have gaps. The low count reflects an incomplete upstream delivery, not a pipeline logic error, so the missing transactions must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

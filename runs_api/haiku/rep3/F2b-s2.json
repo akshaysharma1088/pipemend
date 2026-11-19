@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4057,
+  "output": 1725
+ },
+ "seconds": 8.4,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions has 144 surplus rows (4946 rows vs 4802 distinct txn_ids), consistent with re-delivered or corrected batches, but the evidence does not show whether duplicate txn_ids are identical copies or conflicting versions (amount, timestamp, or status). The 208 REVERSED rows also interact with the POSTED filter, so the correct dedup rule (keep latest batch, or drop reversed transactions entirely) is a business decision that can't be settled from these profiles.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

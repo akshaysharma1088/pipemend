@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H6-s2",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4056,
+  "output": 1251
+ },
+ "seconds": 9.72,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4822 rows but only 4802 distinct txn_id values over a contiguous id range, so 20 transactions were delivered twice, most likely redelivered in later batches. silver_transactions has no deduplication, so the copies flow into silver and every gold table that reads from it.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) r WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4085,
+  "output": 672
+ },
+ "seconds": 5.53,
+ "raw_response": "The cause is in the silver_transactions step: `txn_date` is derived from `ingest_ts`, which is the batch delivery time and falls on the day after the transaction. The refactor on 2026-01-16 (DE-398) most likely introduced this. The correct source is `txn_ts`, so `txn_date` should be `CAST(txn_ts AS DATE)`.\n\nAll 4699 POSTED rows are flagged, which matches ingest_ts always being the day after txn_ts. The samples show the same pattern: batch 11 has txn_ts on 01-15 and ingest_ts on 01-16.\n\nThe only open question is whether `txn_date` is meant to be the transaction date or the ingest date. The monitor's name (DATE_CONSISTENCY) and the column name both point to the transaction date, so I am treating this as settled.\n\nThe fix only needs the one silver step replaced, because the gold tables rebuild from it. I am leaving the other steps unchanged. The status filter also stays, since REVERSED rows are excluded by design.\n\n```json\n{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (batch delivery time, typically the next day) instead of txn_ts, as introduced by the DE-398 refactor. Using CAST(txn_ts AS DATE) restores consistency and the gold tables rebuild correctly.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}\n```"
+}

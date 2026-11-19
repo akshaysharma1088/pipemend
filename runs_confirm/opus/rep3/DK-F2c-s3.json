@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F2c-s3",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 597
+ },
+ "seconds": 6.43,
+ "raw_response": "{\"diagnosis\": \"20 txn_ids in batch 13 were delivered twice: once at the normal 02:00 load and again at 22:00 on 2026-01-18, with different amounts. This produces 18 duplicate POSTED keys in silver and inflated gold totals. The second copies may be source corrections or erroneous re-sends, and no change note or source communication says which amount is authoritative, so a correct dedup rule cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {}}"
+}

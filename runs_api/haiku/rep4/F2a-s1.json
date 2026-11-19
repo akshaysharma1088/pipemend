@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 1819
+ },
+ "seconds": 7.45,
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00 on top of its 02:00 load, so 317 POSTED transactions appear twice in raw_transactions (same txn_id, different ingest_ts). The txn_id range is contiguous, so the extra rows are duplicates, not missing data, and the 2026-01-16 volume spike comes from the same batch. Keeping one row per txn_id, the latest ingest, in silver_transactions should correct silver and all downstream gold tables.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') d WHERE rn = 1;\"}}"
+}

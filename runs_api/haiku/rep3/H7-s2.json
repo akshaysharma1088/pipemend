@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4127,
+  "output": 420
+ },
+ "seconds": 2.3,
+ "raw_response": "{\"diagnosis\": \"The payments-source change note says `amount` is now reported net of interchange fees, with fee rates that vary by merchant category and are published separately by the card network. That explains the roughly 2% gap, but the gross amounts cannot be reconstructed from this data: the fee rates are not in the pipeline inputs, and the cutover point (which batches are net versus gross) is not stated. Any remediation would be a guess, so this needs the payments-source team and a business decision.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

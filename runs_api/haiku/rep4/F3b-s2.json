@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4613,
+  "output": 1434
+ },
+ "seconds": 7.16,
+ "raw_response": "{\"diagnosis\": \"The 26-hour staleness filter added under DE-412 on 2026-01-17 drops transactions from batches 3-13. Their txn_ts is typically about 67-68 hours before ingest_ts, so most of each batch is removed, while POSTED filtering only accounts for about 202 rows in total. Whether those late-arriving transactions should be excluded is a business-rule decision that the evidence does not settle, and the filter was deliberately introduced, so reverting it or changing the cutoff could silently alter historical silver and gold data.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

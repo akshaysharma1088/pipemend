@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4186,
+  "output": 1433
+ },
+ "seconds": 7.14,
+ "raw_response": "{\"diagnosis\": \"Silver keeps only status='POSTED', which drops the 24 REVERSAL rows, but nothing nets their orig_txn_id originals, which are likely still POSTED. Gold totals are therefore overstated by the reversed amounts, and the 'REVERSED' status (178 rows) and the sign and netting convention are unconfirmed. The correct netting rule can't be determined from the evidence, so this needs the source or finance team to confirm the settlement convention.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

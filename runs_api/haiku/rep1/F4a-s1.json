@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 1037
+ },
+ "seconds": 5.41,
+ "raw_response": "{\"diagnosis\": \"The 363-row gap comes from the inner join in gold_region_daily: some transactions carry malformed customer_ids such as 'C180', 'C3', 'C94' and 'C99' that have no match in silver_customers (which only has C00001 to C00200). Whether these should be re-keyed (for example, zero-padded), dropped, or bucketed as unknown region is a source-data and business decision that the evidence cannot settle, so this should go to the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

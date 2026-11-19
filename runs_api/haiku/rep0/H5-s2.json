@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H5-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4248,
+  "output": 1257
+ },
+ "seconds": 6.52,
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-17, reversals arrive as separate records with status REVERSAL that reference an original POSTED transaction through orig_txn_id. The silver filter keeps only POSTED rows, so these 24 reversals are dropped and their originals are still counted, which inflates recent gold totals. The correct fix depends on business rules the evidence does not settle: whether reversals should net on their own date as negative amounts or remove the original from its date, and the sign convention of the REVERSAL amounts. Those need confirmation from payments-source and Finance before changing the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

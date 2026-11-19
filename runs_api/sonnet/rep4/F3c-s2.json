@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4089,
+  "output": 724
+ },
+ "seconds": 5.34,
+ "raw_response": "The silver_transactions step sets txn_date = CAST(ingest_ts AS DATE). Ingest happens at 02:00 the day after the transaction, so txn_date is shifted one day from the date of txn_ts. This came from the 2026-01-16 refactor (DE-398).\n\nThe alert counts 4600 mismatches, which equals all POSTED rows, so every row is affected. The fix is to derive txn_date from txn_ts.\n\nChecks on the evidence:\n- Transaction timestamps run 06:00\u201322:59, so ingest at 02:00 the next day always shifts the date. There is no ambiguity.\n- The alert wording says txn_date should equal the date of txn_ts.\n- Other columns are unchanged, and gold tables rebuild from silver. The gold steps depend on silver_transactions, so they are rerun in the pipeline. Overriding only silver is enough, since the gold steps run after it.\n\nCould txn_date be intended as the ingest date? The monitor defines consistency as txn_date matching txn_ts, and the column name says transaction date. The change note says the date derivation was refactored, which points to this as the regression.\n\n<br>\n\n{\"diagnosis\": \"The DE-398 refactor on 2026-01-16 made silver_transactions.txn_date come from ingest_ts (02:00 the next day) instead of txn_ts, shifting every row's date by one day. Deriving txn_date from txn_ts fixes silver and the downstream gold tables.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

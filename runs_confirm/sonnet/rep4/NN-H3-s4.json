@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 1778
+ },
+ "seconds": 15.35,
+ "raw_response": "{\"diagnosis\":\"Timestamps from the 'legacy' collector look shifted. Legacy rows start at about 06:00 each day and run past midnight into the next day, and the latest timestamp (2026-01-19 04:55) is later than the 02:00 ingest of its batch. That points to a timezone or offset problem. The 'v2' collector rows start at 12:00 and look different, but the evidence doesn't show the true offset, which rows are affected, or whether v2 is correct, so any date reassignment would be a guess.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

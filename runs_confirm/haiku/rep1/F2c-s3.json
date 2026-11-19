@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 983
+ },
+ "seconds": 4.93,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 20 surplus rows (4847 rows vs 4827 distinct txn_id), and batch 13 has ingest_ts extending to 2026-01-18 22:00 while every other batch lands at 02:00, which suggests a partial re-delivery or replay. The evidence does not show whether the duplicate copies are identical or are corrections (for example, a status change or amount change), so keeping any one copy could silently produce wrong silver and gold figures; the source team needs to confirm which version is authoritative.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

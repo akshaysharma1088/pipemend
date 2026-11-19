@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s3",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 771
+ },
+ "seconds": 5.61,
+ "raw_response": "The region codes '01'\u2013'04' in raw_customers are a legacy encoding, and raw_region_map provides an explicit mapping from code to name. The map has exactly 4 rows, one per code, so the join is unambiguous, and the mapped names are the same domain as the other values (EAST, NORTH, SOUTH, WEST).\n\nThe fix is to map codes through raw_region_map in silver_customers. A LEFT JOIN keeps every customer row. Names that are already valid pass through unchanged via COALESCE. Since region_code is unique, there is no row duplication.\n\nBecause the incoming values were '01' to '04', I match on trimmed region_code. The output columns stay the same, customer_id and region, and region is upper-cased as before.\n\nI considered whether the mapping could be wrong. The map table is the source-provided reference, and nothing in the evidence contradicts it. The risk is low.\n\n```json\n{\"diagnosis\": \"Some raw_customers rows carry numeric region codes ('01'-'04') instead of names; raw_region_map provides an unambiguous one-to-one code-to-name mapping, so silver_customers should translate the codes.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}\n```\n\nWait, the instructions require only one JSON object and no other text. Here is the final answer:\n\n{\"diagnosis\": \"Some raw_customers rows carry numeric region codes ('01'-'04') instead of names; raw_region_map provides an unambiguous one-to-one code-to-name mapping, so silver_customers should translate the codes.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}"
+}

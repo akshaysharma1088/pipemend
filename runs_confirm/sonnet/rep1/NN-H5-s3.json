@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4184,
+  "output": 1443
+ },
+ "seconds": 11.29,
+ "raw_response": "{\"diagnosis\":\"Reversals arrive as separate rows with status 'REVERSAL' and an orig_txn_id pointing at the original transaction. The silver filter keeps only status='POSTED', so it drops the reversal rows but keeps the original POSTED transactions they cancel. Totals are therefore overstated for recent days. I could not confirm that every reversal is for the full amount, so this assumes full reversals.\",\"decision\":\"fix\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' AND txn_id NOT IN (SELECT orig_txn_id FROM raw_transactions WHERE status = 'REVERSAL' AND orig_txn_id IS NOT NULL)\"}}"
+}

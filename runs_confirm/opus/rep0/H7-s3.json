@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H7-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4125,
+  "output": 179
+ },
+ "seconds": 2.19,
+ "raw_response": "{\"diagnosis\": \"Starting 2026-01-17 the payments source reports amount net of interchange fees, which explains gold totals running about 2% below the settlement file for recent days. Rebuilding gross amounts needs the per-MCC fee rates from the card network, and those rates are not in the available data. The source team or Finance must supply the rates or re-deliver gross amounts, and someone must decide which amount definition is correct.\", \"decision\": \"escalate\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {}}"
+}

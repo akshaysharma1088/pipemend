@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4150,
+  "output": 1364
+ },
+ "seconds": 5.72,
+ "raw_response": "{\"diagnosis\": \"The 27 duplicate txn_id values are exactly the 27 raw rows with record_version=2, which are restated versions of transactions that also have a record_version=1 row. silver_transactions keeps every version, so each restated transaction is counted twice downstream. The fix is to keep only the highest record_version per txn_id before applying the POSTED filter, so a restated status is respected.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH ranked AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC) AS rn FROM raw_transactions) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM ranked WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

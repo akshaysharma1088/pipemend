@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s2",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4186,
+  "output": 2170
+ },
+ "seconds": 9.73,
+ "raw_response": "{\"diagnosis\": \"silver_transactions keeps every POSTED row, but 24 REVERSAL rows reference original txn_ids through orig_txn_id, and those originals remain POSTED and are counted in gold, so totals run high. The fix is to exclude POSTED originals that have a matching REVERSAL row; this assumes settlement nets each reversal against its original on the original's business date, which the evidence does not fully confirm.\", \"decision\": \"fix\", \"confidence\": 0.5, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id = t.txn_id);\"}}"
+}

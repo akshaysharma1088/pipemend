@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5c-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4213,
+  "output": 1983
+ },
+ "seconds": 8.48,
+ "raw_response": "{\"diagnosis\": \"On 2026-01-16 the card feed renamed status 'POSTED' to 'SETTLED' with the meaning unchanged. The silver filter `status = 'POSTED'` therefore drops every batch 12-14 row, which carries only SETTLED and REVERSED, while REVERSED rows should remain excluded. Treating SETTLED as POSTED restores batches 12-14 without changing the rest of the logic.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED');\"}}"
+}

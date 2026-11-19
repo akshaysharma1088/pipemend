@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4606,
+  "output": 1395
+ },
+ "seconds": 6.73,
+ "raw_response": "{\"diagnosis\": \"Batches 3 to 14 lose rows at silver because the DE-412 filter `ingest_ts - txn_ts <= 26 HOUR` drops transactions whose delivery lag is about two to three days, which looks like the normal batch cadence. The correct rule is unclear: the filter was added on purpose, and it is not clear whether 'stale' should mean the 26-hour threshold, whether the monitor's expected counts are right (they seem to include REVERSED rows), or whether the threshold itself is wrong. Silently changing the filter would either drop data or undo a deliberate change, so this needs the owner of DE-412 to decide.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

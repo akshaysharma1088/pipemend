@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 890
+ },
+ "seconds": 4.46,
+ "raw_response": "{\"diagnosis\": \"Twenty raw_transactions txn_ids appear twice with different amounts and ingest_ts; the second copies arrived in a late 22:00 partial re-delivery of batch 13. Nothing in the evidence establishes whether the later copy is a correction or a bad re-send, so the correct amount for each key cannot be determined and silver deduplication would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

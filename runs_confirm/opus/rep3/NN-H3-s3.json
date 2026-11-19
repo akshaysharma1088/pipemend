@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H3-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 613
+ },
+ "seconds": 6.65,
+ "raw_response": "{\"diagnosis\": \"Batch 14 is the first to contain rows from an undocumented 'v2' collector (135 rows). Those timestamps look shifted by some hours, likely UTC instead of local time: the sample v2 row sits at 12:11 while legacy rows start around 06:00, and 36 rows spill into 2026-01-19 at 00:00-06:00. The offset and timezone convention of v2 are not documented, and no change note mentions the collector, so the correct timestamps cannot be determined reliably.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4184,
+  "output": 2559
+ },
+ "seconds": 11.46,
+ "raw_response": "{\"diagnosis\": \"The pipeline keeps only status='POSTED' rows and never applies the 14 REVERSAL rows, whose orig_txn_id points to original POSTED transactions that were never netted out. Those reversed originals stay in silver and inflate the recent-day gold totals, which matches Finance's report. Fix: drop POSTED originals that have a REVERSAL row, using a NULL-safe filter because orig_txn_id contains nulls.\", \"decision\": \"fix\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id IS NOT NULL AND r.orig_txn_id = t.txn_id);\"}}"
+}

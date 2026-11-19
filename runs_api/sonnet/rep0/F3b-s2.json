@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4613,
+  "output": 1503
+ },
+ "seconds": 11.7,
+ "raw_response": "{\"diagnosis\":\"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR`, added 2026-01-17 under DE-412, drops legitimate late-arriving POSTED transactions. Batches routinely deliver events 1-3 days after txn_ts, and raw has no duplicate txn_ids, so there is nothing stale to remove. That explains the 70-100 rows lost per batch. Removing the filter restores all POSTED rows.\",\"decision\":\"fix\",\"confidence\":0.68,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F4c-s4",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4473,
+  "output": 1023
+ },
+ "seconds": 4.95,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2-style dimension with 30 customers carrying a superseded row (is_current=False, valid_from 2023-06-01) alongside the current row (is_current=True, valid_from 2025-01-01). The unfiltered join in gold_region_daily fans out those 30 customers' transactions, inflating the count from 4582 to 5279. Filtering silver_customers to is_current=True leaves exactly one row per customer (200 rows), and the 2026 transactions fall after the current row's valid_from, so a point-in-time join would pick the same rows.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

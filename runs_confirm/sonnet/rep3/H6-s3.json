@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4113,
+  "output": 279
+ },
+ "seconds": 2.84,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4849 rows but 4827 distinct txn_id, so 22 ids are duplicated. This matches PAY-77: part of the latest delivery was sent twice during an amount recalculation, and the source has not said which copy holds the final amount. Picking either copy, or summing both, could silently produce wrong amounts in gold.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

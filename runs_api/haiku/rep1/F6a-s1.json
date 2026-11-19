@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 629
+ },
+ "seconds": 3.09,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) delivered only 151 transactions for txn_date 2026-01-18, versus roughly 330-360 in every other batch. The sample txn_ids skip (904490, 904496, 904497), which points to a truncated upstream delivery, not a pipeline bug. The pipeline's filter and casts look correct, so the missing rows must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

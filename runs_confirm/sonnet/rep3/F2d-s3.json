@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4078,
+  "output": 1054
+ },
+ "seconds": 8.26,
+ "raw_response": "{\"diagnosis\":\"raw_merchants has 46 rows but only 40 distinct merchant_ids, so 6 merchants are duplicated. The join in gold_mcc_daily fans out and inflates the count (5256 vs 4558). The merchant_name distinct count is 40, which suggests the duplicates are exact copies. Deduplicating the merchant dimension in silver_merchants fixes it.\",\"decision\":\"fix\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{\"silver_merchants\":\"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

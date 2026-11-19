@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 580
+ },
+ "seconds": 4.41,
+ "raw_response": "The raw_customers table is an SCD2 history. It has 230 rows for 200 distinct customers: 200 rows with is_current=True and 30 historical rows with is_current=False. The join in silver_customers therefore duplicates 30 customers' transactions. The gold_region_daily count of 5415 versus 4699 in silver suggests the join fan-out (715 extra rows, which is plausible for 30 customers).\n\nThe fix is to keep only current rows in silver_customers. All 200 current rows have valid_from 2025-01-01 and all transactions fall in January 2026, so the current row is the right one for this date range. The historical rows have valid_from 2023-06-01 and are marked is_current=False. A point-in-time join would be an alternative, but the historical rows have no valid_to column. Using is_current=True is unambiguous: there are exactly 200 current rows for 200 distinct customers, so each customer has one current row. The region column of the history rows could differ, but the current row is the correct one for the current gold semantics.\n\nEach customer has exactly one current row (200 True values, 200 distinct IDs, and presumably each customer is covered). The output columns are unchanged.\n\n{\"diagnosis\": \"raw_customers is an SCD2 table (230 rows, 30 non-current historical versions), so silver_customers has duplicate customer_ids and the join in gold_region_daily fans out transactions. Filtering to is_current = true gives one row per customer.\", \"decision\": \"fix\", \"confidence\": 0.92, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE\"}}"
+}

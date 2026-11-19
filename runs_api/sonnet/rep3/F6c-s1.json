@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4141,
+  "output": 323
+ },
+ "seconds": 3.97,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region holds email addresses for about 15 customers (19 distinct values, where only a handful are real regions). This looks like a source-side column misalignment or PII leak. The true region for those customers cannot be recovered from the evidence, and the emails are a privacy concern.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

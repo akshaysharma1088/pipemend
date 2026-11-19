@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 717
+ },
+ "seconds": 5.83,
+ "raw_response": "{\"diagnosis\": \"The raw data shows no technical fault. txn_ids are contiguous with no duplicates, every batch is present, and all customer and merchant keys join cleanly. The only candidate for a ~2% gap is the `status = 'POSTED'` filter, which drops 202 REVERSED rows. Whether the settlement file counts reversed transactions is a business-rule question the evidence cannot answer, so any change would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

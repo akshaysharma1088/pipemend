@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H4-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4289,
+  "output": 528
+ },
+ "seconds": 4.87,
+ "raw_response": "The evidence is enough to fix this. Some customers migrated to the new CRM carry numeric region codes ('01'\u2013'04') instead of region names. raw_region_map is the mapping the CRM note points to: 01\u2192WEST, 02\u2192EAST, 03\u2192NORTH, 04\u2192SOUTH.\n\nThe map has exactly four rows with distinct codes, so a left join on the code cannot duplicate customer rows. The fix is to map the code to its name where one matches and otherwise keep the existing upper-cased region name. The output columns stay the same. I considered whether the mapping might be ambiguous, but the map table is explicit and the note documents it.\n\nWhitespace in the codes is not a concern: the profile shows exactly '01' through '04'. I will trim the value before joining anyway.\n\nThe gold_region_daily step reads silver_customers, so it will pick up the corrected regions on re-run without any change.\n\n```json\n{\"diagnosis\": \"Customers migrated to the new CRM have numeric region codes (01-04) instead of region names; raw_region_map provides the code-to-name mapping, but silver_customers does not apply it, so gold_region_daily has wrong region groups.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}\n```"
+}

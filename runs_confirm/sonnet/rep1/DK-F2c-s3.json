@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2c-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 967
+ },
+ "seconds": 7.93,
+ "raw_response": "{\"diagnosis\":\"Batch 13 was re-delivered at 22:00 on 2026-01-18. The re-delivered rows have the same txn_id and the same other fields, but a different amount and a later ingest_ts than the 02:00 copies. This looks like a restated amount, so silver should keep the latest-ingested copy per txn_id. I'm assuming the later copy is the correct one, since no change note explains the restatement.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) WHERE status = 'POSTED'\"}}"
+}

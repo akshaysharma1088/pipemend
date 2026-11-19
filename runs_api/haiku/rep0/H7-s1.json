@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4124,
+  "output": 485
+ },
+ "seconds": 2.69,
+ "raw_response": "{\"diagnosis\": \"The likely cause is the 2026-01-18 payments-source change, which reports `amount` net of interchange fees. The SQL and join keys look correct, so the ~2% gap is probably the fee deduction. The per-merchant-category fee rates are published outside this data, and the change's effective batch is unclear, so the gross amounts cannot be reconstructed from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

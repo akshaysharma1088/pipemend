@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2d-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4249,
+  "output": 562
+ },
+ "seconds": 4.7,
+ "raw_response": "The raw_merchants table has 46 rows for 40 distinct merchant_ids. Six merchant_ids appear twice, and the copies are identical in every column. The join in gold_mcc_daily therefore fans out and double-counts transactions for those merchants (5256 vs 4558). The duplicates are exact, so deduplicating is unambiguous.\n\nThe fix is to dedupe in silver_merchants with SELECT DISTINCT. That is safe because the copies are identical. It could also be done with a GROUP BY, but DISTINCT on (merchant_id, mcc) is enough. Each merchant_id has only one mcc, so the key stays unique.\n\nThe other gold tables are unaffected. gold_merchant_daily does not join, and the customer joins are on unique keys.\n\nA check that the numbers add up: 6 duplicated merchants account for 698 extra rows (5256 \u2212 4558), which is plausible at roughly 116 transactions per merchant.\n\nThe 269 REVERSED rows are excluded by the status filter, and the reconciliation compares against silver, which already excludes them, so no change is needed there.\n\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as exact identical rows, so the join in gold_mcc_daily fans out and inflates counts. Deduplicating silver_merchants fixes it.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

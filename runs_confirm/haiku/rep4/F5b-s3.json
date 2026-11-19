@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4322,
+  "output": 647
+ },
+ "seconds": 3.69,
+ "raw_response": "{\"diagnosis\": \"84 raw_transactions rows are denominated in EUR, but the silver and gold steps sum `amount` without currency handling, so EUR amounts are aggregated as if they were USD. The only FX data is a single 2026-01-01 rate snapshot, and the conversion policy (which rate date to use, and whether to convert or exclude these rows) is a business decision that the evidence does not settle, so this needs escalation.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

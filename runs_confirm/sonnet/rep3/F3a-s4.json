@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3a-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 1982
+ },
+ "seconds": 15.35,
+ "raw_response": "{\"diagnosis\":\"Batch 12 is the only batch with source_tz='UTC' (349 rows). Its timestamps start at about 12:00 on 2026-01-16, while every America/Chicago batch starts at about 06:00 on its day. That means the UTC batch is shifted +6h relative to the rest. As a result, roughly its last half spilled into 2026-01-17, inflating that date to 433 rows and putting 99 rows at 00:00-06:00. Normalizing the UTC rows by subtracting 6h aligns them with the other batches and puts them on the correct dates.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

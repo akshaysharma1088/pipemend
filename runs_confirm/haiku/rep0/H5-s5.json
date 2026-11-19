@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H5-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 1307
+ },
+ "seconds": 6.82,
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-17 the payments source sends reversals as separate REVERSAL records, but silver_transactions keeps only status='POSTED', so the reversals are dropped while their original POSTED records stay in, which overstates gold totals. Correcting this requires deciding how reversals are booked (netting on the original or reversal date, full or partial amounts), which the evidence does not settle.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 282
+ },
+ "seconds": 2.19,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region holds email addresses for some customers (e.g. user1743@examplemail.com), so the source has put PII into the region field. The true region for those customers cannot be recovered from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

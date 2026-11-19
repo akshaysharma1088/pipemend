@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 1987
+ },
+ "seconds": 8.63,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was re-delivered at 05:00 on 2026-01-18, so about 349 raw rows (5324 total, 4975 distinct txn_id) are replayed copies of batch 13's 02:00 rows; the sample shows them identical. The silver step does not deduplicate, so these copies flow into silver and inflate the 2026-01-17 volume, and the gold tables inherit the double counting.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH ranked AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM ranked WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 1006
+ },
+ "seconds": 7.86,
+ "raw_response": "{\"diagnosis\":\"Batch 14 was delivered twice, at 02:00 and 05:00 on 2026-01-19, so it holds 666 rows with identical content per txn_id. silver_transactions has no dedup, so 318 txn_ids are doubled and every gold table is inflated. I dedupe silver on txn_id and keep the earliest delivery, which also corrects the gold tables downstream.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts ASC, batch_id ASC) = 1\"}}"
+}

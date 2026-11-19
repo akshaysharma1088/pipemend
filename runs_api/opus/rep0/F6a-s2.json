@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6a-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 304
+ },
+ "seconds": 3.01,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 (business date 2026-01-18) contains only 130 rows against a normal ~320-380. Its txn_id range (904477 to 904801) spans about 325 ids, and ids are visibly missing (e.g., 904478), so the source delivered an incomplete extract. The pipeline logic is not at fault; the missing transactions must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4183,
+  "output": 1867
+ },
+ "seconds": 8.6,
+ "raw_response": "{\"diagnosis\": \"The silver filter keeps only status='POSTED' and ignores the 15 REVERSAL rows whose orig_txn_id points at earlier transactions. If those originals are still POSTED, gold totals are overstated, which fits Finance's report. The sample rows don't show the status of the referenced originals or how REVERSED (221 rows) relates to REVERSAL, so the correct netting rule can't be confirmed from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

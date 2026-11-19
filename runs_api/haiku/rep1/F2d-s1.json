@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4077,
+  "output": 1083
+ },
+ "seconds": 5.29,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so silver_merchants contains duplicate merchant keys and the join in gold_mcc_daily fans out transactions (4630 to 5354). The correct mcc for each duplicated merchant cannot be determined from the evidence, because the duplicates are not shown and may carry conflicting mcc codes, so the merchant source owner must decide which record is authoritative.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

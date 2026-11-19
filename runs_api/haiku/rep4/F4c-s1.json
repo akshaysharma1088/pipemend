@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 1132
+ },
+ "seconds": 5.71,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2-style table: each of the 200 customers has one current row (is_current = True), and 30 customers also have a historical row (is_current = False, valid_from 2023-06-01). silver_customers keeps all 230 rows, so the USING join in gold_region_daily duplicates every transaction of those 30 customers, inflating the count from 4630 to 5353. Filtering silver_customers to is_current = True leaves exactly one row per customer, so the join neither adds nor drops rows and the region counts reconcile to silver_transactions.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

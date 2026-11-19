@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H2-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4207,
+  "output": 1572
+ },
+ "seconds": 6.59,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-17 payments-source change delivers amount corrections as a new row with the same txn_id and record_version incremented, so silver_transactions keeps both versions and duplicates the key. The fix is to keep only the highest record_version per txn_id (across all statuses, so a later reversal still counts), then apply the POSTED filter.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC) = 1) latest WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 227
+ },
+ "seconds": 2.47,
+ "raw_response": "{\"diagnosis\": \"All 378 rows in delivery batch 14 (business date 2026-01-18) arrived with NULL merchant_id, so 363 POSTED rows drop out of the inner join to the merchant dimension. The source batch is defective. Merchant_id cannot be derived from anything else in the evidence, and no change notes explain it.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

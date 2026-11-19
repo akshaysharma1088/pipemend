@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 667
+ },
+ "seconds": 3.2,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 13, the source feed began delivering NULL merchant_id on transactions (671 POSTED rows in silver, 711 in raw). The inner join to silver_merchants in gold_mcc_daily silently drops those rows, which explains 4699 minus 671 = 4028. The correct treatment (drop, bucket as 'unknown', or re-attribute) is a business decision, and the missing IDs cannot be recovered from the data shown, so the feed needs to be fixed and re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

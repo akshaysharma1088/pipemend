@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4a-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 921
+ },
+ "seconds": 5.97,
+ "raw_response": "{\"diagnosis\":\"Batch 14 (ingested 2026-01-19) delivers customer_id without zero padding (e.g. 'C180', 'C3', 'C94' instead of 'C00180', 'C00003', 'C00094'). These ids fail the join to silver_customers, so about 363 batch-14 rows are dropped from gold_region_daily. The mapping to the padded 5-digit format is unambiguous, so I normalize the id in silver_transactions.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, CASE WHEN regexp_matches(trim(customer_id), '^C[0-9]+$') THEN 'C' || lpad(substring(trim(customer_id), 2), 5, '0') ELSE customer_id END AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

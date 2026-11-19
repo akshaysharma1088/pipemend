@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4182,
+  "output": 1067
+ },
+ "seconds": 5.25,
+ "raw_response": "{\"diagnosis\": \"The silver step keeps only status='POSTED', but the raw data has 236 REVERSED and 40 REVERSAL rows with no documented rule for netting them. The REVERSAL rows point to original txn_ids via orig_txn_id, and the sign convention and business treatment are not shown, so the correct corrected totals cannot be determined from this evidence. Escalate to the transactions source/finance owners to confirm the reversal rule and the settlement reconciliation.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

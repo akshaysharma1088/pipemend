@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 448
+ },
+ "seconds": 5.3,
+ "raw_response": "{\"diagnosis\": \"Gold totals for the latest business days are about 2% below settlement, but nothing in the pipeline SQL or the change notes explains it. The casts are lossless at this scale, the joins cover every customer and merchant, and the REVERSED filter applies to all days. Since only recent days are affected, the likely cause is incomplete or late source delivery for recent batches (e.g. the dip in batches 9-11 and 13). That needs source-team confirmation and possibly re-delivery; it cannot be fixed by changing the SQL.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

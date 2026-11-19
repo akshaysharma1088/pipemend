@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1162
+ },
+ "seconds": 9.29,
+ "raw_response": "{\"diagnosis\":\"Batch 12 has ingest_ts values up to 22:00, unlike every other batch, and 4996 raw rows cover only 4975 distinct txn_ids. This points to a partial re-delivery of already-loaded transactions, which silver_transactions does not deduplicate. I keep the latest delivery per txn_id (by ingest_ts, then batch_id) and apply the POSTED filter afterwards, so a later REVERSED re-delivery correctly drops the transaction.\",\"decision\":\"fix\",\"confidence\":0.75,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

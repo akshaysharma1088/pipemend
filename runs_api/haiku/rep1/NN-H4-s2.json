@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s2",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 1052
+ },
+ "seconds": 5.16,
+ "raw_response": "{\"diagnosis\": \"raw_customers stores 4 of its region values as numeric codes ('01'-'04') instead of names, and raw_region_map provides a one-to-one mapping from those codes to WEST/EAST/NORTH/SOUTH. silver_customers passes region through unmapped, so the codes leak into silver and gold_region_daily; translating them through raw_region_map fixes this without changing row counts or the output columns.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

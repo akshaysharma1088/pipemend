@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2c-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1094
+ },
+ "seconds": 9.97,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was partially re-delivered at 2026-01-18 22:00, a second ingest_ts inside the same batch. This added 21 repeated txn_id rows to raw_transactions (4835 rows vs 4814 distinct ids), and 20 of them pass the POSTED filter into silver_transactions. The fix keeps only the latest-ingested version of each txn_id before applying the POSTED filter; this assumes the 22:00 rows are replays or corrections, which could not be checked without row-level samples.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) d WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

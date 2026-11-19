@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s1",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 774
+ },
+ "seconds": 6.05,
+ "raw_response": "{\"diagnosis\":\"The pipeline matches the raw data: txn_ids are contiguous with no gaps or duplicates, every customer and merchant joins, and the casts lose nothing. The only filter that removes value is status='POSTED', which drops 236 REVERSED rows, and the evidence does not show how the settlement file treats them. The cause of the 2% gap cannot be determined, so changing the filter would be a guess.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

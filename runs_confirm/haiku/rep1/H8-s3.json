@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4039,
+  "output": 2989
+ },
+ "seconds": 11.87,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivers every transaction twice: 676 rows cover only the 338 new txn_ids 904490\u2013904827. One copy carries txn_ts as epoch milliseconds (1768716261000 = 2026-01-18 06:04:21 UTC, matching the ISO copy), which breaks the TIMESTAMP cast. Parsing epoch ms and keeping one row per txn_id fixes the failure and the double-counting in the gold tables.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH p AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_full_match(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, ingest_ts FROM raw_transactions WHERE status = 'POSTED') SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM p QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1;\"}}"
+}

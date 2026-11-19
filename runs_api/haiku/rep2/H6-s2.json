@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4115,
+  "output": 570
+ },
+ "seconds": 2.95,
+ "raw_response": "{\"diagnosis\": \"The 20 duplicate txn_ids are most likely from the batch 14 delivery, which PAY-77 says was sent twice during an amount recalculation. The copies may carry different amounts, and the source has not confirmed which one is final, so deduplicating by any rule would risk silently wrong totals.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4124,
+  "output": 363
+ },
+ "seconds": 2.08,
+ "raw_response": "{\"diagnosis\": \"The payments-source change note says `amount` is now reported net of interchange fees, with rates that vary by merchant category and are published separately by the card network. The pipeline has no fee rates, and the evidence does not show which batches are net versus gross, so the gold totals cannot be corrected from the data available. This needs the source team and the fee schedule.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s2",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4056,
+  "output": 1729
+ },
+ "seconds": 7.97,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4822 rows but only 4802 distinct txn_id values, and the IDs form a contiguous range 900001 to 904802, so the 20 extra rows look like re-delivered copies, with batch 13 (377 rows, above the usual ~340) the likely source. Whether the copies are identical, and whether any pair mixes POSTED and REVERSED status, cannot be determined from the profiles and samples, so the correct dedupe rule (which copy to keep, and whether to dedupe before or after the status filter) needs the source team to confirm.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

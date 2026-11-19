@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 994
+ },
+ "seconds": 4.99,
+ "raw_response": "{\"diagnosis\": \"There are 20 surplus rows (4847 rows vs 4827 distinct txn_id). The duplicates sit in batch 13, which has a late ingest at 2026-01-18 22:00 that no other batch shows, so it looks like an out-of-cycle re-delivery. The evidence does not show whether the duplicate copies are identical or differ in amount or status (POSTED vs REVERSED), so I cannot tell which copy is authoritative without the source team.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

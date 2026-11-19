@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 1011
+ },
+ "seconds": 7.96,
+ "raw_response": "{\"diagnosis\":\"Batch 12 was delivered twice, at 02:00 and 05:00 on 2026-01-17, so its 334 rows are duplicated. This is the only source of duplicate txn_ids: the 4,866 distinct ids fill the contiguous range 900001\u2013904866. The duplicated rows are identical, so silver_transactions needs to keep one row per txn_id. The gold tables are rebuilt from it and need no change.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1 AND status = 'POSTED'\"}}"
+}

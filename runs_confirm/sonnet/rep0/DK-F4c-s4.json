@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s4",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4473,
+  "output": 456
+ },
+ "seconds": 4.39,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 dimension with 30 customers that have two rows (an old is_current=False row and a current row). silver_customers keeps both, so the join in gold_region_daily fans out and inflates the count from 4582 to 5279. Keeping only is_current rows leaves one row per customer. The current rows have valid_from 2025-01-01, which is before every transaction in the data.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE\"}}"
+}

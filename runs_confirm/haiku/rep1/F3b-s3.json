@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 1643
+ },
+ "seconds": 7.91,
+ "raw_response": "{\"diagnosis\": \"The DE-412 filter added 2026-01-17 drops POSTED rows whose ingest_ts is more than 26 hours after txn_ts. Batches 3 to 14 arrive about 2 to 3 days after their transaction dates (e.g. batch 11 has txn_ts 01-13 and ingest_ts 01-16), so the filter removes them from silver and understates the gold tables. Whether these late events are stale and should be excluded is a business rule that the evidence does not settle, so this needs the DE-412 owner to decide.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

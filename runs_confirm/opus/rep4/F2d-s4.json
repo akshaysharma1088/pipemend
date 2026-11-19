@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2d-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 992
+ },
+ "seconds": 10.59,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_ids, so silver_merchants carries duplicate merchant rows. The join in gold_mcc_daily fans out and inflates the counts (5317 vs 4582). Nothing shown suggests conflicting attributes: merchant_name has 40 distinct values that line up with the ids. So the duplicates look like exact copies and can be collapsed with DISTINCT. If any duplicate did carry a different mcc, DISTINCT would keep both rows and the reconciliation monitor would still fire, rather than an mcc being silently chosen.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4567,
+  "output": 1867
+ },
+ "seconds": 9.58,
+ "raw_response": "{\"diagnosis\": \"Silver drops roughly 23% of rows in batches 3-14 (not explained by the about 5% REVERSED rows), most likely through the `ingest_ts - txn_ts <= 26 HOUR` filter. The sample rows show txn_ts about three days before ingest_ts, so the filter's intent, the timestamp semantics, and whether the Airflow upgrade on 2026-01-08 changed timestamps are all unclear. The correct rule cannot be determined from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

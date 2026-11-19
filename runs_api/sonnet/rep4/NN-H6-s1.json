@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H6-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 409
+ },
+ "seconds": 3.44,
+ "raw_response": "{\"diagnosis\": \"The 19 duplicate txn_ids come from the source. Both copies arrive in the same batch with the same ingest_ts, and the sample pair (904167) has identical customer, merchant and timestamp but different amounts (7.33 vs 8.27). Nothing in the data shows which amount is correct, so any dedup rule (min, max, arbitrary) would silently guess.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

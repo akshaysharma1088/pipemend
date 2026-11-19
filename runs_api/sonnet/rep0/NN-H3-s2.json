@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 1855
+ },
+ "seconds": 14.23,
+ "raw_response": "{\"diagnosis\":\"The new 'v2' collector writes txn_ts about 6 hours ahead of the legacy collector, probably UTC versus local CST. v2 rows start at 12:00 where legacy rows start at 06:00, and max txn_ts (2026-01-19 04:49) is later than the batch ingest time (02:00). Late-evening v2 transactions therefore roll into the next date, which explains the 00:00-06:00 spikes and the thin 2026-01-19 volume. The fix subtracts 6 hours from v2 timestamps in silver_transactions.\",\"decision\":\"fix\",\"confidence\":0.68,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nWITH t AS (\\n  SELECT CAST(txn_id AS BIGINT) AS txn_id,\\n         customer_id,\\n         CAST(merchant_id AS INTEGER) AS merchant_id,\\n         CAST(amount AS DECIMAL(12,2)) AS amount,\\n         CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts\\n  FROM raw_transactions\\n  WHERE status = 'POSTED'\\n)\\nSELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date\\nFROM t;\"}}"
+}

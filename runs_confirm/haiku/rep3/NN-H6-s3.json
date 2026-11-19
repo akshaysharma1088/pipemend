@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1094
+ },
+ "seconds": 5.0,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4849 rows but only 4827 distinct txn_id values, so 22 rows are re-delivered or conflicting copies, and batch 12 (391 rows) is unusually large. The evidence does not show whether the copies are identical, differ in amount or status, or which delivery is authoritative, so the correct deduplication rule cannot be determined from the profiles.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

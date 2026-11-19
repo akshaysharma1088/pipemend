@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 816
+ },
+ "seconds": 6.45,
+ "raw_response": "{\"diagnosis\":\"The raw data shows no defect I can point to: no duplicates, no nulls, every customer and merchant joins, and the batch counts are normal. The only filter that could explain a ~2% shortfall is status='POSTED', which drops 236 REVERSED rows (about 4.8%). Whether the settlement file includes reversed transactions, or whether reversals should be netted, is a business rule I cannot determine from this evidence.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

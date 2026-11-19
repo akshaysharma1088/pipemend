@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4323,
+  "output": 554
+ },
+ "seconds": 2.94,
+ "raw_response": "{\"diagnosis\": \"85 raw_transactions rows are EUR, but silver_transactions ignores the currency column and sums raw amounts into USD-labelled gold tables. The correct treatment is not determinable from the evidence: it is unclear whether the EUR amounts are truly EUR or mislabelled, which batches they belong to, and whether the only available FX rate (as_of 2026-01-01) is the correct business rate for transactions dated through 2026-01-18.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

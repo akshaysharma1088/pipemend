@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4474,
+  "output": 547
+ },
+ "seconds": 5.2,
+ "raw_response": "This is a Type 2 slowly changing dimension in raw_customers: 30 customers have two rows, one with is_current=True and one historical with is_current=False. The join in gold_region_daily fans out on those 30 customers. The extra count is 5415 \u2212 4699 = 716 rows, which is plausible for 30 customers with a duplicated row each.\n\nThe fix is to keep only current rows in silver_customers. Every customer has exactly one is_current=True row (200 current rows for 200 distinct customers), so filtering on that flag gives one row per customer.\n\nCould the historical region matter, so that a transaction is assigned the region in effect at its time? The historical rows have valid_from 2023-06-01 and the current rows 2025-01-01. All transactions are from January 2026, after both valid_from dates, so the current row applies to every transaction. Filtering on is_current is therefore correct.\n\nI keep the same columns and the same upper(region) logic.\n\n\n<invoke name=\"x\">\n</invoke>\n```json\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 customers having both a current and a historical row; silver_customers kept both, so the join in gold_region_daily fans out (5415 vs 4699). Filtering to is_current = true gives one row per customer, and all transactions post-date the current valid_from.\", \"decision\": \"fix\", \"confidence\": 0.95, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}\n```"
+}

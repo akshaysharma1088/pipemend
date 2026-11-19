@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 496
+ },
+ "seconds": 5.67,
+ "raw_response": "{\"diagnosis\":\"The only evidence is a mean/median gap on 2026-01-17, and nothing shows a pipeline defect. txn_id is unique, there are no nulls, the single currency is USD, the batches are complete, and the join keys are consistent. The skew could come from genuine large transactions (max 14229) or from a source-side amount scaling or unit problem. The shown samples and profiles cannot tell these apart, so no correction can be justified.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

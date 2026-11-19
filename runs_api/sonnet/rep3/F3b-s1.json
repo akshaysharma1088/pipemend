@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 2202
+ },
+ "seconds": 17.84,
+ "raw_response": "{\"diagnosis\":\"The DE-412 filter `ingest_ts - txn_ts <= 26 HOUR` in silver_transactions drops late-arriving POSTED transactions. From batch 3 on, each batch carries about 75 rows (about 21%) whose txn_ts is roughly 3 days before ingest, as the batch 11\u201314 samples show. All txn_ids are distinct, so these are not duplicates. They are real transactions that are silently lost, which also skews the daily volumes. The fix removes the staleness filter and keeps the POSTED filter.\",\"decision\":\"fix\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

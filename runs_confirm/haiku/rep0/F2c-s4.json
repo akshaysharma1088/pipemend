@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1044
+ },
+ "seconds": 5.2,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions has 21 surplus rows over its 4814 distinct txn_ids, and batch 13 has an out-of-pattern late ingest (max ingest_ts 22:00 instead of 02:00), which suggests a partial re-delivery. The evidence does not show whether duplicate copies are identical or differ in amount or status, nor which copy the source considers authoritative, so the correct deduplication rule cannot be determined here.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

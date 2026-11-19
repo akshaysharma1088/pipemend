@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H6-s5",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 492
+ },
+ "seconds": 2.47,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 21 txn_ids that each appear twice with the same attributes but different amounts (for example, 904282 has 8.42 and 8.75), and both copies were ingested in the same batch. Nothing in the evidence shows which amount is correct, so deduplicating in silver would mean guessing business-critical values. The source team needs to confirm the correct amounts or re-deliver the batch.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

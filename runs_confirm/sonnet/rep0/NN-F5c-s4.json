@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4161,
+  "output": 955
+ },
+ "seconds": 6.56,
+ "raw_response": "{\"diagnosis\":\"From batch 12 onward the source emits status 'SETTLED' where it used to emit 'POSTED'. The two values never overlap: batches 1-11 hold only POSTED and REVERSED, and batches 12-14 hold only SETTLED and REVERSED. The counts reconcile: POSTED 3596 equals batches 1-11 (3782 rows) minus 186 REVERSED, and 986 SETTLED plus 46 REVERSED equals the 1032 rows in batches 12-14. The silver filter `status = 'POSTED'` therefore drops every row from those batches, so SETTLED is treated as the renamed POSTED.\",\"decision\":\"fix\",\"confidence\":0.82,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED','SETTLED')\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 178
+ },
+ "seconds": 2.76,
+ "raw_response": "{\"diagnosis\": \"Starting in batch 13 (2026-01-17), the source delivers NULL merchant_id on transactions (711 NULLs in raw, 671 of them POSTED). The merchant is not recoverable from the data shown. The inner join to merchants drops these rows from gold_mcc_daily. Any fix would be a guess or would hide a source defect, so the source team needs to re-deliver the data.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

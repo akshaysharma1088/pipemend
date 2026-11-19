@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4113,
+  "output": 417
+ },
+ "seconds": 2.3,
+ "raw_response": "{\"diagnosis\": \"The 22 duplicate txn_ids are most likely the re-sent copies from payments-source PAY-77, where a recalculated delivery was sent twice. The change note says which copy carries the final amount is unknown, so no deduplication rule can be shown to pick the correct row, and any choice risks silently wrong amounts in silver and gold.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 1624
+ },
+ "seconds": 7.51,
+ "raw_response": "{\"diagnosis\": \"Gold totals run about 2% below settlement, and the only filter that drops rows is `status = 'POSTED'`, which excludes 232 REVERSED rows (about 4.8%). The evidence does not show whether REVERSED rows are reversals of earlier POSTED transactions or the settlement-side treatment of them, and the recent-days pattern is not explained by batch timing, so the correct business rule and data are not determinable from what is shown. Escalate to the settlement/payments source team to confirm the reversal semantics and whether batch 14 is complete.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

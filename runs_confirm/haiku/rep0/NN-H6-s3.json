@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1509
+ },
+ "seconds": 7.01,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 22 extra rows sharing a txn_id (4849 rows, 4827 distinct), and silver_transactions applies the POSTED filter before any deduplication. The evidence doesn't show whether the duplicate copies are identical or differ in status, amount, or batch, so the correct rule for choosing a surviving row (for example, latest batch vs. POSTED-only, or a later REVERSED) cannot be determined from what is shown. Escalate to the source/ingestion team to confirm the duplicate semantics before changing the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

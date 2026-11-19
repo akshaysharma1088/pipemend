@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s3",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4475,
+  "output": 518
+ },
+ "seconds": 5.32,
+ "raw_response": "The customer dimension is an SCD2 table: 30 customers have two rows, one with is_current=False and one with is_current=True. The join in gold_region_daily therefore fans out. The 5251 vs 4558 gap is 693 rows, which is plausible for 30 duplicated customers.\n\nThe fix is to keep only current rows in silver_customers. Every one of the 200 customers has exactly one is_current=True row (True count is 200, with 200 distinct customers), so filtering on it gives one row per customer.\n\nThe question is whether region should be the current region or the region as of the transaction date. The old rows have valid_from 2023-06-01 and the current rows have valid_from 2025-01-01. All transactions are from January 2026, which is after both valid_from dates, so the current row applies to every transaction. Filtering to is_current is therefore correct.\n\nsilver_customers keeps its columns (customer_id, region).\n\n<br>\n\n```json\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 customers having both a historical (is_current=False) and a current row; the join in gold_region_daily fans out and inflates counts. All transactions postdate the current rows' valid_from, so filtering silver_customers to is_current rows gives one correct row per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}\n```"
+}

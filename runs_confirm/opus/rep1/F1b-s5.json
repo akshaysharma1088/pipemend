@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F1b-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 723
+ },
+ "seconds": 7.19,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 12 (ingested 2026-01-17) sends amount with a leading '$' currency symbol, for example '$75.13', so the strict DECIMAL cast in silver_transactions fails. Currency is uniformly USD and the sampled values are otherwise ordinary dollar amounts, so removing the '$' symbol recovers the correct values.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(trim(replace(CAST(amount AS VARCHAR), '$', '')) AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

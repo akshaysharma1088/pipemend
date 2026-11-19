@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H5-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4248,
+  "output": 974
+ },
+ "seconds": 6.95,
+ "raw_response": "{\"diagnosis\":\"On 2026-01-17 the source changed reversals to separate REVERSAL records and stopped updating the original, which now stays POSTED. The pipeline keeps only POSTED rows, so reversed originals are still counted and totals are overstated for 01-17 onward. The fix excludes POSTED originals that a REVERSAL record points to, which matches how the old REVERSED status was treated.\",\"decision\":\"fix\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(r.txn_id AS BIGINT) AS txn_id, r.customer_id, CAST(r.merchant_id AS INTEGER) AS merchant_id, CAST(r.amount AS DECIMAL(12,2)) AS amount, CAST(r.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(r.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions rv WHERE rv.status = 'REVERSAL' AND rv.orig_txn_id = r.txn_id)\"}}"
+}

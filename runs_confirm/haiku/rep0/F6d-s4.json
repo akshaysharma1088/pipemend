@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4101,
+  "output": 693
+ },
+ "seconds": 3.22,
+ "raw_response": "{\"diagnosis\": \"All 333 raw_transactions rows in delivery batch 14 (ingested 2026-01-19) have a NULL merchant_id, and 318 of them are POSTED, which accounts for the 318 NULLs in silver and the 4582-to-4264 gap in gold_mcc_daily. The correct merchant_id cannot be recovered from the evidence, so the batch needs re-delivery or a source-team fix rather than a pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

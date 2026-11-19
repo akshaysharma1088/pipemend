@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4127,
+  "output": 374
+ },
+ "seconds": 2.01,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 payments-source change reports amount net of interchange fees, which likely explains the roughly 2% gap against the settlement file. Correcting it would need per-MCC fee rates that are published separately and are not in the evidence, and it is unclear which batches are affected, so the correct amounts cannot be determined here.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

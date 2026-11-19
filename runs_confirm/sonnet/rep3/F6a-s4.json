@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 649
+ },
+ "seconds": 5.09,
+ "raw_response": "{\"diagnosis\":\"Batch 14, the only batch holding 2026-01-18 transactions, is a partial delivery. It has 133 rows against about 340 normally, and its txn_ids run from 904488 to 904814 with large gaps (about 200 ids missing). Its first txn_ts is 06:16 instead of about 06:00. The pipeline SQL is correct, and the missing rows cannot be recovered from the evidence, so the source must re-deliver the batch.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

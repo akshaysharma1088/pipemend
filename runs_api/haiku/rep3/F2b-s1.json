@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1175
+ },
+ "seconds": 5.71,
+ "raw_response": "{\"diagnosis\": \"raw_transactions holds 146 extra rows for txn_ids that already exist (5012 rows vs 4866 distinct, and the ids form the contiguous range 900001\u2013904866), most likely from re-delivered batches. The evidence does not show whether the duplicate copies are identical or whether a later copy supersedes an earlier one (e.g., POSTED vs REVERSED or a changed amount), so the correct deduplication rule cannot be determined from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

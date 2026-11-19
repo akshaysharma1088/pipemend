@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4041,
+  "output": 3188
+ },
+ "seconds": 13.13,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivered about 312 transactions as duplicate txn_ids, and some of those copies store txn_ts as epoch milliseconds (e.g., 1768716104000 = 2026-01-18 06:01:44 UTC, matching the original row) instead of ISO text, which breaks the TIMESTAMP cast. Because txn_id values are contiguous (900001 to 904802, 4802 distinct), the duplicates are re-deliveries, so deduplicating on txn_id (keeping the earliest ingest) and parsing numeric timestamps as epoch milliseconds gives the correct silver data.\", \"decision\": \"fix\", \"confidence\": 0.65, \"pre_sql\": [\"CREATE OR REPLACE VIEW txn_dedup AS SELECT * EXCLUDE (rn) FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions) WHERE rn = 1;\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH p AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM txn_dedup WHERE status = 'POSTED') SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM p;\"}}"
+}

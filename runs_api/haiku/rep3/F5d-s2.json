@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 2010
+ },
+ "seconds": 9.3,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) delivers merchant_id as 'M-01NN' strings, while earlier batches and raw_merchants use plain integers 100-139. The numeric part of each 'M-0NNN' value matches a merchant_id in raw_merchants, and the distinct counts (80 = 40 numeric + 40 prefixed) suggest a one-to-one mapping, so stripping the 'M-' prefix before the INTEGER cast should restore correct joins without changing any output columns.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(CASE WHEN merchant_id LIKE 'M-%' THEN substr(merchant_id, 3) ELSE merchant_id END AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

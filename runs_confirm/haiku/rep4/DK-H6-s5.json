@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H6-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 429
+ },
+ "seconds": 2.29,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 21 txn_ids that appear twice with different amounts, and the copies share the same batch, ingest_ts, and txn_ts, so nothing in the data indicates which amount is correct. Deduplicating by any rule (first, max, min) would silently pick an arbitrary amount and corrupt the gold totals, so the source team must confirm the correct values and re-deliver or correct the affected rows.\", \"decision\": \"escalate\", \"confidence\": 0.82, \"pre_sql\": [], \"step_overrides\": {}}"
+}

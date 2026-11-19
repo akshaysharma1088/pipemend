@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H8-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4331,
+  "output": 2484
+ },
+ "seconds": 10.13,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivered 338 transactions as duplicates. In one copy of each, txn_ts is epoch milliseconds (e.g. 1768716261000, which equals 2026-01-18 06:04:21 UTC, the same time as the ISO copy), and the copies differ only in txn_ts and ingest_ts. The cast fails on the epoch values, and without deduplication the gold tables would double-count those transactions. Parsing epoch-ms values and keeping one row per txn_id fixes both problems.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT txn_id, customer_id, merchant_id, amount, status, ingest_ts, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts_p FROM raw_transactions), dedup AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, txn_ts_p) AS rn FROM parsed WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, txn_ts_p AS txn_ts, CAST(txn_ts_p AS DATE) AS txn_date FROM dedup WHERE rn = 1;\"}}"
+}

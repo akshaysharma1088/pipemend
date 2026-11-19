@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 1150
+ },
+ "seconds": 5.74,
+ "raw_response": "{\"diagnosis\": \"The 363-row gap (4600 POSTED silver rows vs 4237 in gold_region_daily) comes from the inner join to silver_customers. Batch 13 onward contains non-standard customer_ids such as 'C115', 'C91' and 'C187' that don't match the 'C00001' format in raw_customers, so those transactions are silently dropped. The correct remedy depends on whether the IDs should be zero-padded, which is a source-format question, or whether unmatched customers should be kept under an UNKNOWN region, which is a business rule, so this needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s3",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1541
+ },
+ "seconds": 7.64,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4849 rows but only 4827 distinct txn_id values (the range 900001-904827 is fully contiguous), so 22 IDs were delivered more than once across batches. The evidence does not show whether the duplicate copies are identical re-deliveries or corrections with different amount or status, and choosing which version survives is a business rule, so the source team needs to confirm before silver and gold are changed.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

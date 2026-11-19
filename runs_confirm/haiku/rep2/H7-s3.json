@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4125,
+  "output": 393
+ },
+ "seconds": 2.1,
+ "raw_response": "{\"diagnosis\": \"A 2026-01-17 payments-source change reports `amount` net of interchange fees, and fee rates vary by merchant category and are published separately, so recent gold totals are understated against the gross settlement file. The correct gross-up requires per-MCC fee rates that are not in the evidence, and the source team must confirm the intended amount basis, so this needs escalation rather than a pipeline fix.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

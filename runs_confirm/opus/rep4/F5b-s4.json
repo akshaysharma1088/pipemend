@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5b-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4319,
+  "output": 800
+ },
+ "seconds": 7.69,
+ "raw_response": "{\"diagnosis\": \"83 raw_transactions rows are in EUR, but silver_transactions passes amounts through without currency conversion, so all USD gold totals are wrong. raw_fx_rates supplies the conversion rate (EUR rate_to_usd = 1.25) and covers every currency present.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount * f.rate_to_usd AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t JOIN raw_fx_rates f ON t.currency = f.currency WHERE t.status = 'POSTED'\"}}"
+}

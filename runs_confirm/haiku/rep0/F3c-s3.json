@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4087,
+  "output": 1027
+ },
+ "seconds": 4.53,
+ "raw_response": "{\"diagnosis\": \"Commit DE-398 (2026-01-16) changed silver_transactions.txn_date to CAST(ingest_ts AS DATE). Every ingest_ts is the next day at 02:00, so txn_date is always one day after the transaction's own date, which explains the 4558 mismatches (all POSTED rows). Deriving txn_date from txn_ts restores the DATE_CONSISTENCY invariant, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

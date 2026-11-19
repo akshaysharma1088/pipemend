@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6b-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 471
+ },
+ "seconds": 4.78,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) contains amounts that look inflated, likely by about 100x, such as 1715.0 next to normal values like 14.09 and 32.87. That suggests some rows were delivered in cents instead of dollars, but the bad rows are mixed in with normal ones and no change note explains it. The affected rows cannot be reliably told apart from genuinely large transactions, so a correct rescaling cannot be determined from the evidence; the source team needs to confirm the unit and re-deliver or flag the affected rows.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

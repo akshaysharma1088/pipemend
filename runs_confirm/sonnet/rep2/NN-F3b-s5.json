@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4569,
+  "output": 1063
+ },
+ "seconds": 8.82,
+ "raw_response": "{\"diagnosis\": \"silver_transactions drops POSTED rows with a filter `ingest_ts - txn_ts <= 26 HOUR`. From batch 3 onward many rows arrive more than 26 hours after txn_ts, for example batch 11 rows have a lag of about 68 hours. These late-arriving transactions are silently lost from silver and every gold table. The raw data has no duplicate txn_ids, and no change note justifies a lateness cutoff. Removing the filter restores the rows.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

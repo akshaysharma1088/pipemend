@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2d-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4249,
+  "output": 1018
+ },
+ "seconds": 4.73,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows for 40 distinct merchant_ids. Six merchant_ids are exact duplicate rows, and silver_merchants passes them through unchanged, so the join in gold_mcc_daily fans out each affected transaction into multiple rows (5256 vs 4558). The copies are identical in every column, so deduplicating silver_merchants with DISTINCT removes the fan-out without changing any values.\", \"decision\": \"fix\", \"confidence\": 0.92, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

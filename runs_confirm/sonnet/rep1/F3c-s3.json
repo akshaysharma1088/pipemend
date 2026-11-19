@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4087,
+  "output": 718
+ },
+ "seconds": 5.91,
+ "raw_response": "The silver step sets txn_date to CAST(ingest_ts AS DATE). That was probably introduced in the DE-398 refactor on 2026-01-16. Ingest_ts is the delivery time, 02:00 on the day after the transaction, so txn_date is off by one day. The alert counts 4558 rows, which equals every POSTED row, so all of them are affected.\n\nThe correct derivation is CAST(txn_ts AS DATE), and the alert itself says txn_date should match the date of txn_ts. The sample rows show txn_ts falling on the day before ingest_ts, so the batch delivery pattern is consistent with this.\n\nPossible complications: late-arriving data, or transactions whose txn_ts date differs from the batch date. Batch 1 has ingest_ts of 01-06 and txn_ts min is 01-05, so this is consistent with a one-day lag. Using txn_ts is unambiguous.\n\nThe fix replaces silver_transactions, and the gold tables follow from it. Nothing else looks problematic: there are no duplicate txn_ids (distinct = rows), and all customers and merchants appear to be covered. The status filter is kept as-is.\n\n\n{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (delivery time, 02:00 the next day) instead of txn_ts, so every date is shifted by a day; this matches the DE-398 refactor. Deriving txn_date from txn_ts fixes silver and the downstream gold tables.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

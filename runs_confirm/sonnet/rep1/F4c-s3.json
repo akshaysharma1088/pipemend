@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4245,
+  "output": 540
+ },
+ "seconds": 4.79,
+ "raw_response": "{\"diagnosis\":\"raw_customers is an SCD2 table with 230 rows: 200 current rows and 30 historical rows with is_current=False. silver_customers keeps all of them, so the join in gold_region_daily duplicates transactions for the 30 customers with history, giving 5251 instead of 4558. Filtering silver_customers to is_current = true leaves one row per customer.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_customers\":\"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = true\"}}"
+}

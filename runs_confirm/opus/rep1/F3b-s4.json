@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4604,
+  "output": 1133
+ },
+ "seconds": 10.77,
+ "raw_response": "{\"diagnosis\": \"The stale-event filter added on 2026-01-17 (DE-412), `ingest_ts - txn_ts <= 26 HOUR`, drops valid POSTED transactions. The source routinely delivers transactions up to about 3 days after they occur: for example, txn 902760 occurred 2026-01-13 06:01 and was ingested 2026-01-16 02:00. txn_id is unique across all 4814 rows, so these dropped rows are late arrivals, not duplicates or replays. Because silver is fully rebuilt from raw on each run, roughly 25% of rows in every batch from 3 onward are lost.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

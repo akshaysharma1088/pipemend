@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6c-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4141,
+  "output": 292
+ },
+ "seconds": 3.31,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region holds email addresses (PII) for some customers instead of region codes. These values flow into silver_customers and gold_region_daily, and the correct region for those customers cannot be recovered from the evidence. This is a source data defect with a privacy/compliance dimension (PII landing in a non-PII field), so the source team and the privacy owner need to correct and re-deliver the customer data and decide how to purge the exposed values.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

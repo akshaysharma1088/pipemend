@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2c-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 925
+ },
+ "seconds": 8.33,
+ "raw_response": "{\"diagnosis\": \"Batch 13 has a second delivery at ingest_ts 2026-01-18 22:00 on top of its 02:00 load. That adds 21 rows for already-loaded txn_ids (4835 rows vs 4814 distinct txn_id), which produces the 20 duplicate keys in silver_transactions. The fix keeps only the latest-ingested version of each txn_id before applying the POSTED filter, so a later correction or reversal takes precedence.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY ROW_NUMBER() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

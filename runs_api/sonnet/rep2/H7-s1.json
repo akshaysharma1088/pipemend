@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4124,
+  "output": 299
+ },
+ "seconds": 3.21,
+ "raw_response": "{\"diagnosis\":\"The 2026-01-18 payments-source change means `amount` is now net of interchange fees, so gold totals are about 2% below the gross settlement figures for recent days. Fee rates vary by merchant category and are published separately by the card network. They are not in any raw table, so the gross amounts cannot be reconstructed, and the correct business definition (gross or net) needs a decision.\",\"decision\":\"escalate\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{}}"
+}

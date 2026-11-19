@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 567
+ },
+ "seconds": 5.12,
+ "raw_response": "{\"diagnosis\":\"The pipeline logic looks sound: txn_id is unique so there are no duplicates, reversed rows are already filtered out, and there is a single currency. The anomaly looks like a few very large amounts (max 11809 against a median of about 43). The evidence does not show whether these are genuine, a unit or scale error such as cents, or bad source data, and the batch 14 samples look normal.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

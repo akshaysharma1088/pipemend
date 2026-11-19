@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H2-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4150,
+  "output": 794
+ },
+ "seconds": 6.66,
+ "raw_response": "{\"diagnosis\": \"raw_transactions holds 28 record_version=2 rows that restate existing txn_ids (5003 rows but only 4975 distinct txn_id). silver_transactions does not deduplicate, so both versions of corrected transactions are kept, which double-counts them in every gold table. The fix keeps only the latest version of each txn_id first, then applies the POSTED filter, so a later reversal drops the transaction.\", \"decision\": \"fix\", \"confidence\": 0.82, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) latest WHERE status = 'POSTED'\"}}"
+}

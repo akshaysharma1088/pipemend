@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s2",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 655
+ },
+ "seconds": 6.51,
+ "raw_response": "{\"diagnosis\":\"The pipeline joins cleanly: all 200 customers and 40 merchants match, txn_ids are unique, and no batch is missing. The only rows excluded are the 202 REVERSED ones, and nothing shows whether the 2% gap with the settlement file comes from them or from something outside this data. Whether reversed transactions belong in the totals is a business rule that the evidence does not settle.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

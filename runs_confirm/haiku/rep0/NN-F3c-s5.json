@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3c-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4046,
+  "output": 911
+ },
+ "seconds": 4.36,
+ "raw_response": "{\"diagnosis\": \"All 4699 POSTED rows have txn_date set from CAST(ingest_ts AS DATE), which lands on the next day at 02:00 relative to txn_ts, so the DATE_CONSISTENCY monitor flags every row. It is unclear whether txn_date is meant to be the transaction date or the ingest/reporting date, and the answer determines the meaning of every gold_*_daily table, so this needs a business owner's decision rather than a pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

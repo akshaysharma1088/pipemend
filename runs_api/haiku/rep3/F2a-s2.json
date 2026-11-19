@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 2262
+ },
+ "seconds": 9.73,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was re-delivered at 05:00 on 2026-01-19, and those rows duplicate existing txn_ids. The txn_id range is contiguous (900001 to 904802, 4802 distinct), so the 326 extra raw rows are re-delivered duplicates, and the POSTED filter leaves 316 duplicated keys. Deduplicating silver_transactions on txn_id, keeping the earliest ingest, removes the duplicates and the doubled volume for 2026-01-18, and the gold tables then rebuild correctly from silver.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}"
+}

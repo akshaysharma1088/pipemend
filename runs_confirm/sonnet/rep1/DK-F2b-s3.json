@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2b-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 666
+ },
+ "seconds": 5.64,
+ "raw_response": "{\"diagnosis\":\"raw_transactions contains 145 txn_ids delivered more than once, and the copies are identical in every column (same batch_id and ingest_ts). The POSTED filter keeps 137 of them in silver_transactions, which inflates the counts and totals in every gold table. Deduplicating by txn_id in silver is safe because the copies are exact.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts, batch_id) = 1\"}}"
+}

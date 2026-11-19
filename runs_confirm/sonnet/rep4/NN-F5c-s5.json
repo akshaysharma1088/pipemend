@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4162,
+  "output": 1042
+ },
+ "seconds": 7.91,
+ "raw_response": "{\"diagnosis\":\"From batch 12 onward the source sends status 'SETTLED' where it previously sent 'POSTED', so the filter status='POSTED' drops every row in batches 12-14. The counts fit a rename: batches 1-11 hold 3919 rows, of which 3704 are POSTED, leaving 215 REVERSED. Batches 12-14 hold 1056 rows, of which 995 are SETTLED, leaving 61 REVERSED. The reversal rate is about 5.5% in both periods, and the totals match the overall REVERSED count of 276. The fix is to treat SETTLED as equivalent to POSTED.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED','SETTLED')\"}}"
+}

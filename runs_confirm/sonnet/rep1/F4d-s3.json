@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4d-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4118,
+  "output": 201
+ },
+ "seconds": 2.78,
+ "raw_response": "{\"diagnosis\":\"raw_customers.region has trailing whitespace on 25 rows (e.g. 'EAST '), and upper() does not trim it. This splits regions into separate groups in silver_customers and gold_region_daily. Trimming the region value in silver_customers fixes both tables without changing the columns.\",\"decision\":\"fix\",\"confidence\":0.95,\"pre_sql\":[],\"step_overrides\":{\"silver_customers\":\"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}"
+}

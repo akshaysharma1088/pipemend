@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 880
+ },
+ "seconds": 4.42,
+ "raw_response": "{\"diagnosis\": \"gold_region_daily uses an inner join to silver_customers, which has 200 unique customers (C00001-C00200). Transactions reference 365 distinct customer_ids, including malformed IDs such as 'C180', 'C3' and 'C94' in batch 14, so the join silently drops about 363 POSTED transactions. The correct treatment (zero-padding, a source ID fix, an UNKNOWN region bucket, or re-delivery of a fuller customer dimension) cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

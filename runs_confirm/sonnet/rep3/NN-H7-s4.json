@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 831
+ },
+ "seconds": 7.34,
+ "raw_response": "{\"diagnosis\":\"The evidence does not show a defect in the pipeline. Joins don't lose rows (200 customers and 40 merchants all match), the casts are safe, and each batch contains exactly one full business day with no late or missing batches. The only candidate for the ~2% gap is the status='POSTED' filter that drops 232 REVERSED rows. Whether the settlement file includes them, or whether the gap comes from timing or cutoff differences, cannot be determined from the data shown.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

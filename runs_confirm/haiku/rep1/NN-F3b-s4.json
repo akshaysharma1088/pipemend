@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s4",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4567,
+  "output": 1867
+ },
+ "seconds": 9.06,
+ "raw_response": "{\"diagnosis\": \"The silver filter `ingest_ts - txn_ts <= 26 HOUR` drops roughly a quarter of each batch from batch 3 onward, and batch 11 sample rows show lags of about 68 hours. Whether that is a real late-arrival rule or a corrupted ingest_ts (the Airflow 2.10 upgrade on 2026-01-08 is a possible cause) cannot be determined from the evidence, so the correct business rule for late data is ambiguous.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

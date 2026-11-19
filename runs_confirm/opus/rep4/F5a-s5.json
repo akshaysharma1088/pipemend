@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5a-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4196,
+  "output": 680
+ },
+ "seconds": 5.75,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (345 rows, transactions dated 2026-01-16) was delivered with amounts in cents, flagged by amount_unit='USD_CENTS' (all 345 such rows; e.g. 7513.0 means $75.13). The silver step ignores amount_unit and treats these values as dollars, inflating the 2026-01-16 amounts about 100x.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(round(CASE WHEN amount_unit = 'USD_CENTS' THEN amount / 100.0 ELSE amount END, 2) AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

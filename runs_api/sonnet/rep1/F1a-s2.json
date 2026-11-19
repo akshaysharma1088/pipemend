@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F1a-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4079,
+  "output": 586
+ },
+ "seconds": 4.48,
+ "raw_response": "The raw column was renamed from `amount` to `txn_amount`. The profile shows `txn_amount` as DOUBLE, and no `amount` column exists. The values look like the same dollar amounts, all USD, with a plausible range, so this is a plain rename and the fix is safe.\n\nThe fix is to cast `txn_amount` to DECIMAL(12,2) in silver_transactions. The rest of the SQL stays unchanged. Casting a DOUBLE such as 36.11 to DECIMAL(12,2) rounds correctly.\n\nThe status filter is still valid, since the values are POSTED and REVERSED. There are no duplicates, because txn_id is distinct across all 4802 rows.\n\nThe amounts have at most 2 decimals, as the samples show, so nothing is lost in the cast.\n\n```json\n{\"diagnosis\": \"Source column `amount` was renamed to `txn_amount` in raw_transactions (same units, USD, DOUBLE), so silver_transactions fails to bind. Point the cast at txn_amount.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(txn_amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}\n```"
+}

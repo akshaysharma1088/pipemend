@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2b-s5",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4340,
+  "output": 1143
+ },
+ "seconds": 5.19,
+ "raw_response": "{\"diagnosis\": \"The 149 duplicated txn_id values in raw_transactions are exact copies, identical in every column including batch_id and ingest_ts, so they are redelivered duplicates rather than conflicting records. silver_transactions copies them through unchanged, and the gold tables inherit the double counts. Adding DISTINCT to silver_transactions removes the exact copies without changing any values, and the gold steps read from silver, so they are corrected on rerun.\", \"decision\": \"fix\", \"confidence\": 0.82, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

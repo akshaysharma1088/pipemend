@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4080,
+  "output": 2053
+ },
+ "seconds": 9.52,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, and silver_merchants copies those duplicates through. The gold_mcc_daily join therefore fans out each affected transaction, inflating the count from 4600 to 5305. The duplicate rows appear to be exact copies (merchant_name also has exactly 40 distinct values), so deduplicating silver_merchants should restore one row per transaction, but this is unverified because the mcc values of the duplicates are not shown.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

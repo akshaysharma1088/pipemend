@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H7-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4127,
+  "output": 239
+ },
+ "seconds": 2.58,
+ "raw_response": "{\"diagnosis\": \"As of 2026-01-18, the payments source reports amount net of interchange fees. That explains why recent gold totals run about 2% below the gross settlement file. Restoring gross amounts needs per-category fee rates published by the card network, which are not in the available data, and the change notes do not say exactly which batches use the new semantics.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

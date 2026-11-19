@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H5-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1796
+ },
+ "seconds": 7.35,
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-17 payments-source sends reversals as separate REVERSAL records and leaves the original POSTED. silver_transactions keeps every POSTED original, so reversed amounts are still counted and gold totals run high. The fix is to exclude POSTED originals that have a matching REVERSAL record, using NOT EXISTS so that null orig_txn_id values do not break the filter.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id = t.txn_id);\"}}"
+}

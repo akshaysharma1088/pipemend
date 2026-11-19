@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4056,
+  "output": 1451
+ },
+ "seconds": 6.84,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4822 rows but only 4802 distinct txn_id values, so 20 txn_ids are delivered more than once, most likely through a re-delivered batch (batch 13 is oversized at 377 rows). The evidence does not show whether the duplicate copies are identical or differ in amount, status, or batch, and the correct winning row is therefore undetermined, so silver and gold cannot be safely deduplicated from this data alone.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1779
+ },
+ "seconds": 8.49,
+ "raw_response": "{\"diagnosis\": \"The 00:00-06:00 timestamp cluster on 2026-01-18 and 2026-01-19 points to a timestamp-semantics problem in the newer batches, possibly a collector clock or timezone change. The evidence does not establish the correct offset or which collector is wrong, and a shift would change txn_date and every gold table, so the source team must confirm the timestamp semantics before any remediation.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

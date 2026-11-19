@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 515
+ },
+ "seconds": 5.31,
+ "raw_response": "{\"diagnosis\":\"Batch 14 (ingested 2026-01-19, holding the 2026-01-18 transactions) has only 133 rows against about 340 in a normal batch. The txn_id range 904482 to 904814 should hold about 333 ids, and the sample shows gaps in it. Roughly 200 rows are missing across the whole range. The pipeline logic is fine, and the missing rows cannot be rebuilt from the data we have.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

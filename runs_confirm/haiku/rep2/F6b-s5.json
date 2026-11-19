@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 864
+ },
+ "seconds": 4.61,
+ "raw_response": "{\"diagnosis\": \"The pipeline joins and filters look correct: txn_id and merchant_id have no fan-out, and POSTED filtering is consistent. The mean-versus-median gap points to a small set of abnormally large amounts (max 11809.0 against a typical value near 40), possibly a unit or scaling defect in a delivered batch. The evidence does not show which batch or rows are wrong, and no per-batch amount profile is available, so the correct values cannot be determined from what is shown.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

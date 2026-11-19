@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4064,
+  "output": 958
+ },
+ "seconds": 4.6,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 volume drop is a partial source delivery, not a pipeline defect. Batch 14 (ingested 2026-01-19) is the only source of 2026-01-18 transactions and has 135 rows versus roughly 320-370 in other batches, and txn_id gaps in its sample suggest records are missing. The source must re-deliver the complete batch 14, so no pipeline change should be made.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

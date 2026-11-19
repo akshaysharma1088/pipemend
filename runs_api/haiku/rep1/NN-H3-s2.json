@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s2",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 1709
+ },
+ "seconds": 7.81,
+ "raw_response": "{\"diagnosis\": \"Silver shows only 36 transactions for 2026-01-19, all timestamped 00:00-06:00, and batch 14 (ingested 2026-01-19 02:00) contains timestamps up to 04:49 on 01-19, which is after its ingest time. The timestamps look wrong for some collector-specific or batch-specific reason (such as a timezone or offset error in the collector), but the evidence does not show which rows are misstamped or what the correct timestamps are. Escalate to the source/collector team to confirm timestamp semantics before any remediation.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

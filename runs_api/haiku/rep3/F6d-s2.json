@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 583
+ },
+ "seconds": 3.1,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 (ingested 2026-01-18 and 2026-01-19) arrived with merchant_id NULL for all rows, which the source delivered as missing. The 679 POSTED null-merchant rows account exactly for the gap 4600 - 3921, because the inner join to silver_merchants drops them. The correct merchant for these transactions cannot be inferred from the evidence, so the source must re-deliver or backfill merchant_id.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

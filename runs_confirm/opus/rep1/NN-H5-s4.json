@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H5-s4",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4181,
+  "output": 1188
+ },
+ "seconds": 11.81,
+ "raw_response": "{\"diagnosis\": \"Starting with batches 13-14, the source began sending separate status='REVERSAL' rows (31 rows, each with a distinct orig_txn_id). The original transactions they point to are still marked POSTED (for example 904133 in batch 13), so the pipeline keeps counting reversed transactions and gold totals for the latest days are too high. Under the earlier convention, reversed originals were marked REVERSED and dropped; this fix applies the same treatment by also dropping POSTED rows that a REVERSAL row points to.\", \"decision\": \"fix\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id = t.txn_id)\"}}"
+}

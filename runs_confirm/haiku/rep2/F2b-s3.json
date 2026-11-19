@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 1713
+ },
+ "seconds": 8.06,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4972 rows but only 4827 distinct txn_id values, so 145 rows are re-delivered duplicates. The batch ID ranges overlap at batch boundaries, which points to re-sent tail rows, but the copies may differ in amount or status (about 8 duplicates are removed by the POSTED filter), so the correct version to keep is not determinable from the evidence. Escalate to the source team to confirm re-delivery semantics before deduplicating.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4101,
+  "output": 297
+ },
+ "seconds": 2.35,
+ "raw_response": "{\"diagnosis\":\"All 333 rows in batch 14 (the 2026-01-18 delivery) have NULL merchant_id upstream, which matches the 333 raw NULLs. 318 of those rows are POSTED, hence the 318 NULLs in silver. The inner join to merchants drops them from gold_mcc_daily. The pipeline SQL is not at fault, and the true merchant for these transactions cannot be derived from the evidence.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

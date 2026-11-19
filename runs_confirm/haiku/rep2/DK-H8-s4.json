@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H8-s4",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4329,
+  "output": 2526
+ },
+ "seconds": 10.37,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivered 333 transactions at 05:00 with txn_ts as epoch milliseconds (e.g. 1768716039000) instead of the ISO string. That value equals 2026-01-18 06:00:39 UTC, the same instant as the original 02:00 copy, so the failing cast is a format mismatch and the re-delivery also double-counts every affected transaction. The fix is to parse epoch-ms strings with epoch_ms, keep one row per txn_id (the earliest ingest), and leave the gold steps unchanged since they read silver.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1);\"}}"
+}

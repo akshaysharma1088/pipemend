@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H3-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4352,
+  "output": 1817
+ },
+ "seconds": 13.66,
+ "raw_response": "{\"diagnosis\":\"Since the 2026-01-16 rollout, v2 collector rows carry UTC txn_ts while legacy rows carry America/Chicago local time, and silver_transactions casts them as if they were the same. v2 evening sales (18:00-22:41 Chicago) therefore land on the next date at 00:00-04:41, which explains the 41-row 01-19 and the 00:00-06:00 alerts. Converting v2 timestamps from UTC to America/Chicago restores the original meaning.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS WITH norm AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST((CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC') AT TIME ZONE 'America/Chicago' AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM raw_transactions WHERE status = 'POSTED') SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM norm;\"}}"
+}

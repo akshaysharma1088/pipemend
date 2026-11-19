@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-H8-s5",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4329,
+  "output": 1673
+ },
+ "seconds": 14.82,
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00 with 345 duplicate txn_ids. The copies are identical except that txn_ts is in epoch milliseconds (1768543211000 ms = 2026-01-16 06:00:11, which matches the original), so the TIMESTAMP cast fails, and simply parsing it would double-count those transactions. The fix parses both timestamp formats and keeps one row per txn_id, preferring the earliest ingest.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT *, COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), epoch_ms(TRY_CAST(txn_ts AS BIGINT))) AS ts, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions WHERE status = 'POSTED') s WHERE rn = 1\"}}"
+}

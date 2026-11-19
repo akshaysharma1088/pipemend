@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1007
+ },
+ "seconds": 4.71,
+ "raw_response": "{\"diagnosis\": \"silver_customers is not deduplicated: raw_customers has 230 rows for 200 customer_ids, and the 30 extra rows are superseded SCD2 versions (is_current=False, valid_from 2023-06-01). The inner join in gold_region_daily fans out each transaction across both versions, which inflates the count from 4699 to 5415. Keeping only the current row per customer (is_current=True, exactly 200 rows) removes the fan-out without changing the output columns.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

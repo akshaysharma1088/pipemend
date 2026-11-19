@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 408
+ },
+ "seconds": 3.49,
+ "raw_response": "The raw_customers table has some region values as numeric codes ('01'\u2013'04') instead of names. raw_region_map gives an unambiguous mapping from code to name (01=WEST, 02=EAST, 03=NORTH, 04=SOUTH). The names already used (WEST, EAST, etc.) are the expected domain, so the fix is to map the codes in silver_customers using a left join to the map and fall back to the upper-cased region when no code matches.\n\nThe map has exactly 4 rows with unique codes, so the join cannot duplicate customers. The row count and the columns stay the same.\n\n{\"diagnosis\": \"Some raw_customers rows carry numeric region codes (01-04) instead of region names; raw_region_map gives the authoritative code-to-name mapping. silver_customers should translate the codes to names.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}"
+}

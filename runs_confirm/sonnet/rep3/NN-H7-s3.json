@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 869
+ },
+ "seconds": 7.34,
+ "raw_response": "{\"diagnosis\":\"The pipeline SQL is internally consistent and the raw data looks complete. Txn_ids are contiguous across batches, with no duplicates, no null keys, and all customer and merchant joins covered. The ~2% gap against the settlement file cannot be traced to any defect shown. The most plausible cause is how the 269 REVERSED rows (5.6% of rows) are treated, since silver keeps only POSTED, but the evidence does not show whether settlement nets them, includes them, or counts them differently.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

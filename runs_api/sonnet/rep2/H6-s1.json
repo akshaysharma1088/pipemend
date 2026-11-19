@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 161
+ },
+ "seconds": 2.41,
+ "raw_response": "{\"diagnosis\": \"Part of the latest delivery (batch 13) was sent twice during an amount recalculation. The duplicate txn_ids carry different amounts (e.g. 904167 has 7.33 and 8.27), and the source team says it does not yet know which copy holds the final amount. Picking one copy would silently produce wrong amounts in silver and gold.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

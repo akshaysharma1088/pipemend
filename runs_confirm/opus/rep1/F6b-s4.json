@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6b-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 409
+ },
+ "seconds": 4.39,
+ "raw_response": "{\"diagnosis\": \"On 2026-01-16 the mean amount (270.24) is far above the median (40.84), and the raw maximum is 7791.0, so a subset of that day's rows have extreme amounts. The batch 12 sample rows look normal, and nothing shown tells us whether the outliers are genuine large transactions, a units error (such as cents) for some merchant or rows, or bad source data. A correct fix cannot be determined, so the source team should confirm and re-deliver if needed.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

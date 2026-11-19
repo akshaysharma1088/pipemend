@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 434
+ },
+ "seconds": 2.25,
+ "raw_response": "{\"diagnosis\": \"Nineteen txn_ids in raw batch 13 (e.g., 904167) arrived twice with different amounts (7.33 vs 8.27). The payments-source change note (PAY-77) says the amount recalculation was re-sent and the copy carrying the final amount is not yet known, so the correct value cannot be determined from the evidence. Picking either copy, or dropping the affected ids, would silently produce wrong amounts.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

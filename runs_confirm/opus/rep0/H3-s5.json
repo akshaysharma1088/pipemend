@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H3-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4352,
+  "output": 1093
+ },
+ "seconds": 10.11,
+ "raw_response": "{\"diagnosis\": \"The v2 card collector, rolling out since 2026-01-16, emits txn_ts in UTC, while legacy and all historical data use America/Chicago local time. As a result, v2 evening transactions land 6 hours late: they show up at 00:00-06:00 and spill into the wrong business date (the 41 rows on 2026-01-19 and 37 early-morning rows on 2026-01-18).\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH src AS (SELECT txn_id, customer_id, merchant_id, amount, status, CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, local_ts AS txn_ts, CAST(local_ts AS DATE) AS txn_date FROM src WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2d-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 488
+ },
+ "seconds": 4.32,
+ "raw_response": "The raw_merchants table has 46 rows for 40 distinct merchant_ids. Six ids appear twice, and the copies are identical in every column. The join in gold_mcc_daily therefore fans out and inflates the count (5416 vs 4699). The fix is to dedupe in silver_merchants. The copies are identical, so DISTINCT is safe.\n\nChecking the counts: 46 rows \u2212 40 distinct = 6 duplicate extras. The extra 717 rows is plausible for 6 merchants each carrying about 120 transactions.\n\nThe other tables are unaffected. gold_merchant_daily, gold_region_daily and gold_customer_spend don't use merchants, and customers have no duplicates. Reversed transactions are filtered out as intended.\n\nI'll use SELECT DISTINCT in silver_merchants, which keeps the same columns.\n\n```json\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as fully identical rows, so the join in gold_mcc_daily fans out and inflates counts. Deduplicating silver_merchants removes the fan-out.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}\n```"
+}

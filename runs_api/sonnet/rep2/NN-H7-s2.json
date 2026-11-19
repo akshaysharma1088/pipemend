@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 609
+ },
+ "seconds": 4.73,
+ "raw_response": "{\"diagnosis\":\"The pipeline keeps only status='POSTED' and drops 202 REVERSED rows (about 4%). Batch sizes, keys and types look healthy, so there is no sign of missing or duplicated data. The raw data does not show whether settlement includes reversed transactions, how reversals are recorded, or whether there is a timing or timezone difference, so the correct rule cannot be determined.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

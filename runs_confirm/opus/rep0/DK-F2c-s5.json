@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F2c-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 499
+ },
+ "seconds": 5.47,
+ "raw_response": "{\"diagnosis\": \"Batch 12 contains a second delivery at 2026-01-17 22:00 that re-sends 21 txn_ids with different amounts but otherwise identical attributes; 20 of these keys are POSTED, which causes the duplicate keys in silver_transactions. No change note explains the re-delivery, so it is unclear whether the later amounts are authoritative corrections or erroneous values. Picking a version would risk silently wrong financial totals, so the source team must confirm which amounts are correct.\", \"decision\": \"escalate\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {}}"
+}

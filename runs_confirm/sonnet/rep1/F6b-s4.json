@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 553
+ },
+ "seconds": 4.82,
+ "raw_response": "{\"diagnosis\":\"The mean-versus-median gap on 2026-01-16 points to a few very large amounts (the raw max is 7791.0). The pipeline SQL, schema, row counts per batch and change notes show no mechanical fault such as duplicates, a unit change, or a bad join. Nothing in the evidence shows whether these are genuine large purchases or bad source values, so the correct data cannot be determined.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

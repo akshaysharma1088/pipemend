@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 1540
+ },
+ "seconds": 15.2,
+ "raw_response": "{\"diagnosis\": \"The DE-412 change added a filter `ingest_ts - txn_ts <= 26 hours` to silver_transactions. From batch 3 onward, roughly a quarter of each batch arrives about 2\u20133 days late, as the samples show (e.g. txn_ts 2026-01-13 ingested 2026-01-16), so the filter silently drops these valid POSTED transactions. txn_ids are unique, so the late rows are not duplicates or replays, and removing the latency filter restores complete silver and gold data.\", \"decision\": \"fix\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

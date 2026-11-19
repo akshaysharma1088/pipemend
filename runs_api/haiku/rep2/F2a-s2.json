@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 1818
+ },
+ "seconds": 7.98,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was re-delivered at 05:00, so 316 POSTED transactions from 2026-01-18 are loaded twice. The silver step has no de-duplication, which inflates silver and every gold table built from it. Keeping one row per txn_id, the earliest-ingested, restores the 2026-01-18 count to about the 14-day median.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) = 1;\"}}"
+}

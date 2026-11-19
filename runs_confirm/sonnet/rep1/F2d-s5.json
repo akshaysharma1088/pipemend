@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1144
+ },
+ "seconds": 9.12,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_ids, so the merchant dimension has duplicate keys. The join in gold_mcc_daily fans out and inflates the count from 4699 to 5416. The profile shows no version or effective-date column, and I cannot see whether the duplicate rows carry different mcc values. I am assuming they are exact duplicates and deduplicating silver_merchants on (merchant_id, mcc).\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

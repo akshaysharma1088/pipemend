@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H4-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4289,
+  "output": 433
+ },
+ "seconds": 3.81,
+ "raw_response": "{\"diagnosis\": \"Customers migrated to the new CRM (per the 2026-01-15 note) carry region codes '01'-'04' instead of region names, so silver_customers and gold_region_daily show code buckets. The source-provided raw_region_map gives a complete one-to-one mapping for exactly these four codes, so the codes can be translated to names.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = trim(m.region_code)\"}}"
+}

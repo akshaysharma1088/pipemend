@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2d-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4249,
+  "output": 898
+ },
+ "seconds": 4.23,
+ "raw_response": "{\"diagnosis\": \"silver_merchants is built directly from raw_merchants, which holds 6 merchant_ids duplicated as identical copies (e.g. 104 appears twice). Joining silver_transactions to it in gold_mcc_daily fans out each transaction for those merchants, inflating the count from 4558 to 5256. Because the duplicate copies are identical in every column, a DISTINCT on the dimension removes the fan-out without losing information.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

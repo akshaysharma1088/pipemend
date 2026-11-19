@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6c-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4141,
+  "output": 257
+ },
+ "seconds": 2.82,
+ "raw_response": "{\"diagnosis\": \"The region column of raw_customers contains email addresses for some customers (19 distinct values where only a few region codes are expected; examples include user9658@examplemail.com). This is PII leaking into a non-PII field, and the true region for the affected customers cannot be recovered from the evidence. The source team must correct and re-deliver raw_customers, and a privacy review is needed for any emails already propagated into silver_customers and gold_region_daily.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4124,
+  "output": 265
+ },
+ "seconds": 2.78,
+ "raw_response": "{\"diagnosis\":\"From 2026-01-18 the payments source reports amount net of interchange fees, so gold totals fall about 2% below the gross settlement file. Restoring gross amounts needs the card network's fee rates by merchant category, which are not in the raw tables, and the exact cutover point in the data is unclear.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

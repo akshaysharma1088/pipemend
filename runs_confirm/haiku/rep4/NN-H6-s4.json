@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4052,
+  "output": 831
+ },
+ "seconds": 4.05,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4835 rows but only 4814 distinct txn_ids, so 19 IDs were re-delivered in later batches (batch_id and ingest_ts differ). The evidence does not show whether the duplicate copies are identical or differ in amount or status, and the POSTED filter runs before any dedup, so a copy could be POSTED in one batch and REVERSED in another. Choosing which copy is correct is a business-rule decision, so this needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

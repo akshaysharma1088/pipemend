@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4245,
+  "output": 995
+ },
+ "seconds": 4.79,
+ "raw_response": "{\"diagnosis\": \"raw_customers is a slowly changing dimension holding 200 current rows (is_current = True) plus 30 superseded historical rows, so the USING join in gold_region_daily fans out transactions for those 30 customers, inflating 4558 to 5251. Restricting silver_customers to is_current rows gives one region per customer, and since all transactions (2026) fall after the current rows' valid_from (2025-01-01), this matches a point-in-time join.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

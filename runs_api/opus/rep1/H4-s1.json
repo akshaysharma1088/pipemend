@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H4-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4286,
+  "output": 409
+ },
+ "seconds": 3.95,
+ "raw_response": "{\"diagnosis\": \"After the 2026-01-15 CRM migration, 60 customers carry numeric region codes ('01'-'04') instead of region names, so these codes leak into silver_customers and gold_region_daily. raw_region_map is a complete 1:1 lookup for all four codes, so the fix is to translate the codes to region names in silver_customers.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = trim(m.region_code)\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s3",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4152,
+  "output": 2075
+ },
+ "seconds": 9.24,
+ "raw_response": "{\"diagnosis\": \"The 27 extra raw rows are exactly the record_version=2 rows, so each duplicated txn_id has one version-1 row and one version-2 row. The silver step keeps both versions, and dedup-after-status-filter would keep a stale version-1 POSTED row if version 2 is a REVERSED correction. Keeping the highest record_version per txn_id before filtering POSTED gives one deterministic row per txn_id.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC) = 1) latest WHERE latest.status = 'POSTED';\"}}"
+}

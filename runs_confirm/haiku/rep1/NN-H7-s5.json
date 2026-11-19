@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 1647
+ },
+ "seconds": 7.84,
+ "raw_response": "{\"diagnosis\": \"The pipeline silently drops 276 REVERSED rows (about 5.5% overall) and has no reconciliation control, so the roughly 2% gap to settlement could come from reversal handling or from incomplete recent batches (batch 14 was ingested after this business date). The evidence does not show which explanation is correct, and the correct business rule for reversals needs owner confirmation, so this should go to a human.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

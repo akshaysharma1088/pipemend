@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4569,
+  "output": 1252
+ },
+ "seconds": 10.29,
+ "raw_response": "{\"diagnosis\":\"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR` silently drops POSTED transactions that arrive more than 26 hours late. From batch 3 onward each batch carries transactions up to about 3 days old (batch 11 ingested 01-16 02:00 holds txns from 01-13 06:00), which explains the drops beyond the REVERSED rows. txn_id is unique across all 4975 rows, so removing the filter creates no duplicates.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

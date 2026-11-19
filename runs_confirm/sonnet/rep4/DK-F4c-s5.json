@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4474,
+  "output": 492
+ },
+ "seconds": 4.92,
+ "raw_response": "This is an SCD2 customer dimension. raw_customers holds 30 customers with two versions each: a current row (is_current=True) and a historical row (is_current=False). The join in gold_region_daily fans out, so those customers' transactions are counted twice. That explains 5415 vs 4699, an excess of 716.\n\nThe correct fix is to keep only current rows in silver_customers. Doing so leaves 200 rows with a unique key. Every customer has exactly one current row (is_current=True: 200, distinct customers: 200).\n\nA point-in-time join might look more precise, since the historical row's valid_from is 2023-06-01 and the current row's is 2025-01-01. But all transactions are from January 2026, after both valid_from dates, so the current row applies to every transaction. Filtering on is_current is correct.\n\nThe fix replaces silver_customers with a version filtered to is_current. Its columns stay the same.\n\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 customers having both a current and a historical row; silver_customers kept both, so the join in gold_region_daily duplicated those customers' transactions. Filtering to is_current rows restores a unique key.\", \"decision\": \"fix\", \"confidence\": 0.95, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

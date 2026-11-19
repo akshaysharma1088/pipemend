@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 1588
+ },
+ "seconds": 8.08,
+ "raw_response": "{\"diagnosis\": \"The out-of-hours timestamps look like a timestamp-convention problem in the newer `v2` collector rows (for example, UTC timestamps mixed with local-time `legacy` rows), which pushes late-evening transactions into the next day's 00:00-06:00 window. The correct offset and affected population cannot be confirmed from the evidence, so a correction would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

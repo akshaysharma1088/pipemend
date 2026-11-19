@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 452
+ },
+ "seconds": 2.44,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 (ingested 2026-01-18 and 2026-01-19) arrived with merchant_id NULL, and the raw null count of 703 matches these batches. The 679 POSTED nulls flow into gold_mcc_daily, where the inner join to silver_merchants drops them, which explains the 4600 vs 3921 gap. The correct merchant_id cannot be recovered from the evidence, so the source must re-deliver or correct these batches.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

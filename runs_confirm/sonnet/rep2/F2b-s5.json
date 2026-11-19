@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2b-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1244
+ },
+ "seconds": 9.63,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 5124 rows but only 4975 distinct txn_id values, so some transactions were delivered more than once across daily batches. silver_transactions does not dedupe, so the repeats inflate every gold table. I could not see the duplicate rows themselves, so this fix assumes the latest delivery of each txn_id is the correct version.\",\"decision\":\"fix\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

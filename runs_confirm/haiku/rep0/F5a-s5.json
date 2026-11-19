@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5a-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4196,
+  "output": 1110
+ },
+ "seconds": 4.44,
+ "raw_response": "{\"diagnosis\": \"The 345 rows with amount_unit = 'USD_CENTS' (all in batch 12, txn_date 2026-01-16) store amounts in cents but are summed as dollars, inflating the 2026-01-16 mean. Normalizing amount by dividing cents rows by 100 in silver_transactions fixes the silver table and, since the gold tables are rebuilt from silver, the gold tables too.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN amount / 100.0 ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

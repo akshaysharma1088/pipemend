@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F1c-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4024,
+  "output": 1176
+ },
+ "seconds": 10.57,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (ingested 2026-01-17) delivered txn_ts as 13-digit epoch milliseconds instead of 'YYYY-MM-DD HH:MM:SS' strings, so the cast to TIMESTAMP fails. Read as UTC, 1768543211000 is 2026-01-16 06:00:11, which fits that batch's business day and the ~06:00 first-transaction pattern seen in the other batches.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH src AS (SELECT *, CASE WHEN regexp_full_match(trim(txn_ts), '[0-9]{13}') THEN make_timestamp(CAST(trim(txn_ts) AS BIGINT) * 1000) WHEN regexp_full_match(trim(txn_ts), '[0-9]{10}') THEN make_timestamp(CAST(trim(txn_ts) AS BIGINT) * 1000000) ELSE CAST(txn_ts AS TIMESTAMP) END AS parsed_ts FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, parsed_ts AS txn_ts, CAST(parsed_ts AS DATE) AS txn_date FROM src;\"}}"
+}

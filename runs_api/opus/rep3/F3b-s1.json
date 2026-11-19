@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 3208
+ },
+ "seconds": 33.36,
+ "raw_response": "{\"diagnosis\": \"The stale-event filter added in DE-412 (ingest_ts - txn_ts <= 26h) silently drops about 25% of every batch. Those dropped rows are genuine late-arriving POSTED transactions: their txn_ids are unique and assigned in txn_ts order, which rules out replays. Removing the filter restores every day to its true volume of about 348 rows, which matches the 01-18 count of 363, so the 'high' 01-18 volume is just an artifact of the truncated 266 median.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

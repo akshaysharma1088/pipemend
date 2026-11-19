@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2a-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 913
+ },
+ "seconds": 8.17,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (2026-01-17 transactions) was delivered twice, at 02:00 and again at 05:00. That gives 698 rows, which is 2\u00d7349, and 5324\u22124975=349 extra raw rows. The repeated rows are identical apart from ingest_ts, so silver_transactions holds every 2026-01-17 txn twice (327 POSTED duplicates, 654 rows) and every gold table is double-counted for that date. Each txn_id otherwise appears exactly once (distinct=4975 spans 900001\u2013904975), so deduplicating on txn_id and keeping the latest ingest_ts restores correct data.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

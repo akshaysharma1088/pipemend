@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F5d-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4067,
+  "output": 814
+ },
+ "seconds": 6.8,
+ "raw_response": "{\"diagnosis\":\"From batch 12 onward the source sends merchant_id as 'M-0xxx' (e.g. 'M-0102') instead of plain '102', so the INTEGER cast fails. The 'M-0100' to 'M-0139' range lines up with the merchant dimension (100 to 139), and the 80 distinct values match 40 plain plus 40 prefixed forms. Stripping the 'M-' prefix and leading zeros therefore recovers the correct merchant_id.\",\"decision\":\"fix\",\"confidence\":0.82,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(regexp_replace(trim(merchant_id), '^M-0*', '') AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

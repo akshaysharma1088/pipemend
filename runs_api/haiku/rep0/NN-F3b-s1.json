@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4573,
+  "output": 1786
+ },
+ "seconds": 8.67,
+ "raw_response": "{\"diagnosis\": \"Batches 3 to 13 lose roughly 25% of their transactions at the silver step. Their txn_ts is about 66 to 68 hours before ingest_ts, so the `ingest_ts - txn_ts <= 26 HOUR` late-arrival filter drops them. Whether those late-arriving transactions should be kept or excluded is a business rule the evidence does not settle, and the lag pattern (possibly a source-side delivery change) needs confirmation before any data changes.\", \"decision\": \"escalate\", \"confidence\": 0.3, \"pre_sql\": [], \"step_overrides\": {}}"
+}

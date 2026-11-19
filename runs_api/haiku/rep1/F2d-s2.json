@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4080,
+  "output": 1211
+ },
+ "seconds": 5.8,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so silver_merchants contains duplicate merchant_ids. The join in gold_mcc_daily fans out each transaction across the duplicate merchant rows, inflating the count to 5305 against 4600 in silver_transactions. Deduplicating is the obvious fix, but the six duplicate rows may carry conflicting mcc values, and the correct mcc cannot be determined from the evidence, so this needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

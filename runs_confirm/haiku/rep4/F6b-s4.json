@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 706
+ },
+ "seconds": 3.55,
+ "raw_response": "{\"diagnosis\": \"The pipeline SQL has no join fan-out (txn_id, customer_id and merchant_id are unique in the dimension tables), so the 2026-01-16 mean/median skew most likely comes from inflated amounts in the raw source. The profiles don't show per-batch amount distributions, so I can't tell whether specific rows are mis-scaled (for example, cents) or are genuine large transactions, and no safe correction can be derived. Escalate to the source team to confirm the amounts and re-deliver the affected batch if needed.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

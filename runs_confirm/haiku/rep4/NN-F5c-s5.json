@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4162,
+  "output": 1245
+ },
+ "seconds": 5.81,
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 contain no rows with status 'POSTED', so the `status = 'POSTED'` filter drops them all. Their sample rows are 'SETTLED', which suggests a source-side status vocabulary change, but the batch counts don't fully reconcile with the SETTLED/REVERSED totals, and it's unconfirmed whether SETTLED should count as POSTED.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

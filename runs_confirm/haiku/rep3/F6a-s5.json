@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 693
+ },
+ "seconds": 3.47,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 transaction volume is low because batch 14, the only delivery containing 2026-01-18 transactions, has 145 rows against a typical ~350 per batch, and txn_id gaps (e.g., 904616-904617 missing) confirm rows are absent. The source delivery is incomplete, and the pipeline cannot reconstruct the missing rows, so the data must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

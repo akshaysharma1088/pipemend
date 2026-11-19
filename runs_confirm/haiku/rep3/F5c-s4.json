@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5c-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4207,
+  "output": 1447
+ },
+ "seconds": 5.92,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-16 payments-source rename of status POSTED to SETTLED means batches 12-14 contain SETTLED rows, which the silver filter `status = 'POSTED'` drops, so those batches reach silver with zero rows. The change notes say the meaning is unchanged, and the status counts fit this (986 SETTLED plus 46 REVERSED in batches 12-14 covers their 1032 rows), so silver should treat SETTLED as POSTED while still excluding REVERSED.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED');\"}}"
+}

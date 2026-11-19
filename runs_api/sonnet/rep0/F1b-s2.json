@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F1b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4064,
+  "output": 668
+ },
+ "seconds": 4.92,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (delivered 2026-01-19 for business date 01-18) has amounts formatted with a leading '$' (e.g. '$14.09'). The currency is USD throughout, so the value is unambiguous and only the string format changed. Stripping the '$' before the cast fixes the failure and keeps the amounts correct.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(trim(amount), '$', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

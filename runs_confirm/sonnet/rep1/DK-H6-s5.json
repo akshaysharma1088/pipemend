@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H6-s5",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 339
+ },
+ "seconds": 3.54,
+ "raw_response": "{\"diagnosis\":\"21 txn_ids are duplicated in raw_transactions. The copies differ only in amount (e.g. 904282: 8.42 vs 8.75) and share the same batch_id, ingest_ts and txn_ts. 17 of these are POSTED and show up as duplicates in silver. Nothing in the data shows which amount is correct: there is no version, sequence or updated-at column, and the change notes say nothing relevant. Picking one with MIN, MAX or an arbitrary row would risk silently wrong amounts in every gold table.\",\"decision\":\"escalate\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{}}"
+}

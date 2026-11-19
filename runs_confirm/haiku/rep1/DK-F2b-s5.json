@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2b-s5",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4340,
+  "output": 1419
+ },
+ "seconds": 6.59,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 149 exact-duplicate rows: txn_id is a dense sequence (4975 distinct ids spanning 900001 to 904975) and every duplicate copy is identical in all columns, including batch_id and ingest_ts. This is a redelivery artifact, so silver_transactions should deduplicate the identical copies; the gold tables then recompute correctly from it.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

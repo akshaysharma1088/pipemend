@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4037,
+  "output": 3215
+ },
+ "seconds": 12.94,
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00 with about 340 duplicate txn_ids, and the re-delivered copies store txn_ts as epoch milliseconds, which fails the TIMESTAMP cast. The epoch value 1768543211000 equals 2026-01-16 06:00:11 UTC, the same instant as the original row, so the fix is to convert epoch-millisecond timestamps, keep one row per txn_id (earliest ingest_ts), and then apply the POSTED filter.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH conv AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), epoch_ms(TRY_CAST(txn_ts AS BIGINT))) AS txn_ts, status, ingest_ts FROM raw_transactions), ranked AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) AS rn FROM conv) SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM ranked WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

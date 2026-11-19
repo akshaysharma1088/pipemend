@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4057,
+  "output": 930
+ },
+ "seconds": 4.56,
+ "raw_response": "{\"diagnosis\": \"Batch 13 is anomalous: it has 400 rows (other batches are about 320-360) and its ingest_ts runs to 22:00 rather than the usual 02:00, which suggests a mid-day re-delivery or partial reload. The 23 extra raw rows (4825 vs 4802 distinct txn_id) are likely its overlapping copies, but the evidence does not show whether the later copy is an identical resend or a corrected amount, so the correct dedupe rule cannot be determined here.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

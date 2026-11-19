@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 489
+ },
+ "seconds": 4.33,
+ "raw_response": "{\"diagnosis\":\"raw_customers is an SCD2 table with 230 rows: 200 current and 30 historical versions for some customers. silver_customers keeps every version, so the join in gold_region_daily duplicates transactions for those customers (5353 vs 4630). Filtering to is_current rows leaves one row per customer. All transactions fall in Jan 2026, after every valid_from, so the current row is the correct one.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_customers\":\"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

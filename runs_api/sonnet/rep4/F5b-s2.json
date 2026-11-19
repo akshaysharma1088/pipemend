@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F5b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4323,
+  "output": 791
+ },
+ "seconds": 5.79,
+ "raw_response": "{\"diagnosis\": \"silver_transactions ignores raw_transactions.currency, so 85 EUR rows are summed as if they were USD. raw_fx_rates has a single static EUR rate (1.25, as_of 2026-01-01, before all transactions), so I convert amounts to USD in silver and the gold tables follow.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(ROUND(t.amount * f.rate_to_usd, 2) AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t LEFT JOIN raw_fx_rates f ON f.currency = t.currency WHERE t.status = 'POSTED'\"}}"
+}

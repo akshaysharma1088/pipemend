@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F4c-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4245,
+  "output": 539
+ },
+ "seconds": 5.95,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 dimension with 230 rows: 200 current rows and 30 historical rows (is_current=false). silver_customers keeps all versions, so the join in gold_region_daily fans out and counts 5251 transactions instead of 4558. Each of the 200 customers has one current version valid from 2025-01-01, which covers every 2026 transaction, so keeping only current rows gives the correct region.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE QUALIFY row_number() OVER (PARTITION BY customer_id ORDER BY valid_from DESC) = 1\"}}"
+}

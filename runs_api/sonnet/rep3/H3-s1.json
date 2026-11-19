@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H3-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4352,
+  "output": 1366
+ },
+ "seconds": 9.93,
+ "raw_response": "{\"diagnosis\":\"Since the 2026-01-16 rollout, the v2 collector emits txn_ts in UTC while legacy emits America/Chicago local time, and silver treats both as local. v2 evening transactions therefore land after midnight on the next day, which gives the 00:00-06:00 timestamps and the 33 rows on 2026-01-19. Converting v2 timestamps from UTC to Chicago local time fixes txn_ts and txn_date.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(local_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(local_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, CASE WHEN collector = 'v2' THEN timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions) WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4b-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 1156
+ },
+ "seconds": 5.38,
+ "raw_response": "{\"diagnosis\": \"The region join is an inner join on customer_id, and about 363 POSTED transactions carry lowercase customer IDs (for example 'c00180' in batch 14) that do not match the uppercase keys in raw_customers, so they are silently dropped (4630 - 4267 = 363). Normalizing customer_id to uppercase and trimmed in silver_transactions restores the join keys without changing any column or the row set.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

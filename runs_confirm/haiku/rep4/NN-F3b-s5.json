@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4569,
+  "output": 1466
+ },
+ "seconds": 7.22,
+ "raw_response": "{\"diagnosis\": \"Starting at batch 3 (the same day as the 2026-01-08 Airflow upgrade), roughly 20-25% of POSTED transactions per batch are dropped by the silver filter `ingest_ts - txn_ts <= 26 HOUR`. The sample rows show txn_ts about 3 days before ingest_ts, but the evidence does not show whether ingest_ts was changed by the platform upgrade or whether the 26-hour cutoff is an intended late-arrival rule, so the correct filter cannot be determined from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

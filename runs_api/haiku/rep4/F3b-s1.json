@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 1530
+ },
+ "seconds": 7.64,
+ "raw_response": "{\"diagnosis\": \"Since DE-412 (2026-01-17), silver_transactions drops every row whose ingest_ts is more than 26 hours after txn_ts. Batches 3-13 arrive about three days after their transactions (for example, batch 11 has txn_ts around 01-13 and ingest_ts 01-16), so the filter removes a large share of valid late-delivered transactions. Whether those are stale events to drop or legitimate late data to keep is a business rule the evidence does not settle, so this needs the data-eng owner and the source team to decide.\", \"decision\": \"escalate\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {}}"
+}

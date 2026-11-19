@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s2",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4576,
+  "output": 1508
+ },
+ "seconds": 11.41,
+ "raw_response": "{\"diagnosis\":\"silver_transactions drops every POSTED row whose ingest_ts is more than 26 hours after txn_ts. From batch 3 on, the source delivers transactions about 3 days after they occurred, so a large share of valid rows is discarded. The late rows are present in raw, and txn_id is unique, so there are no duplicates to guard against. No change note justifies a lateness cutoff. I am removing the filter and keeping the status = 'POSTED' filter.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

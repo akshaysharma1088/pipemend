@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2a-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 1066
+ },
+ "seconds": 9.75,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) was delivered twice, at 02:00 and 05:00 ingest_ts, giving 652 rows instead of about 326. The duplicate rows match except for ingest_ts, and raw has 4802 distinct txn_ids against 5128 rows, so 326 duplicate rows (316 POSTED). Because silver_transactions does no deduplication, these duplicates double-count every gold aggregate for that date.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

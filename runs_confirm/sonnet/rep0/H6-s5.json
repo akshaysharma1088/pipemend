@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 136
+ },
+ "seconds": 1.88,
+ "raw_response": "{\"diagnosis\":\"Part of the latest delivery was sent twice during an amount recalculation (PAY-77). The 17 duplicated txn_ids probably carry different amounts, and the source team has not said which copy holds the final amount. Picking a copy by ingest order or by amount would be a guess.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

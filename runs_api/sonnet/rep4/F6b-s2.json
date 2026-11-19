@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 618
+ },
+ "seconds": 5.74,
+ "raw_response": "{\"diagnosis\":\"The mean/median gap on 2026-01-18 comes from a subset of batch 14 rows with very large, whole-number amounts (e.g. 1715.0, max 7428.0). These could be a cents-vs-dollars scale error from the source, or genuine large transactions. There is no change note, no per-row profile of batch 14 amounts, and no reliable rule to separate affected rows from legitimate ones, so any rescaling would risk silently corrupting data.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4d-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 650
+ },
+ "seconds": 3.12,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers.region values carry trailing spaces (e.g. 'EAST ', 'WEST '), and silver_customers only applies upper() without trimming, so the same regions appear as separate values. The fix is to trim whitespace before uppercasing, which merges them into the four canonical regions without changing any other column or the table's meaning.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}"
+}

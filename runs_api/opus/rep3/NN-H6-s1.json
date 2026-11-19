@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H6-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 345
+ },
+ "seconds": 3.7,
+ "raw_response": "{\"diagnosis\": \"19 txn_ids appear twice in raw_transactions (4885 rows, 4866 distinct). The batch 13 sample shows pairs with the same txn_id, customer, merchant, timestamp, batch and ingest_ts but different amounts (e.g. 904167: 7.33 vs 8.27). Nothing in the data (no later ingest_ts, version or status difference) and no change note says which amount is correct, so deduplication would mean guessing the financial value; the source team must clarify or re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

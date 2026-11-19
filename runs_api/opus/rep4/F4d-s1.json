@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F4d-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4118,
+  "output": 283
+ },
+ "seconds": 2.68,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers.region values have trailing whitespace ('SOUTH ', 'WEST ', 'NORTH ', 'EAST '). silver_customers only applies upper(), so these padded variants pass through as distinct regions and split the gold_region_daily aggregates. Trimming the values maps them onto the four canonical regions without ambiguity.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}"
+}

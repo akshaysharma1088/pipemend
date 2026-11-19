@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 718
+ },
+ "seconds": 3.51,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains values with trailing spaces ('EAST ', 'WEST ', 'SOUTH ', 'NORTH '), and silver_customers only applies upper(), so these are not normalized to the clean region codes. Trimming whitespace before upper-casing maps all 52, 49, 53, and 46 rows to their canonical regions without changing any other values.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, trim(upper(region)) AS region FROM raw_customers;\"}}"
+}

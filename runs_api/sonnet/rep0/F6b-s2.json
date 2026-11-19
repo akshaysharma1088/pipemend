@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 1051
+ },
+ "seconds": 9.71,
+ "raw_response": "{\"diagnosis\":\"The mean/median gap on 2026-01-18 comes from batch 14, which contains some whole-number amounts such as 1715.0. These look like cents-scaled values, but the median is normal, so only a subset of rows is affected. Nothing in the evidence reliably separates mis-scaled rows from genuine large or whole-dollar purchases. Dividing by 100 would risk silently corrupting good rows.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

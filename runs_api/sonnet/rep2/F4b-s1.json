@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4b-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 688
+ },
+ "seconds": 4.54,
+ "raw_response": "{\"diagnosis\":\"Some raw_transactions rows, such as batch 14, carry lowercase customer_ids like 'c00180', while raw_customers uses uppercase 'C00180'. The inner join in gold_region_daily silently drops those rows (4630 vs 4267), and gold_customer_spend splits one customer into two keys. Normalising customer_id in silver_transactions fixes both.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

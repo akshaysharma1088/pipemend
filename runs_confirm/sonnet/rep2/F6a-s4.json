@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 533
+ },
+ "seconds": 4.86,
+ "raw_response": "{\"diagnosis\":\"Batch 14, which holds the 2026-01-18 transactions, was only partially delivered. It has 133 rows against a typical ~340. Its txn_ids are non-contiguous and start at 904488 rather than 904482. About 200 ids in 900001\u2013904814 are missing, so the filter and joins are not the cause. The missing rows are not in the raw table and need re-delivery from the source.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

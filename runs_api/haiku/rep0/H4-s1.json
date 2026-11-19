@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H4-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4286,
+  "output": 1028
+ },
+ "seconds": 4.87,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-15 CRM migration introduced numeric region codes ('01'-'04') in raw_customers. silver_customers only applies upper() and never maps these codes, so they leak into the region dimension and gold_region_daily. raw_region_map is the documented code-to-name lookup, and it maps every leaked code to a region name.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F4c-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4475,
+  "output": 437
+ },
+ "seconds": 4.34,
+ "raw_response": "{\"diagnosis\": \"raw_customers is a type-2 history table: 30 customers have an old non-current row (valid_from 2023-06-01) and a current row (valid_from 2025-01-01). silver_customers keeps both rows, so the join in gold_region_daily fans out and over-counts transactions. All transactions are from January 2026, after every current row's valid_from, so the current row is the correct region for every transaction.\", \"decision\": \"fix\", \"confidence\": 0.92, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 414
+ },
+ "seconds": 2.3,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains email addresses for some customers (e.g., USER1743@EXAMPLEMAIL.COM) in place of region codes, and silver_customers passes them through via upper(region). The correct region for those customers cannot be determined from the evidence, and the presence of personal email addresses in a region field raises a privacy concern, so the source team must correct the data and a human must decide how to handle it.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

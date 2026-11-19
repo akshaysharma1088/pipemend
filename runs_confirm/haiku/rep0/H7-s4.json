@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 382
+ },
+ "seconds": 2.2,
+ "raw_response": "{\"diagnosis\": \"The payments-source change note says `amount` is now reported net of interchange fees, with rates that vary by merchant category and are published separately by the card network. The silver layer does not adjust for this, so totals are understated, but the fee rates are not in the evidence and it is unclear which batches are net versus gross, so the correct gross amounts cannot be reconstructed here.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

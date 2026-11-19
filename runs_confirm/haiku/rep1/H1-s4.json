@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H1-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 1271
+ },
+ "seconds": 6.38,
+ "raw_response": "{\"diagnosis\": \"Batch 12 rows have lowercase status 'posted', and silver_transactions filters with a case-sensitive status = 'POSTED', so all 349 rows are dropped. The same drop affects the other lowercase 'posted' rows (334 total). Batch 12 amounts also carry a '$' prefix, so the status fix alone would make the DECIMAL cast fail, and the amount must be normalized too.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(amount, '[$,]', '', 'g') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

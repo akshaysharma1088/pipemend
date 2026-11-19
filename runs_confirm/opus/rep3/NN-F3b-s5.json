@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F3b-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4569,
+  "output": 1426
+ },
+ "seconds": 13.43,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 3, the source has been delivering part of each batch with a delay of about 3 days. For example, batch 11 ingested on 2026-01-16 contains transactions from 2026-01-13. The silver step's lateness filter (ingest_ts - txn_ts <= 26 hours) silently drops these valid, unique POSTED transactions. Because silver and gold are fully rebuilt from all raw data on each run and gold is grouped by txn_date, keeping late-arriving rows is correct, and batches 1-2 show the monitor only expects REVERSED rows to be excluded.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

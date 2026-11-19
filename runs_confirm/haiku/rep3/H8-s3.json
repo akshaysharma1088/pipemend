@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4039,
+  "output": 3119
+ },
+ "seconds": 13.8,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivers already-loaded transactions. The 05:00 copy of txn_id 904490 is identical to the 02:00 copy except that txn_ts is epoch milliseconds (1768716261000 = 2026-01-18 06:04:21 UTC, matching the original). Because raw_transactions has 5165 rows but only 4827 distinct txn_ids, the duplicates also double-count amounts in every gold table, so silver must parse both timestamp formats and keep one row per txn_id.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH ranked AS (SELECT *, row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions), parsed AS (SELECT *, COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), epoch_ms(TRY_CAST(txn_ts AS BIGINT))) AS ts FROM ranked WHERE rn = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM parsed WHERE status = 'POSTED';\"}}"
+}

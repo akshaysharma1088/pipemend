@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 471
+ },
+ "seconds": 3.92,
+ "raw_response": "The merchant_id values are NULL in the source data, starting in batch 13 (2026-01-18 ingest). Batches 13 and 14 total 377 + 326 = 703 rows, which matches the 703 raw NULLs. The 679 NULLs in silver are the POSTED subset of those. The NULLs are not created by the pipeline's cast or join, because the values are already missing in raw_transactions.\n\nNothing in the evidence tells us what the real merchant_id is for these rows. There is no alternate key, such as a merchant name or terminal ID, that could be used to recover it. Dropping the rows would silently undercount. Inventing a merchant for them would be wrong. The data needs to be re-delivered by the source team.\n\nThe reconciliation gap is 4600 \u2212 3921 = 679, which equals the NULL count. The inner join to merchants drops exactly those rows, so the join is not independently broken.\n\nA fix is therefore not possible, and this should be escalated.\n\n{\"diagnosis\": \"Starting with batch 13 (ingest 2026-01-18), the source delivers NULL merchant_id for every row (703 raw NULLs, 679 of them POSTED). The gold_mcc_daily gap of 679 is the inner join dropping those rows. The true merchant_id cannot be recovered from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

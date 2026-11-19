@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4113,
+  "output": 149
+ },
+ "seconds": 2.26,
+ "raw_response": "{\"diagnosis\":\"Part of the latest delivery was sent twice during an amount recalculation (PAY-77), so 22 txn_ids appear twice in silver_transactions. The source team has not said which copy carries the final amount. If duplicates differ in amount, picking one by ingest order or arbitrarily could silently give wrong totals.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2b-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 1236
+ },
+ "seconds": 5.84,
+ "raw_response": "{\"diagnosis\": \"The 137 silver duplicates come from exact duplicate rows in raw_transactions: 145 txn_ids appear more than once, and every column, including batch_id and ingest_ts, is identical across copies, so this is a redelivery of the same record rather than distinct transactions sharing an ID. Deduplicating the silver projection on its output columns removes the copies, and the gold tables inherit the fix because they read from silver_transactions.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

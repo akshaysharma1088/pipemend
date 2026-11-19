@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H1-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4071,
+  "output": 816
+ },
+ "seconds": 6.45,
+ "raw_response": "{\"diagnosis\":\"Batch 12 arrived with lowercase status values ('posted'/'reversed') and amounts prefixed with '$'. The silver filter `status = 'POSTED'` is case-sensitive, so all 369 batch 12 rows were dropped, which is 347 posted plus 22 reversed. Fixing silver_transactions to match status case-insensitively and strip '$' from amount restores the 347 posted rows, and the gold tables rebuild from it.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(trim(amount), '$', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED'\"}}"
+}

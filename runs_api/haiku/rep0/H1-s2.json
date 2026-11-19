@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H1-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 1491
+ },
+ "seconds": 6.89,
+ "raw_response": "{\"diagnosis\": \"Batch 12 rows use lowercase status 'posted' and '$'-prefixed amount strings, so the case-sensitive filter `status = 'POSTED'` drops all 339 rows before they reach silver. Normalising status case and stripping '$' and commas from amount before the cast should bring batch 12 into silver_transactions without changing the output schema.\",\n \"decision\": \"fix\",\n \"confidence\": 0.6,\n \"pre_sql\": [],\n \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(amount, '[$,]', '', 'g') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 1008
+ },
+ "seconds": 4.75,
+ "raw_response": "{\"diagnosis\": \"The silver layer filters to status = 'POSTED', which drops 269 REVERSED rows (about 5.6% of transactions), but the evidence does not show whether settlement includes or excludes reversals, or whether the roughly 2% gap comes from them. Joins and casts show no fan-out or obvious truncation, so the correct business rule and the source of the gap need confirmation from Finance and the source team before any fix.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

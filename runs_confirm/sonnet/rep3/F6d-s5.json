@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 198
+ },
+ "seconds": 2.66,
+ "raw_response": "{\"diagnosis\": \"Starting in batch 13 (2026-01-18 ingest), the source delivers NULL merchant_id for transactions. 711 raw NULLs (671 among POSTED) appear in the latest batches only. The merchant_id values are missing from the source, so the join to the merchant dimension drops those rows. Nothing in the evidence, such as a mapping or an alternate column, lets us recover the correct merchants, and the missing data needs to be re-delivered.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

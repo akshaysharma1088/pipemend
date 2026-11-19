@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2d-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4249,
+  "output": 765
+ },
+ "seconds": 5.86,
+ "raw_response": "The raw_merchants table has 46 rows for 40 distinct merchant_ids. Six merchant_ids appear twice, and the copies are identical in every column. The join in gold_mcc_daily therefore fans out and inflates the counts: 5256 versus 4558 means 698 extra rows. Deduplicating the merchant dimension is safe because the duplicates are exact copies, so there is no ambiguity about which row is correct.\n\nThe fix is to dedupe in silver_merchants with SELECT DISTINCT. Every merchant_id has exactly one mcc, so the result is one row per merchant. I use DISTINCT on both columns, which is equivalent because the copies are identical.\n\nThe other gold tables don't use the merchants table, so they are unaffected. gold_region_daily joins customers, which have no duplicates.\n\nThe silver_transactions filter on status = 'POSTED' is intended, since the reversed rows are excluded. The 4558 figure matches the POSTED count.\n\n\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as exact identical copies, so the join in gold_mcc_daily fans out and inflates counts (5256 vs 4558). Deduplicating silver_merchants fixes it.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}\n```\n\nCorrection: the reply must be only the JSON object, so here it is without the extra text.\n\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as exact identical copies, so the join in gold_mcc_daily fans out and inflates counts (5256 vs 4558). Deduplicating silver_merchants fixes it.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

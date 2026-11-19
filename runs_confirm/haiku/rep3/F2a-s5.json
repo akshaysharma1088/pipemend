@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 2076
+ },
+ "seconds": 9.09,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was re-delivered at 05:00 on 2026-01-18 and re-sent rows whose txn_ids already exist from the 02:00 delivery, which explains the duplicates and the 2026-01-17 volume spike. txn_id values are contiguous (900001\u2013904975, 4975 distinct), so the duplicates are re-sends, not new transactions, and deduplicating on the earliest delivery before the POSTED filter restores correct silver and gold data.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions) d WHERE d.rn = 1 AND d.status = 'POSTED';\"}}"
+}

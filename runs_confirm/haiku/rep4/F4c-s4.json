@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1512
+ },
+ "seconds": 7.15,
+ "raw_response": "{\"diagnosis\": \"raw_customers is a type-2 history table with 230 rows for 200 customers, and the 30 superseded rows (is_current=False) are copied into silver_customers unfiltered. The inner join in gold_region_daily therefore fans out each affected transaction across two region rows, inflating the count from 4582 to 5279. Restricting the customer join to is_current rows gives one row per customer and restores the 4582 reconciliation, and the 2026 transactions fall after the current rows' valid_from of 2025-01-01, so no point-in-time change is needed.\",\"decision\": \"fix\",\"confidence\": 0.8,\"pre_sql\": [],\"step_overrides\": {\"gold_region_daily\": \"CREATE OR REPLACE TABLE gold_region_daily AS SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total FROM silver_transactions t JOIN (SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current) c USING (customer_id) GROUP BY t.txn_date, c.region;\"}}"
+}

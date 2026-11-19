@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3a-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 1422
+ },
+ "seconds": 10.45,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (362 rows) has source_tz='UTC', while every other batch is America/Chicago local time. Its txn_ts values are therefore UTC, which is 6 hours ahead of Chicago in January. This pushed the evening transactions past midnight into 2026-01-19 and left 2026-01-18 short. Converting UTC rows to Chicago local time restores consistent dates.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(ts_local AS TIMESTAMP) AS txn_ts, CAST(CAST(ts_local AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, CASE WHEN source_tz = 'UTC' THEN timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts_local FROM raw_transactions) WHERE status = 'POSTED'\"}}"
+}

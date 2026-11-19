@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 962
+ },
+ "seconds": 4.87,
+ "raw_response": "{\"diagnosis\": \"Transactions from the new `v2` collector (batches 12-14, 417 rows) appear to carry shifted or mis-converted `txn_ts` values, which explains the 00:00-06:00 clustering and the thin 2026-01-19 volume. The correct offset or conversion rule for v2 timestamps isn't in the evidence, and rows can't be safely corrected or dropped without the source team confirming it.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

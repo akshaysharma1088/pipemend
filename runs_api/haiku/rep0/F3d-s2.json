@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3d-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 1890
+ },
+ "seconds": 8.35,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (ingested 2026-01-18) delivers txn_ts in DD/MM/YYYY form, e.g. '17/01/2026 06:02:01', while earlier batches use ISO format. The day-first reading is confirmed because 17 cannot be a month, and batch 13 sits one day after batch 12's 2026-01-16 transactions, which supports it. The fix parses slash-format timestamps explicitly as day-first and keeps ISO timestamps unchanged.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH t AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN txn_ts LIKE '__/__/____ __:__:__' THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions WHERE status = 'POSTED') SELECT txn_id, customer_id, merchant_id, amount, CAST(ts AS TIMESTAMP) AS txn_ts, CAST(CAST(ts AS TIMESTAMP) AS DATE) AS txn_date FROM t;\"}}"
+}

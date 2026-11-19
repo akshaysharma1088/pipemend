@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 1387
+ },
+ "seconds": 6.53,
+ "raw_response": "{\"diagnosis\": \"The only step that drops rows is the `status = 'POSTED'` filter, which removes 269 of 4,827 raw transactions (about 5.6%). Whether REVERSED rows should be excluded, netted against their originals, or counted differently is a business rule the evidence does not settle, and the shortfall isn't confirmed to be concentrated in recent days. Other joins and casts look lossless, so no data-correct fix can be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

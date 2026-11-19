@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6b-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 403
+ },
+ "seconds": 4.43,
+ "raw_response": "{\"diagnosis\": \"Amounts for txn_date 2026-01-16 (batch 12) are heavily skewed: the mean is 270.24 against a median of 40.84, and the overall max is 7791. A subset of rows may be inflated (for example, sent in cents instead of dollars), or these may be genuine large transactions. The evidence cannot tell which rows are wrong or why, and no source change is noted.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

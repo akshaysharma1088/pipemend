@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 1645
+ },
+ "seconds": 7.48,
+ "raw_response": "{\"diagnosis\": \"Gold totals are about 2% below settlement, but the evidence does not isolate a cause. The silver filter `status = 'POSTED'` drops 276 REVERSED rows (about 5.5% of rows), which is too large to match a 2% gap without knowing how settlement treats reversals. Batch 14, which holds 2026-01-18 transactions and was ingested 2026-01-19 02:00, may also be late relative to the business-date run. Choosing between these requires the settlement team's reversal and cutoff rules, so this needs human review.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

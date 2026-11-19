@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 1012
+ },
+ "seconds": 8.91,
+ "raw_response": "{\"diagnosis\": \"The row loss in batches 3-13 comes from the `ingest_ts - txn_ts <= 26 HOUR` filter in silver_transactions, which was added deliberately on 2026-01-17 under DE-412 to drop stale events. The dropped rows are valid POSTED transactions that arrived late. Whether late arrivals should be excluded or kept is a business decision I cannot determine from this evidence, so I am not changing the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

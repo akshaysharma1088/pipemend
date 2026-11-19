@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 764
+ },
+ "seconds": 6.04,
+ "raw_response": "{\"diagnosis\":\"Batch 14, the only batch for 2026-01-18, holds 151 rows against about 340 in other batches. Its txn_ids span 904490 to 904866, which is about 377 ids, and the sampled ids skip (904490 then 904496), so roughly 225 rows were never delivered. Raw ids 900001 to 904866 have about 227 gaps in total. Reversed rows account for only about 4 rows, so the pipeline filter is not the cause. The raw data is incomplete and needs re-delivery from the source.\",\"decision\":\"escalate\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{}}"
+}

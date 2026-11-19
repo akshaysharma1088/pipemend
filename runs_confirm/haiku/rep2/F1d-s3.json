@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1d-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 1270
+ },
+ "seconds": 5.54,
+ "raw_response": "{\"diagnosis\": \"Batch 12 is the only batch whose status values are lowercase ('posted'/'reversed'). The silver filter `status = 'POSTED'` is case-sensitive, so the whole batch is dropped. The lowercase counts (347 posted + 22 reversed = 369) match batch 12's row count exactly, which points to a source casing change rather than a business-rule change, so normalizing the case in the filter restores the intended POSTED rows.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(status) = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H4-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1086
+ },
+ "seconds": 5.05,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-15 CRM migration introduced numeric region codes ('01'-'04') in raw_customers, and silver_customers passes them through unmapped. raw_region_map supplies the code-to-name mapping for exactly these four codes, so joining it in silver_customers should restore the region domain without changing silver_transactions or the gold tables.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

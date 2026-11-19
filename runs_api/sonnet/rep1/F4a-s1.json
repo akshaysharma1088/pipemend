@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4a-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 931
+ },
+ "seconds": 6.69,
+ "raw_response": "{\"diagnosis\":\"Batch 14 delivered customer_id values without zero-padding (e.g. 'C180', 'C3', 'C94') instead of the 'C00180' format used in the customer dimension. These rows silently drop out of the inner join in gold_region_daily, which accounts for the ~363 missing rows. Padding the numeric part to 5 digits in silver_transactions restores the join keys and also corrects gold_customer_spend, which was splitting customers across two ID formats.\",\"decision\":\"fix\",\"confidence\":0.86,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, CASE WHEN regexp_matches(customer_id, '^C[0-9]{1,4}$') THEN 'C' || lpad(substr(customer_id, 2), 5, '0') ELSE customer_id END AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

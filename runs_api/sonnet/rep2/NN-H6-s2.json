@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H6-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4056,
+  "output": 1239
+ },
+ "seconds": 9.96,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4822 rows but only 4802 distinct txn_id values, which fits 20 re-delivered rows. All 20 are POSTED, so they pass the status filter and show up as duplicate keys in silver_transactions and double-count in every gold table. The fix deduplicates silver_transactions by txn_id, keeping the most recently ingested row.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}"
+}

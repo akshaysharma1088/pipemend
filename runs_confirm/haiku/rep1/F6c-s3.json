@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4148,
+  "output": 616
+ },
+ "seconds": 3.41,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers.region values contain customer email addresses (for example C00003 has 'user8331@examplemail.com'), which is a source-side corruption and possibly a PII exposure. The correct region for those customers cannot be recovered from the evidence, and replacing them with NULL or 'UNKNOWN' would change gold_region_daily in a way that needs a business and privacy decision, so this should go to the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

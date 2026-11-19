@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4d-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4118,
+  "output": 563
+ },
+ "seconds": 4.63,
+ "raw_response": "The raw_customers regions have trailing whitespace ('SOUTH ', 'WEST ', and so on). The silver step applies upper() but not trim(), so the padded values pass through as separate region values. Trimming is a deterministic fix, and the underlying region is unambiguous.\n\nChecking the other tables for hidden problems:\n- **raw_transactions:** txn_id is distinct across all 4866 rows, so there are no duplicates. The 236 REVERSED rows are already excluded by the POSTED filter. That is existing behavior and not part of this incident.\n- **raw_merchants:** merchant_id is distinct, so there is no join fan-out.\n- **raw_customers:** customer_id is distinct, so the region join is safe.\n\nTrimming only changes the region values. gold_region_daily currently splits groups into 'EAST' and 'EAST ' variants, and it will merge them once it is rebuilt from the corrected silver_customers. The pipeline rebuilds downstream steps on each run, so I only need to override silver_customers. I'll use trim() to remove whitespace at both ends, which also covers any leading spaces.\n\n\n{\"diagnosis\": \"raw_customers.region has trailing whitespace on some rows (e.g. 'SOUTH '); silver_customers only applies upper(), so padded variants appear as distinct regions and split gold_region_daily groups. Trimming the value fixes it.\", \"decision\": \"fix\", \"confidence\": 0.95, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers\"}}"
+}

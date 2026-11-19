@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H6-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 349
+ },
+ "seconds": 3.58,
+ "raw_response": "{\"diagnosis\":\"The raw feed delivers the same txn_id twice within one batch (same batch_id and ingest_ts), with identical fields except amount (e.g. 904282: 8.42 vs 8.75). Nothing in the evidence shows which amount is correct: there is no version column, no ingest ordering and no change note. Picking one with MIN, MAX or an arbitrary row would risk silently wrong amounts in silver and gold.\",\"decision\":\"escalate\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{}}"
+}

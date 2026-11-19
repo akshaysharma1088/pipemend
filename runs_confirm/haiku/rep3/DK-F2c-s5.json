@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s5",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 792
+ },
+ "seconds": 4.04,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 21 txn_ids delivered twice with different amounts and ingest_ts; the later copies come from a 2026-01-17 22:00 re-delivery of batch 12. The correct copy (latest ingest vs. original) is a source-data and business-rule decision, and the evidence does not show which amount is right, so the duplicates cannot be safely resolved in the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 3733
+ },
+ "seconds": 15.58,
+ "raw_response": "{\"diagnosis\": \"The `collector = 'v2'` rows carry txn_ts about 6 hours ahead of the legacy convention: legacy timestamps never fall before 06:00, while v2 rows in batches 13-14 sit at 12:xx where comparable legacy rows are at 06:xx. The v2 rows that land at 00:00-06:00 are therefore shifted onto the wrong business date, which explains the 33 rows on 2026-01-19 and the off-hours timestamps. Subtracting 6 hours from v2 timestamps in silver_transactions should restore the legacy convention, but the offset is inferred from a few samples and should be confirmed with the collector owner.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}"
+}

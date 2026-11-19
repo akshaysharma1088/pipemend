@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 732
+ },
+ "seconds": 3.73,
+ "raw_response": "{\"diagnosis\": \"The 671 NULL merchant_id rows in silver_transactions are all POSTED rows from batches 13 and 14, which arrived with merchant_id missing upstream. The gold_mcc_daily inner join silently drops exactly those rows (4699 - 671 = 4028). The correct merchant for these transactions cannot be recovered from the evidence, so this needs a source re-delivery and a business decision on how unattributed transactions should be reported.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

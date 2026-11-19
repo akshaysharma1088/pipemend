@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H6-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 241
+ },
+ "seconds": 3.4,
+ "raw_response": "{\"diagnosis\": \"Per PAY-77, payments-source sent part of a recent delivery twice during an amount recalculation, which is why 19 txn_ids are duplicated in silver_transactions. The source team has said it does not yet know which copy carries the final amount, so the correct row cannot be chosen from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F4c-s4",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4473,
+  "output": 440
+ },
+ "seconds": 4.98,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 history table with 30 customers carrying both a historical row (is_current=false) and a current row. silver_customers keeps every version, so the join in gold_region_daily fans out transactions for those customers and the region counts are inflated (5279 vs 4582).\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = true\"}}"
+}

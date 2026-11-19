@@ -23,25 +23,33 @@ def canon(text):
     return sorted(out)
 
 
-def prompt(case):
-    return INSTRUCTIONS + "\n=== INCIDENT ===\n" + case.bundle() + "\n"
+def prompt(case, dup_profile=False):
+    return INSTRUCTIONS + "\n=== INCIDENT ===\n" + case.bundle(dup_profile=dup_profile) + "\n"
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="prompts")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--seeds", default="1,2", help="comma-separated data seeds")
+    ap.add_argument("--dup-profile", action="store_true",
+                    help="also write DK-<case>.txt for cases whose raw tables hold duplicate keys: the prompt "
+                         "without incident-specific change notes, plus a section that profiles the duplicates")
     a = ap.parse_args()
+    seeds = [int(x) for x in a.seeds.split(",")]
     os.makedirs(a.out, exist_ok=True)
     bad = 0
     n = 0
     for inc in INCIDENTS:
-        for seed in (1, 2):
+        for seed in seeds:
             c = Case(inc.iid, seed)
             texts = {f"{inc.iid}-s{seed}": prompt(c)}
             if c.notes != GENERIC_NOTES:
                 c.notes = list(GENERIC_NOTES)
                 texts[f"NN-{inc.iid}-s{seed}"] = prompt(c)
+            if a.dup_profile and c.has_duplicate_keys():
+                c.notes = list(GENERIC_NOTES)
+                texts[f"DK-{inc.iid}-s{seed}"] = prompt(c, dup_profile=True)
             for name, txt in texts.items():
                 path = os.path.join(a.out, name + ".txt")
                 n += 1

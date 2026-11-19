@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4086,
+  "output": 717
+ },
+ "seconds": 5.26,
+ "raw_response": "The silver step derives txn_date from ingest_ts, but the date should come from txn_ts. The 2026-01-16 refactor (DE-398) is the likely cause. Ingest runs at 02:00 the day after the transaction, so every row has txn_date one day later than the date of txn_ts. The alert counts 4630 mismatches, which equals the total number of POSTED rows, so all rows are off by one day.\n\nThe date of txn_ts is the clear intended semantics, and the monitor checks exactly that. The fix is to set txn_date to CAST(txn_ts AS DATE).\n\nCheck on the data: txn_ts is already TIMESTAMP, and the sample rows show txn_ts on the day before ingest. The 4630 mismatches match the POSTED count exactly, so no rows would remain inconsistent after the fix.\n\nThe gold tables are built from silver_transactions, so they are corrected automatically once silver is rebuilt, with no override needed. I don't see duplicate txn_ids (distinct = rows), so no dedup is needed. Excluding REVERSED rows is existing behavior, so I leave it unchanged.\n\n{\"diagnosis\": \"The DE-398 refactor derives txn_date from ingest_ts (which is 02:00 the next day) instead of txn_ts, so every POSTED row (4630) has txn_date shifted by one day. Deriving txn_date from txn_ts fixes silver and, through it, all gold tables.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

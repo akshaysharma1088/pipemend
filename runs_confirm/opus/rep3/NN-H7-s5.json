@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 433
+ },
+ "seconds": 5.38,
+ "raw_response": "{\"diagnosis\": \"Gold totals run about 2% below settlement for recent days, but nothing shown explains it. Batch row counts are steady, the casts and filters look correct, and there are no relevant source changes. The gap most likely comes from transactions missing or arriving late in the source delivery (or a business-rule difference versus settlement, such as how reversals are handled), which needs source-team confirmation and possibly re-delivery.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

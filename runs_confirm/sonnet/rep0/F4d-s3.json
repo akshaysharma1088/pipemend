@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4d-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4118,
+  "output": 204
+ },
+ "seconds": 2.49,
+ "raw_response": "{\"diagnosis\":\"Some raw_customers.region values have trailing whitespace (e.g. 'EAST '). The silver_customers step only applies upper(), so these rows form separate region groups, both in the domain check and in gold_region_daily. Adding trim() normalizes them to the four valid regions. No other tables are affected.\",\"decision\":\"fix\",\"confidence\":0.95,\"pre_sql\":[],\"step_overrides\":{\"silver_customers\":\"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers\"}}"
+}

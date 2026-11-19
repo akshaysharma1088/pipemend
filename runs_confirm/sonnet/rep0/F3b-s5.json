@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4606,
+  "output": 1352
+ },
+ "seconds": 10.22,
+ "raw_response": "{\"diagnosis\": \"The stale-event filter added under DE-412 (ingest_ts - txn_ts <= 26 hours) drops POSTED transactions that arrive late. In batches 3-14, sampled rows have txn_ts about 3 days before ingest_ts. txn_id is unique across all 4,975 rows, so the filter is not removing duplicates or replays. Removing it restores the lost transactions and keeps the POSTED filter and column types unchanged.\", \"decision\": \"fix\", \"confidence\": 0.65, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

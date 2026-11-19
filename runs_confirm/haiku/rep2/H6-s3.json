@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4113,
+  "output": 494
+ },
+ "seconds": 2.45,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions contains 22 re-sent txn_ids (4849 rows, 4827 distinct, consecutive id range). PAY-77 says part of the latest delivery was sent twice during an amount recalculation, and which copy carries the final amount is unknown. Deduplicating would require choosing between copies with possibly different amounts, which the evidence cannot resolve, so the source team must confirm the correct amounts.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

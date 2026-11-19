@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6c-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4148,
+  "output": 277
+ },
+ "seconds": 2.62,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains email addresses (PII) for some customers, e.g. C00003 has 'user8331@examplemail.com'. That leaks personal data into silver_customers and gold_region_daily. The correct regions for those customers cannot be derived from the evidence, and handling the leaked PII needs a privacy/compliance decision and corrected data from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

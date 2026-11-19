@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H3-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1176
+ },
+ "seconds": 11.01,
+ "raw_response": "{\"diagnosis\": \"Rows from the new 'v2' collector have timestamps 6 hours ahead of the 'legacy' collector, most likely UTC versus local UTC-6. In the samples, v2 rows interleaved by txn_id show 12:0x while their legacy neighbours show 06:0x. Late-evening v2 transactions therefore spill into 00:00-06:00 of the next day, which creates the phantom 2026-01-19 rows and the out-of-hours rows on 2026-01-18. The fix assumes the offset is a constant 6 hours, inferred from the samples only and not from any change note.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

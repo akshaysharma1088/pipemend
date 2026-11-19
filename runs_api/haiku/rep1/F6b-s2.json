@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 957
+ },
+ "seconds": 4.8,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 mean (302.31) is about 7x the median (40.71), which points to a subset of inflated amounts, possibly a unit or scaling problem in a delivery batch. The raw data does not show which rows are wrong or what the correct values are (batch-level amount stats are missing and the 1715.0 sample is not clearly a unit error), so no safe transformation can be derived from this evidence. Raw amounts should be verified with the source team before any silver or gold change.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

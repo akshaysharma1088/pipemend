@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3d-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4108,
+  "output": 1840
+ },
+ "seconds": 8.05,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (business date 2026-01-17, ingested 2026-01-18) delivers txn_ts as DD/MM/YYYY strings, while the silver step casts everything with CAST(... AS TIMESTAMP), which only accepts ISO format. The day value 17 rules out MM/DD, so the slash-format rows can be parsed as %d/%m/%Y %H:%M:%S while ISO rows keep the existing cast.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN txn_ts LIKE '__/__/____ __:__:__' THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}"
+}

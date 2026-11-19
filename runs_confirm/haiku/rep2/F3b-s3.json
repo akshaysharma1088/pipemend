@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 2092
+ },
+ "seconds": 10.49,
+ "raw_response": "{\"diagnosis\": \"Since batch 3, the DE-412 filter `ingest_ts - txn_ts <= 26 HOURS` in silver_transactions drops POSTED transactions whose ingest lag is about 68 hours (for example, batch 11 txns from 01-13 ingested 01-16). The rule is ambiguous: it is unclear whether these late but valid events are meant to be excluded, and the lag pattern could come from upstream delivery delay or a clock change around the 01-08 Airflow upgrade, so the correct fix needs a business and source-team decision.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

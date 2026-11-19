@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4570,
+  "output": 1704
+ },
+ "seconds": 7.97,
+ "raw_response": "{\"diagnosis\": \"Batches 3-14 lose about a quarter of their rows at silver_transactions. The 26-hour filter `ingest_ts - txn_ts <= 26h` drops transactions whose txn_ts is about two days before their batch ingest_ts (e.g., batch 11 txn 2026-01-13 06:10 ingested 2026-01-16 02:00, roughly 68h). Whether these late rows should be included, and whether the lag reflects a source or Airflow change (2026-01-08 upgrade), cannot be determined from the evidence, so this needs a human decision.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

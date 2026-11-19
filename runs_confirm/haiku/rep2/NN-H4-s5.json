@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 986
+ },
+ "seconds": 4.61,
+ "raw_response": "{\"diagnosis\": \"Region values in raw_customers for 60 customers are numeric codes ('01'-'04') rather than the region names used elsewhere. raw_region_map provides an explicit one-to-one mapping from those codes to the four valid region names, so silver_customers should translate codes through that map, keeping the existing upper(region) behavior for all other values.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

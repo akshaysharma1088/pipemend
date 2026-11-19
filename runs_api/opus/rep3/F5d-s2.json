@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5d-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 819
+ },
+ "seconds": 7.82,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 (ingest 2026-01-19) switched merchant_id from plain integers ('131') to a prefixed, zero-padded format ('M-0131'), so the INTEGER cast in silver_transactions fails. The profile supports a pure formatting change rather than new merchants: there are 80 distinct values, which is 40 numeric plus 40 prefixed. The prefixed values top out at M-0139, matching raw_merchants ids 100-139.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(regexp_replace(trim(merchant_id), '^M-', '') AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

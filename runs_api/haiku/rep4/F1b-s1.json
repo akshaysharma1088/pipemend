@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1b-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4061,
+  "output": 1392
+ },
+ "seconds": 6.46,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) delivers `amount` with a leading '$' (for example '$40.14'), which is a formatting change from the earlier plain decimal strings. The cast to DECIMAL fails on these values. Stripping the currency symbol (and thousands separators, if any) before the cast gives the same decimal value, so the silver and gold tables can be corrected without changing the data.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(trim(amount), '[$,]', '', 'g') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 162
+ },
+ "seconds": 2.25,
+ "raw_response": "{\"diagnosis\": \"Part of the latest delivery (batch 13) was sent twice during an amount recalculation. The duplicate txn_ids have the same key but different amounts (e.g. 904167: 7.33 vs 8.27). The source team says it is not yet known which copy holds the final amount, so any dedup would be a guess and could silently produce wrong amounts.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

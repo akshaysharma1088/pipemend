@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 1753
+ },
+ "seconds": 17.97,
+ "raw_response": "{\"diagnosis\": \"The DE-412 change (2026-01-17) added a filter that drops any transaction ingested more than 26 hours after txn_ts. The source routinely delivers legitimate late POSTED transactions 2\u20133 days after they occur (e.g. batch 13, ingested 2026-01-18, contains txn_ts 2026-01-15), so about 25% of each batch is silently dropped; 2026-01-18 looks inflated only because its late arrivals are not yet due, while the 14-day median is depressed by the drops. txn_id is fully unique, so the late rows are not duplicates and the filter should be removed.\", \"decision\": \"fix\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

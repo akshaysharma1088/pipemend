@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F5a-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4197,
+  "output": 791
+ },
+ "seconds": 5.4,
+ "raw_response": "{\"diagnosis\": \"All 334 rows in batch 12 (txn_date 2026-01-16) carry amount_unit='USD_CENTS', so their amounts are in cents, while silver_transactions loads them as dollars. This inflates the 2026-01-16 mean to 3649.77. Dividing USD_CENTS amounts by 100 corrects silver and the downstream gold tables.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN ROUND(CAST(amount AS DECIMAL(18,4)) / 100, 2) ELSE CAST(amount AS DECIMAL(18,4)) END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

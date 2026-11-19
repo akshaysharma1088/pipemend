@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F1b-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 637
+ },
+ "seconds": 4.67,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) delivers amount as '$'-prefixed strings such as '$10.02', which the plain DECIMAL cast cannot parse. Currency is USD throughout and the values are plain dollar amounts, so stripping the '$' (and any thousands commas) gives the correct value.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(replace(trim(amount), '$', ''), ',', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

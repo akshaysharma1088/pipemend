@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 504
+ },
+ "seconds": 4.31,
+ "raw_response": "The raw_customers region column mixes region names with numeric codes ('01'\u2013'04'). raw_region_map gives an explicit, unambiguous mapping: 01=WEST, 02=EAST, 03=NORTH, 04=SOUTH. Mapping the codes to names in silver_customers corrects the data, and no escalation is needed.\n\nThe fix is a left join to the map on the region code, falling back to upper(region) when no code matches. Every region value is either a name or a code in the map, so nothing is lost. Region values and map values are not padded, so no trimming is needed, but I'll apply trim anyway to be safe. The output columns stay the same. The gold_region_daily step reads silver_customers, so it corrects itself on rerun.\n\n\n<invoke name=\"x\">\n</invoke>\n\n{\"diagnosis\": \"raw_customers.region contains numeric region codes ('01'-'04') for some customers instead of region names; raw_region_map gives the unambiguous code-to-name mapping. silver_customers passed them through, so gold_region_daily was split across codes and names.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(trim(c.region))) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}"
+}

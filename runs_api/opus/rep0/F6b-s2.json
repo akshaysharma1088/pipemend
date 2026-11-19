@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 431
+ },
+ "seconds": 4.51,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) contains a subset of amounts that look like cents rather than dollars, for example 1715.0 next to normal values like 14.09 and 32.87. This inflates the daily mean to 302 against a median of 41. The scaled rows cannot be reliably told apart from genuine whole-dollar purchases, and no change note explains a unit change, so the source team must confirm and re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

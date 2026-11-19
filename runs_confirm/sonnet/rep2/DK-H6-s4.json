@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H6-s4",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 253
+ },
+ "seconds": 5.82,
+ "raw_response": "{\"diagnosis\": \"21 txn_ids appear twice in raw_transactions, within the same batch and ingest_ts, with identical fields except amount (e.g. 903787: 18.14 vs 24.27). Nothing in the evidence shows which amount is correct, so any dedup would be a guess.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

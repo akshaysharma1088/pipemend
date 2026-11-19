@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 568
+ },
+ "seconds": 2.95,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 volume drop is an incomplete upstream delivery, not a pipeline bug. Batch 14 (ingested 2026-01-19, the only batch holding 2026-01-18 transactions) has 133 rows versus about 320-380 in every prior batch, and the POSTED filter and joins behave as designed. The missing transactions must be re-delivered by the source team, so the pipeline should not be changed.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1331
+ },
+ "seconds": 5.75,
+ "raw_response": "{\"diagnosis\": \"raw_customers keeps superseded history rows (30 customers have a second row with is_current=False and valid_from 2023-06-01), and gold_region_daily joins to all of them, so each transaction for those customers is counted once per row. Filtering to the current customer row restores one region per customer; the current valid_from (2025-01-01) precedes all 2026 transactions, so this matches a point-in-time join.\", \"decision\": \"fix\", \"confidence\": 0.82, \"pre_sql\": [\"CREATE OR REPLACE VIEW current_customers_region AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current\"], \"step_overrides\": {\"gold_region_daily\": \"CREATE OR REPLACE TABLE gold_region_daily AS SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total FROM silver_transactions t JOIN current_customers_region c USING (customer_id) GROUP BY t.txn_date, c.region\"}}"
+}

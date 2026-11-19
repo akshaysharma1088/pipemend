@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1247
+ },
+ "seconds": 9.34,
+ "raw_response": "{\"diagnosis\": \"Batch 12 has ingest_ts values up to 22:00 on 2026-01-17, which looks like a partial re-delivery. raw_transactions has 4886 rows but only 4866 distinct txn_id values, so the replayed rows duplicate existing txn_ids and silver_transactions keeps both copies. I dedupe on txn_id, keeping the latest delivery, before applying the POSTED filter. If a replay carries a status change, the latest status then wins.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

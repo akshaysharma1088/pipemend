@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4100,
+  "output": 1166
+ },
+ "seconds": 8.61,
+ "raw_response": "{\"diagnosis\":\"Batch 13 was delivered twice (ingest_ts 02:00 and 05:00), so about 327 rows are exact re-deliveries with the same txn_id. The silver step has no deduplication, which inflates silver and every gold table built from it. txn_ids are contiguous (900001\u2013904827) and all extra rows sit in batch 13, so deduplicating by txn_id is safe.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

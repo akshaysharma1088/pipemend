@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s4",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 697
+ },
+ "seconds": 5.25,
+ "raw_response": "The raw_customers table contains numeric region codes ('01'\u2013'04') alongside the region names. raw_region_map gives an explicit, unambiguous mapping: 01\u2192WEST, 02\u2192EAST, 03\u2192NORTH, 04\u2192SOUTH. The fix is to map codes to names in silver_customers using a left join to raw_region_map, falling back to upper(region) for values that are already names.\n\nThe map's region_code values are all distinct, so the join cannot duplicate rows. The output columns stay the same. Customers whose region is already a name don't match any code and keep upper(region).\n\ngold_region_daily reads from silver_customers, so it corrects itself once silver is fixed.\n\n\n<invoke name=\"none\">\n</invoke>\n```json\n{\"diagnosis\": \"Some raw_customers rows carry numeric region codes (01-04) instead of region names; raw_region_map provides the explicit code-to-name mapping, which silver_customers does not apply.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code\"}}\n```\n\nCorrection: the reply must be a single JSON object with no other text, so here it is again.\n\n{\"diagnosis\": \"Some raw_customers rows carry numeric region codes (01-04) instead of region names; raw_region_map provides the explicit code-to-name mapping, which silver_customers does not apply.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code\"}}"
+}

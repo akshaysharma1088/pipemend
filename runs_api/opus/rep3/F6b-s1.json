@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6b-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4061,
+  "output": 454
+ },
+ "seconds": 4.72,
+ "raw_response": "{\"diagnosis\": \"On 2026-01-18 the mean amount (371.28) is far above the median (40.71), and the raw max amount is 17083.0. This points to a subset of very large amounts in batch 14, possibly some rows sent in minor units (cents) or a currency or scale error, even though the sampled rows look normal. The evidence does not show which rows are affected or whether they are genuine high-value transactions, so a safe correction cannot be determined.\", \"decision\": \"escalate\", \"confidence\": 0.65, \"pre_sql\": [], \"step_overrides\": {}}"
+}

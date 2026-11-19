@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H4-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 521
+ },
+ "seconds": 4.65,
+ "raw_response": "The cause is clear: customers migrated to the new CRM carry numeric region codes ('01'\u2013'04') instead of region names. raw_region_map gives the mapping, and it is a complete, unambiguous 4-row table with one name per code. The CRM note confirms the codes are meant to be mapped through that table.\n\nFix: change silver_customers to translate a code to its name through raw_region_map. Values that are not codes pass through unchanged, upper-cased as before.\n\nThe join should be a LEFT JOIN on region_code = region, so existing names are unaffected. Region codes are unique in the map, so no rows are duplicated. The output columns stay the same.\n\nThe gold_region_daily step reads silver_customers, so it is fixed once silver_customers is. No other step changes.\n\nOne caveat is that the mapping might differ from the one in the map table, but the map is the documented source and no conflicting evidence is shown.\n\n{\"diagnosis\": \"Customers migrated to the new CRM carry numeric region codes (01-04) instead of region names; raw_region_map provides the code-to-name mapping, but silver_customers did not apply it, so those codes leaked into silver and gold_region_daily.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code\"}}"
+}

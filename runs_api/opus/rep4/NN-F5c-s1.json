@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F5c-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4163,
+  "output": 588
+ },
+ "seconds": 6.05,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source stopped sending status 'POSTED' and now sends 'SETTLED'. The arithmetic fits a vocabulary change: batches 12-14 hold 1034 rows, of which 978 are SETTLED and the rest presumably REVERSED, so the silver filter status='POSTED' drops every row in those batches. No change note documents this, and 'SETTLED' is a distinct card-lifecycle state that may not mean the same as 'POSTED', so the correct inclusion rule must come from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

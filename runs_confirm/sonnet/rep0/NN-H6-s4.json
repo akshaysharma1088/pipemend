@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H6-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4052,
+  "output": 1264
+ },
+ "seconds": 9.23,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4835 rows but only 4814 distinct txn_ids, and the ids run contiguously from 900001 to 904814. So about 21 rows are re-delivered duplicates of the same transaction, and silver_transactions has no dedup step. Fix: keep one row per txn_id, the latest delivery (highest ingest_ts, then batch_id), and apply the POSTED filter after that, so a later status change still wins.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC, txn_ts DESC, amount DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

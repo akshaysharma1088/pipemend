@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 446
+ },
+ "seconds": 2.37,
+ "raw_response": "{\"diagnosis\": \"From batch 11 (ingested 2026-01-16) onward, the payments source reports `amount` net of interchange fees, while the settlement file is gross. The fee rates vary by merchant category and are published separately by the card network, and that schedule is not in the evidence, so the amounts cannot be grossed up correctly. Escalate to payments-source and finance for the fee table or a re-delivery in gross terms.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

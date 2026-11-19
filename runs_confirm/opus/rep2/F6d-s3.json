@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 292
+ },
+ "seconds": 3.4,
+ "raw_response": "{\"diagnosis\": \"Starting with delivery batch 12 (ingest 2026-01-17), the source stopped populating merchant_id. The 1034 raw NULLs equal the full row count of batches 12\u201314 (369+327+338), so merchant_id is entirely missing for transactions from 2026-01-16 onward, and those rows drop out of the gold_mcc_daily join. No other column or table can recover the true merchant, so the source team must fix the feed and re-deliver these batches.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

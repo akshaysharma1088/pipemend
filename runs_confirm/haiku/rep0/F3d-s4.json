@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3d-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4108,
+  "output": 3062
+ },
+ "seconds": 13.76,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (ingested 2026-01-18) stores txn_ts as DD/MM/YYYY, e.g. '17/01/2026 06:00:17', while the other batches use ISO format. The strict CAST fails on these rows. The batch-level evidence (one-day lag, 17 cannot be a month, and the max ISO value rules out later day-first dates) supports parsing these as day-first and keeping the ISO parse for other rows.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, COALESCE(try_strptime(txn_ts, '%d/%m/%Y %H:%M:%S'), TRY_CAST(txn_ts AS TIMESTAMP)) AS txn_ts FROM raw_transactions WHERE status = 'POSTED');\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4101,
+  "output": 634
+ },
+ "seconds": 3.15,
+ "raw_response": "{\"diagnosis\": \"All 333 NULL merchant_id rows in raw_transactions come from batch 14, which has 333 rows, so the upstream feed failed to populate merchant_id for that delivery. 318 of them are POSTED and reach silver. gold_mcc_daily's inner join to silver_merchants drops those 318 rows, which accounts for 4582 minus 4264. The correct merchant for these transactions cannot be determined from the evidence, so the batch must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4319,
+  "output": 1052
+ },
+ "seconds": 5.14,
+ "raw_response": "{\"diagnosis\": \"83 raw_transactions rows are EUR, but silver_transactions carries their amounts unconverted into gold totals that are labelled USD. The correct fix would be to convert with raw_fx_rates, but the only available rate is a single 2026-01-01 snapshot, and the business rule (point-in-time versus as-of FX, and whether silver amount should be USD) is not established by the evidence, so a human should confirm it.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

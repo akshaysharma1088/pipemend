@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4085,
+  "output": 893
+ },
+ "seconds": 4.38,
+ "raw_response": "{\"diagnosis\": \"All 4699 POSTED rows fail the check, which matches the count of POSTED rows. Since 2026-01-16 (DE-398), silver_transactions.txn_date is derived from ingest_ts, which lands on the next day at 02:00, not from txn_ts. Whether txn_date should be the transaction date or the ingest/settlement date is a business rule the evidence doesn't settle, and changing it would shift every gold_*_daily aggregate.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

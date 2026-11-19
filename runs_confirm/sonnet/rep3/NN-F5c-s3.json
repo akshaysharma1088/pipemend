@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 968
+ },
+ "seconds": 7.26,
+ "raw_response": "{\"diagnosis\":\"From batch 13 onward the source sends status 'SETTLED' where batches 1-12 sent 'POSTED'. The silver filter `status = 'POSTED'` therefore drops every row in batches 13 and 14. The counts support a pure rename: batches 1-12 hold 4162 rows (3929 POSTED plus 233 REVERSED), and batches 13-14 hold 665 rows (629 SETTLED plus 36 REVERSED), with a similar reversed rate. The fix is to accept both statuses in silver, and the gold tables rebuild from it.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED','SETTLED')\"}}"
+}

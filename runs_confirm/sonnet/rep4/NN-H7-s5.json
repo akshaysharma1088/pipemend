@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 707
+ },
+ "seconds": 6.01,
+ "raw_response": "{\"diagnosis\":\"The pipeline SQL has no visible defect. Joins are complete (200 customers and 40 merchants all match), txn_ids are unique, and batch sizes are steady, so no batch looks missing. The only plausible source of a ~2% gap is the status='POSTED' filter dropping the 276 REVERSED rows. Whether settlement includes reversals, and why recent days would be affected, cannot be determined from this evidence.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

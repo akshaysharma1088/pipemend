@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 392
+ },
+ "seconds": 4.16,
+ "raw_response": "Nulls in raw merchant_id: 378 total, and batch 14 has exactly 378 rows. So every row in batch 14 (the 2026-01-18 data) has a NULL merchant_id. Of those, 363 are POSTED, which matches the silver NULL count. The other batches have no nulls.\n\nThe source did not deliver merchant_id for batch 14. The correct merchant for each transaction cannot be derived: customer_id and amount do not determine it, and there is no other source. Dropping the rows or filling in a placeholder would give wrong gold data, because merchant_daily and mcc_daily would be incomplete or misattributed. The fix has to be a re-delivery from the source team.\n\n**Decision: escalate.**\n\n{\"diagnosis\": \"All 378 rows of batch 14 (the 2026-01-18 delivery) arrive with NULL merchant_id (363 of them POSTED), so the join to the merchant dimension drops them from gold_mcc_daily. The true merchant cannot be derived from any other data, so the batch must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

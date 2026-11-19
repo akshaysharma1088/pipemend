@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 949
+ },
+ "seconds": 4.76,
+ "raw_response": "{\"diagnosis\": \"The inner join to silver_customers drops transactions whose customer_id has no match in raw_customers. Malformed IDs such as 'C8' and 'C110' (not zero-padded to the C00nnn format) and IDs above C00200 are candidates, but the evidence does not show whether they should be normalized, mapped, or kept as unknown customers, so the correct fix cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

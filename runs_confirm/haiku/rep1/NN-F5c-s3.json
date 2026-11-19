@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 876
+ },
+ "seconds": 4.08,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 carry status 'SETTLED', which the silver filter `status = 'POSTED'` excludes, so none of their rows reach silver. Whether SETTLED should count as a valid transaction is a business-rule question, and the profile counts don't reconcile (SETTLED total is 629, but batches 13 and 14 alone hold 665 rows), so the correct fix can't be determined from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 533
+ },
+ "seconds": 4.45,
+ "raw_response": "The raw_customers table contains numeric region codes ('01' to '04') for 60 customers, and raw_region_map gives the mapping to region names. The mapping is unambiguous: 01=WEST, 02=EAST, 03=NORTH, 04=SOUTH.\n\nThe fix is to left join silver_customers to the map and use the mapped name when a code matches, otherwise keep the existing value uppercased. Each region_code appears only once in the map, so the join cannot duplicate rows. The codes are two-character strings with leading zeros, so they match the raw values exactly. The output columns stay the same.\n\nOther checks:\n- The REVERSED filter is in place and appears intentional.\n- Transaction counts and batches look normal.\n- The customer count is 200 with distinct ids, so the join introduces no fan-out.\n\nThe map is in the raw data and is a reasonable source of truth for this lookup, so I am fixing rather than escalating.\n\n{\"diagnosis\": \"Part of raw_customers (60 customers) now carries numeric region codes ('01'-'04') instead of names; raw_region_map provides an unambiguous one-to-one code-to-name mapping, which silver_customers does not apply.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}"
+}

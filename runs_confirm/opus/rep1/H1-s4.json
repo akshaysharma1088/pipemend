@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H1-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 704
+ },
+ "seconds": 6.36,
+ "raw_response": "{\"diagnosis\": \"Batch 12 came in a different format from every other batch: status is lowercase ('posted' 334 + 'reversed' 15 = 349, exactly the batch size) and amounts carry a '$' prefix. The case-sensitive filter status = 'POSTED' dropped all 349 rows, so the fix normalizes status case and strips currency symbols from amount before casting.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(replace(trim(CAST(amount AS VARCHAR)), '$', ''), ',', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

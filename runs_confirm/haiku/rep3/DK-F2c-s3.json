@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s3",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 636
+ },
+ "seconds": 3.24,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 20 txn_ids delivered twice, all in batch 13 and its late 22:00 re-delivery, with different amounts in each copy. Silver keeps both copies, which inflates gold totals. Which amount is correct (original or correction) is a source-side business decision the evidence cannot settle, so a deduplication rule would risk silently writing wrong amounts.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H6-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 321
+ },
+ "seconds": 3.18,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 21 txn_ids delivered twice with identical batch_id, ingest_ts and txn_ts but different amounts (e.g. 904282: 8.42 vs 8.75). Nothing in the data, such as a later ingest or a version column, shows which amount is correct. Picking one with MAX, MIN or an arbitrary row would silently risk wrong totals.\",\"decision\":\"escalate\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{}}"
+}
