@@ -19,6 +19,7 @@ diff -rq /tmp/pipemend_prompts_confirm prompts_confirm > /dev/null || echo "note
 python3 scripts/score_reps.py --runs runs_api --out results_api --prices prices.json > /dev/null
 python3 scripts/score_reps.py --runs runs_confirm --out results_confirm --seeds 3,4,5 --prices prices.json > /dev/null
 python3 scripts/paper_numbers.py > /dev/null
+python3 scripts/stats.py > /dev/null
 python3 scripts/make_paper_figures.py
 echo "Done. Reported results: results_api/tables.md, results_confirm/tables.md, results/paper_numbers.md, results/figures/."
 echo "The single-pass run (results/all*, results/ablation, results/sweep.json) is superseded; see results/SUPERSEDED.md."

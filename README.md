@@ -72,7 +72,7 @@ It takes several minutes on a laptop and makes no model calls.
 | `runs_api/`, `runs_confirm/` | `<tier>/rep<k>/<prompt>.json`: one file per response, plus the run manifest |
 | `results_api/`, `results_confirm/` | Tables, per-response scores and summaries written by `scripts/score_reps.py` |
 | `results/CONFIRMATION_PLAN.md` | The seven predictions, committed before the confirmation run |
-| `results/paper_numbers.md`, `results/figures/` | Prediction verdicts, other numbers quoted in the paper, and its figures |
+| `results/paper_numbers.md`, `results/stats.md`, `results/figures/` | Prediction verdicts, bootstrap intervals, calibration, other numbers quoted in the paper, and its figures |
 | `prices.json` | List prices used for cost, USD per million input and output tokens, as of 2026-11-19 |
 | `scripts/` | Validation, prompt generation, the API runner, scoring, figures |
 | `runs/`, `results/all*`, `results/core`, `results/hard`, `results/ablation` | The earlier single-pass run, superseded (see `results/SUPERSEDED.md`) |
