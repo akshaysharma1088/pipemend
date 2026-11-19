@@ -55,6 +55,7 @@ def main():
     ap.add_argument("--runs", required=True)
     ap.add_argument("--out", default="results_api")
     ap.add_argument("--tiers", default="haiku,sonnet,opus", help="cascade order, cheapest first")
+    ap.add_argument("--seeds", default="1,2", help="data seeds the runs cover")
     ap.add_argument("--prices", default="", help='JSON file: {"label": [input, output]} in USD per million tokens')
     a = ap.parse_args()
     prices = json.load(open(a.prices)) if a.prices else PRICES
@@ -62,7 +63,8 @@ def main():
     casc = [t for t in a.tiers.split(",") if t in labels]
     labels = casc + [x for x in labels if x not in casc]
     reps = sorted({int(os.path.basename(p)[3:]) for x in labels for p in glob.glob(f"{a.runs}/{x}/rep*")})
-    cases = {f"{i.iid}-s{s}": Case(i.iid, s) for i in INCIDENTS for s in (1, 2)}
+    seeds = [int(x) for x in a.seeds.split(",")]
+    cases = {f"{i.iid}-s{s}": Case(i.iid, s) for i in INCIDENTS for s in seeds}
     cids = sorted(cases)
     exp = {c: cases[c].inc.expected for c in cids}
 
@@ -96,6 +98,16 @@ def main():
                             cache[name] = e
                     if cache[name] is not None:
                         S[(x, r, cond, cid)] = cache[name]
+    DK = {}  # (label, rep, cid) -> scored response to the duplicate-profile prompt
+    for x in labels:
+        for r in reps:
+            for cid in cids:
+                path = f"{a.runs}/{x}/rep{r}/DK-{cid}.json"
+                if os.path.exists(path):
+                    resp = parse_response(json.load(open(path))["raw_response"])
+                    e = cases[cid].evaluate(resp)
+                    e["fix"] = e.get("decision") == "fix"
+                    DK[(x, r, cid)] = e
     if missing:
         raise SystemExit(f"{len(missing)} responses missing, e.g. {missing[:3]}. Finish the run first.")
 
@@ -202,20 +214,51 @@ def main():
             L.append(f"| {name} | {ms(res)} | {ms(harm)} | {sum(harm)} | {ms(unn)} | {ms(hp)} | {st.mean(usd):.2f} |")
             summary["policies"][f"{name}|{cond}"] = dict(resolved=res, harmful=harm, unnecessary=unn, human_pages=hp, usd=usd)
 
-    # ---- 5. threshold chosen on one seed, tested on the other
-    L += ["\n## Confidence threshold chosen on one seed and tested on the other\n",
-          "The threshold is the smallest value that gives the fewest harmful fixes on the selection cases "
-          "(both conditions, all repetitions pooled); it is then applied unchanged to the test cases.\n",
-          "| Tier | chosen on | threshold | test harmful (total) | test resolved (mean per pass) | test fixable cases |", "|---|---|---|---|---|---|"]
-    for x in labels:
-        for sel, test in (("s1", "s2"), ("s2", "s1")):
-            def tally(tau, sfx):
-                o = [single(x, tau)(r, cond, c)[0] for r in reps for cond in CONDS for c in cids if c.endswith(sfx)]
-                return sum(k in HARMFUL for k in o), sum(k == "resolved" for k in o)
-            best = min(TAUS, key=lambda t: (tally(t, sel)[0], t))
-            h, res = tally(best, test)
-            nfix = sum(exp[c] == "fix" for c in cids if c.endswith(test))
-            L.append(f"| {x} | {sel} | {best} | {h} | {res / (len(reps) * len(CONDS)):.1f} | {nfix} |")
+    # ---- 5. confidence threshold chosen on one half of the seeds, tested on the other
+    half = [f"s{x}" for x in seeds[:max(1, len(seeds) // 2)]]
+    other = [f"s{x}" for x in seeds if f"s{x}" not in half]
+    if other:
+        L += ["\n## Confidence threshold chosen on some seeds and tested on the others\n",
+              "The threshold is the smallest value that gives the fewest harmful fixes on the selection cases "
+              "(both conditions, all repetitions pooled); it is then applied unchanged to the test cases.\n",
+              "| Tier | chosen on | threshold | test harmful (total) | test resolved (mean per pass) | test fixable cases |", "|---|---|---|---|---|---|"]
+        for x in labels:
+            for sel, test in ((half, other), (other, half)):
+                def tally(tau, grp):
+                    o = [single(x, tau)(r, cond, c)[0] for r in reps for cond in CONDS for c in cids
+                         if c.rsplit("-", 1)[1] in grp]
+                    return sum(k in HARMFUL for k in o), sum(k == "resolved" for k in o)
+                best = min(TAUS, key=lambda t: (tally(t, sel)[0], t))
+                h, res = tally(best, test)
+                nfix = sum(exp[c] == "fix" for c in cids if c.rsplit("-", 1)[1] in test)
+                L.append(f"| {x} | {'+'.join(sel)} | {best} | {h} | {res / (len(reps) * len(CONDS)):.1f} | {nfix} |")
+
+    # ---- 5b. duplicate-key profile added to the evidence (DK prompts)
+    if DK:
+        dk_cids = sorted({c for (_, _, c) in DK})
+        L += ["\n## Effect of adding a duplicate-key profile to the evidence\n",
+              f"{len(dk_cids)} cases whose raw tables hold duplicate keys, no incident-specific change notes. "
+              "Totals over all repetitions: without the profile -> with the profile.\n",
+              "| Tier | cases x reps | resolved | harmful | unnecessary pages | correct escalations |", "|---|---|---|---|---|---|"]
+        for x in labels:
+            base = [S[(x, r, "none", c)]["outcome"] for r in reps for c in dk_cids if (x, r, c) in DK]
+            with_ = [DK[(x, r, c)]["outcome"] for r in reps for c in dk_cids if (x, r, c) in DK]
+            f = lambda o, ks: sum(k in ks for k in o)  # noqa: E731
+            L.append(f"| {x} | {len(base)} | {f(base, {'resolved'})} -> {f(with_, {'resolved'})} | "
+                     f"{f(base, HARMFUL)} -> {f(with_, HARMFUL)} | "
+                     f"{f(base, {'unnecessary_escalation'})} -> {f(with_, {'unnecessary_escalation'})} | "
+                     f"{f(base, {'correct_escalation'})} -> {f(with_, {'correct_escalation'})} |")
+        L += ["\n| Incident | expected | " + " | ".join(f"{x}: harmful without -> with" for x in labels) + " |",
+              "|---|---|" + "---|" * len(labels)]
+        for iid in sorted({c.rsplit("-s", 1)[0] for c in dk_cids}):
+            cells = []
+            for x in labels:
+                cs = [c for c in dk_cids if c.rsplit("-s", 1)[0] == iid]
+                b = sum(S[(x, r, "none", c)]["outcome"] in HARMFUL for r in reps for c in cs if (x, r, c) in DK)
+                w = sum(DK[(x, r, c)]["outcome"] in HARMFUL for r in reps for c in cs if (x, r, c) in DK)
+                n = sum((x, r, c) in DK for r in reps for c in cs)
+                cells.append(f"{b}/{n} -> {w}/{n}")
+            L.append(f"| {iid} | {exp[iid + '-s' + str(seeds[0])]} | " + " | ".join(cells) + " |")
 
     # ---- 6. every harmful fix, and what confidence says about them
     L += ["\n## Harmful fixes\n", "| Tier | rep | condition | case | outcome | confidence | gate |", "|---|---|---|---|---|---|---|"]
@@ -241,7 +284,7 @@ def main():
 
     # ---- 7. paired comparisons
     L += ["\n## Paired comparisons of success (resolved or correctly escalated)\n",
-          "Per-case success rate over repetitions; two-sided paired sign-flip permutation test over the 64 cases.\n",
+          "Per-case success rate over repetitions; two-sided paired sign-flip permutation test over the cases.\n",
           "| A | B | condition | mean A | mean B | cases A better / B better | p |", "|---|---|---|---|---|---|---|"]
     for i, x in enumerate(labels):
         for y in labels[i + 1:]:
@@ -249,7 +292,7 @@ def main():
                 ra = [st.mean(S[(x, r, cond, c)]["outcome"] in GOOD for r in reps) for c in cids]
                 rb_ = [st.mean(S[(y, r, cond, c)]["outcome"] in GOOD for r in reps) for c in cids]
                 d = [p - q for p, q in zip(ra, rb_)]
-                L.append(f"| {x} | {y} | {cond} | {64 * st.mean(ra):.1f} | {64 * st.mean(rb_):.1f} | "
+                L.append(f"| {x} | {y} | {cond} | {len(cids) * st.mean(ra):.1f} | {len(cids) * st.mean(rb_):.1f} | "
                          f"{sum(v > 0 for v in d)} / {sum(v < 0 for v in d)} | {signflip(d):.3f} |")
 
     os.makedirs(a.out, exist_ok=True)

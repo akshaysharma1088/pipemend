@@ -9,6 +9,7 @@ import numpy as np
 from . import core
 from .incidents import BY_ID
 
+RAW_KEYS = {"raw_transactions": "txn_id", "raw_customers": "customer_id", "raw_merchants": "merchant_id"}
 GATE_IGNORE = ("CURRENCY_CHECK",)   # raw-only check: still true after a correct fix
 
 
@@ -28,7 +29,9 @@ class Case:
         return f"{self.iid}-s{self.seed}"
 
     # -------------------------------------------------------------- bundle
-    def bundle(self) -> str:
+    def bundle(self, dup_profile: bool = False) -> str:
+        """Evidence shown to the agent. With dup_profile, a section on duplicate
+        keys in the raw tables is added (the DK prompt variant)."""
         con = self.con_view
         L = []
         L.append(f"INCIDENT {self.case_id}: nightly run of pipeline `card_txn_daily` for business date 2026-01-18")
@@ -62,12 +65,49 @@ class Case:
             if t != "raw_transactions":
                 L.append(f"{t}:")
                 L += self._rows(f"SELECT * FROM {t} LIMIT 4")
+        if dup_profile:
+            L.append("\nDUPLICATE KEYS IN RAW TABLES:")
+            L += self._dup_profile()
         L.append("\nSOURCE AND DEPLOYMENT CHANGE NOTES:")
         L += [f"  - {n}" for n in self.notes]
         return "\n".join(L)
 
-    def _rows(self, sql):
-        cur = self.con_view.execute(sql)
+    def has_duplicate_keys(self) -> bool:
+        return any("appear more than once" in line for line in self._dup_profile())
+
+    def _dup_profile(self):
+        """Per raw table: how many key values repeat, which columns differ between
+        the copies, and one example. The same query runs for every incident."""
+        con, out = self.con_view, []
+        for t, key in RAW_KEYS.items():
+            if t not in self.raw:
+                continue
+            cols = [r[0] for r in con.execute(f"DESCRIBE {t}").fetchall()]
+            if key not in cols:
+                out.append(f"  {t}: key column {key} is not present")
+                continue
+            n = con.execute(f'SELECT count(*) FROM (SELECT "{key}" FROM {t} GROUP BY 1 HAVING count(*) > 1)').fetchone()[0]
+            if not n:
+                out.append(f"  {t}.{key}: no value appears more than once")
+                continue
+            diff = []
+            for c in cols:
+                if c == key:
+                    continue
+                k = con.execute(f'SELECT count(*) FROM (SELECT "{key}" FROM {t} GROUP BY 1 '
+                                f'HAVING count(*) > 1 AND count(DISTINCT "{c}") + max(CASE WHEN "{c}" IS NULL THEN 1 ELSE 0 END) > 1)'
+                                ).fetchone()[0]
+                if k:
+                    diff.append((c, k))
+            what = ", ".join(f"{c} ({k} keys)" for c, k in diff) if diff else "none; the copies are identical in every column"
+            out.append(f"  {t}.{key}: {n} values appear more than once. Columns that differ between copies: {what}")
+            first = con.execute(f'SELECT "{key}" FROM {t} GROUP BY 1 HAVING count(*) > 1 ORDER BY 1 LIMIT 1').fetchone()[0]
+            out.append(f"  example, {key} = {first}:")
+            out += ["  " + r for r in self._rows(f'SELECT * FROM {t} WHERE "{key}" = ? ORDER BY ALL LIMIT 3', [first])]
+        return out
+
+    def _rows(self, sql, params=None):
+        cur = self.con_view.execute(sql, params or [])
         cols = [d[0] for d in cur.description]
         out = ["  " + " | ".join(cols)]
         out += ["  " + " | ".join(str(v) for v in r) for r in cur.fetchall()]

@@ -90,11 +90,12 @@ def main():
     ap.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--cases", default="", help="comma-separated prompt names (default: all 82)")
+    ap.add_argument("--prompts", default="prompts", help="folder of prompt files")
     ap.add_argument("--mock", action="store_true", help="replay runs/<label>/ instead of calling a model")
     a = ap.parse_args()
 
     models = dict(x.strip().split("=", 1) for x in a.models.split(",") if x.strip())
-    names = sorted(os.path.basename(f)[:-4] for f in glob.glob("prompts/*.txt"))
+    names = sorted(os.path.basename(f)[:-4] for f in glob.glob(os.path.join(a.prompts, "*.txt")))
     if a.cases:
         names = [n for n in names if n in {c.strip() for c in a.cases.split(",")}]
     if not names:
@@ -120,7 +121,7 @@ def main():
         path = os.path.join(a.out, label, f"rep{rep}", name + ".json")
         if os.path.exists(path):
             return
-        prompt = open(f"prompts/{name}.txt").read()
+        prompt = open(os.path.join(a.prompts, name + ".txt")).read()
         t = time.time()
         if a.mock:
             d = json.load(open(f"runs/{label}/{name}.json"))
@@ -136,7 +137,7 @@ def main():
             else:
                 cut_off[label] = cut_off.get(label, 0) + 1
         served.setdefault(label, set()).add(r["served"])
-        rec = dict(tier=label, case=name, rep=rep, condition="no_change_notes" if name.startswith("NN-") else "notes",
+        rec = dict(tier=label, case=name, rep=rep, condition={"NN-": "no_change_notes", "DK-": "no_change_notes+duplicate_profile"}.get(name[:3], "notes"),
                    requested_model=models[label], served_model=r["served"], provider="mock" if a.mock else a.provider,
                    temperature=a.temperature, max_tokens=cap, stop_reason=r["stop"],
                    usage={"input": r["tokens_in"], "output": r["tokens_out"]},
@@ -156,7 +157,8 @@ def main():
                     models_requested=models, models_served={k: sorted(v) for k, v in served.items()},
                     temperature="provider default" if a.temperature is None else a.temperature,
                     max_tokens=a.max_tokens, replies_cut_off_after_retry=cut_off, reps=a.reps,
-                    n_prompts=len(names), message_format="one user message = prompts/<case>.txt; no system prompt, no tools",
+                    n_prompts=len(names), prompts=a.prompts,
+                    message_format="one user message = the prompt file; no system prompt, no tools",
                     python=sys.version.split()[0], finished_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
     json.dump(manifest, open(os.path.join(a.out, f"manifest-{a.provider}.json"), "w"), indent=1)
     print("wrote", os.path.join(a.out, f"manifest-{a.provider}.json"))
