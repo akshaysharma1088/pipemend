@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4162,
+  "output": 1178
+ },
+ "seconds": 5.21,
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 contain only non-POSTED statuses (SETTLED and REVERSED, as shown in the samples), so the `status = 'POSTED'` filter drops them entirely. Whether SETTLED should count as posted is a business-rule question the evidence cannot settle: the status vocabulary appears to have changed, batches 1-11 also contain non-POSTED rows, and no change note explains it. This needs confirmation from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s1",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1812
+ },
+ "seconds": 8.16,
+ "raw_response": "{\"diagnosis\": \"The legacy collector's txn_ts values cluster around 06:xx, while v2 rows for comparable activity sit around 12:xx, which suggests a timezone or offset discrepancy between collectors. The offset is not documented, the correct timestamp convention is unconfirmed, and the 2026-01-19 volume gap depends on which rows are affected, so the correct transformation cannot be determined from this evidence. The source team needs to confirm the timestamp semantics for each collector and whether the data must be re-delivered.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

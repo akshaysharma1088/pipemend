@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H1-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 774
+ },
+ "seconds": 6.49,
+ "raw_response": "{\"diagnosis\": \"Batch 12 changed format upstream: status arrives in lowercase ('posted'/'reversed') and amounts carry a '$' prefix. The case-sensitive filter status = 'POSTED' dropped all of its posted rows. Once those rows are admitted, CAST of '$8.00' to DECIMAL would fail. The fix is to normalize status case and strip '$' from amount in silver_transactions.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(replace(replace(trim(amount), '$', ''), ',', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4320,
+  "output": 867
+ },
+ "seconds": 4.26,
+ "raw_response": "{\"diagnosis\": \"90 raw_transactions rows carry currency EUR, but silver_transactions drops the currency column and sums raw amounts as if they were USD, so gold totals mix currencies. Converting these rows needs a business decision on the FX rate (raw_fx_rates is a single 2026-01-01 snapshot, while transactions run 2026-01-05 to 2026-01-18) and on whether the source should re-deliver USD amounts, so I am escalating rather than guessing.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

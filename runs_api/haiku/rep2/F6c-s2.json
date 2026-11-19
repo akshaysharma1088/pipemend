@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4149,
+  "output": 523
+ },
+ "seconds": 3.05,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers rows have an email address in the region field (about 19 distinct values, with email-shaped values such as USER1572@EXAMPLEMAIL.COM), which is a source-side corruption and possibly a PII leak. The correct region for these customers cannot be derived from the evidence, and silver_customers passes the values through to gold_region_daily, so this needs the source team and a privacy review before any remediation.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

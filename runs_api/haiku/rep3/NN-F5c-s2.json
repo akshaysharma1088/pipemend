@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s2",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4167,
+  "output": 1266
+ },
+ "seconds": 6.26,
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 contain only SETTLED (and some REVERSED) statuses, while silver_transactions keeps only status = 'POSTED'. Batches 1-11 carry POSTED, so the source appears to have changed its status vocabulary around 2026-01-17 without a change note. Whether SETTLED should count as POSTED is a business rule the evidence does not settle, and guessing could silently change revenue totals.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

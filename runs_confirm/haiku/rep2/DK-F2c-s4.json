@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s4",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4349,
+  "output": 1018
+ },
+ "seconds": 5.62,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains duplicate txn_ids whose copies differ only in amount and ingest_ts. The later copies come from an out-of-cycle batch 13 delivery at 2026-01-18 22:00 rather than the usual 02:00 load. Nothing in the evidence shows which amount is correct, so picking a dedup rule (for example, latest ingest wins) would be a guess on financial data, and the monitor count (20) also differs from the raw count (21).\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

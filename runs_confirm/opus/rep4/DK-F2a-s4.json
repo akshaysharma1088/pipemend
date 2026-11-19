@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F2a-s4",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4386,
+  "output": 773
+ },
+ "seconds": 6.81,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) was delivered twice, at 02:00 and again at 05:00. That gives 666 rows, which is 333 unique txn_ids \u00d7 2. The two copies of each key are identical except for ingest_ts, so silver and gold double-count that day. Deduplicating by txn_id and keeping the latest ingested copy gives the correct data.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4183,
+  "output": 1281
+ },
+ "seconds": 9.38,
+ "raw_response": "{\"diagnosis\":\"The 15 'REVERSAL' rows carry orig_txn_id pointing at original transactions that still have status 'POSTED'. silver_transactions drops the REVERSAL rows but keeps those originals, so the reversed amounts are still counted and gold totals run high, mostly in the newest batches. The fix excludes any POSTED transaction that has a REVERSAL, which matches how originals already marked 'REVERSED' are excluded.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(r.txn_id AS BIGINT) AS txn_id, r.customer_id, CAST(r.merchant_id AS INTEGER) AS merchant_id, CAST(r.amount AS DECIMAL(12,2)) AS amount, CAST(r.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(r.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions x WHERE x.status = 'REVERSAL' AND x.orig_txn_id = r.txn_id)\"}}"
+}

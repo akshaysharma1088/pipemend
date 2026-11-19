@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 959
+ },
+ "seconds": 4.7,
+ "raw_response": "{\"diagnosis\": \"The 363-row drop from silver_transactions (4630) to gold_region_daily (4267) comes from the inner join on customer_id. Batch 14 contains malformed customer IDs such as 'C180', 'C3' and 'C94' that don't match the 'C00001'-style keys in raw_customers, so those transactions are silently dropped. The correct mapping for these IDs isn't documented, and guessing one (e.g., zero-padding) could attribute spend to the wrong region, so the source team needs to confirm the ID format and re-deliver batch 14.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

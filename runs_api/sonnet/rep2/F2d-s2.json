@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4080,
+  "output": 1049
+ },
+ "seconds": 8.7,
+ "raw_response": "{\"diagnosis\":\"raw_merchants has 46 rows for only 40 distinct merchant_ids, so the join in gold_mcc_daily fans out and adds about 705 rows (5305 vs 4600). The duplicates share merchant_name, so they look like exact re-delivered dimension rows. I am deduplicating silver_merchants, but the profile does not show whether the duplicate rows agree on mcc, so this is not certain.\",\"decision\":\"fix\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{\"silver_merchants\":\"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

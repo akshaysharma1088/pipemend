@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 604
+ },
+ "seconds": 5.85,
+ "raw_response": "{\"diagnosis\":\"The 2026-01-18 mean amount is far above the median. The affected rows look like round values such as 1715.0 in batch 14, which could be a cents-versus-dollars scaling problem or genuine large transactions. No change note explains it, and nothing in the evidence shows which rows are affected or what the correct amounts are.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

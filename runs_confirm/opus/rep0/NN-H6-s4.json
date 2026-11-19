@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H6-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4052,
+  "output": 1221
+ },
+ "seconds": 12.15,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4835 rows but only 4814 distinct txn_id values, so some transactions were delivered more than once across daily batches. silver_transactions does not deduplicate, so 19 txn_ids appear twice among POSTED rows and inflate every gold aggregate. No sample of the duplicate rows is shown, so whether they are exact replays or later corrections is inferred, not confirmed.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) d WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

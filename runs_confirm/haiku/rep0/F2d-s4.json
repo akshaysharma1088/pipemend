@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1194
+ },
+ "seconds": 5.79,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so the join in gold_mcc_daily fans out for the 6 duplicated merchants and inflates the count (5317 vs 4582). The evidence does not show whether the duplicate rows are identical or carry conflicting mcc values, so the correct merchant-to-MCC mapping cannot be determined from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

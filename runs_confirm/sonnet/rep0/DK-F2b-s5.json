@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2b-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4340,
+  "output": 592
+ },
+ "seconds": 4.55,
+ "raw_response": "{\"diagnosis\":\"raw_transactions contains 149 txn_ids that are exact duplicates in every column, which looks like a re-delivery of the same rows within a batch. silver_transactions carries them through, so 143 are visible there after the POSTED filter. Removing exact duplicate rows is safe and unambiguous, and it corrects every downstream gold table.\",\"decision\":\"fix\",\"confidence\":0.95,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

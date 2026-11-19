@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s4",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4473,
+  "output": 448
+ },
+ "seconds": 4.77,
+ "raw_response": "{\"diagnosis\": \"raw_customers holds SCD2 history: 30 customers have two rows, one is_current=False and one is_current=True. silver_customers copies all 230 rows, so the join in gold_region_daily duplicates those customers' transactions (5279 vs 4582). All transactions fall in Jan 2026, after the current rows' valid_from of 2025-01-01, so the current row is the correct one. Filtering silver_customers to is_current fixes it.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

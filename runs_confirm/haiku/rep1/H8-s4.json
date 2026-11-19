@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4037,
+  "output": 3133
+ },
+ "seconds": 13.13,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was re-delivered at 05:00, duplicating txn_ids from the 02:00 delivery (raw has 5147 rows but only 4814 distinct txn_id, so 333 duplicates, matching half of batch 14's 666 rows). Some re-delivered rows also store txn_ts as epoch milliseconds (1768716039000 = 2026-01-18 06:00:39 UTC, consistent with the ISO value on the original row), which breaks the TIMESTAMP cast and would double-count gold aggregates if the cast were fixed alone. Deduplicating on txn_id (keeping the earliest ingest) and parsing epoch-ms values in silver_transactions yields the correct data.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, txn_ts_parsed AS txn_ts, CAST(txn_ts_parsed AS DATE) AS txn_date FROM (SELECT *, CASE WHEN txn_ts LIKE '%-%' THEN CAST(txn_ts AS TIMESTAMP) ELSE epoch_ms(CAST(txn_ts AS BIGINT)) END AS txn_ts_parsed FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) = 1) t;\"}}"
+}

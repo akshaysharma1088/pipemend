@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F1c-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4026,
+  "output": 1136
+ },
+ "seconds": 10.19,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 (ingested 2026-01-19) sends txn_ts as 13-digit epoch milliseconds (e.g. 1768716261000) instead of 'YYYY-MM-DD HH:MM:SS' strings, so CAST(txn_ts AS TIMESTAMP) fails. Decoded as UTC, 1768716261000 is 2026-01-18 06:04:21. That fits the pattern of earlier batches, where each batch holds the previous day's transactions starting around 06:00, so the format can be normalized without ambiguity.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN regexp_full_match(trim(txn_ts), '[0-9]{13}') THEN epoch_ms(CAST(trim(txn_ts) AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions WHERE status = 'POSTED') s\"}}"
+}

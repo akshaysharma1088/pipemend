@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F4c-s3",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4475,
+  "output": 739
+ },
+ "seconds": 6.1,
+ "raw_response": "The customer dimension is an SCD2 table. 30 customers have two rows: a historical row (is_current = False, valid_from 2023-06-01) and a current row (is_current = True, valid_from 2025-01-01). Joining on customer_id alone duplicates those customers' transactions, which explains 5251 vs 4558 (693 extra rows).\n\nThe fix is to build silver_customers from current rows only. All 200 customers have exactly one current row, so the join becomes 1:1. Every transaction in the window falls after 2025-01-01, so the current row is also the one valid at transaction time. Filtering on is_current keeps the columns and meaning of silver_customers unchanged.\n\ngold_customer_spend and the other tables do not use the customer join, so they are unaffected.\n\nI considered whether region should be as-of the transaction date. valid_from of the current row is 2025-01-01, before all transactions, and the historical rows are older, so the current row is correct for every transaction.\n\n\n{\"diagnosis\": \"raw_customers is SCD2 with 30 customers having a historical (is_current=False) and a current row; joining on customer_id alone duplicates their transactions in gold_region_daily. Restrict silver_customers to current rows so the dimension is unique per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}\n```\n\nCorrection: the reply must be only the JSON object.\n\n{\"diagnosis\": \"raw_customers is SCD2 with 30 customers having a historical (is_current=False) and a current row; joining on customer_id alone duplicates their transactions in gold_region_daily. Restrict silver_customers to current rows so the dimension is unique per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 862
+ },
+ "seconds": 8.01,
+ "raw_response": "{\"diagnosis\":\"The evidence shows no clear defect. txn_ids are contiguous and unique, every batch is present, and the customer and merchant joins lose no rows. The only filter that drops data is status='POSTED', which excludes 269 REVERSED rows. Whether the settlement file includes reversals or has a different cutoff cannot be determined from the data shown, so the cause of the ~2% gap is unconfirmed.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

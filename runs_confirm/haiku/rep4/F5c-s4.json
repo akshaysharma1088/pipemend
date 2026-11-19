@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5c-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4207,
+  "output": 2071
+ },
+ "seconds": 9.21,
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 were ingested after the 2026-01-16 upstream rename of status POSTED to SETTLED, and the silver filter `status = 'POSTED'` drops every SETTLED row, so those batches contribute zero rows. The change note says the rename does not change meaning, so SETTLED should be treated as posted, while REVERSED stays excluded.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED');\"}}"
+}

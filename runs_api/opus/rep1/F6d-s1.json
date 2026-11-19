@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 315
+ },
+ "seconds": 3.08,
+ "raw_response": "{\"diagnosis\": \"All 378 NULL merchant_id values in raw_transactions appear to come from the latest delivery, batch 14 (business date 2026-01-18): the batch has 378 rows, the NULL count is 378, and every sampled row has merchant_id = None. The 363 POSTED rows among them drop out of the inner join to the merchant dimension, which explains the reconciliation gap of 4630 - 4267 = 363. The merchant attribution is missing at the source and cannot be derived from any other column, so the source team must re-deliver the batch with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

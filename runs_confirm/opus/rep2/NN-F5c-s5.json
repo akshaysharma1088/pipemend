@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F5c-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4162,
+  "output": 1092
+ },
+ "seconds": 10.6,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source labels normal transactions 'SETTLED' instead of 'POSTED', so the filter status = 'POSTED' drops every transaction from batches 12\u201314. 'SETTLED' accounts for 995 of the 1,056 rows in those batches, about 94%, which matches the earlier POSTED share of about 94.5%. The remaining rows are presumably 'REVERSED', at the usual rate, so this looks like a straight relabel rather than a change in which transactions count.\", \"decision\": \"fix\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED');\"}}"
+}

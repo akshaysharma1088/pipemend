@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4152,
+  "output": 1530
+ },
+ "seconds": 6.71,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 27 surplus rows, all but one txn_id per duplicate pair; the 27 extra rows are record_version 2 restatements of existing record_version 1 rows. silver_transactions filters on status before deduplicating, so txn_ids with both versions survive when both are POSTED. Keeping only the latest record_version per txn_id, then applying the POSTED filter, should remove the duplicates, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

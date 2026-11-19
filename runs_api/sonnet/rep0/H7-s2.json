@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4127,
+  "output": 190
+ },
+ "seconds": 1.89,
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 the source reports amount net of interchange fees. Fee rates vary by merchant category and are published separately by the card network, so the gross amounts behind the roughly 2 percent shortfall against the settlement file cannot be recovered from the raw data. The rates are not in any raw table, and the change date does not obviously line up with the 'recent days' framing. The pipeline SQL cannot be corrected without that external data.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

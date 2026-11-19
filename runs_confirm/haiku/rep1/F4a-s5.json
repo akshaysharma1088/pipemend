@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 920
+ },
+ "seconds": 4.45,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) contains customer_id values in malformed formats such as 'C2', 'C139', and 'C76' instead of the 'C00001' pattern used in raw_customers. The inner join in gold_region_daily silently drops these transactions, which accounts for the 344-row gap (4699 vs 4355). Whether these IDs should map to padded IDs, be quarantined, or be re-delivered correctly is a source-data decision that the evidence does not settle.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

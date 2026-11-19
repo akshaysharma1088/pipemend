@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H3-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4407,
+  "output": 1199
+ },
+ "seconds": 10.27,
+ "raw_response": "{\"diagnosis\": \"Starting 2026-01-15 the v2 card collector emits txn_ts in UTC, while legacy emits America/Chicago local time. The pipeline treats every txn_ts as local time, so v2 transactions are shifted 6 hours later (CST): evening transactions land in 00:00-06:00 and spill onto the next day (2026-01-19), which skews txn_date-based gold tables.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN ((CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC') AT TIME ZONE 'America/Chicago') ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN collector = 'v2' THEN ((CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC') AT TIME ZONE 'America/Chicago') ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

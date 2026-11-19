@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H8-s4",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4329,
+  "output": 2619
+ },
+ "seconds": 10.64,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivered 333 transactions a second time at 05:00 with txn_ts as epoch milliseconds (e.g. '1768716039000', which equals 2026-01-18 06:00:39 UTC) instead of the ISO string, and these duplicates break the TIMESTAMP cast. Normalizing epoch-ms strings to timestamps and keeping one row per txn_id yields the same data as the original batch-13/14 rows, with no double counting.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH s AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN make_timestamp(CAST(txn_ts AS BIGINT) * 1000) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, ingest_ts FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1) SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM s;\"}}"
+}

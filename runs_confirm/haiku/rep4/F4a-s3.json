@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4071,
+  "output": 2460
+ },
+ "seconds": 11.41,
+ "raw_response": "{\"diagnosis\": \"Batch 14 delivered customer_id values in a short, unpadded format (e.g. 'C52', 'C3', 'C143' instead of 'C00052', 'C00003', 'C00143'). The inner join to silver_customers silently drops these POSTED rows, so gold_region_daily loses 324 transactions (4558 vs 4234). Padding the numeric suffix to five digits restores the match, and raw_customers has no duplicate keys, so the join cannot add rows.\", \"decision\": \"fix\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, CASE WHEN regexp_matches(customer_id, '^C[0-9]{1,5}$') THEN 'C' || lpad(regexp_extract(customer_id, '^C([0-9]+)$', 1), 5, '0') ELSE customer_id END AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

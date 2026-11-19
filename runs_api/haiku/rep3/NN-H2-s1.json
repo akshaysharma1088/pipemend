@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4151,
+  "output": 1710
+ },
+ "seconds": 7.26,
+ "raw_response": "{\"diagnosis\": \"Exactly 30 raw_transactions rows carry record_version=2, and each duplicated txn_id has one version-1 row, so the duplicates are restated versions of existing transactions. Silver keeps every version, so the 30 txn_ids appear twice. Keeping only the highest record_version per txn_id before applying the POSTED filter removes the duplicates and respects a reversal in the newer version.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC) = 1) latest WHERE latest.status = 'POSTED';\"}}"
+}

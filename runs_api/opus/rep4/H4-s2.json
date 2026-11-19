@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H4-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4289,
+  "output": 440
+ },
+ "seconds": 3.99,
+ "raw_response": "{\"diagnosis\": \"Customers migrated to the new CRM on 2026-01-15 carry numeric region codes ('01'-'04') instead of region names, and silver_customers passes them through unmapped. raw_region_map is complete (one row per code, covering all four codes) and documents the translation, so these customers' regions in gold_region_daily can be corrected deterministically.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = trim(m.region_code)\"}}"
+}

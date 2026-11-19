@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 280
+ },
+ "seconds": 3.04,
+ "raw_response": "{\"diagnosis\": \"All 378 rows in the latest delivery (batch 14, business date 2026-01-18) have NULL merchant_id; raw_transactions has 378 nulls and batch 14 has 378 rows. Of these, 363 are POSTED, so those transactions drop out of the merchant/MCC join. The merchant IDs are missing at the source and cannot be derived from any other column, so the source team needs to re-deliver the batch.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

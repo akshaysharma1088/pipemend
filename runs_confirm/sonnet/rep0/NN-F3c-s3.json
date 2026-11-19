@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3c-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4048,
+  "output": 669
+ },
+ "seconds": 4.82,
+ "raw_response": "The bug is in silver_transactions. txn_date is derived from ingest_ts, which is the delivery date (one day after the transaction), instead of from txn_ts. The alert says all 4558 POSTED rows differ, which matches this cause.\n\nThe fix is to use CAST(txn_ts AS DATE). The evidence supports this:\n- Every sample row has txn_ts one day before ingest_ts, and every batch has a single ingest_ts.\n- The DATE_CONSISTENCY monitor defines the expected txn_date as the date of txn_ts.\n\nOne thing to check is whether batches contain late-arriving rows, where txn_ts is more than one day before ingest_ts. That does not change the fix, because the monitor's definition of txn_date is the date of txn_ts.\n\nFiltering to status = 'POSTED' looks intentional, so I am leaving it. The gold tables are rebuilt from silver, so only silver needs replacing. The gold steps are unchanged, and the rerun regenerates them.\n\nThe new silver_transactions keeps the same columns and types, and only the txn_date derivation changes.\n\n{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (delivery time, one day after the transaction) instead of txn_ts, so txn_date is shifted for all POSTED rows. It should be the date of txn_ts.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

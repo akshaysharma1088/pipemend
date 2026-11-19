@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 408
+ },
+ "seconds": 2.27,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains email addresses (e.g. USER1743@EXAMPLEMAIL.COM, and lowercase variants such as user9940@examplemail.com) in place of region codes, so silver_customers passes them through via upper(region). The correct region for these customers cannot be derived from the evidence, and the email values may be a PII leak, so the source team must investigate and re-deliver corrected customer data.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

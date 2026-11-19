@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1964
+ },
+ "seconds": 16.12,
+ "raw_response": "{\"diagnosis\":\"Legacy-collector timestamps (4695 of 4975 rows) cluster from 06:00 onward, and batch 14, ingested 2026-01-19 02:00, contains rows stamped up to 04:41 that day, which is after the ingest time. That points to a timezone or clock offset in the legacy timestamps, possibly mixed with the newer v2 collector, which looks like it uses a different time basis. The offset size and which collector is correct cannot be established from the evidence, so a shift in silver_transactions would risk silently moving rows across dates.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

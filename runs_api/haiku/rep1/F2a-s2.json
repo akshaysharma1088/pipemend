@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 1796
+ },
+ "seconds": 7.43,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was re-delivered: 316 POSTED txn_ids appear twice, once with ingest_ts 02:00 and again with 05:00, which inflates silver_transactions to 632 rows against a median of 336. Deduplicating silver_transactions to one row per txn_id, keeping the latest ingest, restores correct row counts and totals in all downstream gold tables.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts DESC, batch_id DESC) = 1;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4245,
+  "output": 1072
+ },
+ "seconds": 5.32,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 table with 30 superseded rows (is_current=False, valid_from 2023-06-01) alongside 200 current rows, so silver_customers has 230 rows for 200 customers. The join in gold_region_daily fans out every transaction of those 30 customers, inflating the count from 4558 to 5251. Filtering to the current row gives one region per customer, and every 2026 transaction falls after the current row's valid_from, so this matches a point-in-time join.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

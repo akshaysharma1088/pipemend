@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s3",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4152,
+  "output": 2547
+ },
+ "seconds": 11.49,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 27 surplus rows (4854 rows vs 4827 distinct txn_id), and the 27 record_version=2 rows are re-deliveries of existing transactions. silver_transactions keeps every version and then filters on status, so duplicate txn_ids survive and flow into the gold tables; the fix is to keep only the latest version per txn_id before applying the POSTED filter. Two txn_ids may tie at version 2, so the batch_id and ingest_ts tie-breakers are a best effort and should be confirmed with the source team.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH ranked AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, batch_id DESC, ingest_ts DESC) AS rn FROM raw_transactions) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM ranked WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

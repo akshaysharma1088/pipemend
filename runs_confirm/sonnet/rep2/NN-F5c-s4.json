@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s4",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4161,
+  "output": 846
+ },
+ "seconds": 5.94,
+ "raw_response": "{\"diagnosis\":\"Starting with batch 12 the source stopped sending status 'POSTED' and sends 'SETTLED' instead, so the filter status = 'POSTED' drops every row in batches 12-14. REVERSED shares are about 5% in both periods (186 of 3782 in batches 1-11, 46 of 1032 in batches 12-14), which fits SETTLED being a rename of POSTED. The fix is to accept both values in silver_transactions; the gold tables rebuild from it.\",\"decision\":\"fix\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED','SETTLED')\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2d-s3",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4249,
+  "output": 490
+ },
+ "seconds": 4.2,
+ "raw_response": "The raw_merchants table has 46 rows for 40 distinct merchant_ids. Six merchant_ids appear twice, and the copies are identical in every column. The join in gold_mcc_daily therefore fans out and double-counts transactions for those merchants (5256 vs 4558). Deduplicating the merchant dimension in silver_merchants fixes it deterministically, with no ambiguity because the copies are identical.\n\nI checked the other steps for similar problems. Transaction ids are unique, and customers are unique, so those joins don't fan out. The 269 REVERSED rows are intentionally filtered out by the silver_transactions status filter, which is existing logic rather than a bug.\n\nThe fix is to use SELECT DISTINCT in silver_merchants. Since the copies are fully identical, DISTINCT on (merchant_id, mcc) yields one row per merchant_id.\n\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as fully identical rows, so the join in gold_mcc_daily fans out and inflates counts. Deduplicating silver_merchants removes the fan-out.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

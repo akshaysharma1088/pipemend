@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H2-s2",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4154,
+  "output": 904
+ },
+ "seconds": 7.0,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 26 corrected re-deliveries with record_version=2 for txn_ids that were already delivered as version 1. The silver filter on status='POSTED' runs without any dedup, so both versions survive for 25 txn_ids. The fix is to keep the latest version per txn_id first, and only then filter on POSTED, so a later reversal still removes the transaction.\",\"decision\":\"fix\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) r WHERE status = 'POSTED'\"}}"
+}

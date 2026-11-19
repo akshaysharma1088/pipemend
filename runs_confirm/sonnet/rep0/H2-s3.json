@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H2-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4209,
+  "output": 979
+ },
+ "seconds": 7.69,
+ "raw_response": "{\"diagnosis\":\"Since 2026-01-18 the source sends amount corrections as a repeated txn_id with a higher record_version. 27 txn_ids have two rows, and 25 of them have both rows POSTED, so they are duplicated in silver. The fix keeps only the latest version per txn_id, then filters to POSTED.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS WITH latest AS (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM latest WHERE status = 'POSTED'\"}}"
+}

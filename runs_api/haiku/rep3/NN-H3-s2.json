@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s2",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 2108
+ },
+ "seconds": 10.31,
+ "raw_response": "{\"diagnosis\": \"The anomalous timestamps are tied to the `v2` collector, which first appears in batch 12. In the samples, v2 timestamps run about 6 hours later than legacy ones for similar activity (around 12:xx versus 06:xx), which suggests a timezone or UTC offset difference. The exact offset, whether it applies to all v2 rows, and the correct conversion are not documented, so a correction cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

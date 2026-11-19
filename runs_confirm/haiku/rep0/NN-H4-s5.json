@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 1257
+ },
+ "seconds": 6.15,
+ "raw_response": "{\"diagnosis\": \"Region codes '01'-'04' in raw_customers are numeric codes that were never translated, and raw_region_map supplies a one-to-one code-to-name lookup for exactly those four values. Joining silver_customers to raw_region_map resolves them to the same name set used elsewhere, with no fan-out since customer_id is unique and the map has one row per code. The mapping is inferred from the raw map table rather than confirmed by the source team, so confidence is moderate.\", \"decision\": \"fix\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

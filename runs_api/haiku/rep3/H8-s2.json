@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4041,
+  "output": 3415
+ },
+ "seconds": 14.28,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivers every transaction it contains (326 txn_ids appear twice, 652 rows). The 05:00 copies store txn_ts as epoch milliseconds, e.g. 1768716104000, which is 2026-01-18 06:01:44 UTC and matches the string timestamp on the 02:00 copy. The cast fails on those rows, and without deduplication the gold tables would double-count them.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH p AS (SELECT *, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM p;\"}}"
+}

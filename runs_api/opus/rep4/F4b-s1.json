@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F4b-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 717
+ },
+ "seconds": 6.09,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 (ingested 2026-01-19, business date 2026-01-18) sends customer_id in lowercase ('c00180') while raw_customers uses uppercase ('C00180'). That is why there are 365 distinct customer_ids against 200 customers. The case-sensitive inner join in gold_region_daily drops those 363 POSTED rows, and gold_customer_spend splits each affected customer into two keys.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\", \"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT upper(trim(customer_id)) AS customer_id, upper(region) AS region FROM raw_customers\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2a-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4386,
+  "output": 1099
+ },
+ "seconds": 4.78,
+ "raw_response": "{\"diagnosis\": \"Batch 13 re-delivered 349 transactions at 05:00 that were already loaded at 02:00. The copies are identical except ingest_ts, so silver_transactions double-counts them, which inflates the duplicate-key and volume alerts and the gold aggregates built on it. Deduplicating on txn_id in the silver step, keeping the earliest ingest, restores one row per transaction.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1;\"}}"
+}

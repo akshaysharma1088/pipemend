@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 2297
+ },
+ "seconds": 10.6,
+ "raw_response": "{\"diagnosis\": \"gold_region_daily uses an inner join on customer_id, and batch 13 (and possibly other batches) delivers some customer_ids without zero-padding (e.g. 'C115', 'C91', 'C187') that never match the canonical 'C00001'-style keys in raw_customers, so those transactions are silently dropped. Normalizing the join key to the canonical form in gold_region_daily only should restore the missing rows without changing silver tables or output columns.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"gold_region_daily\": \"CREATE OR REPLACE TABLE gold_region_daily AS SELECT t.txn_date, c.region, count(*) AS n_txn, sum(t.amount) AS total FROM silver_transactions t JOIN silver_customers c ON c.customer_id = (CASE WHEN regexp_matches(t.customer_id, '^C[0-9]+$') THEN 'C' || lpad(substr(t.customer_id, 2), 5, '0') ELSE t.customer_id END) GROUP BY t.txn_date, c.region;\"}}"
+}

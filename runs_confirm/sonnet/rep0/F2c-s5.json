@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1468
+ },
+ "seconds": 12.41,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4996 rows but only 4975 distinct txn_id values. Batch 12's ingest_ts spans 02:00 to 22:00, which points to a partial re-delivery of already-loaded rows. silver_transactions has no dedup, so those rows appear twice and inflate the gold counts and totals. I am fixing it by keeping the latest delivered version of each txn_id before applying the POSTED filter.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

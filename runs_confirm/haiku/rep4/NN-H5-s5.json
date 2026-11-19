@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s5",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4182,
+  "output": 1223
+ },
+ "seconds": 6.05,
+ "raw_response": "{\"diagnosis\": \"The silver filter keeps only status='POSTED' and ignores the 40 REVERSAL rows that link to originals via orig_txn_id, so reversed amounts may still be counted. The status of those originals (POSTED vs REVERSED), the netting rule, and the settlement file's treatment of the 236 REVERSED rows are not in the evidence, so the correct fix cannot be determined.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

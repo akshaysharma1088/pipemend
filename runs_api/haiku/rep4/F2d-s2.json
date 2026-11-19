@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4080,
+  "output": 882
+ },
+ "seconds": 4.45,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so 6 merchants are duplicated. silver_merchants keeps those duplicates, and the join in gold_mcc_daily fans out transactions (5305 vs 4600). The correct deduplication rule is not determinable: the duplicate rows may carry conflicting mcc values, and there is no effective-date column to pick the right one.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

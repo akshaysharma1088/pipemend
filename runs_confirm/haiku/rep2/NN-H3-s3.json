@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s3",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 1253
+ },
+ "seconds": 6.16,
+ "raw_response": "{\"diagnosis\": \"The 36 anomalous 2026-01-19 rows all fall between 00:00 and 06:00 and are likely from the `v2` collector, which shows different timestamp behavior than `legacy` (e.g., sample 904491 at 12:11 versus legacy rows near 06:00). The correct timestamp correction (timezone or offset) cannot be determined from the evidence, and filtering out v2 would drop valid data, so the source team needs to confirm the v2 timestamp convention and re-deliver or correct batch 14.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

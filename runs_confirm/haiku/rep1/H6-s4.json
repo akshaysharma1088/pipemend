@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 586
+ },
+ "seconds": 3.02,
+ "raw_response": "{\"diagnosis\": \"The 19 duplicated txn_ids are most likely the resent part of the latest delivery (PAY-77), where the two copies may carry different amounts from a recalculation. Which copy holds the final amount is unknown, so deduplicating would silently pick one and could corrupt the amounts in silver and gold. The source team must confirm the correct copy or re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

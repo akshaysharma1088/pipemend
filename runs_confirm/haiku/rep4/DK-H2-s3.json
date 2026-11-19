@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H2-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4457,
+  "output": 1433
+ },
+ "seconds": 5.92,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 27 txn_ids with two copies: record_version 2 and record_version 1, with different amounts. silver_transactions keeps both copies, which causes the duplicate keys. Keeping the highest record_version per txn_id before applying the POSTED filter resolves the duplicates and reflects the latest state of each transaction.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH latest AS (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, batch_id DESC) = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM latest WHERE status = 'POSTED';\"}}"
+}

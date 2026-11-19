@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 1285
+ },
+ "seconds": 10.83,
+ "raw_response": "{\"diagnosis\":\"The ticket DE-412 filter `ingest_ts - txn_ts <= 26 HOUR` in silver_transactions drops legitimate POSTED transactions that arrived about 3 days late, starting in batch 3. The txn_ids are unique and contiguous with no duplicates, so these are valid late-arriving rows. Removing the lag filter restores them. The REVERSED rows remain excluded, which accounts for the rest of the gap between delivered and loaded counts.\",\"decision\":\"fix\",\"confidence\":0.68,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

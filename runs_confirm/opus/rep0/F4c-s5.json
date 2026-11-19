@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F4c-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 613
+ },
+ "seconds": 6.01,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 dimension: 230 rows but only 200 distinct customer_ids, with 30 historical rows where is_current = False. silver_customers keeps every version, so the join in gold_region_daily duplicates transactions for those 30 customers (4699 becomes 5415).\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current QUALIFY row_number() OVER (PARTITION BY customer_id ORDER BY valid_from DESC) = 1\"}}"
+}

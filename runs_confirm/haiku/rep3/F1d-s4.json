@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1d-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 943
+ },
+ "seconds": 4.32,
+ "raw_response": "{\"diagnosis\": \"Batch 12 rows carry lowercase status 'posted', and the silver_transactions filter `status = 'POSTED'` is case-sensitive, so every row is dropped. The same case mismatch affects about 334 posted rows across batches; the raw data has only four distinct status values and no whitespace variants, so normalizing case is a safe fix.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

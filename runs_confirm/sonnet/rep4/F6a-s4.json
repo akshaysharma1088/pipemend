@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 541
+ },
+ "seconds": 4.85,
+ "raw_response": "{\"diagnosis\":\"Batch 14, which holds the 2026-01-18 transactions, has only 133 rows against a normal ~340. Its txn_ids have gaps (904488, 904490, 904496) and its first timestamp is 06:16 instead of ~06:00. The txn_id range 900001\u2013904814 holds 4814 ids but only 4614 rows, so about 200 rows are missing from the source delivery. The silver filter is not the cause, and no SQL change can recover rows that were never delivered.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

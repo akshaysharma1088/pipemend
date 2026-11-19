@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1d-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 916
+ },
+ "seconds": 4.06,
+ "raw_response": "{\"diagnosis\": \"The silver_transactions filter `status = 'POSTED'` is case-sensitive, so rows with lowercase `posted` are dropped. Batch 13 (322 rows) arrived entirely as lowercase `posted`, and 298 lowercase `posted` rows exist across batches, so silver and all gold tables are missing them. Normalizing status case in the filter, with no other change, should restore them while still excluding REVERSED/reversed.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(status) = 'POSTED';\"}}"
+}

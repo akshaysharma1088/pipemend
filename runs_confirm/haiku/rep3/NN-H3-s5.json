@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1928
+ },
+ "seconds": 9.41,
+ "raw_response": "{\"diagnosis\": \"Transactions with txn_ts between 00:00 and 06:00 are off-hours outliers, and 41 rows are misdated onto 2026-01-19 from batch 14. The timestamps come from the ingest collectors (legacy and v2), and the evidence does not show what offset or correction applies, so the correct txn_ts and txn_date cannot be derived from the data. The source team needs to confirm the timestamp semantics per collector and whether affected rows must be re-delivered.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

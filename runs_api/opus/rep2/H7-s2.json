@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H7-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4127,
+  "output": 282
+ },
+ "seconds": 3.1,
+ "raw_response": "{\"diagnosis\": \"Per the 2026-01-18 payments-source change, the raw amount is now reported net of interchange fees, which explains gold totals running about 2% below the gross settlement file. The fee rates vary by MCC and are published separately by the card network; they are not in any raw table, so gross amounts cannot be reconstructed from the evidence available. The cutover batch and the intended business rule (gross vs. net) also need confirmation from the source team and Finance.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 2299
+ },
+ "seconds": 9.05,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (377 rows, all with source_tz='UTC') stores txn_ts in UTC, while every other batch is America/Chicago local time, and the silver step ignores source_tz. The UTC rows are therefore shifted about 6 hours ahead, which puts evening Chicago transactions on the next UTC day at 00:00-06:00. Converting source_tz='UTC' rows to Chicago local wall-clock time before deriving txn_ts and txn_date should correct the time distribution and the affected dates.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts_local AS txn_ts, CAST(CAST(txn_ts_local AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN timezone('America/Chicago', timezone('UTC', txn_ts)) ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts_local FROM raw_transactions WHERE status = 'POSTED');\"}}"
+}

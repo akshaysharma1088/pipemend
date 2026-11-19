@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 991
+ },
+ "seconds": 7.88,
+ "raw_response": "{\"diagnosis\":\"Batch 14 was delivered twice, at 02:00 and 05:00 on 2026-01-19. That gives 666 rows, which is 333 txn_ids \u00d7 2, and the sampled copies are identical. silver_transactions has no dedup, so 318 POSTED txn_ids appear twice and every gold table double counts them. The fix is to dedupe by txn_id in silver.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

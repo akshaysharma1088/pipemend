@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4154,
+  "output": 1647
+ },
+ "seconds": 7.14,
+ "raw_response": "{\"diagnosis\": \"raw_transactions holds 26 extra rows with record_version 2 that restate existing txn_ids (4828 rows, 4802 distinct txn_ids). The silver step keeps every version and filters only on status, so superseded versions survive and txn_ids repeat. Keeping the latest record_version per txn_id before applying the POSTED filter should yield one row per txn_id, and the gold tables inherit the fix because they read from silver.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date, status FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, batch_id DESC) = 1) latest WHERE status = 'POSTED';\"}}"
+}

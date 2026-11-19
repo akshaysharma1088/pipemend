@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 582
+ },
+ "seconds": 2.83,
+ "raw_response": "{\"diagnosis\": \"All 1,034 NULL merchant_id rows in raw_transactions come from batches 12\u201314 (ingested 2026-01-17 onward), which points to an upstream enrichment failure in recent deliveries. The 976 POSTED NULLs are dropped by the inner join to silver_merchants, causing the 4558 vs 3582 reconciliation gap, but the correct merchant_id cannot be derived from the evidence, so the data must be re-delivered or corrected by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

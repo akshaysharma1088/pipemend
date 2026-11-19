@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4604,
+  "output": 1329
+ },
+ "seconds": 6.48,
+ "raw_response": "{\"diagnosis\": \"The DE-412 filter `ingest_ts - txn_ts <= 26 HOUR` in silver_transactions drops POSTED transactions from batches 3 onward, whose txn_ts lags ingest_ts by roughly 2 to 3 days, which matches the monitor counts. Whether those late rows are truly stale and should be excluded, or valid late-arriving data that must be kept, is a business rule the evidence does not settle, so the correct fix cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

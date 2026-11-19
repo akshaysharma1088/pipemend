@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 203
+ },
+ "seconds": 2.89,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 13 (2026-01-18 02:00 ingest), the upstream feed delivers NULL merchant_id on transactions. Raw has 711 NULLs, 671 of them POSTED. The merchant is simply missing from the source, so the inner join to merchants drops those rows from gold_mcc_daily. Nothing in the evidence lets us recover the real merchant_id, and guessing or defaulting it would corrupt the MCC aggregates.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

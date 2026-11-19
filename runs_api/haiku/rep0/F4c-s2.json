@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 1194
+ },
+ "seconds": 5.85,
+ "raw_response": "{\"diagnosis\": \"raw_customers is SCD2-style, with 30 superseded rows (is_current=False) alongside the 200 current rows, so joining silver_customers on customer_id alone fans out the 686 extra transactions in gold_region_daily. Filtering silver_customers to the current version (one row per customer, 200 rows) restores a one-to-one join, and the join's row count returns to the 4600 silver transactions.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current\"}}"
+}

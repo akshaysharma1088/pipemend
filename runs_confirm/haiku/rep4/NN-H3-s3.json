@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s3",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 1674
+ },
+ "seconds": 7.66,
+ "raw_response": "{\"diagnosis\": \"The 36 suspicious 2026-01-19 rows are almost certainly from the `v2` collector, which shows timestamps offset from the `legacy` pattern (for example, sample 904491 at 12:11 versus legacy rows near 06:xx). The correct offset and the full set of affected v2 rows are not documented, so a timestamp correction cannot be verified from the evidence and the source team must confirm the timezone semantics of v2.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

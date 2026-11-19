@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4d-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4118,
+  "output": 910
+ },
+ "seconds": 4.19,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains values with trailing spaces ('EAST ', 'NORTH ', 'SOUTH ', 'WEST ', including a double-space variant for C00004) that are the same regions as the unpadded values. silver_customers only applies upper() and never trims, so these variants leak into silver_customers and split gold_region_daily into duplicate region groups. Trimming before upper() normalizes them, and customer_id stays unique at 200 rows.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3c-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4047,
+  "output": 1825
+ },
+ "seconds": 7.97,
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from CAST(ingest_ts AS DATE), but every batch's ingest_ts is the 02:00 run time on the following day, so txn_date is systematically one day off from the transaction date. All 4630 POSTED rows fail the check, which matches the monitor count exactly, so the fix is to derive txn_date from txn_ts; the gold tables are full rebuilds and will pick up the corrected dates.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

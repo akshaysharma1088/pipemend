@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 257
+ },
+ "seconds": 2.63,
+ "raw_response": "{\"diagnosis\": \"All 378 rows in the latest delivery (batch 14, business date 2026-01-18) arrived with merchant_id NULL, which accounts for every NULL in raw_transactions; 363 of them are POSTED. Those rows have no merchant dimension match, so they drop out of gold_mcc_daily. This is a source delivery defect: the correct merchant_id values cannot be derived from the available data, and no recent pipeline change explains it.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

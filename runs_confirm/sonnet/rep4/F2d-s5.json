@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2d-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1068
+ },
+ "seconds": 8.84,
+ "raw_response": "{\"diagnosis\":\"raw_merchants has 46 rows for only 40 distinct merchant_ids, so silver_merchants has duplicate keys. The join in gold_mcc_daily fans out and inflates the count to 5416 against 4699 in silver_transactions. The evidence does not show whether the duplicate rows are exact copies or have conflicting mcc values, so this fix assumes exact copies.\",\"decision\":\"fix\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{\"silver_merchants\":\"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4d-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 633
+ },
+ "seconds": 3.14,
+ "raw_response": "{\"diagnosis\": \"The region values 'EAST ', 'WEST ', 'SOUTH ', and 'NORTH ' in raw_customers carry trailing whitespace, and silver_customers applies only upper(), so the padded variants survive as separate regions. Trimming before uppercasing collapses them into the four canonical regions, and the downstream gold_region_daily join then uses the corrected values.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}"
+}

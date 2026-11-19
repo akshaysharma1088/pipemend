@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 1261
+ },
+ "seconds": 5.63,
+ "raw_response": "{\"diagnosis\": \"The raw data is internally consistent: txn_ids are contiguous with no duplicates, batch counts sum to 4814, and the joins are one-to-one. The ~2% gap is most likely the silver filter `status = 'POSTED'` dropping 232 REVERSED rows, but the evidence does not show whether settlement nets out reversals or includes them, or whether recent batches are incomplete. The correct business rule and the source of the gap need a human decision with the settlement team.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

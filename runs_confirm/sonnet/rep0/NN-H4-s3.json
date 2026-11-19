@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 563
+ },
+ "seconds": 4.45,
+ "raw_response": "The raw_customers table holds some regions as numeric codes ('01' to '04') instead of names. A mapping table, raw_region_map, is provided and covers all four codes with a unique name for each. Mapping the codes to names is therefore deterministic.\n\nThe fix is to left join silver_customers to raw_region_map on region_code and use COALESCE(region_name, upper(region)). The codes are unique in the map, so no rows are duplicated. Customer count stays at 200. The gold_region_daily step reads silver_customers, so it is corrected automatically.\n\nOne risk is that the map's meaning is unverified, but it is the provided reference table and the mapping is unambiguous. The sample shows C00001 with code 01, which maps to WEST.\n\nA second check is for other problems. The transaction side shows 4827 distinct txn_ids and no duplicates. Reversed rows are filtered out, which is the existing behavior, so I leave that alone.\n\nWhitespace is not a concern, since the profile lists the distinct values cleanly.\n\n\n{\"diagnosis\": \"Some raw_customers rows carry numeric region codes ('01'-'04') instead of region names; raw_region_map provides an unambiguous one-to-one code-to-name mapping, so silver_customers should translate the codes.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}"
+}

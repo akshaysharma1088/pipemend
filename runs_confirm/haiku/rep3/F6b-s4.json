@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 848
+ },
+ "seconds": 4.43,
+ "raw_response": "{\"diagnosis\": \"The pipeline SQL is internally consistent, and the raw amount range (1.37 to 7791.0) and the normal-looking batch 11 and 12 samples do not show which rows drive the 2026-01-16 mean of 270.24 against a median of 40.84. Whether those large amounts are a source-side scaling error or real high-value activity cannot be determined from this evidence, so the source team needs to review them.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F5d-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 760
+ },
+ "seconds": 5.97,
+ "raw_response": "{\"diagnosis\":\"Batch 13 delivered merchant_id in a new format ('M-0113' instead of '113'), so the INTEGER cast fails. The numeric part maps directly to raw_merchants IDs (100-139): 'M-0107' is 107, 'M-0132' is 132, and the maximum 'M-0139' is 139. Stripping the 'M-' prefix before the cast is therefore unambiguous.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(regexp_replace(trim(merchant_id), '^M-', '') AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

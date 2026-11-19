@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 640
+ },
+ "seconds": 5.66,
+ "raw_response": "{\"diagnosis\":\"The raw delivery for 2026-01-18 (batch 14) is incomplete, not the silver logic. Batch 14 has only 145 rows, but its txn_id range 904615\u2013904974 spans about 360 ids, so roughly 215 rows are missing, scattered through the batch (for example 904616 and 904617 are absent). The silver filter and casts are fine, and the missing transactions can't be reconstructed from the pipeline, so they need to be re-delivered by the source.\",\"decision\":\"escalate\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{}}"
+}

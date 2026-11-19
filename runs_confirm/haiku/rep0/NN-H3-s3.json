@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 1243
+ },
+ "seconds": 6.17,
+ "raw_response": "{\"diagnosis\": \"The 36 suspicious 2026-01-19 rows all have timestamps between 00:00 and 06:00 and come from the batch 14 delivery, which includes the `v2` collector. The `v2` rows look timezone- or offset-shifted (for example, sample txn 904491 is at 12:11 on 01-18 while legacy rows cluster around 06:xx), but the offset and the correct txn_date cannot be determined from the evidence, so the source team must confirm the v2 timestamp semantics before any correction.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

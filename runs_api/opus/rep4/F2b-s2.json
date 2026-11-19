@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4057,
+  "output": 1841
+ },
+ "seconds": 18.13,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4946 rows but only 4802 distinct txn_ids, a contiguous range from 900001 to 904802. Every delivery batch carries a few more rows than its id range (e.g. batch 13 spans 377 ids in 384 rows), which looks like at-least-once redelivery of the same transactions; the evidence does not show whether the duplicate rows are identical, which is the main risk in this fix. The silver step does not deduplicate, so 138 POSTED txn_ids are counted more than once and every gold aggregate is inflated.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY ROW_NUMBER() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1\"}}"
+}

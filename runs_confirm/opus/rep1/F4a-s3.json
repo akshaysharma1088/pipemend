@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F4a-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4071,
+  "output": 984
+ },
+ "seconds": 8.34,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19, business date 2026-01-18) delivered customer_id without zero-padding (e.g. 'C52' instead of 'C00052'), so those rows fail the inner join to silver_customers and drop out of gold_region_daily. The 324 missing rows match the POSTED rows in that batch. Normalizing customer_id to the canonical 'C' + 5-digit format in silver restores the join and also keeps gold_customer_spend keyed consistently.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, CASE WHEN regexp_full_match(trim(customer_id), 'C[0-9]+') THEN 'C' || lpad(CAST(CAST(substr(trim(customer_id), 2) AS BIGINT) AS VARCHAR), 5, '0') ELSE customer_id END AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H2-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4207,
+  "output": 1430
+ },
+ "seconds": 5.69,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 27 txn_ids that appear twice, once as record_version 1 and once as a record_version 2 correction, which the 2026-01-18 payments-source note confirms. The silver step keeps every version and then filters on status, so both versions survive and the gold tables double-count those transactions. Keeping only the highest record_version per txn_id before applying the POSTED filter gives one correct row per transaction, including cases where the correction is REVERSED.\", \"decision\": \"fix\", \"confidence\": 0.82, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC) = 1) latest WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1391
+ },
+ "seconds": 6.37,
+ "raw_response": "{\"diagnosis\": \"The silver layer drops all REVERSED rows (202 of 4802, about 4%), and nothing in the evidence shows whether settlement nets reversals, excludes them, or whether reversals belong to earlier POSTED rows. Batch 13 (377 rows, above the usual ~340) is also unexplained. The correct treatment cannot be determined from the evidence, so this needs the source and finance teams to confirm the settlement definition and the batch 13 volume.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

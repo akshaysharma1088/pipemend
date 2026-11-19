@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H8-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4331,
+  "output": 1315
+ },
+ "seconds": 9.36,
+ "raw_response": "{\"diagnosis\":\"Batch 14 was re-delivered at 05:00 with 338 rows duplicating the 02:00 rows. The copies differ only in txn_ts (epoch milliseconds as text) and ingest_ts. The cast fails on the epoch strings. 1768716261000 equals 2026-01-18 06:04:21 UTC, which matches the original copy, so the fix is to parse both formats and keep one row per txn_id.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nWITH parsed AS (\\n  SELECT txn_id, customer_id, merchant_id, amount, status, ingest_ts,\\n         CASE WHEN regexp_matches(txn_ts, '^[0-9]{13}$') THEN epoch_ms(CAST(txn_ts AS BIGINT))\\n              ELSE CAST(txn_ts AS TIMESTAMP) END AS ts\\n  FROM raw_transactions\\n),\\ndedup AS (\\n  SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, ts) AS rn\\n  FROM parsed\\n)\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       CAST(ts AS TIMESTAMP) AS txn_ts,\\n       CAST(CAST(ts AS TIMESTAMP) AS DATE) AS txn_date\\nFROM dedup\\nWHERE rn = 1 AND status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 711
+ },
+ "seconds": 7.25,
+ "raw_response": "{\"diagnosis\":\"The 2026-01-18 amounts look skewed: batch 14 has whole-number values like 1715.0 next to normal cents values such as 14.09. This could be a unit or scale problem (cents instead of dollars) in a subset of rows, or genuine large transactions. Nothing in the evidence, such as a change note, a flag column, or a clean rule for picking out the affected rows, shows which one it is. Dividing by 100 on a guess could corrupt valid data.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

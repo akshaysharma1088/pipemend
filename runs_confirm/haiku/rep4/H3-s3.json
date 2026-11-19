@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H3-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4296,
+  "output": 2688
+ },
+ "seconds": 11.26,
+ "raw_response": "{\"diagnosis\": \"Batch 14 contains v2-collector rows whose txn_ts is UTC, while the pipeline treats all txn_ts as America/Chicago local time. Those rows are shifted forward 5-6 hours, so evening local transactions from 2026-01-18 get the next UTC date and appear as 00:00-06:00 on 2026-01-19. Converting v2 timestamps from UTC to America/Chicago in silver_transactions, before deriving txn_date, fixes the dates, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}"
+}

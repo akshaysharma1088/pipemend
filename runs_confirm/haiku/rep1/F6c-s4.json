@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 574
+ },
+ "seconds": 3.22,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains email addresses (e.g. user9942@examplemail.com) for some customers, which the silver step passes through via upper(region). The correct region for those customers cannot be recovered from the evidence, and the emails are personal data that should not flow into gold region aggregates, so this needs the source team and a privacy decision rather than a pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

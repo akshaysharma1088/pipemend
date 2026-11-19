@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H4-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 502
+ },
+ "seconds": 4.97,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers rows (60 of 200) carry numeric region codes ('01' to '04') instead of region names, so they pass through silver_customers unmapped and split gold_region_daily into bogus regions. raw_region_map is a complete one-to-one mapping for exactly these codes ('01'=WEST, '02'=EAST, '03'=NORTH, '04'=SOUTH), so the correct names can be derived.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = trim(m.region_code)\"}}"
+}

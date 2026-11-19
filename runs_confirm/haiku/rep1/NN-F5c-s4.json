@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s4",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4161,
+  "output": 1057
+ },
+ "seconds": 5.27,
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 contain only SETTLED and REVERSED rows (no POSTED), and silver_transactions filters on status = 'POSTED', so none of them reach silver. Whether SETTLED should count as posted (and whether earlier SETTLED/REVERSED rows were deliberately excluded) is an undocumented business rule, and no change note explains a status vocabulary shift, so the correct filter cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

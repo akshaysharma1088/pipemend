@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4141,
+  "output": 510
+ },
+ "seconds": 2.89,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers.region values contain customer email addresses (e.g. USER1692@EXAMPLEMAIL.COM) instead of region names, so the true region for those customers cannot be recovered from the evidence. Those emails may also be personal data appearing in an analytics field, which needs a source-team and privacy review rather than a silent pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

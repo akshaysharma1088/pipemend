@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 728
+ },
+ "seconds": 5.67,
+ "raw_response": "{\"diagnosis\":\"The only step that can drop rows is the `status = 'POSTED'` filter, which excludes 236 REVERSED rows (about 4.8%). The joins are lossless (all 200 customers and 40 merchants match, txn_id is unique) and the casts are safe. The evidence does not show whether the settlement file includes reversed transactions, or whether some rows are late-arriving or mis-statused. Changing the filter would be a guess about the business rule.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1771
+ },
+ "seconds": 12.64,
+ "raw_response": "{\"diagnosis\":\"Rows from the new 'v2' collector have timestamps about 6 hours later than 'legacy' rows. Legacy days start around 06:00 and v2 days around 12:00, and v2 rows reach 04:10 on 01-19, which is after the 02:00 ingest. The late-evening v2 rows therefore spill into the next calendar day, which causes the 00:00-06:00 alerts and the wrong txn_date. Shifting v2 timestamps back 6 hours corrects the silver and gold tables.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, adj_ts AS txn_ts, CAST(adj_ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS adj_ts FROM raw_transactions) r WHERE status = 'POSTED'\"}}"
+}

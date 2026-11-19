@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1477
+ },
+ "seconds": 6.96,
+ "raw_response": "{\"diagnosis\": \"silver_merchants has 46 rows but only 40 distinct merchant_id values, so the join in gold_mcc_daily fans out for the 6 duplicated merchants and inflates counts (5317 vs 4582 POSTED). The duplicate rows' mcc values are not shown, so it is unknown whether they agree; picking one could silently misclassify transactions, so the source team must confirm the correct merchant-to-MCC mapping.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

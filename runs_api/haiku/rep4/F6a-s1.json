@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 755
+ },
+ "seconds": 3.71,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19) holds only 151 rows for 2026-01-18, against roughly 330 per day in earlier batches, and txn_id gaps in the sample (904490, 904496, 904497) suggest the day's transactions were only partially delivered. The 147 POSTED rows are therefore probably incomplete source data, not a pipeline logic error, and the missing rows must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

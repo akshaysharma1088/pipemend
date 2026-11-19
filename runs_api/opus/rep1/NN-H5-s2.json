@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H5-s2",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4186,
+  "output": 1123
+ },
+ "seconds": 10.34,
+ "raw_response": "{\"diagnosis\": \"The source has begun sending reversals as separate rows (status 'REVERSAL', with orig_txn_id pointing at transactions in the recent batches 13-14) and leaves the original transaction as 'POSTED'. silver_transactions keeps every POSTED row, so reversed originals still count and gold totals for the latest business days are overstated. The fix excludes those originals, matching the existing convention that reversed transactions (status 'REVERSED') are dropped entirely.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id IS NOT NULL AND r.orig_txn_id = t.txn_id)\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4567,
+  "output": 2477
+ },
+ "seconds": 11.62,
+ "raw_response": "{\"diagnosis\": \"Batches 3-14 lost about 25% of rows at the `ingest_ts - txn_ts <= 26 HOUR` filter in silver_transactions. Sample rows show txn_ts about 3 days before ingest_ts (for example, batch 11 txns from 01-13 ingested 01-16), and the drop starts with batch 3, the first batch ingested after the 2026-01-08 Airflow upgrade. This points to either a platform change in ingest timestamping or real late-arriving data, and the evidence does not show which, or whether the 26-hour rule is still the intended business rule.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

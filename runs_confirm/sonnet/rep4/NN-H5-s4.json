@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4181,
+  "output": 1115
+ },
+ "seconds": 7.89,
+ "raw_response": "{\"diagnosis\": \"31 REVERSAL rows point to original transactions through orig_txn_id, and those originals are still marked POSTED. The silver filter only checks status = 'POSTED', so the reversed originals stay in gold and inflate recent totals. I could not see the reversal amounts or whether any are partial, so this is inferred from the schema and profile.\", \"decision\": \"fix\", \"confidence\": 0.68, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions rv WHERE rv.status = 'REVERSAL' AND rv.orig_txn_id = r.txn_id)\"}}"
+}

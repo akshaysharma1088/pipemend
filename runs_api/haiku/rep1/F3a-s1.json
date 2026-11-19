@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4273,
+  "output": 2821
+ },
+ "seconds": 10.92,
+ "raw_response": "{\"diagnosis\": \"Batch 14 rows are tagged source_tz='UTC', but their txn_ts values are stored in UTC, while all other batches are America/Chicago local time. The pipeline never converts them, so about 99 evening-Chicago transactions land on 2026-01-19 at 00:00-06:00 UTC. Converting UTC rows to America/Chicago in silver_transactions should move them to the correct business date and restore the local-time distribution.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH s AS (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN source_tz = 'UTC' THEN CAST(CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago' AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts_local FROM raw_transactions WHERE status = 'POSTED') SELECT txn_id, customer_id, merchant_id, amount, txn_ts_local AS txn_ts, CAST(txn_ts_local AS DATE) AS txn_date FROM s;\"}}"
+}

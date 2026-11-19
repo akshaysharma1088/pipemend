@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H2-s3",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4457,
+  "output": 1677
+ },
+ "seconds": 7.3,
+ "raw_response": "{\"diagnosis\": \"Raw `raw_transactions` holds 27 txn_ids delivered twice, with record_version 1 and 2 carrying different amounts. The silver step filters on status but never deduplicates, so both versions flow into silver and gold. Deduplicating to the latest record_version before the POSTED filter is the standard supersede rule; the 25 duplicate keys in silver (not 27) fit with a few superseded versions being REVERSED.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, batch_id DESC) = 1) latest WHERE status = 'POSTED';\"}}"
+}

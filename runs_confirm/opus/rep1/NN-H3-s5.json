@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H3-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 839
+ },
+ "seconds": 8.22,
+ "raw_response": "{\"diagnosis\": \"A new 'v2' collector began delivering rows around batch 13 without any change note, and its txn_ts values look shifted forward by several hours, likely UTC instead of local time. That pushes evening transactions into 00:00-06:00 and onto 2026-01-19, which explains the volume and time-distribution alerts. The exact offset, including any DST handling, and whether v2 has other semantic differences cannot be confirmed from the evidence. A guessed timezone correction could silently misdate transactions, so the source team needs to confirm v2's timestamp semantics.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

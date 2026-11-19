@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-H6-s5",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 298
+ },
+ "seconds": 3.83,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 21 txn_ids delivered twice in the same batch with the same ingest_ts. The copies differ only in amount (e.g. 904282 at 8.42 vs 8.75), and 17 of these keys reach silver as POSTED duplicates. The evidence gives no way to tell which amount is correct, so deduplicating would risk silently wrong totals; the source team needs to confirm or re-deliver the correct amounts.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

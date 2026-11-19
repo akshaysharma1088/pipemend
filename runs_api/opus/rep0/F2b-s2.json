@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4057,
+  "output": 1853
+ },
+ "seconds": 17.57,
+ "raw_response": "{\"diagnosis\": \"Each daily batch re-delivers some earlier transactions with the same txn_id. raw_transactions has 4946 rows but only 4802 distinct txn_ids, and those ids are dense from 900001 to 904802; the batch start ids also show overlap between batches. Because silver_transactions never deduplicates, the re-sent POSTED rows are double-counted in every gold table.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [\"CREATE OR REPLACE VIEW txn_latest AS SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC, txn_ts DESC) = 1\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM txn_latest WHERE status = 'POSTED'\"}}"
+}

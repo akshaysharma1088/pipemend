@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5d-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 930
+ },
+ "seconds": 8.47,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 13 sent merchant_id in a new 'M-0NNN' format (e.g. 'M-0139') instead of the plain integers used by every other batch, so the strict INTEGER cast fails. There are 80 distinct values against 40 merchants (100-139), and the samples (M-0139, M-0135, M-0123) are zero-padded versions of the same IDs, so stripping the 'M-' prefix recovers the correct key. This format change is undocumented and should be reported to the source team.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(regexp_replace(trim(merchant_id), '^M-', '') AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

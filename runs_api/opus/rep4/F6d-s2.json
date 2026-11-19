@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 270
+ },
+ "seconds": 2.61,
+ "raw_response": "{\"diagnosis\": \"merchant_id is NULL for every row in delivery batches 13 and 14 (377 + 326 = 703 raw nulls; 679 of them are POSTED). The source stopped populating merchant_id from 2026-01-18 onward, so those transactions drop out of the merchant join. The pipeline SQL is not at fault, and the missing merchant IDs cannot be derived from any other column, so the source team must re-deliver batches 13 and 14 with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 1395
+ },
+ "seconds": 11.17,
+ "raw_response": "{\"diagnosis\":\"Batch 13 has an extra partial re-delivery (max ingest_ts 22:00 vs the usual 02:00). It re-sent about 20 txn_ids, and the raw table has 4847 rows for 4827 distinct txn_ids. silver_transactions has no dedup, so 18 POSTED txn_ids appear twice. The fix keeps the latest delivered row per txn_id, then filters to POSTED.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       CAST(txn_ts AS TIMESTAMP) AS txn_ts,\\n       CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date\\nFROM (\\n  SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn\\n  FROM raw_transactions\\n) r\\nWHERE rn = 1 AND status = 'POSTED';\"}}"
+}

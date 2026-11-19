@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s3",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 1483
+ },
+ "seconds": 7.27,
+ "raw_response": "{\"diagnosis\": \"Gold totals are about 2% below the settlement file, but the evidence does not pin down the cause. Candidates include the status='POSTED' filter dropping 269 REVERSED rows (about 5.6% by count), and batch 14 (338 rows, ingested 2026-01-19 02:00) being outside the run's data cutoff. The correct business rule for reversals and the settlement reconciliation basis cannot be determined without the settlement file and the source team's definition, so this needs escalation.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

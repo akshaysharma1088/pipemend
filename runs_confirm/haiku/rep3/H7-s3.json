@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4125,
+  "output": 429
+ },
+ "seconds": 2.26,
+ "raw_response": "{\"diagnosis\": \"The payments-source change on 2026-01-17 made `amount` net of interchange fees, so recent batches are on a different basis than earlier ones, which explains the roughly 2% gap in recent days. Correcting this requires per-merchant-category fee rates that are published separately and are not in the evidence, and the pipeline has no way to tell which rows are net versus gross.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

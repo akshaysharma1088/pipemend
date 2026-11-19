@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H2-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4211,
+  "output": 961
+ },
+ "seconds": 4.65,
+ "raw_response": "{\"diagnosis\": \"The 26 record_version=2 rows are amendments that repeat an existing txn_id, but they cover 25 distinct txn_ids, so at least one txn_id has two version-2 rows with no way to tell which amount is correct from the evidence shown. Picking a winner (by batch, ingest_ts, or row order) could silently produce wrong amounts, so this needs the payments-source team to confirm the correct record.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

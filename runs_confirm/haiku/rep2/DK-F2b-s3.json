@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2b-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 1062
+ },
+ "seconds": 5.01,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions contains exact duplicate rows (same txn_id, identical in every column including batch_id and ingest_ts), and silver_transactions copies them through without deduplication. Since txn_id is otherwise a contiguous unique sequence (4827 distinct values across 900001\u2013904827), collapsing identical copies with SELECT DISTINCT restores one row per txn_id, and the gold tables rebuild correctly from silver.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 1327
+ },
+ "seconds": 6.5,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-17 DE-412 filter in silver_transactions drops rows whose ingest_ts minus txn_ts exceeds 26 hours. The sample rows show ingest lags of roughly 67 to 68 hours, so the filter removes a systematic share of each batch, and the batch-level losses match the RAW_TO_SILVER alerts. Whether these events are truly 'stale' and should be excluded is a business rule that the evidence does not settle, so the correct fix cannot be determined here.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

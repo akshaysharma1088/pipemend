@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2d-s4",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 933
+ },
+ "seconds": 4.19,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 6 merchant_ids that each appear twice with identical values, so the join in gold_mcc_daily to silver_merchants duplicates every transaction for those merchants (about 735 extra rows, 5317 vs 4582). Deduplicating silver_merchants to one row per identical merchant record removes the fan-out without changing any column or the meaning of the table.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

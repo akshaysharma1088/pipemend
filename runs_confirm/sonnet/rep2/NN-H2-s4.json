@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H2-s4",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4150,
+  "output": 748
+ },
+ "seconds": 5.13,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 27 txn_ids delivered twice: a record_version 1 row and a later record_version 2 correction (4841 rows vs 4814 distinct ids, and exactly 27 rows have version 2). silver_transactions keeps both. The fix keeps only the latest version per txn_id, and applies the POSTED filter after that, so a correction that reverses a transaction is excluded.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F3c-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4046,
+  "output": 612
+ },
+ "seconds": 5.34,
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts, the batch load time (next day at 02:00), instead of from txn_ts. As a result, all 4699 POSTED rows land one day late in txn_date, and the date-keyed gold tables are shifted. The raw data looks clean (txn_id is unique, there are no nulls and there is a single currency), so the fix is to derive txn_date from txn_ts.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

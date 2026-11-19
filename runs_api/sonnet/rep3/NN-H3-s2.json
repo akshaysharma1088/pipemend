@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s2",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 2991
+ },
+ "seconds": 25.55,
+ "raw_response": "{\"diagnosis\":\"Rows from the legacy collector have timestamps that cannot be right. Batch 14 was ingested at 2026-01-19 02:00 but contains txn_ts up to 01-19 04:49, so those rows are stamped after they were delivered. Each batch's legacy rows start at about 06:00, and the 00:00-06:00 rows are all on the following date. This looks like a collector timestamp or timezone defect. The offset cannot be determined from the evidence: removing a constant 6h would put many legacy rows at 00:00-06:00 true time, which is also outside opening hours. The change notes show no related change, and I can't tell whether v2 rows are affected. Any rewrite of txn_ts or txn_date would be a guess, so a human from the collector or source team needs to confirm the timestamp semantics.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

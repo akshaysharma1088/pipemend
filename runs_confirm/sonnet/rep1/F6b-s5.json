@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 511
+ },
+ "seconds": 4.54,
+ "raw_response": "{\"diagnosis\":\"The pipeline logic looks correct: it filters to POSTED, there are no duplicate txn_ids, and the currency is a single value. The mean/median gap on 2026-01-18 comes from a few very large amounts (max 11809). The evidence does not show whether these are a unit or scale error in the source or genuine large purchases, so I cannot determine a correct fix.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

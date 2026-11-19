@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4070,
+  "output": 961
+ },
+ "seconds": 4.98,
+ "raw_response": "{\"diagnosis\": \"gold_region_daily uses an inner join to silver_customers, and batch 14 contains malformed customer_ids such as 'C180', 'C3' and 'C94' that do not exist in raw_customers (format C00001-C00200). Those ~363 POSTED rows are silently dropped, which explains 4630 vs 4267. The correct mapping for these IDs (zero-padding or re-delivery from the source) is not determinable from the evidence, so this needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 1114
+ },
+ "seconds": 8.04,
+ "raw_response": "{\"diagnosis\":\"Batch 13 (ingested 2026-01-18) delivered txn_ts as DD/MM/YYYY HH:MM:SS (e.g. 17/01/2026 06:02:01) while all other batches use ISO format. Day 17 is above 12, so the format is unambiguous, and it matches the batch's expected transaction date of 2026-01-17. The fix is to parse both formats in silver_transactions.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nWITH p AS (\\n  SELECT *,\\n    CASE WHEN regexp_matches(txn_ts, '^\\\\d{2}/\\\\d{2}/\\\\d{4} ') THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S')\\n         ELSE CAST(txn_ts AS TIMESTAMP) END AS ts_parsed\\n  FROM raw_transactions\\n  WHERE status = 'POSTED'\\n)\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       ts_parsed AS txn_ts,\\n       CAST(ts_parsed AS DATE) AS txn_date\\nFROM p;\"}}"
+}

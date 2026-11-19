@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4085,
+  "output": 1341
+ },
+ "seconds": 6.04,
+ "raw_response": "{\"diagnosis\": \"The DE-398 refactor on 2026-01-16 changed silver_transactions.txn_date to CAST(ingest_ts AS DATE). Every POSTED row has ingest_ts at 02:00 the day after txn_ts, so all 4699 rows get a date one day late, which matches the 4699 DATE_CONSISTENCY alerts. Re-deriving txn_date from txn_ts restores the monitored contract and corrects the gold daily aggregates, which rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.65, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

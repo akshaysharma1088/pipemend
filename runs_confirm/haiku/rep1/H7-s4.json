@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 356
+ },
+ "seconds": 1.85,
+ "raw_response": "{\"diagnosis\": \"The change note says payments-source began reporting `amount` net of interchange fees on 2026-01-18, with fee rates that vary by merchant category and are published separately. The correct gross amounts cannot be reconstructed from the evidence: the fee rates are not provided, and the cutover batch is unclear. The pipeline logic itself appears to be working as written.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

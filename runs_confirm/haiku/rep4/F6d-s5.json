@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 665
+ },
+ "seconds": 3.33,
+ "raw_response": "{\"diagnosis\": \"The 671 NULL merchant_id rows are POSTED transactions from delivery batches 13 and 14 (2026-01-17 onward), where the source stopped populating merchant_id. The gold_mcc_daily count gap (4699 - 671 = 4028) is the inner join to silver_merchants silently dropping those rows. The correct merchant attribution cannot be inferred from the evidence, so the source must re-deliver or backfill merchant_id.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

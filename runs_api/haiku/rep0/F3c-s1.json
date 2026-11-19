@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4086,
+  "output": 862
+ },
+ "seconds": 4.16,
+ "raw_response": "{\"diagnosis\": \"Every POSTED row has txn_date derived from ingest_ts (the 2026-01-16 DE-398 refactor), so txn_date is one day after txn_ts's date for all 4630 rows, which matches the monitor count. Whether txn_date should be the transaction date or the ingest/posting date is a deliberate business-rule choice that the evidence does not settle, and changing it rewrites every gold table's date keys.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

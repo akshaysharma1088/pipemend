@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4b-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 740
+ },
+ "seconds": 5.61,
+ "raw_response": "{\"diagnosis\":\"raw_transactions.customer_id has mixed case: 361 distinct values against 200 customers, with lowercase ids such as 'c00138' in recent batches. The case-sensitive join to silver_customers drops those rows, 318 in total, which matches the gap of 4582 vs 4264. Normalizing customer_id in silver_transactions fixes the join and also merges customer_spend groups that were split by case.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

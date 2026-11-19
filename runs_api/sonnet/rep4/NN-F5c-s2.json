@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s2",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4167,
+  "output": 1065
+ },
+ "seconds": 8.24,
+ "raw_response": "{\"diagnosis\": \"From batch 12 onward the source delivers status 'SETTLED' where it previously delivered 'POSTED', so the filter status = 'POSTED' drops every row from batches 12-14. The counts fit a rename: those batches hold 1042 rows, of which 1002 are SETTLED and about 40 REVERSED (about 3.8%, against about 4.3% in batches 1-11). All txn_ids are distinct, so SETTLED rows are new transactions rather than re-deliveries of ones already POSTED. I am including SETTLED in the filter and still excluding REVERSED.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED')\"}}"
+}

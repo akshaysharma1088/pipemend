@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F4c-s3",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4475,
+  "output": 915
+ },
+ "seconds": 4.41,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 table with 30 customer_ids holding two rows each (an is_current=False historical row and an is_current=True row), and silver_customers keeps both, so the join in gold_region_daily fans out transactions for those customers. Filtering to is_current gives exactly one row per customer (200 current rows for 200 distinct customers), which removes the fan-out and makes the region join match silver_transactions row-for-row, since all transactions are dated 2026 and belong to the current region.\", \"decision\": \"fix\", \"confidence\": 0.87, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

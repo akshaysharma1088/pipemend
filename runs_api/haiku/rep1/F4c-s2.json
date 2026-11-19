@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 1099
+ },
+ "seconds": 5.24,
+ "raw_response": "{\"diagnosis\": \"raw_customers is a type-2 SCD table with 230 rows for 200 customers: each of the 30 customers has an expired row (is_current=False, valid_from 2023-06-01) alongside a current row (is_current=True, valid_from 2025-01-01). The unfiltered join in gold_region_daily therefore duplicates transactions for those customers, inflating the count from 4600 to 5286. Restricting silver_customers to is_current rows gives one row per customer and matches the Jan 2026 transactions, which all postdate the current versions.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

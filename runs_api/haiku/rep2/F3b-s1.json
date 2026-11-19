@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4610,
+  "output": 1367
+ },
+ "seconds": 6.66,
+ "raw_response": "{\"diagnosis\": \"The DE-412 filter `ingest_ts - txn_ts <= 26 HOUR` drops about 25% of each recent batch, because each batch's transactions arrive roughly 2.5 to 3 days after their txn_ts (e.g. batch 11 txns from 01-13 ingested 01-16). Whether these late events are truly stale and should be excluded, or whether the 26-hour threshold is wrong for this source, is a business-rule decision the evidence cannot settle, so the pipeline should not be changed without the source and data-eng owners confirming it.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

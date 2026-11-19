@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2d-s5",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 499
+ },
+ "seconds": 7.72,
+ "raw_response": "The raw_merchants table holds 46 rows for 40 distinct merchant_ids. Six ids appear twice, and the copies are identical in every column. The join in gold_mcc_daily therefore fans out and inflates the count (5416 vs 4699). Deduplicating silver_merchants fixes it with no ambiguity, because the copies are exact duplicates.\n\nA check on the numbers: 5416 \u2212 4699 = 717 extra rows, which is plausible for 6 duplicated merchants out of 40.\n\nThe fix is to use SELECT DISTINCT in silver_merchants, which keeps the same columns. Other tables are unaffected. gold_merchant_daily does not join merchants, so it is fine.\n\nThe reconciliation also assumes silver_transactions (POSTED only) is the intended base. The REVERSED rows are excluded by design and the alert compares against silver, so no change is needed there.\n\n```json\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as exact identical rows, so the join in gold_mcc_daily fans out and inflates counts. Deduplicating silver_merchants fixes it.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}\n```"
+}

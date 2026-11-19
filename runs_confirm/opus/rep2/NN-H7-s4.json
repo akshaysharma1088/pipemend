@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s4",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 476
+ },
+ "seconds": 5.34,
+ "raw_response": "{\"diagnosis\": \"The profiles show no pipeline defect that would explain gold totals being about 2% below settlement on recent days: txn_ids are unique, there is one currency, every customer and merchant joins, and batches arrive daily with steady row counts. The gap more likely comes from upstream, such as late or missing transactions or reversals the settlement file treats differently, and neither the cause nor the correct business rule can be determined from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 1166
+ },
+ "seconds": 5.46,
+ "raw_response": "{\"diagnosis\": \"silver_customers passes raw_customers.region through unmapped, so 200 customers carry numeric codes '01'-'04' (about 60 rows) instead of region names. raw_region_map gives the authoritative code-to-name mapping (01 WEST, 02 EAST, 03 NORTH, 04 SOUTH), so silver_customers should translate codes through it, which also corrects gold_region_daily.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

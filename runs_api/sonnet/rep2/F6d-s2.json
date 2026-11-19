@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 463
+ },
+ "seconds": 4.11,
+ "raw_response": "The merchant_id values are NULL in the raw data, starting at batch 13 (703 NULLs in total, 679 of them on POSTED rows). Batches 11 and 12 look normal, and the batch 13 and 14 samples show only None. The source stopped sending merchant_id, so the pipeline did not introduce the NULLs.\n\nI cannot recover the merchant for these rows from anything shown. The only candidate would be inferring it from customer or amount, which would be a guess. The correct move is to have the source re-deliver the data, so this needs escalation.\n\nThe reconciliation gap is the same problem. The inner join to merchants drops the NULL-merchant rows, so 4600 \u2212 679 = 3921, which matches the gold count.\n\nA fix that filtered out or relabeled these rows would hide the problem. It would also leave the gold tables wrong, since gold_merchant_daily and gold_mcc_daily would still be missing the merchant attribution.\n\n{\"diagnosis\": \"Source stopped populating merchant_id starting with batch 13 (2026-01-17 onward), so 679 POSTED rows have NULL merchant_id; the inner join to merchants then drops them (4600-679=3921). The missing merchant data cannot be derived from the evidence and needs re-delivery from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

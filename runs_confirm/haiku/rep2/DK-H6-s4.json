@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H6-s4",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 381
+ },
+ "seconds": 2.01,
+ "raw_response": "{\"diagnosis\": \"The duplicates originate in raw_transactions, where 21 txn_ids appear twice within the same batch (12) and ingest_ts, differing only in amount. Which amount is correct cannot be determined from the evidence, and the count differs from the 19 flagged in silver, so the source team needs to confirm the correct values before any dedupe rule is applied.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

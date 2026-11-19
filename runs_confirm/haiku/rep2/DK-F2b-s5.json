@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2b-s5",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4340,
+  "output": 1296
+ },
+ "seconds": 5.79,
+ "raw_response": "{\"diagnosis\": \"The duplicate txn_id rows are exact copies in every column, including batch_id and ingest_ts, so they come from a duplicate load in the raw feed rather than distinct transactions. silver_transactions copies them through unchanged, and the gold tables inherit the double counting. Deduplicating the projected columns in silver_transactions removes the duplicates and leaves the gold steps unchanged.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT DISTINCT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

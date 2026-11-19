@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 1115
+ },
+ "seconds": 11.54,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_id values, so the merchant dimension contains duplicate keys. The join in gold_mcc_daily fans out and inflates counts by 717 rows (roughly 6 merchants duplicated once each). The evidence does not show whether the duplicate rows carry conflicting mcc values. I am assuming they are exact duplicates, so the fix deduplicates on (merchant_id, mcc). If the reconciliation alert persists after this change, the duplicates conflict and the incident should go to the source team.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

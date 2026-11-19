@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4125,
+  "output": 471
+ },
+ "seconds": 2.46,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-17 payments-source change made `amount` net of interchange fees, and those fee rates vary by merchant category and are published separately, so the gold totals are understated for the affected batches. The correct gross amounts cannot be reconstructed from the evidence, and the mapping from the change note to specific batches is unclear.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

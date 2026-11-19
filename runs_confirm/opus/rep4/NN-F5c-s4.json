@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F5c-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4161,
+  "output": 1154
+ },
+ "seconds": 11.01,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source stopped sending status 'POSTED' and now sends 'SETTLED' instead, while 'REVERSED' still appears. The silver filter `status = 'POSTED'` therefore drops every non-reversed transaction from batches 12-14. The counts support a straight rename: SETTLED (986) fits entirely within batches 12-14, the implied reversal rate there (~4.5%) matches batches 1-11 (~4.9%), and txn_ids are unique, so nothing is double-counted.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED');\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1a-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4075,
+  "output": 1117
+ },
+ "seconds": 4.61,
+ "raw_response": "{\"diagnosis\": \"The raw source column is `txn_amount`, but `silver_transactions` selects `amount` from `raw_transactions`, which does not exist there, so the binder fails. The intended logic is to cast `txn_amount` to DECIMAL(12,2) and alias it as `amount`, which matches the profiles (DOUBLE values between 2.03 and 468.72, no nulls, no duplicate txn_ids) and leaves the downstream gold steps' inputs unchanged.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(txn_amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

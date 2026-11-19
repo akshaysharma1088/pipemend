@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 650
+ },
+ "seconds": 5.64,
+ "raw_response": "{\"diagnosis\":\"Batch 14, the only batch holding 2026-01-18 transactions, has 130 rows, but its txn_id range (904477..904801) spans 325 ids. About 195 ids are missing, and the 195 REVERSED rows in raw are all present, so the filter is not the cause. Earlier batches have contiguous ids, so batch 14 looks truncated at the source. The missing rows are not in raw, so no SQL change can recover them and the source team must re-deliver the batch.\",\"decision\":\"escalate\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{}}"
+}

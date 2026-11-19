@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4038,
+  "output": 2877
+ },
+ "seconds": 12.03,
+ "raw_response": "{\"diagnosis\": \"Batch 14 contains a re-delivery of existing transactions, with 378 txn_ids appearing twice. The re-delivered copies store txn_ts as epoch milliseconds (1768716186000 decodes to 2026-01-18 06:03:06, matching the original row), which breaks the TIMESTAMP cast, and the duplicates would double-count gold totals if the cast were fixed alone. The fix is to parse epoch-millis timestamps and keep one row per txn_id, preferring the earliest ingest.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_full_match(txn_ts, '[0-9]+') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}"
+}

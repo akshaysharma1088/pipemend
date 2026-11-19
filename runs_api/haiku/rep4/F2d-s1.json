@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2d-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4077,
+  "output": 1696
+ },
+ "seconds": 8.1,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_ids, and silver_merchants copies them unchanged, so the USING join in gold_mcc_daily fans out each duplicated merchant's transactions (about 724 extra rows). The evidence does not show whether the duplicate merchant rows carry the same mcc or conflicting ones, and choosing one mcc arbitrarily would silently corrupt gold_mcc_daily, so the source team needs to confirm the correct merchant-to-mcc mapping.\", \"decision\": \"escalate\", \"confidence\": 0.5, \"pre_sql\": [], \"step_overrides\": {}}"
+}

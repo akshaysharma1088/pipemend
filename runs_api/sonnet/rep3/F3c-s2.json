@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4089,
+  "output": 714
+ },
+ "seconds": 5.29,
+ "raw_response": "The deployed silver_transactions derives txn_date from ingest_ts, which is the next day's 02:00 delivery time, not the transaction date. The 2026-01-16 refactor (DE-398) most likely introduced this. The monitor expects txn_date to equal the date of txn_ts.\n\nEvidence that the fix is safe:\n- Every sampled batch has txn_ts one day before ingest_ts, so ingest_ts is consistently off by one day.\n- The 4600 mismatched rows equal the 4600 POSTED rows, so every row is affected.\n- txn_ts is non-null, so the date can be derived directly from it.\n\nThe fix is to derive txn_date as CAST(txn_ts AS DATE). The gold tables depend on silver_transactions, so they will be correct once silver is rebuilt and need no changes.\n\nA possible complication is that the raw txn_ts range starts on 2026-01-05, while the first ingest is on 01-06. That is consistent with a one-day lag, so it does not change the fix.\n\nThe other columns stay as they are. customer_id is unchanged and region is already uppercased.\n\n{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (delivery time, one day after the transaction) instead of txn_ts, probably from the DE-398 refactor; all 4600 POSTED rows mismatch. Deriving txn_date from txn_ts fixes silver and the downstream gold tables.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

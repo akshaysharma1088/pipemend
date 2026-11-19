@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1085
+ },
+ "seconds": 5.21,
+ "raw_response": "{\"diagnosis\": \"silver_customers is built from all of raw_customers, which holds 230 SCD2 rows for 200 customers. The 30 superseded rows (is_current=False, valid_from 2023-06-01) duplicate those customers, so the join in gold_region_daily fans out transactions (4699 becomes 5415). Filtering to the current version (is_current) gives one row per customer, which matches the 2026 transaction dates.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

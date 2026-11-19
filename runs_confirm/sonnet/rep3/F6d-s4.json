@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4101,
+  "output": 352
+ },
+ "seconds": 2.86,
+ "raw_response": "{\"diagnosis\": \"All 333 NULL merchant_id values in raw_transactions appear to be in batch 14, the 2026-01-18 delivery. The sample rows show NULLs from the first row on, and the batch has 333 rows. Of these, 318 are POSTED and reach silver. The inner join to merchants drops them, so gold_mcc_daily counts 4264 against 4582 in silver. Nothing in the evidence lets us recover the merchant for these rows, so the batch needs to be re-delivered with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

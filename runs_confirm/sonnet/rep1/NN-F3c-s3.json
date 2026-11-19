@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3c-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4048,
+  "output": 571
+ },
+ "seconds": 3.81,
+ "raw_response": "The bug is in silver_transactions, where txn_date is derived from ingest_ts instead of txn_ts. Ingest happens at 02:00 the day after the transactions, so every row is shifted by one day. The 4558 alerts match the 4558 POSTED rows exactly.\n\nThe correct rule is that txn_date is the date of txn_ts, and the monitor itself defines consistency that way. Every sample row has txn_ts on the day before ingest_ts, which fits the shift. Nothing else in the pipeline needs to change, because the gold tables all derive from silver txn_date.\n\nOther points I checked:\n- Filtering to POSTED looks intentional, so I left it alone.\n- txn_ts is already a TIMESTAMP, so the cast is harmless.\n\nThe fix is to derive txn_date from txn_ts.\n\n{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (02:00 the next day) rather than from txn_ts, shifting every POSTED row by one day; the gold tables inherit the wrong dates.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5a-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4196,
+  "output": 737
+ },
+ "seconds": 6.22,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (ingested 2026-01-17, covering txn_date 2026-01-16) delivered all 345 amounts in cents, flagged by amount_unit='USD_CENTS' (e.g. 7513.0 means $75.13). silver_transactions ignores amount_unit, so 2026-01-16 amounts are inflated 100x; the anomalous mean of 3770.88 becomes about 37.7 after dividing by 100, which fits the 43.05 median.\", \"decision\": \"fix\", \"confidence\": 0.86, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN amount_unit = 'USD_CENTS' THEN round(amount / 100.0, 2) ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

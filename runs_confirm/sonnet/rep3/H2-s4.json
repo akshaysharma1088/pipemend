@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H2-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4207,
+  "output": 804
+ },
+ "seconds": 6.05,
+ "raw_response": "{\"diagnosis\":\"Since 2026-01-18 the source sends amount corrections in the daily delivery as a repeated txn_id with record_version=2. Both versions pass the POSTED filter, so silver has 27 duplicate txn_ids and the gold tables double-count them. Silver should keep only the latest version of each txn_id.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) = 1) r WHERE status = 'POSTED'\"}}"
+}

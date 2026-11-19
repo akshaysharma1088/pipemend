@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F1d-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 584
+ },
+ "seconds": 4.63,
+ "raw_response": "{\"diagnosis\":\"Batch 12 arrived with lowercase status values ('posted' 334 rows, 'reversed' 15 rows, 349 in total). The filter status = 'POSTED' is case-sensitive, so every row in that batch was dropped from silver. Matching status case-insensitively recovers the 334 posted rows and still excludes the reversed ones.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       CAST(txn_ts AS TIMESTAMP) AS txn_ts,\\n       CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date\\nFROM raw_transactions\\nWHERE upper(trim(status)) = 'POSTED'\"}}"
+}

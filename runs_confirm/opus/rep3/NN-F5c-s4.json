@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-F5c-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4161,
+  "output": 738
+ },
+ "seconds": 7.36,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source stopped sending status 'POSTED' and now sends 'SETTLED' (986 rows, all in batches 12\u201314) alongside 'REVERSED'. The silver filter `status = 'POSTED'` therefore drops every row from those batches. No change note documents this vocabulary change, and in card processing 'SETTLED' and 'POSTED' are distinct lifecycle states, so treating them as equivalent is a business-rule decision the source team must confirm.\", \"decision\": \"escalate\", \"confidence\": 0.62, \"pre_sql\": [], \"step_overrides\": {}}"
+}

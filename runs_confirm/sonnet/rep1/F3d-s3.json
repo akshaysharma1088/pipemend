@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4110,
+  "output": 1029
+ },
+ "seconds": 14.46,
+ "raw_response": "{\"diagnosis\":\"Batch 12 (ingested 2026-01-17) delivered txn_ts as DD/MM/YYYY HH:MM:SS, for example '16/01/2026 06:03:23', while all other batches use ISO format. Day 16 cannot be a month, so the format is unambiguously day-first and matches the batch's ingest date. The silver cast fails on these rows; parsing both formats fixes it.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT *, COALESCE(try_strptime(txn_ts, '%Y-%m-%d %H:%M:%S'), try_strptime(txn_ts, '%d/%m/%Y %H:%M:%S'), TRY_CAST(txn_ts AS TIMESTAMP)) AS ts_parsed FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(ts_parsed AS TIMESTAMP) AS txn_ts, CAST(CAST(ts_parsed AS TIMESTAMP) AS DATE) AS txn_date FROM parsed\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F2d-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4249,
+  "output": 468
+ },
+ "seconds": 4.44,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 46 rows but only 40 distinct merchant_ids: 6 merchants appear twice as exact duplicate rows. The join in gold_mcc_daily therefore counts those merchants' transactions twice (5256 vs 4558). Because the copies are identical in every column, removing duplicates in silver_merchants is safe and gives the correct data.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

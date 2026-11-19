@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H6-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4113,
+  "output": 187
+ },
+ "seconds": 2.14,
+ "raw_response": "{\"diagnosis\": \"Per PAY-77, part of the latest delivery was sent twice during an amount recalculation, which produced 22 duplicate txn_ids (4849 rows vs 4827 distinct). The source team has said it does not yet know which copy carries the final amount. Choosing a copy by ingest_ts or batch_id cannot be shown to pick the correct amount, so the pipeline cannot be fixed safely without input from the source.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

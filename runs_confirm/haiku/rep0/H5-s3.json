@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H5-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 2546
+ },
+ "seconds": 11.46,
+ "raw_response": "{\"diagnosis\": \"Since the 2026-01-18 change, reversals arrive as separate REVERSAL rows and the original POSTED rows are never updated. The silver filter keeps the originals and drops the REVERSAL rows, so reversed amounts are never netted out and gold totals are overstated, most visibly for recent dates. The fix is to exclude originals that have a REVERSAL record, matching how the older REVERSED-status originals are already excluded; the subquery filters NULL orig_txn_id so NOT IN does not return empty.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id IS NOT NULL AND r.orig_txn_id = raw_transactions.txn_id);\"}}"
+}

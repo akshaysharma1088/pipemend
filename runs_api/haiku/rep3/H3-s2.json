@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H3-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4413,
+  "output": 3724
+ },
+ "seconds": 15.59,
+ "raw_response": "{\"diagnosis\": \"The v2 collector emits txn_ts in UTC while legacy emits America/Chicago local time, and silver_transactions uses txn_ts unchanged. v2 rows are therefore shifted forward about 6 hours, which pushes evening local activity into 00:00-06:00 of the next calendar day and creates the phantom 2026-01-19 volume and off-hours timestamps. Converting v2 timestamps from UTC to America/Chicago local time in silver, before deriving txn_date, makes both collectors share one convention.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM raw_transactions WHERE status = 'POSTED') t;\"}}"
+}

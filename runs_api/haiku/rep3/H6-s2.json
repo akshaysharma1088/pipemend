@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4115,
+  "output": 466
+ },
+ "seconds": 2.77,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 20 duplicated txn_id values (4822 rows, 4802 distinct), most likely from the PAY-77 re-send of part of the latest delivery, where the two copies may carry different recalculated amounts. The evidence does not show which copy holds the final amount, so any dedupe rule would be a guess that could silently corrupt amounts in silver and gold.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

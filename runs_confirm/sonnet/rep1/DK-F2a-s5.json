@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2a-s5",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4386,
+  "output": 709
+ },
+ "seconds": 5.26,
+ "raw_response": "{\"diagnosis\":\"Batch 13 was delivered twice (02:00 and 05:00 ingest_ts), so raw_transactions has 349 txn_ids that are identical except for ingest_ts. silver_transactions has no dedup step, so the duplicates inflate silver and all the gold tables. Deduplicating by txn_id in silver fixes this, because the copies carry the same data.\",\"decision\":\"fix\",\"confidence\":0.95,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1;\"}}"
+}

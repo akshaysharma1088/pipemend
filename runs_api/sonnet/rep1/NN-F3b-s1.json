@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s1",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4573,
+  "output": 1371
+ },
+ "seconds": 10.48,
+ "raw_response": "{\"diagnosis\": \"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR` silently drops late-arriving transactions. In each batch from 3 onward, about 20% of rows have txn_ts roughly 3 days before ingest_ts, and those rows are lost. txn_id is unique across all raw rows, so these are genuine transactions with no duplicates, and nothing documents a rule to discard late data. Removing the lag filter and keeping only the POSTED filter restores them.\", \"decision\": \"fix\", \"confidence\": 0.75, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

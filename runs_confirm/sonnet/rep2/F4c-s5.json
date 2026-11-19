@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 685
+ },
+ "seconds": 5.31,
+ "raw_response": "The raw_customers table is an SCD2-style dimension. It has 230 rows for 200 distinct customers: 200 current rows (is_current = True, valid_from 2025-01-01) and 30 historical rows (is_current = False, valid_from 2023-06-01). The join in silver_customers therefore duplicates 30 customers' transactions.\n\nThe numbers fit this. The gold count of 5415 is 716 more than the silver count of 4699, which is what you would expect if the transactions of those 30 customers are counted twice.\n\nThe fix is to keep only current rows in silver_customers. Each customer has exactly one current row (200 distinct IDs, 200 current rows), so the dimension is unique per customer after filtering.\n\nThe transaction dates run from 2026-01-05 to 2026-01-18, and the historical rows start in 2023 while the current rows start 2025-01-01. All transactions fall after the current rows' valid_from, so the current row applies to all of them. No valid_to column is shown, and the historical rows appear to have been superseded before 2025-01-01. Filtering on is_current is therefore correct.\n\nRaw has 276 REVERSED rows, which the existing filter on POSTED already excludes. That is intentional and I am leaving it unchanged.\n\nRegion mapping: for each customer, the current row gives the region. I can't tell whether the old rows have different regions, but it doesn't matter because only the current row is used.\n\nI'm keeping the output columns unchanged.\n\n{\"diagnosis\": \"raw_customers is an SCD2 dimension with 230 rows for 200 customers (30 non-current historical rows), so the join in gold_region_daily fans out and double counts those customers' transactions. Filtering silver_customers to is_current = True gives one row per customer.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}"
+}

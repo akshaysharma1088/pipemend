@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4065,
+  "output": 689
+ },
+ "seconds": 6.69,
+ "raw_response": "{\"diagnosis\":\"The mean/median skew on 2026-01-18 comes from large, whole-number amounts in batch 14, such as 1715.0 (max 7428.0). They may be cents-scaled values or genuine outliers. Nothing in the evidence identifies which rows are affected or confirms a unit change, and there are no change notes. Duplicates, status filtering and joins do not explain it.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

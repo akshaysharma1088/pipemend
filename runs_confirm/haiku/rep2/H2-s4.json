@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H2-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4207,
+  "output": 1418
+ },
+ "seconds": 5.89,
+ "raw_response": "{\"diagnosis\": \"The 27 duplicate txn_ids are amended records: each has a record_version 2 row alongside its record_version 1 original, matching the 2026-01-18 payments-source note that corrections repeat the txn_id with an incremented record_version. The fix is to keep only the latest version of each txn_id before applying the POSTED filter, so a v2 that changes status is handled correctly.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC) = 1) latest WHERE status = 'POSTED';\"}}"
+}

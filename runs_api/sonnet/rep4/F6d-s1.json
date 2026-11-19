@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 547
+ },
+ "seconds": 5.17,
+ "raw_response": "Raw merchant_id has 378 NULLs in total, and batch 14 has exactly 378 rows. The sample rows from batch 14 all show merchant_id as None, so the NULLs appear to come from batch 14 alone. Of those 378 rows, 363 are POSTED, which matches the silver NULL count. The other 15 are presumably REVERSED.\n\nThe upstream feed for batch 14 lost merchant_id, and nothing in the evidence lets us recover it. The merchant is not derivable from customer_id, amount, or any other column. Batch 14 also covers 2026-01-18, the business date being processed.\n\nOptions such as filtering out the NULL rows or imputing a merchant would silently corrupt the data. A fix would have to either drop transactions or invent merchants, and both change the meaning of the tables. The right action is to escalate to the source team for a re-delivery of batch 14 with merchant_id populated.\n\nThe reconciliation gap is 4630 \u2212 4267 = 363, which equals the NULL count, so the inner join drops only the NULL-merchant rows. There is no other cause to fix.\n\n```json\n{\"diagnosis\": \"All 378 NULL merchant_id values in raw_transactions come from batch 14 (the 2026-01-18 delivery); 363 of them are POSTED, matching the silver NULL count and the 363-row gap in gold_mcc_daily, which the inner join to merchants drops. The merchant cannot be derived from other columns, so the batch needs to be re-delivered with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}\n```"
+}

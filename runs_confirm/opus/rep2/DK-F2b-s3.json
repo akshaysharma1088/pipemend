@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F2b-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 661
+ },
+ "seconds": 6.55,
+ "raw_response": "{\"diagnosis\": \"raw_transactions holds 145 txn_ids that each appear twice, and the two copies match in every column, including batch_id and ingest_ts. These are exact duplicate rows from delivery, and they pass straight through to silver_transactions (137 of them are POSTED) and then into all gold aggregates. Exact duplicates can be removed safely with DISTINCT over the full raw row before filtering and casting.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT DISTINCT * FROM raw_transactions) r WHERE status = 'POSTED';\"}}"
+}

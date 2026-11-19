@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H8-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4038,
+  "output": 1479
+ },
+ "seconds": 10.03,
+ "raw_response": "{\"diagnosis\":\"Batch 14 was delivered twice. The 05:00 re-delivery repeats 378 rows, and its txn_ts is in epoch milliseconds rather than a datetime string, which breaks the cast. txn_ids are contiguous (4866 distinct across 5244 rows), so the extra rows are exact duplicates. For example, 1768716186000 ms is 2026-01-18 06:03:06 UTC, the same as the original row. The fix parses both timestamp formats and keeps one row per txn_id, preferring the earliest ingest.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT txn_id, customer_id, merchant_id, amount, status, ingest_ts, CASE WHEN txn_ts ~ '^[0-9]{13}$' THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions), dedup AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts ASC) AS rn FROM parsed) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM dedup WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

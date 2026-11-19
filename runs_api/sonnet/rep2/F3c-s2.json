@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4089,
+  "output": 679
+ },
+ "seconds": 5.45,
+ "raw_response": "The root cause is the 2026-01-16 refactor (DE-398), which changed txn_date to CAST(ingest_ts AS DATE). Ingest happens at 02:00 the day after the transaction, so txn_date is shifted one day later than the date of txn_ts.\n\nThe alert counts 4600 rows, which is every POSTED row, so the mismatch is universal. The sample rows confirm it: txn_ts 2026-01-15 with ingest_ts 2026-01-16. The correct derivation is CAST(txn_ts AS DATE), which matches the monitor's own definition of consistency.\n\nThe evidence is also enough to say this is the right business rule. The monitor checks that txn_date equals the date of txn_ts, and the original pipeline presumably used txn_ts.\n\nI checked a few other things:\n- The raw data has no duplicate txn_ids (4802 distinct).\n- Customer and merchant keys are clean.\n- The join to silver_customers does not fan out.\n\nOnly silver_transactions needs replacing. The gold tables rebuild from it.\n\n{\"diagnosis\": \"DE-398 changed silver_transactions.txn_date to CAST(ingest_ts AS DATE); ingestion runs at 02:00 the next day, so every txn_date is shifted one day late relative to txn_ts. Restore txn_date = CAST(txn_ts AS DATE).\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

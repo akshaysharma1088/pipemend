@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 949
+ },
+ "seconds": 5.14,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 13 (ingest 2026-01-18), raw_transactions.merchant_id carries values in an 'M-0113' format alongside the numeric '100'-'139' IDs in raw_merchants, which breaks the CAST to INTEGER. The 'M-0113' to 113 mapping is plausible but unconfirmed, no change note documents a format change, and guessing it would silently misattribute merchant spend, so the source team must confirm the ID mapping.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

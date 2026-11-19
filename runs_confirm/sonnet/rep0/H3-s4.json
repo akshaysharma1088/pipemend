@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H3-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4407,
+  "output": 1159
+ },
+ "seconds": 8.72,
+ "raw_response": "{\"diagnosis\":\"Since 2026-01-15 the v2 collector emits txn_ts in UTC, while legacy emits America/Chicago local time. silver_transactions mixes the two, so v2 rows land 6 hours late (hence the 00:00-06:00 timestamps and some rows spilling into the next txn_date, such as 2026-01-19). Converting v2 rows to Chicago local time (UTC-6, all dates fall in CST) restores one consistent basis.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       adj_ts AS txn_ts,\\n       CAST(adj_ts AS DATE) AS txn_date\\nFROM (\\n  SELECT *,\\n         CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR\\n              ELSE CAST(txn_ts AS TIMESTAMP) END AS adj_ts\\n  FROM raw_transactions\\n) r\\nWHERE status = 'POSTED';\"}}"
+}

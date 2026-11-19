@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s1",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1768
+ },
+ "seconds": 12.63,
+ "raw_response": "{\"diagnosis\":\"Since batch 13 the new 'v2' collector writes txn_ts exactly 6 hours later than the true time. In the samples, v2 rows have txn_ids that fall between legacy rows 6 hours earlier (for example 12:04:07 sits next to legacy rows at about 06:04). The late-evening v2 rows therefore spill into 00:00-06:00 of the next day, which explains the 33-row 2026-01-19 and the 39 off-hours rows on 2026-01-18. Fix: shift v2 timestamps back 6 hours in silver_transactions, and the gold tables rebuild from it.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) - (CASE WHEN collector = 'v2' THEN INTERVAL 6 HOUR ELSE INTERVAL 0 HOUR END) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) - (CASE WHEN collector = 'v2' THEN INTERVAL 6 HOUR ELSE INTERVAL 0 HOUR END) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

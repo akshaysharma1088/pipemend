@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s3",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4184,
+  "output": 1418
+ },
+ "seconds": 6.88,
+ "raw_response": "{\"diagnosis\": \"The silver filter keeps only status='POSTED', which silently drops the 14 'REVERSAL' rows that point to original transactions via orig_txn_id, so reversals are never netted against their originals. That would explain gold totals running high, but the sign convention of reversal amounts, whether the referenced originals are POSTED or REVERSED, and the settlement rule are not shown, so the correct corrected logic cannot be verified from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

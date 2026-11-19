@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 337
+ },
+ "seconds": 2.99,
+ "raw_response": "{\"diagnosis\":\"Every row in batches 12-14 (369+327+338=1034) has a NULL merchant_id, which matches the 1034 raw NULLs, so the source stopped populating merchant_id from batch 12 onward. The affected rows then drop out of the inner join in gold_mcc_daily. Nothing in the raw tables or the change notes lets us recover the real merchant_id, so any SQL fix would either invent data or hide the gap.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

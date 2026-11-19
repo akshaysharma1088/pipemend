@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3a-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4229,
+  "output": 1271
+ },
+ "seconds": 9.91,
+ "raw_response": "{\"diagnosis\":\"All 327 rows with source_tz='UTC' (batch 13) carry UTC timestamps, while every other batch is America/Chicago local time. Batch 13 starts at 12:00 UTC, which is the 06:00 Chicago opening time seen in the other batches. The UTC rows after midnight UTC therefore land on 01-18 at 00:00-06:00 instead of 01-17 evening. The fix is to convert UTC rows to Chicago local time in silver_transactions, which also corrects txn_date and every gold table downstream.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

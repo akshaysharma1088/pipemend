@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5d-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 947
+ },
+ "seconds": 8.41,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 13 (ingest 2026-01-18) sent merchant_id as 'M-0NNN' strings instead of plain integers, so the INTEGER cast in silver_transactions fails. The profile shows 80 distinct values: the 40 numeric ids 100\u2013139 plus 40 prefixed ids up to 'M-0139'. This matches raw_merchants 100\u2013139 exactly, so 'M-0113' is a zero-padded form of 113. Batch 14 has already reverted to the numeric format.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CASE WHEN merchant_id LIKE 'M-%' THEN CAST(substr(merchant_id, 3) AS INTEGER) ELSE CAST(merchant_id AS INTEGER) END AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

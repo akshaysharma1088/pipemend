@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4181,
+  "output": 1224
+ },
+ "seconds": 5.84,
+ "raw_response": "{\"diagnosis\": \"The silver filter keeps only status 'POSTED' and drops the 31 'REVERSAL' rows, which reference original transactions via orig_txn_id. Whether those originals should be netted out, whether the reversal should be applied as a negative amount, and how the 201 'REVERSED' rows interact with this are not determinable from the evidence, and no settlement file is provided to validate a fix. The business rule needs confirmation from Finance and the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

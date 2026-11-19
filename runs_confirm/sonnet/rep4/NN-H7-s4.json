@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 880
+ },
+ "seconds": 8.63,
+ "raw_response": "{\"diagnosis\":\"The only step that can drop rows is the status = 'POSTED' filter, which excludes 232 REVERSED rows (about 4.8%). The raw data shows no other cause: txn_ids are contiguous with no duplicates, every batch is present, and all customers and merchants join. Whether the settlement file includes reversed transactions is a business rule I can't determine from this evidence, so a fix could silently produce wrong totals.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

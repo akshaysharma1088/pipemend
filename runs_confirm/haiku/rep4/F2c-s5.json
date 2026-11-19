@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1150
+ },
+ "seconds": 5.61,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4996 rows but only 4975 distinct txn_id values, and batch 12 has an anomalous max ingest_ts of 2026-01-17 22:00 instead of 02:00, which suggests a late partial re-delivery. The duplicate copies may differ in amount or status, and the evidence does not show which copy is correct, so a dedup rule cannot be chosen safely; the source team needs to confirm the correct version.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

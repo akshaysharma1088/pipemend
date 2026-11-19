@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H8-s5",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4329,
+  "output": 2132
+ },
+ "seconds": 8.4,
+ "raw_response": "{\"diagnosis\": \"Batch 12 re-delivered 345 transactions already in the feed, but the copies carry txn_ts as epoch milliseconds (1768543211000 = 2026-01-16 06:00:11 UTC, matching the original row) instead of a timestamp string. The CAST to TIMESTAMP fails on those rows, and the duplicates would double-count if they were parsed. The fix is to parse epoch-ms timestamps with epoch_ms and deduplicate on txn_id, keeping the earliest ingest_ts copy.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH src AS (SELECT txn_id, customer_id, merchant_id, amount, CASE WHEN txn_ts NOT LIKE '%-%' THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts, ingest_ts FROM raw_transactions WHERE status = 'POSTED'), dedup AS (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) AS rn FROM src) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM dedup WHERE rn = 1;\"}}"
+}

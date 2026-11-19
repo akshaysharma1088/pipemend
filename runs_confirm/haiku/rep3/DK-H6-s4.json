@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H6-s4",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 445
+ },
+ "seconds": 2.34,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions contains 21 txn_ids that appear twice in the same batch (12) with the same ingest_ts but different amounts, so the duplicates are not exact copies. Nothing in the evidence shows which amount is correct (for example, a corrected resend or a reversal), so deduplicating in silver would mean guessing which amount to keep and could silently corrupt the gold totals.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4037,
+  "output": 2807
+ },
+ "seconds": 11.37,
+ "raw_response": "{\"diagnosis\": \"Batch 14 re-delivers transactions: txn_id 904482 appears twice, once with txn_ts '2026-01-18 06:00:39' and once with the epoch-milliseconds string '1768716039000', which is the same instant in UTC. txn_id is a dense sequence (distinct 4814 = max-min+1), so the duplicate rows are re-deliveries that must be parsed and deduplicated by txn_id before aggregation.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM (SELECT txn_id, customer_id, merchant_id, amount, COALESCE(epoch_ms(TRY_CAST(txn_ts AS BIGINT)), TRY_CAST(txn_ts AS TIMESTAMP)) AS txn_ts, ingest_ts FROM raw_transactions WHERE status = 'POSTED') QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) = 1;\"}}"
+}

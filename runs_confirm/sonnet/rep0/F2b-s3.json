@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2b-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 1443
+ },
+ "seconds": 11.66,
+ "raw_response": "{\"diagnosis\":\"The same txn_id was delivered more than once across batches: raw has 4972 rows but only 4827 distinct txn_id values. The silver step has no dedup, so the extra copies inflate silver and every gold table. The numbers fit redelivery of the same rows, with about 8 of the 145 extra rows being REVERSED copies that the POSTED filter already drops.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY CAST(txn_id AS BIGINT) ORDER BY ingest_ts DESC, batch_id DESC) = 1\"}}"
+}

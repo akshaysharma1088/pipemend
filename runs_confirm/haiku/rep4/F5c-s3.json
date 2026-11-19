@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5c-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4165,
+  "output": 2167
+ },
+ "seconds": 9.61,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 carry status 'SETTLED' instead of 'POSTED' after the 2026-01-17 card-feed rename, and silver_transactions filters on status = 'POSTED', so those rows are dropped. The source owner states the rename does not change meaning, so SETTLED should be treated as POSTED. The row counts do not fully reconcile (665 rows in batches 13-14 versus 629 SETTLED overall), so confidence is moderate.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'SETTLED');\"}}"
+}

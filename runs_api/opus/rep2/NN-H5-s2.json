@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H5-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4186,
+  "output": 1302
+ },
+ "seconds": 12.05,
+ "raw_response": "{\"diagnosis\": \"Starting with the most recent batches, the source sends reversals as separate status='REVERSAL' rows (24 rows, linked by orig_txn_id) instead of changing the original's status to REVERSED. The originals stay status='POSTED', so silver keeps them and gold totals come out higher than settlement for recent days. The fix assumes each REVERSAL fully reverses its original; if partial reversals exist, the source team should confirm.\", \"decision\": \"fix\", \"confidence\": 0.65, \"pre_sql\": [\"CREATE OR REPLACE VIEW reversed_txn_ids AS SELECT DISTINCT CAST(orig_txn_id AS BIGINT) AS orig_txn_id FROM raw_transactions WHERE status = 'REVERSAL' AND orig_txn_id IS NOT NULL\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM reversed_txn_ids v WHERE v.orig_txn_id = CAST(r.txn_id AS BIGINT))\"}}"
+}

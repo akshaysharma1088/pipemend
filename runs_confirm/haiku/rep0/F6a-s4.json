@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 510
+ },
+ "seconds": 2.75,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 volume drop is a partial delivery, not a pipeline defect. Batch 14, which carries the 2026-01-18 transactions, has only 133 rows against a typical ~340, and the 127 POSTED rows for that date match that short batch. The rest of the day's transactions have not been delivered, so the source must re-deliver them. The SQL cannot recover rows that are absent from raw_transactions.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 399
+ },
+ "seconds": 2.18,
+ "raw_response": "{\"diagnosis\": \"The payments-source change on 2026-01-16 switched `amount` to net-of-interchange, so recent batches are understated. Restoring gross amounts needs per-category fee rates that the card network publishes separately and that are not in the evidence, and the exact cutover (ingest vs. transaction date) is also unconfirmed. Escalate to payments-source and the finance owners rather than guessing a gross-up.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

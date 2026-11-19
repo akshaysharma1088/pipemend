@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 914
+ },
+ "seconds": 4.15,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 contain no POSTED rows; their sampled rows are SETTLED, and the silver filter `status = 'POSTED'` drops them. Whether SETTLED is a renamed POSTED (a source vocabulary change) or a distinct lifecycle state that should stay excluded is not determinable from the evidence, and earlier batches also contain SETTLED rows that are currently excluded, so the business rule needs confirmation from the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

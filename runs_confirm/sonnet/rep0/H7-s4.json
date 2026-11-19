@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 161
+ },
+ "seconds": 2.08,
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-18 the source reports amount net of interchange fees, which explains why gold totals are about 2% below the settlement file. The fee rates vary by merchant category and are published separately by the card network. They are not in the evidence, so gross amounts cannot be reconstructed. Any fix would invent the rates and silently corrupt the data.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

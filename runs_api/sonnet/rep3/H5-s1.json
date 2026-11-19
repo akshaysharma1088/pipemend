@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H5-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4245,
+  "output": 1059
+ },
+ "seconds": 7.77,
+ "raw_response": "{\"diagnosis\":\"Since 2026-01-18 the source sends a reversal as a separate REVERSAL record, and the original row stays POSTED. The silver filter on status = 'POSTED' therefore still counts reversed originals, which inflates gold totals for the most recent days. The fix excludes POSTED transactions that a REVERSAL record points to through orig_txn_id. The REVERSAL rows are already excluded by the status filter.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions v WHERE v.status = 'REVERSAL' AND v.orig_txn_id = r.txn_id)\"}}"
+}

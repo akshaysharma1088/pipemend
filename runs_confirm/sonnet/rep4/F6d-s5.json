@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 255
+ },
+ "seconds": 3.22,
+ "raw_response": "{\"diagnosis\": \"Raw merchant_id is NULL for 711 rows, 671 of them POSTED, and the samples show it starting in batch 13 (2026-01-17) and continuing in batch 14. This looks like an upstream source feed defect. The merchant_id values are missing, and nothing in the evidence (no alternate column, no mapping, no other source) lets us recover them. The pipeline SQL is not at fault, and inner-join drops in gold_mcc_daily are the expected result of the missing data. Any fix would have to guess or hide the missing data, so the source team must re-deliver batches 13 and 14 with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

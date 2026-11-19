@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H6-s2",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4056,
+  "output": 1114
+ },
+ "seconds": 10.47,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4822 rows but only 4802 distinct txn_id values, so 20 transactions were delivered twice (most likely re-sent in a later batch). The silver step does not deduplicate, so those 20 txn_ids are double-counted in silver and in every gold aggregate. The fix keeps one row per txn_id, the most recently ingested copy, and then applies the existing POSTED filter.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) r WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

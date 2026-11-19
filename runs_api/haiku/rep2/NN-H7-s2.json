@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4076,
+  "output": 862
+ },
+ "seconds": 4.3,
+ "raw_response": "{\"diagnosis\": \"Silver filters out 202 REVERSED transactions (about 4% by count, plausibly about 2% by amount), which may explain the gap to the settlement file. Whether reversed rows should count toward card totals is a business rule the evidence does not settle, and no settlement file was provided to reconcile against. Raw ids, batches, and join keys look clean, so there is no clear data defect to fix.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

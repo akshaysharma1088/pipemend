@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4163,
+  "output": 1502
+ },
+ "seconds": 6.64,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, the source appears to have switched from status 'POSTED' to 'SETTLED' (batches 12-14 contain only SETTLED and REVERSED rows), and silver_transactions filters on status = 'POSTED', so those batches are dropped. Whether SETTLED should be treated as equivalent to POSTED is a business-rule decision that the source team must confirm, so I am escalating rather than changing the filter.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

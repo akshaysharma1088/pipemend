@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 276
+ },
+ "seconds": 2.43,
+ "raw_response": "{\"diagnosis\":\"merchant_id is NULL in the raw feed for the most recent batches (12-14 sampled, 1034 raw rows, 976 of them POSTED). The upstream source stopped populating it, so the silver NULLs and the inner join to merchants that drops those rows in gold_mcc_daily both come from missing source data. The merchant cannot be derived from any other column, and no change note explains the cause.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

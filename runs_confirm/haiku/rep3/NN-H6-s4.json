@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s4",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4052,
+  "output": 1381
+ },
+ "seconds": 6.98,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 21 surplus rows over its 4814 distinct txn_ids, and 19 duplicates survive the POSTED filter. The duplicate copies appear to disagree on status (some copies are filtered out as REVERSED), so the correct surviving row is a business decision that the evidence does not settle, and the affected rows need source-team review or re-delivery.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

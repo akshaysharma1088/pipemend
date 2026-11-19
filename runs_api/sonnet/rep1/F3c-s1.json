@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4086,
+  "output": 615
+ },
+ "seconds": 4.02,
+ "raw_response": "{\"diagnosis\": \"The DE-398 refactor on 2026-01-16 changed silver_transactions to derive txn_date from ingest_ts, which is the next day's 02:00 batch load time, instead of txn_ts. All 4630 POSTED rows therefore carry a txn_date one day late. Deriving txn_date from txn_ts corrects silver and every gold table built on it.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

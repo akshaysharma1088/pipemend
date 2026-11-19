@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H5-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4248,
+  "output": 2181
+ },
+ "seconds": 11.07,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-17 change moved reversals to separate REVERSAL records with positive amounts (every amount in raw_transactions is positive), but silver_transactions keeps only status='POSTED', so reversal amounts are never netted against their originals. Gold totals are therefore overstated for recent days, and no monitor checks reversal netting. The fix nets REVERSAL records as negative amounts in silver, but the original-record statuses and the sign convention are not directly verified in the evidence.\", \"decision\": \"fix\", \"confidence\": 0.55, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(CASE WHEN status = 'REVERSAL' THEN -amount ELSE amount END AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status IN ('POSTED', 'REVERSAL');\"}}"
+}

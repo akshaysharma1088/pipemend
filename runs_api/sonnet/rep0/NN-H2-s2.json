@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H2-s2",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4154,
+  "output": 1138
+ },
+ "seconds": 8.76,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 26 rows with record_version=2, which are re-deliveries of existing txn_ids (4828 rows vs 4802 distinct ids, and ids run contiguously from 900001 to 904802). silver_transactions filters to POSTED and never deduplicates, so the versions are double counted. The fix keeps the latest version per txn_id (highest record_version, then latest ingest_ts) and applies the POSTED filter afterwards. That way a corrected version with a different status is honored.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

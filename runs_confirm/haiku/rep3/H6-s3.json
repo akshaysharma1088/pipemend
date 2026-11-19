@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4113,
+  "output": 503
+ },
+ "seconds": 2.66,
+ "raw_response": "{\"diagnosis\": \"The 22 duplicate txn_ids come from the raw feed, which sent part of a delivery twice during an amount recalculation (PAY-77). The copies may carry different amounts and the source has not said which one is final, so deduplicating in silver would silently pick an arbitrary amount for each affected transaction and corrupt the gold aggregates.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

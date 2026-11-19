@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H4-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4289,
+  "output": 825
+ },
+ "seconds": 3.81,
+ "raw_response": "{\"diagnosis\": \"Customers migrated from the new CRM on 2026-01-15 carry numeric region codes ('01'-'04') instead of region names. raw_region_map provides a one-to-one code-to-name mapping for exactly these four values, so silver_customers should translate codes to names before the gold joins.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

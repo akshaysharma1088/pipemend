@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 817
+ },
+ "seconds": 4.1,
+ "raw_response": "{\"diagnosis\": \"The raw amounts on 2026-01-17 (batch 13, the day's transactions) appear to contain a small set of extreme values (raw max 14229.0 against a typical value near 42), which looks like a unit or scaling defect such as cents recorded as dollars. The evidence does not show which rows or batch are affected, so the correct corrected amounts cannot be derived here, and the source team needs to confirm and re-deliver. The Airflow upgrade and the dashboard change do not explain a data-value shift.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

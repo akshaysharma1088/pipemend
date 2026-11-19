@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H3-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4413,
+  "output": 1480
+ },
+ "seconds": 13.66,
+ "raw_response": "{\"diagnosis\": \"Since 2026-01-15 the v2 collector emits txn_ts in UTC, while legacy emits America/Chicago local time. As a result, v2 evening transactions (18:00-24:00 local) land at 00:00-06:00 UTC on the next date. The samples fit this: v2 rows start at about 12:00, matching legacy rows that start at about 06:00 local (UTC-6). This produces the spurious off-hours transactions and the 36 rows dated 2026-01-19. The fix converts v2 timestamps from UTC to America/Chicago so all txn_ts and txn_date values use the same local time as historical data.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

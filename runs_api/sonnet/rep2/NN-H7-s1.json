@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s1",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 746
+ },
+ "seconds": 5.9,
+ "raw_response": "{\"diagnosis\":\"The pipeline SQL shows no defect that would cause a 2% shortfall. Joins are lossless (200 customers and 40 merchants match the raw keys), txn_ids are unique, and batch sizes are steady. The gap in recent days could come from late or missing rows in the feed, or from how REVERSED rows are treated in settlement. That treatment is a business rule that cannot be determined from this evidence.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

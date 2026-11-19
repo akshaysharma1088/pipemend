@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 541
+ },
+ "seconds": 2.66,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 volume drop is a partial delivery, not a pipeline bug. Batch 14 (ingested 2026-01-19) holds only 145 rows, versus about 330-380 in the other batches, and its txn_ids skip values (904616, 904617), so the transactions for that business date are incomplete in the raw source. The SQL cannot recover missing rows, so the source team must re-deliver batch 14.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1c-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4026,
+  "output": 1717
+ },
+ "seconds": 7.31,
+ "raw_response": "{\"diagnosis\": \"Batch 14 delivered txn_ts as epoch-millisecond strings (for example '1768716261000', which is 2026-01-18 06:04:21 UTC) instead of the 'YYYY-MM-DD HH:MM:SS' text used by batches 1-13, so the plain CAST to TIMESTAMP fails. The fix is to parse the numeric values as epoch milliseconds and keep the ISO-string path for all other rows; this assumes the epoch values are UTC, which matches the ~06:00 posting pattern of the other batches.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_full_match(txn_ts, '[0-9]+') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN regexp_full_match(txn_ts, '[0-9]+') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

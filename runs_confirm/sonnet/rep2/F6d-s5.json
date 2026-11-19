@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 313
+ },
+ "seconds": 4.05,
+ "raw_response": "{\"diagnosis\": \"merchant_id is NULL in raw_transactions starting with batch 13 (2026-01-18 ingest) and continuing in batch 14. The 711 raw NULLs (671 of them POSTED) account for the silver NULLs and for the gold_mcc_daily inner-join drop (4699 - 671 = 4028). Nothing in the evidence lets us recover the missing merchant IDs, and no change note explains the break, so the source must fix and re-deliver the data.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

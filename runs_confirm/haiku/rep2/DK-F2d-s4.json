@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2d-s4",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 806
+ },
+ "seconds": 4.01,
+ "raw_response": "{\"diagnosis\": \"raw_merchants has 6 merchant_id values duplicated with identical contents, so silver_merchants inherits them and the USING join in gold_mcc_daily fans out each transaction for those merchants (5317 vs 4582). Deduplicating silver_merchants with SELECT DISTINCT removes the fan-out without dropping any merchant or changing the columns.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants;\"}}"
+}

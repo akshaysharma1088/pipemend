@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1440
+ },
+ "seconds": 6.99,
+ "raw_response": "{\"diagnosis\": \"The raw feed holds 146 surplus rows (5012 rows vs 4866 distinct txn_id values), which look like re-delivered transactions across batches, and 137 of the duplicate keys survive the POSTED filter. The profiles do not show whether the duplicate copies are identical or conflict on amount or status, and the reversal semantics are unclear, so the correct dedup rule cannot be determined from this evidence. Escalate to the source/ingestion owner to confirm the re-delivery behaviour and the rule for resolving conflicting copies.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

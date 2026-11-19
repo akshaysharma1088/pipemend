@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4320,
+  "output": 1089
+ },
+ "seconds": 4.87,
+ "raw_response": "{\"diagnosis\": \"80 raw_transactions rows are denominated in EUR while gold tables sum amounts as if they were USD, but the evidence doesn't settle the correct conversion. raw_fx_rates has only a single 2026-01-01 snapshot (EUR 1.25), with no history for the January 5-18 transaction dates, and it isn't clear whether the EUR amounts are genuine EUR or mislabeled. This needs the source/FX owners to confirm the rate policy and the currency labels before silver or gold is changed.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

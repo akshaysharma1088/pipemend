@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 524
+ },
+ "seconds": 4.33,
+ "raw_response": "The raw_customers table is an SCD2 dimension. It has 230 rows for 200 distinct customers: 200 rows with is_current=True and 30 historical rows with is_current=False. silver_customers keeps all 230 rows, so the join fans out for the 30 customers that have history. Counts are 4600 in silver and 5286 in gold, so 686 extra rows.\n\nThe fix is to keep only the current rows in silver_customers. Each of the 200 customers has exactly one current row: True=200 and distinct=200, and the 200 valid_from values of 2025-01-01 match the 200 current rows. That makes the current row unambiguous.\n\nShould the region be as of the transaction date instead? The history rows start at 2023-06-01 and the current rows at 2025-01-01. All transactions fall in January 2026, after every current valid_from, so the current row applies to all of them. Filtering on is_current is correct.\n\nThe output columns stay the same (customer_id, region).\n\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 historical (is_current=False) rows; silver_customers includes them, so the join to the customer dimension fans out (5286 vs 4600). Filtering to is_current rows gives exactly one row per customer, and all transactions post-date the current valid_from.\", \"decision\": \"fix\", \"confidence\": 0.95, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current\"}}"
+}

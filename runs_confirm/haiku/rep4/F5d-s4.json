@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 1539
+ },
+ "seconds": 6.98,
+ "raw_response": "{\"diagnosis\": \"Batch 13 delivered merchant_id values in an 'M-NNNN' format (e.g. 'M-0121') that cannot be cast to INTEGER. The codes span M-0100 to M-0139, which matches the 40 merchant_ids 100 to 139 in raw_merchants, so stripping the 'M-' prefix should recover the same merchant key. This inference is strong but not confirmed by the source team.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(CASE WHEN merchant_id LIKE 'M-%' THEN substr(merchant_id, 3) ELSE merchant_id END AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s4",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4349,
+  "output": 1265
+ },
+ "seconds": 6.23,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions contains 21 txn_ids delivered twice with different amounts and ingest_ts. Batch 13 has a late 2026-01-18 22:00 ingest alongside the original 02:00 copy, so a correction and an original are both present. Choosing the correct copy is a business rule the evidence does not settle, so deduplicating (for example, keeping the latest ingest) risks silently changing amounts and gold totals.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

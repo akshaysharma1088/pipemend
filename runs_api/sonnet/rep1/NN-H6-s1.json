@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H6-s1",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 363
+ },
+ "seconds": 3.04,
+ "raw_response": "{\"diagnosis\":\"19 txn_ids are duplicated within the same delivery batch, with the same ingest_ts and txn_ts but different amounts (e.g. 904167 appears as 7.33 and 8.27). Nothing in the data shows which version is correct: there is no later ingest_ts, version column or other tie-breaker. Picking one would risk silently wrong amounts in the silver and gold tables.\",\"decision\":\"escalate\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{}}"
+}

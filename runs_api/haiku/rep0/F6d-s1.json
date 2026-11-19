@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 675
+ },
+ "seconds": 3.11,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (ingested 2026-01-19, 378 rows) has NULL merchant_id on every row, which accounts for all 378 raw NULLs and the 363 POSTED NULLs in silver. The gold_mcc_daily inner join drops those rows (4630 - 363 = 4267), and the true merchant assignment cannot be recovered from the evidence, so this is an upstream delivery defect that needs re-delivery or source confirmation.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

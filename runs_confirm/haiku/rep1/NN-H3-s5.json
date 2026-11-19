@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1432
+ },
+ "seconds": 6.53,
+ "raw_response": "{\"diagnosis\": \"The 41 transactions dated 2026-01-19 and the 00:00-06:00 timestamps appear tied to the batch 14 and v2-collector rows, whose timestamps look offset from the legacy collector (v2 samples sit near 12:00, legacy near 06:00). The correct time correction (or whether these rows should be excluded or re-delivered) cannot be determined from the evidence, so this needs the source team to confirm the v2 collector's timestamp convention.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

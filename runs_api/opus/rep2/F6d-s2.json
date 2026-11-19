@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 256
+ },
+ "seconds": 2.7,
+ "raw_response": "{\"diagnosis\": \"Every merchant_id in delivery batches 13 and 14 is NULL. Those batches have 377 + 326 = 703 rows, which matches the 703 raw NULLs exactly, so the source stopped populating merchant_id from the 2026-01-18 ingest onward. No pipeline or deployment change explains it, and the true merchant values cannot be recovered from any available table, so the source team must re-deliver those batches with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

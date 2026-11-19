@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 510
+ },
+ "seconds": 5.58,
+ "raw_response": "{\"diagnosis\": \"The pipeline logic shows no defect in the evidence: txn_ids are unique, there are no nulls, every customer and merchant joins, all amounts are USD, and recent batch sizes look normal. The roughly 2% shortfall on the latest business days most likely comes from source rows that are late or missing, or from a settlement definition (e.g. reversals or cutoff time) that the pipeline cannot reconcile from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4570,
+  "output": 3042
+ },
+ "seconds": 14.41,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 3 (ingest 2026-01-08, the day of the Airflow upgrade), rows are dropped from silver_transactions at about 25% per batch. The only filters are status='POSTED' and a 26-hour ingest lag cutoff, but REVERSED rows total only 269 across all batches and the drops sum to roughly 1,000. The raw data also shows ingest lagging txn_ts by about 3 days from batch 11 on, so the 26-hour cutoff is a plausible cause. Whether late rows should be kept is a business rule question, so the correct fix cannot be determined from this evidence.\",\n \"decision\": \"escalate\",\n \"confidence\": 0.8,\n \"pre_sql\": [],\n \"step_overrides\": {}}"
+}

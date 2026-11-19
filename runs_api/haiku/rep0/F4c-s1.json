@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4c-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 1064
+ },
+ "seconds": 5.29,
+ "raw_response": "{\"diagnosis\": \"raw_customers is an SCD2 table with 230 rows for 200 customers; the 30 superseded rows (is_current=False, valid_from 2023-06-01) are copied into silver_customers, so the join in gold_region_daily fans out transactions for those customers and inflates the count (5353 vs 4630). Restricting silver_customers to is_current rows leaves one region per customer and restores the one-to-one join.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current;\"}}"
+}

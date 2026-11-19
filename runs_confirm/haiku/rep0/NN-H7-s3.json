@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s3",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 1856
+ },
+ "seconds": 8.43,
+ "raw_response": "{\"diagnosis\": \"The raw data shows no duplicates, no join fan-out, and no obvious cast loss, so the cause of the ~2% gap cannot be pinned down from these profiles. The likeliest candidates are the POSTED-only filter (269 REVERSED rows) or batch 14 (ingested 2026-01-19 02:00) landing after the 01-18 run, and the evidence does not show which one matches the settlement file. This needs the source/finance team to confirm the settlement rules and delivery timing before any pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

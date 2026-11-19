@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4229,
+  "output": 2894
+ },
+ "seconds": 11.39,
+ "raw_response": "{\"diagnosis\": \"Batch 13 is the only source_tz='UTC' batch (327 rows), but silver_transactions treats every txn_ts as America/Chicago local time, so those UTC timestamps are read as local and shifted about 6 hours late. Rows that are really 18:00-24:00 Chicago on 2026-01-17 land on 2026-01-18 at 00:00-06:00, which is the 72-row alert. Converting UTC-sourced timestamps to Chicago local time in silver_transactions fixes this, and the gold tables rebuild from silver.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, t.local_ts AS txn_ts, CAST(t.local_ts AS DATE) AS txn_date FROM (SELECT txn_id, customer_id, merchant_id, amount, CASE WHEN source_tz = 'UTC' THEN ((CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC') AT TIME ZONE 'America/Chicago') ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions WHERE status = 'POSTED') t;\"}}"
+}

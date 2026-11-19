@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4109,
+  "output": 1038
+ },
+ "seconds": 7.67,
+ "raw_response": "{\"diagnosis\":\"Batch 13 (ingested 2026-01-18) delivered txn_ts as DD/MM/YYYY HH:MM:SS instead of ISO format, which breaks the CAST to TIMESTAMP. Its rows are dated 17 or 18 January, so the day is above 12 and DD/MM is unambiguous. The fix parses ISO first and falls back to the DD/MM/YYYY format.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS WITH p AS (SELECT *, COALESCE(TRY_CAST(txn_ts AS TIMESTAMP), TRY_STRPTIME(txn_ts, '%d/%m/%Y %H:%M:%S')) AS ts FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(ts AS TIMESTAMP) AS txn_ts, CAST(ts AS DATE) AS txn_date FROM p\"}}"
+}

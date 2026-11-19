@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4067,
+  "output": 1529
+ },
+ "seconds": 7.21,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, some raw merchant_id values use a 'M-0NNN' format (e.g. 'M-0102') instead of the plain numeric key used by raw_merchants (100-139). The silver cast to INTEGER fails on these values. Stripping the 'M-0' prefix yields keys (102, 130, 132, 139) that fall in the merchant master range, and the 80 distinct raw values are consistent with 40 merchants appearing in both forms.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(CASE WHEN merchant_id LIKE 'M-%' THEN substr(merchant_id, 3) ELSE merchant_id END AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

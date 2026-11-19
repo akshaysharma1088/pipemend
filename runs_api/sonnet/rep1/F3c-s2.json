@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3c-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4089,
+  "output": 752
+ },
+ "seconds": 5.95,
+ "raw_response": "The bug is in silver_transactions: txn_date is derived from ingest_ts, which is the batch delivery time and is always the day after the transaction. The alert says 4600 rows differ, which is every POSTED row. The sample shows txn_ts on the 15th with ingest_ts on the 16th. The change note from 2026-01-16 (DE-398, refactored date derivation) points to the same cause.\n\nThe correct rule is almost certainly txn_date = CAST(txn_ts AS DATE). The monitor itself defines consistency as txn_date matching the date of txn_ts. Every batch contains transactions from a single day, so the ingest-based date is just a uniform shift of one day.\n\nOnly silver_transactions needs replacing. The gold tables are rebuilt from it when the pipeline runs, so they will be correct once it is fixed. Output columns stay the same.\n\nTwo things I checked:\n- Since ingest_ts is always the day after txn_ts, the current txn_date is wrong for all rows, which matches the 4600 alert count. The raw rows have no late arrivals.\n- Does the fix change the row set? No, the WHERE filter is unchanged.\n\nOne residual risk is that the intended date is something other than the txn_ts date, such as a business-day cutoff. Nothing in the evidence suggests that.\n\n{\"diagnosis\": \"silver_transactions derives txn_date from ingest_ts (the batch delivery time, one day after the transaction) instead of txn_ts, since the DE-398 refactor; all 4600 POSTED rows are off by one day, and the gold tables inherit the wrong dates.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

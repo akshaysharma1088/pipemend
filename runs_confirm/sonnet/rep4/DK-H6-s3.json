@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H6-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4338,
+  "output": 229
+ },
+ "seconds": 2.39,
+ "raw_response": "{\"diagnosis\":\"22 txn_ids appear twice in raw_transactions with different amounts. Both copies are in the same batch with the same ingest_ts, status and txn_ts, so nothing in the data shows which amount is correct. Picking one in silver would risk silently wrong amounts in the gold totals.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

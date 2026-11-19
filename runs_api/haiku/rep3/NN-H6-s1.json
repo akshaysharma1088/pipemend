@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 510
+ },
+ "seconds": 2.65,
+ "raw_response": "{\"diagnosis\": \"The 19 duplicate txn_ids come from the raw feed, not the pipeline. In batch 13, txn_id 904167 arrives twice with different amounts (7.33 and 8.27), and raw_transactions has 4885 rows but only 4866 distinct txn_ids. Choosing which amount is correct (keep first, keep last, or max) is a business and source-data decision the evidence cannot settle, so this needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

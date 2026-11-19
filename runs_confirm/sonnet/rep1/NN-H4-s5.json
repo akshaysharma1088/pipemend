@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H4-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 261
+ },
+ "seconds": 2.92,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers rows carry numeric region codes ('01'-'04') instead of region names. raw_region_map gives an explicit code-to-name mapping (01=WEST, 02=EAST, 03=NORTH, 04=SOUTH). silver_customers should map the codes to names; gold_region_daily then picks up the corrected regions.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(coalesce(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code\"}}"
+}

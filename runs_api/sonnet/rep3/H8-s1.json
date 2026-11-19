@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H8-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4038,
+  "output": 1433
+ },
+ "seconds": 9.61,
+ "raw_response": "{\"diagnosis\":\"The batch 14 re-delivery at 05:00 re-sent the same 378 transactions with txn_ts as epoch milliseconds, which broke the TIMESTAMP cast. For txn 904489, 1768716186000 ms is 2026-01-18 06:03:06 UTC, exactly the original row's timestamp. Fix by parsing both timestamp formats and keeping one row per txn_id, so the replay does not double-count.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT txn_id, customer_id, merchant_id, amount, status, ingest_ts, CASE WHEN regexp_matches(txn_ts, '^[0-9]{13}$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions), dedup AS (SELECT * FROM parsed QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(ts AS TIMESTAMP) AS txn_ts, CAST(ts AS DATE) AS txn_date FROM dedup WHERE status = 'POSTED'\"}}"
+}

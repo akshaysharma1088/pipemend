@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4182,
+  "output": 1128
+ },
+ "seconds": 8.26,
+ "raw_response": "{\"diagnosis\":\"40 REVERSAL rows carry orig_txn_id pointing at recent transactions (ids 904268-904942). silver_transactions keeps only status='POSTED', so it drops the REVERSAL rows but keeps their originals still marked POSTED. Recent days are therefore overstated. The fix excludes any transaction that is the target of a REVERSAL row.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(r.txn_id AS BIGINT) AS txn_id, r.customer_id, CAST(r.merchant_id AS INTEGER) AS merchant_id, CAST(r.amount AS DECIMAL(12,2)) AS amount, CAST(r.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(r.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions x WHERE x.status = 'REVERSAL' AND x.orig_txn_id = r.txn_id)\"}}"
+}

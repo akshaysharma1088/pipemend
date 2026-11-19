@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1b-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 1491
+ },
+ "seconds": 7.23,
+ "raw_response": "{\"diagnosis\": \"Some raw `amount` values carry a leading '$' (e.g. '$75.13' in batch 12, and the lexicographic min '$10.07'), while other batches are plain decimals. The silver cast to DECIMAL(12,2) fails on those strings, and all rows are USD, so stripping only a leading '$' before the cast should recover the correct amounts. The regex is limited to the leading '$', so any other unexpected format still fails loudly rather than being silently miscast.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(amount, '^[$]', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

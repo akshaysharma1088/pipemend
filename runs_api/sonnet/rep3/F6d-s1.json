@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4102,
+  "output": 446
+ },
+ "seconds": 4.04,
+ "raw_response": "Nulls in raw merchant_id total 378, and batch 14 has 378 rows. So every row in batch 14 (the 2026-01-18 batch) has a NULL merchant_id. Of those, 363 are POSTED, which matches the alert. The upstream source stopped sending merchant_id for that batch.\n\nThe merchant_id cannot be recovered from the other columns. Customer and amount do not determine the merchant, and the dimension has no mapping from them. Filtering the rows out would silently drop real transactions, and imputing a merchant would corrupt the data. The batch needs to be re-delivered by the source team.\n\nThe reconciliation gap is 4630 \u2212 4267 = 363, which is exactly the NULL rows being dropped by the inner join. This is a consequence of the same missing data, not a separate problem.\n\nThe decision is to escalate.\n\n{\"diagnosis\": \"All 378 rows of batch 14 (ingested 2026-01-19, the 2026-01-18 business date) arrive with NULL merchant_id; 363 are POSTED, matching both the NULL alert and the 363-row reconciliation gap from the inner join to merchants. The merchant cannot be derived from other fields, so the batch needs re-delivery from the source.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

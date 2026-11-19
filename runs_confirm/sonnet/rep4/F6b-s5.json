@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 589
+ },
+ "seconds": 4.91,
+ "raw_response": "{\"diagnosis\":\"The mean/median gap on 2026-01-18 points to a few very large amounts (max 11809 against a median of about 43). The evidence shows no pipeline defect: txn_ids are unique, batches line up with ingest dates, and there are no schema or unit changes in the change notes. I can't tell whether these are genuine large transactions or a source-side error such as a unit or scaling problem, so any fix would be a guess.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1146
+ },
+ "seconds": 4.93,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 21 surplus rows on txn_id (4835 rows, 4814 distinct). The extra rows appear to come from batch 13, which has a 22:00 ingest_ts that no other batch shows, so it looks like a partial late re-delivery. The source does not show whether the duplicate copies are identical or differ in amount or status, and the POSTED filter can hide one copy of a pair, so the correct row to keep is not determinable from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

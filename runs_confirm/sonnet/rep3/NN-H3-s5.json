@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 3277
+ },
+ "seconds": 27.39,
+ "raw_response": "{\"diagnosis\":\"Batch 14 is ingested at 2026-01-19 02:00 but holds legacy-collector rows timestamped up to 2026-01-19 04:41, which is after the ingest time. Each batch's legacy rows also start at about 06:00 on the previous day. This points to a timezone or clock offset in the legacy collector's txn_ts, probably about +6h, which pushes late-day rows into the next date. The offset is not documented, the change notes say nothing, and it is unclear whether legacy or v2 timestamps are correct. Any shift I applied would be a guess that could silently misassign txn_date in every gold table.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H8-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4037,
+  "output": 1409
+ },
+ "seconds": 12.19,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was delivered twice: the 02:00 load used normal timestamp strings, and a 05:00 re-delivery of the same 333 txn_ids used epoch-millisecond strings. For example, 1768716039000 ms is 2026-01-18 06:00:39, which matches the original row exactly. The epoch values break the TIMESTAMP cast, and the duplicate rows would double-count if only the cast were fixed (5147 rows vs 4814 distinct txn_ids, so 333 duplicates, and batch 14 has 666 = 2\u00d7333 rows).\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT txn_id, customer_id, merchant_id, amount, status, ingest_ts, CASE WHEN regexp_full_match(trim(txn_ts), '[0-9]{12,14}') THEN epoch_ms(CAST(trim(txn_ts) AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions), dedup AS (SELECT * FROM parsed QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM dedup WHERE status = 'POSTED'\"}}"
+}

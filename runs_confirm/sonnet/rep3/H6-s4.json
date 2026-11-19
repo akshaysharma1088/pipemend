@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H6-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 154
+ },
+ "seconds": 2.07,
+ "raw_response": "{\"diagnosis\":\"Part of the latest delivery was sent twice during an amount recalculation (PAY-77), so 19 txn_ids appear twice in silver_transactions. The source team has not said which copy carries the final amount. Keeping either copy could silently put a wrong amount into silver and gold, so the correct data cannot be determined from the evidence.\",\"decision\":\"escalate\",\"confidence\":0.85,\"pre_sql\":[],\"step_overrides\":{}}"
+}

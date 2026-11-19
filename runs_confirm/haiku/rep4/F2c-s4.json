@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 910
+ },
+ "seconds": 4.42,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4835 rows but only 4814 distinct txn_ids, so 21 extra rows duplicate existing IDs. Batch 13 is the outlier: its ingest_ts runs to 2026-01-18 22:00, while every other batch lands at 02:00, which suggests a mid-day re-delivery or partial reload. The evidence doesn't show whether the duplicate copies are identical or differ in amount or status, or which version the source considers correct, so deduplicating could silently keep the wrong record.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

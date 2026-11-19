@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H8-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4039,
+  "output": 1444
+ },
+ "seconds": 10.43,
+ "raw_response": "{\"diagnosis\":\"Batch 14 contains a replay delivered at 05:00 that duplicates 338 txn_ids from the 02:00 delivery, and the replayed rows carry txn_ts as epoch milliseconds. The failing value 1768716261000 equals 2026-01-18 06:04:21 UTC, the same as the original row for txn_id 904490. The fix parses both timestamp formats and keeps one row per txn_id, preferring the earliest ingest.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]{13}$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN regexp_matches(txn_ts, '^[0-9]{13}$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts ASC, batch_id ASC) = 1) r WHERE status = 'POSTED'\"}}"
+}

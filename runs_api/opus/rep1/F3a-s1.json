@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3a-s1",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4273,
+  "output": 1116
+ },
+ "seconds": 10.3,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (all 378 rows, source_tz='UTC') delivered txn_ts in UTC, while every earlier batch was in America/Chicago local time. Evening Chicago transactions therefore land on 2026-01-19 between 00:00 and 05:00, and every 2026-01-18 transaction is shifted 6 hours late. Converting the UTC rows to America/Chicago local time (CST, UTC-6) maps 12:03 UTC to 06:03 and the max 04:56 UTC to 22:56 on 01-18, which matches the normal opening-hours pattern.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, local_ts AS txn_ts, CAST(local_ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN source_tz = 'UTC' THEN CAST(timezone('America/Chicago', timezone('UTC', CAST(txn_ts AS TIMESTAMP))) AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions) r WHERE status = 'POSTED';\"}}"
+}

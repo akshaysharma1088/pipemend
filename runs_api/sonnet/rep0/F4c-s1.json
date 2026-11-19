@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 595
+ },
+ "seconds": 5.55,
+ "raw_response": "Raw_customers has 230 rows for 200 distinct customers. 200 rows are current (is_current=True, valid_from 2025-01-01) and 30 are historical (is_current=False, valid_from 2023-06-01). The join to silver_customers therefore fans out for the 30 customers that have a history row, which explains 5353 vs 4630.\n\nThe fix is to keep only current rows in silver_customers. Each of the 200 customers has exactly one current row (200 current rows, 200 distinct IDs), so this gives a unique key.\n\nOne question is whether a transaction should map to the region in effect at its time (SCD2 as-of join). The historical rows are valid from 2023-06-01 and the current ones from 2025-01-01. All transactions are in January 2026, after both valid_from dates, so the current row applies to every transaction. Filtering to is_current is therefore correct.\n\nAnother check is whether the 30 history rows could be the ones that are actually current. The counts say no, since 200 current rows cover 200 distinct customers. I'm assuming that each customer has exactly one current row, which the counts support but do not prove.\n\nThe fix changes only silver_customers, keeping the same columns.\n\n{\"diagnosis\": \"raw_customers is an SCD2 table with 30 historical (is_current=False) rows, so joining silver_customers to transactions duplicates rows for those customers. Filtering silver_customers to current rows gives one row per customer (200 current rows, 200 distinct IDs) and removes the fan-out.\", \"decision\": \"fix\", \"confidence\": 0.93, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current\"}}"
+}

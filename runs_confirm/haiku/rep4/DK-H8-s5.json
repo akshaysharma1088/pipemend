@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-H8-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4329,
+  "output": 2396
+ },
+ "seconds": 9.56,
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00, and 345 txn_ids appear twice. The re-delivered copies store txn_ts as epoch milliseconds (1768543211000 = 2026-01-16 06:00:11, matching the original copy), which breaks the direct TIMESTAMP cast. Parsing epoch-ms values and keeping one row per txn_id (earliest ingest_ts) restores correct silver data, and the gold tables rebuild from it unchanged.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, status, ingest_ts, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts) AS rn FROM raw_transactions) WHERE status = 'POSTED' AND rn = 1;\"}}"
+}

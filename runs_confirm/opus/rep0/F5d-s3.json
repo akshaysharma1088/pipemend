@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F5d-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 946
+ },
+ "seconds": 7.81,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (ingested 2026-01-18) delivered merchant_id as prefixed strings like 'M-0113' instead of plain integers like '113', so the INTEGER cast fails. Batches 1-12 and 14 use plain integers. The 80 distinct values are the 40 known merchants (100-139) in both formats, and the max value 'M-0139' lines up with raw_merchants' max of 139, so stripping the 'M-' prefix and leading zeros recovers the correct IDs.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CASE WHEN regexp_matches(merchant_id, '^M-[0-9]+$') THEN CAST(substr(merchant_id, 3) AS INTEGER) ELSE CAST(merchant_id AS INTEGER) END AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

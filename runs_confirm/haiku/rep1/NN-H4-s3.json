@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s3",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 1036
+ },
+ "seconds": 4.72,
+ "raw_response": "{\"diagnosis\": \"silver_customers passes raw_customers.region through unchanged, so 218 customers carry numeric region codes 01-04 instead of names. raw_region_map supplies exactly those four codes (01 WEST, 02 EAST, 03 NORTH, 04 SOUTH), so a join to it resolves the alert and leaves already-named regions unchanged.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, upper(COALESCE(m.region_name, c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

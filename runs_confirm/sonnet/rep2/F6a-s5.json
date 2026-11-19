@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 687
+ },
+ "seconds": 5.71,
+ "raw_response": "{\"diagnosis\": \"Batch 14, which carries the 2026-01-18 transactions, has only 145 rows against a typical ~350. Its txn_id range (904615\u2013904974) spans about 360 ids and the sample shows gaps (904616 and 904617 are missing), while earlier batches have contiguous ids. About 215 transactions were therefore dropped or truncated upstream. They are absent from raw data, so no SQL change can recover them.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

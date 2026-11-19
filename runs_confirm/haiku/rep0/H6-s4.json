@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 461
+ },
+ "seconds": 2.56,
+ "raw_response": "{\"diagnosis\": \"The 19 duplicated txn_ids come from a resend in the latest delivery (PAY-77), where the two copies may carry different amounts and it is unknown which one is final. Deduplicating by txn_id would have to pick a copy arbitrarily, which could silently corrupt amounts in silver and every gold table, so a human at payments-source must confirm the correct copy.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

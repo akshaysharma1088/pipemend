@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4161,
+  "output": 1350
+ },
+ "seconds": 6.1,
+ "raw_response": "{\"diagnosis\": \"Batches 12-14 contain only SETTLED and REVERSED status rows, while silver_transactions keeps only status = 'POSTED', so none of them reach silver. Whether SETTLED should be included (and REVERSED excluded) is a business rule the evidence does not settle, and the batch 1-11 status mix (186 non-POSTED rows) suggests an upstream status-vocabulary change that the source team needs to confirm.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s4",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4342,
+  "output": 1927
+ },
+ "seconds": 9.35,
+ "raw_response": "{\"diagnosis\": \"Transactions from the v2 collector (batches 12-14) show timestamps about 6 hours ahead of the legacy collector for the same business day, which suggests a timezone or offset bug in the v2 feed. However, the 00:00-06:00 anomalies and the sparse 2026-01-19 partial day are not fully explained by that offset, and the correct conversion has not been confirmed by the source team. Correcting txn_ts or txn_date without that confirmation could silently misstate daily gold aggregates, so this needs escalation to the source/collector owner.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

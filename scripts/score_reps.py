@@ -296,6 +296,12 @@ def main():
                          f"{sum(v > 0 for v in d)} / {sum(v < 0 for v in d)} | {signflip(d):.3f} |")
 
     os.makedirs(a.out, exist_ok=True)
+    keep = ("outcome", "conf", "fix", "gate_clean", "usd", "decision")
+    rec = [dict(tier=x, rep=r, cond=cond, case=c, expected=exp[c], **{k: e.get(k) for k in keep})
+           for (x, r, cond, c), e in S.items()]
+    rec += [dict(tier=x, rep=r, cond="dup_profile", case=c, expected=exp[c],
+                 **{k: e.get(k) for k in ("outcome", "fix", "decision")}) for (x, r, c), e in DK.items()]
+    json.dump(rec, open(os.path.join(a.out, "scored.json"), "w"))
     open(os.path.join(a.out, "tables.md"), "w").write("\n".join(L) + "\n")
     json.dump(summary, open(os.path.join(a.out, "summary.json"), "w"), indent=1)
     print("\n".join(L))

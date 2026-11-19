@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6b-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4061,
+  "output": 619
+ },
+ "seconds": 5.52,
+ "raw_response": "{\"diagnosis\":\"The 2026-01-18 mean (371.28) is far above the median (40.71), and raw max amount is 17083.0, so a few very large amounts are skewing the mean. Batch 14 is also larger than usual (378 rows vs about 340). The evidence does not show whether these are real large purchases, a unit or scale error such as cents, or bad rows, and no change note explains it. The pipeline SQL looks correct, so no rewrite can be justified.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

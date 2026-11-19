@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H3-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 2399
+ },
+ "seconds": 18.64,
+ "raw_response": "{\"diagnosis\":\"The legacy collector's txn_ts values look shifted +6h. Legacy rows start at about 06:00 each day and run to about 04:41 the next day. Batch 14 was ingested 2026-01-19 02:00 yet contains timestamps up to 04:41 that day, which is after the ingest time. v2 rows look correctly timed. Subtracting 6h from legacy rows realigns each batch to a single business day, so silver_transactions is rebuilt that way and the gold tables follow.\",\"decision\":\"fix\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'legacy' THEN txn_ts - INTERVAL 6 HOUR ELSE txn_ts END AS TIMESTAMP) AS txn_ts, CAST(CAST(CASE WHEN collector = 'legacy' THEN txn_ts - INTERVAL 6 HOUR ELSE txn_ts END AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s2",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4613,
+  "output": 1234
+ },
+ "seconds": 6.2,
+ "raw_response": "{\"diagnosis\": \"The 26-hour staleness filter added in DE-412 on 2026-01-17 drops late-delivered transactions. Batches land about 2.5 to 3 days after their txn_ts (for example, batch 11 has txn_ts around 01-13 and ingest_ts 01-16), so most of each batch is removed, while the REVERSED-status filter accounts for only about 4% of rows. Whether those late events should be excluded is a business rule decision that the ticket does not settle, so I am escalating rather than changing silver and gold.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

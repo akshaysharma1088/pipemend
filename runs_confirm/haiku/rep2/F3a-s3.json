@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4229,
+  "output": 1691
+ },
+ "seconds": 7.89,
+ "raw_response": "{\"diagnosis\": \"Raw transactions mix two source time zones: 327 rows are tagged source_tz='UTC' and the rest 'America/Chicago', and txn_ts is passed through without normalization. The 00:00-06:00 cluster on 2026-01-18 may be a timezone shift, but the evidence doesn't show which rows are shifted, which direction to convert, or whether txn_ts is local or UTC for each source, so the correct business-date rule can't be determined here. Escalate to the source/ingestion team to confirm the txn_ts semantics per source_tz before changing txn_date logic.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s5",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4182,
+  "output": 1024
+ },
+ "seconds": 7.99,
+ "raw_response": "{\"diagnosis\":\"Reversals for recent days arrive as separate rows with status 'REVERSAL' and an orig_txn_id. The original rows stay 'POSTED' (older ones were flipped to 'REVERSED'), so the POSTED filter keeps reversed transactions and inflates recent totals. The fix excludes POSTED rows whose txn_id is referenced by a REVERSAL row's orig_txn_id.\",\"decision\":\"fix\",\"confidence\":0.75,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions x WHERE x.status = 'REVERSAL' AND x.orig_txn_id = r.txn_id)\"}}"
+}

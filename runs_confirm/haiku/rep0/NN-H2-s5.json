@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4150,
+  "output": 1660
+ },
+ "seconds": 8.47,
+ "raw_response": "{\"diagnosis\": \"The 28 record_version=2 rows are restatements of existing txn_ids, which explains the duplicate keys, but the evidence does not show whether a v2 row is an amendment or a reversal, what its status is, or how the one txn_id that appears three times should be resolved (two v2 rows, with no tie-breaker shown). Choosing a dedup rule without that information could silently alter gold metrics, so the source team should confirm the versioning semantics.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 375
+ },
+ "seconds": 1.99,
+ "raw_response": "{\"diagnosis\": \"Duplicate txn_ids come from a re-sent delivery (PAY-77) in which the copies differ in amount, e.g. txn 904167 appears in batch 13 as 7.33 and 8.27. The source team says which copy carries the final amount is unknown, so the correct deduplicated values cannot be determined from the evidence and choosing one would silently produce wrong amounts.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 398
+ },
+ "seconds": 2.28,
+ "raw_response": "{\"diagnosis\": \"Seventeen txn_ids appear in more than one raw_transactions row, and change note PAY-77 says part of the latest delivery was sent twice with an amount recalculation whose final copy is unknown. Deduplicating would require choosing between conflicting amounts, which the evidence cannot resolve, so the source team must confirm which copy is correct.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

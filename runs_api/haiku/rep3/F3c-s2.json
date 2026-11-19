@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4089,
+  "output": 1061
+ },
+ "seconds": 4.72,
+ "raw_response": "{\"diagnosis\": \"silver_transactions derives txn_date from CAST(ingest_ts AS DATE) instead of the transaction timestamp. This came in with the 2026-01-16 DE-398 refactor. Ingestion happens the day after each transaction, so every POSTED row (4600) has a txn_date that disagrees with the date of txn_ts. Deriving txn_date from txn_ts restores the intended meaning, and the gold tables are rebuilt from it.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

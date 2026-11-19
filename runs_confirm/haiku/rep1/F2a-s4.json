@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 2002
+ },
+ "seconds": 8.34,
+ "raw_response": "{\"diagnosis\": \"Batch 14 was delivered twice: every txn_id in it (333 unique ids, 666 rows) appears once with ingest_ts 2026-01-19 02:00 and again with 05:00, and the silver step has no deduplication, so the duplicates flow into silver and the gold tables. The fix is to keep one row per txn_id (the latest ingest) before applying the POSTED filter; the gold steps then rebuild correctly without changes.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) WHERE status = 'POSTED';\"}}"
+}

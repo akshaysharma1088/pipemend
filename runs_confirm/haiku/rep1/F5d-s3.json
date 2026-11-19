@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 995
+ },
+ "seconds": 5.09,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 contain merchant_id values in a new 'M-0113' format alongside legacy numeric IDs like '100'. The cast to INTEGER fails on the M- values, and the mapping from M-#### to the merchant key is an upstream contract question that the evidence does not settle. Raw data must be corrected or the mapping confirmed by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

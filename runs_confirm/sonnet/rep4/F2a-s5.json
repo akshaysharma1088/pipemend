@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 1078
+ },
+ "seconds": 8.34,
+ "raw_response": "{\"diagnosis\":\"Batch 13 was delivered twice (ingest 02:00 and 05:00), giving 698 rows instead of about 349. Raw txn_id is otherwise unique (4975 distinct ids across 4975 consecutive values, 349 duplicate pairs), so the duplicates are exact re-deliveries. silver_transactions has no dedup, so the duplicates inflate every gold table. Deduplicating by txn_id in silver fixes them all.\",\"decision\":\"fix\",\"confidence\":0.92,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1\"}}"
+}

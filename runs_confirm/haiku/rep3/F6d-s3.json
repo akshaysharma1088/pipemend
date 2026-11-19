@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 589
+ },
+ "seconds": 3.22,
+ "raw_response": "{\"diagnosis\": \"The 1034 NULL merchant_id rows in raw_transactions are exactly the rows in batches 12-14 (369+327+338), and 976 of them are POSTED, which is why silver has 976 NULLs and the inner join to silver_merchants drops them (4558 - 976 = 3582). The merchant_id values were not delivered by the source for those batches, so the correct values cannot be recovered from the evidence and must be re-delivered by the source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

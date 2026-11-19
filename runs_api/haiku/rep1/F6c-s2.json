@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6c-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4149,
+  "output": 458
+ },
+ "seconds": 2.52,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers rows have an email address in the region column (19 distinct values, including user-style emails), and silver_customers passes them through via upper(region). The correct region for those customers cannot be derived from the evidence, and the email values are PII that should not appear in a region field, so the source team needs to correct the data and a human should decide how it is handled.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2c-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 1458
+ },
+ "seconds": 11.54,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4847 rows but only 4827 distinct txn_id, and batch 13 has an extra late ingest at 22:00, which points to replayed or re-delivered rows. silver_transactions has no dedup step, so those rows are duplicated. I could not see the duplicate rows, so I assumed they are replays and kept the latest delivery of each txn_id among POSTED rows.\",\"decision\":\"fix\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions WHERE status = 'POSTED') WHERE rn = 1\"}}"
+}

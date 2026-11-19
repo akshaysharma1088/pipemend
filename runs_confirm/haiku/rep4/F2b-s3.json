@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4055,
+  "output": 1963
+ },
+ "seconds": 9.49,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4972 rows but only 4827 distinct txn_id values (the ids form a contiguous range 900001-904827), so about 145 rows are repeated deliveries across batches. The evidence does not show whether the copies are identical re-sends or conflicting versions (for example, a POSTED row later superseded by a REVERSED one, or a changed amount), and the correct keep-rule depends on that. Escalate to the source team to confirm the duplicate semantics before choosing a dedupe rule.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

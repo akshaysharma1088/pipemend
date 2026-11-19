@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H4-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 264
+ },
+ "seconds": 2.79,
+ "raw_response": "{\"diagnosis\":\"Customers migrated to the new CRM carry numeric region codes ('01'-'04') instead of region names. raw_region_map gives an unambiguous mapping from code to name (01=WEST, 02=EAST, 03=NORTH, 04=SOUTH). silver_customers should map codes to names via that table and leave existing names unchanged.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_customers\":\"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON trim(c.region) = m.region_code\"}}"
+}

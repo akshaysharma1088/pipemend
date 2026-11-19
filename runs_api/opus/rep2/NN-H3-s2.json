@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H3-s2",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4348,
+  "output": 1492
+ },
+ "seconds": 14.6,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 12, rows from the new 'v2' collector have timestamps shifted +6 hours, probably UTC instead of local time. The earliest v2 rows sit at 12:00 while legacy rows open at 06:00, and late-evening v2 transactions spill into 00:00-06:00 of the next day. That explains the out-of-hours alerts and the phantom 36-row 2026-01-19 partition. Subtracting 6 hours from v2 timestamps before deriving txn_ts and txn_date fixes it, though the offset is inferred from the data and no change note documents it.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

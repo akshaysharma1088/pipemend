@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s3",
+ "rep": 1,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 703
+ },
+ "seconds": 3.61,
+ "raw_response": "{\"diagnosis\": \"Twenty raw txn_ids appear twice with different amounts. The later copies (ingest_ts 22:00 on 2026-01-18, batch 13) look like a late re-delivery, but nothing shows whether the original or the re-delivered amount is correct, so choosing a winner would be a guess that changes financial totals. The source team needs to confirm which copy is authoritative.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

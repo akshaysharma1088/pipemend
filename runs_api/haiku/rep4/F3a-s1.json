@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s1",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4273,
+  "output": 2493
+ },
+ "seconds": 10.13,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (source_tz='UTC') stores txn_ts in UTC, while all other batches are America/Chicago local time (batch 14's 12:00 UTC start matches the ~06:00 local pattern). Those UTC timestamps are not converted, so the 18:00-24:00 local transactions from 2026-01-18 are shifted onto 2026-01-19 00:00-06:00, which inflates that day's volume distribution incorrectly.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH norm AS (SELECT txn_id, customer_id, merchant_id, amount, CASE WHEN source_tz = 'UTC' THEN CAST(CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago' AS TIMESTAMP) ELSE CAST(txn_ts AS TIMESTAMP) END AS local_ts FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, local_ts AS txn_ts, CAST(local_ts AS DATE) AS txn_date FROM norm;\"}}"
+}

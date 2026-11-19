@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5b-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4320,
+  "output": 716
+ },
+ "seconds": 3.71,
+ "raw_response": "{\"diagnosis\": \"90 raw_transactions rows are denominated in EUR, but silver_transactions carries `amount` through unconverted, so gold USD totals mix currencies. The only FX source (raw_fx_rates) is a single 2026-01-01 snapshot, and the correct rate policy (snapshot vs. business-date rate, and whether `amount` is in transaction currency) is a finance decision that the evidence does not settle.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

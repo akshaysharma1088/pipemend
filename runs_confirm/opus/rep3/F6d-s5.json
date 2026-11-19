@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 306
+ },
+ "seconds": 3.05,
+ "raw_response": "{\"diagnosis\": \"Every row in the last two delivery batches (13 and 14: 349 + 362 = 711 rows, matching the 711 raw NULLs) arrived with merchant_id NULL. There are no change notes about the source. The inner join to merchants therefore silently drops 671 POSTED transactions from gold_mcc_daily, and gold_merchant_daily gains a NULL merchant group. The missing merchant_id values cannot be recovered from any other column, so the source team must re-deliver these batches with merchant_id populated.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

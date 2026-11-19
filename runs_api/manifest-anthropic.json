@@ -1,0 +1,29 @@
+{
+ "mode": "REAL",
+ "provider": "anthropic",
+ "base_url": null,
+ "models_requested": {
+  "haiku": "claude-haiku-5-5",
+  "sonnet": "claude-sonnet-5-5",
+  "opus": "claude-opus-5-5"
+ },
+ "models_served": {
+  "haiku": [
+   "claude-haiku-5-5"
+  ],
+  "sonnet": [
+   "claude-sonnet-5-5"
+  ],
+  "opus": [
+   "claude-opus-5-5"
+  ]
+ },
+ "temperature": "provider default",
+ "max_tokens": 16000,
+ "replies_cut_off_after_retry": {},
+ "reps": 5,
+ "n_prompts": 82,
+ "message_format": "one user message = prompts/<case>.txt; no system prompt, no tools",
+ "python": "3.12.10",
+ "finished_utc": "2026-11-19T04:57:35Z"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2c-s1",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4054,
+  "output": 1693
+ },
+ "seconds": 8.06,
+ "raw_response": "{\"diagnosis\": \"Batch 13 appears to overlap batch 12: batch 12 ends near txn_id 904186 but batch 13 starts at 904167, and batch 12 has an anomalous late ingest_ts (2026-01-17 22:00). Some duplicate pairs may differ in status (the POSTED-filtered duplicates number 18, while the raw excess is 20), so which copy is authoritative is a business/source decision, not something the evidence settles.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

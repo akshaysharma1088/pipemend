@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6b-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4061,
+  "output": 848
+ },
+ "seconds": 4.31,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 mean (371.28) is about 9x the median (40.71), which points to a small set of extreme amounts, but the profiles don't show which rows or batch they come from. Raw amounts reach 17083.0, and batch 14 (378 rows, the largest batch) carries that day's transactions, so a unit or scaling error in the source is possible. Genuine large transactions cannot be ruled out, and no rule can be safely inferred to correct the values, so the source team needs to confirm the affected rows before any remediation.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

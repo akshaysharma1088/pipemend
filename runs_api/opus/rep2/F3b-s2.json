@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4613,
+  "output": 1975
+ },
+ "seconds": 21.74,
+ "raw_response": "{\"diagnosis\": \"The DE-412 change added a filter (ingest_ts - txn_ts <= 26h) to silver_transactions, and because the table is fully rebuilt it now drops roughly 70-90 late-arriving POSTED transactions from every batch since batch 3. The samples show normal delivery lag is 2-3 days, so this looks like legitimate data being excluded. That filter was a deliberate, ticketed business-rule change, and what counts as 'stale' is not defined. Batch 13 is also unusually large (446 rows), which gives the 2026-01-17 volume spike that removing the filter would not explain. Reverting or retuning the rule needs the data-eng and business owners to decide.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

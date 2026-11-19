@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3a-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 2416
+ },
+ "seconds": 9.62,
+ "raw_response": "{\"diagnosis\": \"All 362 batch 14 rows have source_tz='UTC', but their txn_ts is stored in UTC while the other batches are Chicago local time. Batch 14's UTC timestamps are therefore misdated into the 2026-01-19 00:00-06:00 window, and converting them to America/Chicago moves them back into merchant hours on 2026-01-18. The fix converts only source_tz='UTC' rows in silver_transactions, leaving the rest unchanged.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT txn_id, customer_id, merchant_id, amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN (CAST(txn_ts AS TIMESTAMP) AT TIME ZONE 'UTC') AT TIME ZONE 'America/Chicago' ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS ts FROM raw_transactions WHERE status = 'POSTED') s;\"}}"
+}

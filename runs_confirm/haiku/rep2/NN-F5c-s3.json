@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F5c-s3",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4119,
+  "output": 877
+ },
+ "seconds": 4.0,
+ "raw_response": "{\"diagnosis\": \"Batches 13 and 14 carry status SETTLED, and silver_transactions filters on status = 'POSTED', so those rows are dropped. The status-count profile doesn't fully reconcile, though: the 665 rows in batches 13-14 exceed the 629 SETTLED rows in the whole table, so some must be POSTED or REVERSED, which contradicts the monitor's 0-rows-in-silver claim. Whether SETTLED should count as POSTED is a business rule the evidence doesn't settle, so this needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

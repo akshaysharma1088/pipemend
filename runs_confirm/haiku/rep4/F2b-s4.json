@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1140
+ },
+ "seconds": 5.62,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4958 rows but only 4814 distinct txn_id values, so about 144 rows are repeat deliveries, and the silver POSTED filter leaves 136 keys duplicated. The duplicates may differ in status or amount across batches, and the correct rule for which copy wins (latest batch, first delivery, or a correction) is a business decision that the evidence does not settle, so the source team should decide it.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

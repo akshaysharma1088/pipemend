@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2c-s3",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 948
+ },
+ "seconds": 7.49,
+ "raw_response": "{\"diagnosis\":\"Batch 13 was re-delivered at 22:00 on 2026-01-18 with corrected amounts for 20 txn_ids. The same txn_id, customer, merchant and timestamp now appear twice with different amounts and ingest_ts. Silver does not dedupe, so 18 of these POSTED keys are duplicated, which inflates counts and totals downstream. The later ingest_ts is the standard correction, so keep the latest copy per txn_id.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) r WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3c-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4085,
+  "output": 1452
+ },
+ "seconds": 6.72,
+ "raw_response": "{\"diagnosis\": \"Since the 2026-01-16 refactor (DE-398), silver_transactions derives txn_date from CAST(ingest_ts AS DATE) instead of txn_ts. Every POSTED row therefore has a txn_date one day after its txn_ts date, which matches the 4699 alerts. It is not clear whether the refactor was an intentional change of business-date definition, which would make the DATE_CONSISTENCY monitor stale, or an unintended regression, so reverting it could silently change all gold aggregates.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

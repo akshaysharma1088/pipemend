@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4066,
+  "output": 990
+ },
+ "seconds": 5.06,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 13, the source began emitting merchant_id as 'M-0NNN' alongside the legacy numeric form, which breaks the INTEGER cast. Stripping the prefix would look plausible (the M- IDs fall in the 121-139 range of raw_merchants), but nothing in the evidence confirms that M-0121 means merchant 121 rather than a different identifier namespace, so the mapping is an unverified business rule.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H6-s5",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4052,
+  "output": 989
+ },
+ "seconds": 4.92,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4996 rows but only 4975 distinct txn_id values, so 17 IDs are duplicated, and silver_transactions passes them through unchanged. The evidence does not show whether the duplicates are identical re-deliveries, conflicting corrections (different amount or status), or a POSTED/REVERSED pair, and each case needs a different fix, so the source team must confirm before the rule is changed.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

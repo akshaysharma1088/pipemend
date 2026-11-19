@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3d-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4108,
+  "output": 948
+ },
+ "seconds": 7.18,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (ingested 2026-01-18) delivered txn_ts as DD/MM/YYYY HH:MM:SS (e.g. '17/01/2026 06:00:17'), while every other batch uses ISO format, so the CAST fails. Day 17 cannot be a month, and the batch matches the one-day-per-batch pattern, so the format is DD/MM/YYYY. I parse both formats explicitly.\", \"decision\": \"fix\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts AS txn_ts, CAST(ts AS DATE) AS txn_date FROM (SELECT *, COALESCE(try_strptime(txn_ts, '%Y-%m-%d %H:%M:%S'), try_strptime(txn_ts, '%d/%m/%Y %H:%M:%S')) AS ts FROM raw_transactions) WHERE status = 'POSTED'\"}}"
+}

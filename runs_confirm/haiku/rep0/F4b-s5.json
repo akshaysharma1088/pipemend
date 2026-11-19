@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4b-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 1307
+ },
+ "seconds": 6.04,
+ "raw_response": "{\"diagnosis\": \"The gap is a customer_id case mismatch. raw_customers uses uppercase IDs (C00001 to C00200, unique), but some raw_transactions rows have lowercase IDs such as 'c00200', so the USING join to silver_customers drops them (4699 vs 4375 rows). Normalizing customer_id to uppercase and trimmed in silver_transactions fixes the join, and it also keeps gold_customer_spend from splitting one customer into two groups.\", \"decision\": \"fix\", \"confidence\": 0.82, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, upper(trim(customer_id)) AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

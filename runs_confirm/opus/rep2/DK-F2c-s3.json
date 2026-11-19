@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-F2c-s3",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 499
+ },
+ "seconds": 5.52,
+ "raw_response": "{\"diagnosis\": \"Batch 13 received a second delivery at 2026-01-18 22:00 that repeats 20 txn_ids with different amounts, and 18 of those are POSTED, so they are duplicated in silver_transactions and double-counted in gold. The copies conflict on amount, and no change note or documented rule says whether the late copy is a correction or an erroneous resend, so the correct amount cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

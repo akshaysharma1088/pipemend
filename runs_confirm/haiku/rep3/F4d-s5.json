@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4117,
+  "output": 740
+ },
+ "seconds": 3.47,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region contains values with trailing spaces ('EAST ', 'NORTH ', 'SOUTH ', 'WEST ') alongside the clean values, and silver_customers applies only upper(region) without trimming, so the same regions split into separate keys. Trimming before upper() merges them into the four canonical regions and corrects gold_region_daily, which is rebuilt from silver_customers on each run.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(trim(region)) AS region FROM raw_customers;\"}}"
+}

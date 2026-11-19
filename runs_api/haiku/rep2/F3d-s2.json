@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3d-s2",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 2453
+ },
+ "seconds": 10.87,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (ingested 2026-01-18, business date 2026-01-17) stores txn_ts as day-first DD/MM/YYYY strings, e.g. '17/01/2026 06:02:01', while other batches use ISO format, so the plain CAST to TIMESTAMP fails. The fix parses the slash-format values with '%d/%m/%Y %H:%M:%S' and keeps ISO values on the existing cast path. Day-first is confirmed by day value 17 and the batch's business date, and strptime will fail loudly rather than silently mis-parse any unexpected value.\",\"decision\": \"fix\",\"confidence\": 0.7,\"pre_sql\": [],\"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, p.ts AS txn_ts, CAST(p.ts AS DATE) AS txn_date FROM (SELECT *, CASE WHEN txn_ts LIKE '__/__/____ %' THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions WHERE status = 'POSTED') p;\"}}"
+}

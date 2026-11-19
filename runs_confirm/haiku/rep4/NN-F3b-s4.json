@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-F3b-s4",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4567,
+  "output": 1585
+ },
+ "seconds": 7.88,
+ "raw_response": "{\"diagnosis\": \"Batches 3-14 lose roughly 25% of rows at the silver step. Their ingest_ts is about 2-3 days after txn_ts, so they fail the hard-coded `ingest_ts - txn_ts <= 26 HOUR` filter, while batches 1-2 pass. REVERSED status explains only about 5% of rows, so the freshness window is the likely cause. Whether late-arriving POSTED transactions should be excluded is an unresolved business and source-delivery question, so the correct silver contents cannot be determined from this evidence.\", \"decision\": \"escalate\", \"confidence\": 0.3, \"pre_sql\": [], \"step_overrides\": {}}"
+}

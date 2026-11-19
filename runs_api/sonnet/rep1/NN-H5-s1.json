@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H5-s1",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4183,
+  "output": 1167
+ },
+ "seconds": 8.83,
+ "raw_response": "{\"diagnosis\":\"15 REVERSAL rows (status 'REVERSAL', orig_txn_id set) are dropped by the POSTED filter, but the original transactions they reverse (e.g. ids 904529 to 904819, in the latest batch) are still POSTED in raw. The originals are therefore counted, which inflates recent totals. Older reversals already have the original flipped to REVERSED and are excluded. The fix excludes POSTED originals that are referenced by a REVERSAL row.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions r WHERE r.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions v WHERE v.status = 'REVERSAL' AND v.orig_txn_id = r.txn_id);\"}}"
+}

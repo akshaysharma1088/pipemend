@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s4",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 748
+ },
+ "seconds": 6.29,
+ "raw_response": "{\"diagnosis\":\"Nothing in the evidence shows a pipeline defect. All 14 daily batches are present, there are no duplicate txn_ids, no null keys, and every customer and merchant joins. The only filter that removes rows is status='POSTED', which drops the 232 REVERSED rows. Whether the settlement file includes reversed or other transactions can't be determined from what is shown.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

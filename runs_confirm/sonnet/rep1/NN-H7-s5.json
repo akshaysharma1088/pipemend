@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-H7-s5",
+ "rep": 1,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 669
+ },
+ "seconds": 5.84,
+ "raw_response": "{\"diagnosis\":\"Gold totals are about 2% below settlement for recent days, but the evidence does not show why. The raw data has unique txn_ids, so there are no duplicates. The batches look complete, with 332-378 rows per day and no gap. The only exclusion in the pipeline is the status='POSTED' filter, which drops 276 REVERSED rows (5.5%). Whether settlement counts those rows, or whether the cause is timing or late-arriving data, cannot be determined from the profiles shown.\",\"decision\":\"escalate\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{}}"
+}

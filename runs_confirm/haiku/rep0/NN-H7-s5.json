@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4072,
+  "output": 1278
+ },
+ "seconds": 6.5,
+ "raw_response": "{\"diagnosis\": \"Silver filters to status = 'POSTED', which drops 276 REVERSED rows (about 5.5% by count). Whether those should be excluded, netted against their original postings, or included to match the settlement file is a business-rule question the evidence does not settle, and the 2% gap may instead reflect late or missing settlement data. Escalate to Finance and the source team to confirm the reversal treatment and the settlement reconciliation before changing the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

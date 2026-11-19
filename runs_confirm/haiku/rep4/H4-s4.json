@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H4-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1160
+ },
+ "seconds": 5.17,
+ "raw_response": "{\"diagnosis\": \"Customers migrated to the new CRM carry numeric region codes ('01'-'04') instead of names, and the existing silver_customers step passes them through unmapped. raw_region_map, which the 2026-01-15 CRM note identifies as the code list, maps these codes to WEST, EAST, NORTH and SOUTH, so silver_customers should join to it and fall back to the original value only for unmapped codes.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(upper(m.region_name), upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

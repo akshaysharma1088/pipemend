@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 334
+ },
+ "seconds": 2.69,
+ "raw_response": "{\"diagnosis\":\"All 703 rows in batches 13 and 14 (ingested 2026-01-18 and 2026-01-19) have NULL merchant_id, and earlier batches have none. That gives the 679 NULLs among POSTED rows in silver and the 679 rows dropped by the inner join to merchants (4600 - 3921). The source stopped sending merchant_id, and nothing in the evidence lets us recover the correct merchant, so the data must be re-delivered.\",\"decision\":\"escalate\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{}}"
+}

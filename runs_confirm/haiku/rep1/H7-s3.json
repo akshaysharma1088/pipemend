@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4125,
+  "output": 466
+ },
+ "seconds": 2.48,
+ "raw_response": "{\"diagnosis\": \"Starting with the 2026-01-17 payments-source change, `amount` is reported net of interchange fees, and the fee rates by merchant category are published separately and are not in this pipeline's inputs. The roughly 2% shortfall in recent gold totals is most likely this net-of-fee change in the newer batches, but the correct gross-up cannot be derived from the evidence, so this needs the payments-source team and the card network fee schedule.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

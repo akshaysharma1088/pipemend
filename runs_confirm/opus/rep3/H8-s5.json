@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H8-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4037,
+  "output": 1475
+ },
+ "seconds": 13.18,
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00 with txn_ts as epoch milliseconds (1768543211000 = 2026-01-16 06:00:11 UTC, which matches the original row). The CAST to TIMESTAMP fails on that format, and the re-delivery also duplicates 345 txn_ids (5320 rows but only 4975 distinct ids, all within a 4975-id range). The fix parses both timestamp formats and keeps the latest delivered version of each txn_id before filtering to POSTED.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH parsed AS (SELECT txn_id, customer_id, merchant_id, amount, status, ingest_ts, CASE WHEN regexp_full_match(trim(txn_ts), '[0-9]{13}') THEN epoch_ms(CAST(trim(txn_ts) AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts FROM raw_transactions), dedup AS (SELECT * FROM parsed QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(ts AS TIMESTAMP) AS txn_ts, CAST(ts AS DATE) AS txn_date FROM dedup WHERE status = 'POSTED'\"}}"
+}

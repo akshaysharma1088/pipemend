@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s4",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 1025
+ },
+ "seconds": 5.04,
+ "raw_response": "{\"diagnosis\": \"gold_region_daily uses an inner join to silver_customers, and raw_transactions contains customer_ids that don't match the 200-row customer dimension (e.g., unpadded forms like 'C8' and 'C110' alongside IDs beyond C00200). Those 334 POSTED transactions are silently dropped. Whether they should be re-keyed to a padded ID or excluded as unknown customers is a source-data and business-rule decision that the evidence cannot settle.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

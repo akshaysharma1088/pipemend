@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4606,
+  "output": 1195
+ },
+ "seconds": 9.52,
+ "raw_response": "{\"diagnosis\":\"The 2026-01-17 change (DE-412) added `ingest_ts - txn_ts <= 26 HOUR` to silver_transactions. From batch 3 onward many valid POSTED transactions arrive about 2-3 days after txn_ts, so the filter silently drops real late-arriving transactions. The REVERSED exclusion is intended and stays. Removing the stale-event filter restores them.\",\"decision\":\"fix\",\"confidence\":0.72,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2b-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4057,
+  "output": 1312
+ },
+ "seconds": 10.42,
+ "raw_response": "{\"diagnosis\":\"raw_transactions has 4946 rows but only 4802 distinct txn_ids, and the ids are contiguous, so the same transactions were re-delivered across daily batches. silver_transactions has no dedup step, so those repeats pass through and inflate every gold table. The fix keeps the latest delivery per txn_id, then applies the POSTED filter.\",\"decision\":\"fix\",\"confidence\":0.7,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) WHERE rn = 1 AND status = 'POSTED'\"}}"
+}

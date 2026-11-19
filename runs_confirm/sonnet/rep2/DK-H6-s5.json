@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-H6-s5",
+ "rep": 2,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 296
+ },
+ "seconds": 6.86,
+ "raw_response": "{\"diagnosis\":\"The raw feed has 21 txn_ids delivered twice with different amounts. Both copies are in the same batch with the same ingest_ts and are otherwise identical, so no column shows which amount is correct. Picking one in silver would risk silently wrong amounts, so the source team needs to confirm the correct values.\",\"decision\":\"escalate\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{}}"
+}

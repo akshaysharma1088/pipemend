@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-H6-s3",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4338,
+  "output": 334
+ },
+ "seconds": 3.57,
+ "raw_response": "{\"diagnosis\": \"raw_transactions contains 22 txn_ids that were each delivered twice. The copies have identical attributes, batch_id and ingest_ts but different amounts (e.g. txn_id 903824 at 26.98 vs 29.64, both in batch 12). Nothing in the data, such as a later ingest or a status difference, shows which amount is correct, so deduplicating would mean guessing financial values and could silently corrupt silver and gold.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

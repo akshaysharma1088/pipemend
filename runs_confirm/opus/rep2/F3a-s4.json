@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3a-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4272,
+  "output": 1180
+ },
+ "seconds": 10.82,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (349 rows, exactly the 349 rows with source_tz='UTC') arrived with UTC timestamps, while all other batches are in America/Chicago local time. The pipeline casts txn_ts without any timezone handling, so about 99 Jan-16 evening Chicago transactions shift past midnight into 2026-01-17 00:00-06:00; for example, 12:01 UTC is 06:01 CST, which matches opening time.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN source_tz = 'UTC' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

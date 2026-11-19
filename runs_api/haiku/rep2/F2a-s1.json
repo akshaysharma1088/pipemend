@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2a-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4099,
+  "output": 1815
+ },
+ "seconds": 7.67,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (ingest 2026-01-17) was re-delivered: 668 rows versus a usual ~350, and rows with the same txn_id reappear with a later ingest_ts (05:00). Silver keeps every POSTED copy, which double-counts 2026-01-16 and inflates the gold tables. Deduplicating on txn_id, keeping the latest ingest_ts, restores one row per transaction.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED' QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC) = 1;\"}}"
+}

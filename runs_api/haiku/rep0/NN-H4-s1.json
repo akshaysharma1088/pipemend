@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s1",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4243,
+  "output": 1146
+ },
+ "seconds": 5.13,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers rows carry numeric region codes ('01'-'04') instead of names. The raw_region_map reference table maps each code to a unique region name (01 WEST, 02 EAST, 03 NORTH, 04 SOUTH), and silver_customers never applies it. Joining on that map in silver_customers resolves the codes with no row duplication and leaves the output columns unchanged.\", \"decision\": \"fix\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

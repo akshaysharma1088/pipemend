@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4077,
+  "output": 973
+ },
+ "seconds": 4.04,
+ "raw_response": "{\"diagnosis\": \"The raw column is named txn_amount, but silver_transactions reads a nonexistent column named amount, so the step fails to bind. Every downstream gold table consumes silver_transactions.amount, and the profile shows txn_amount is a clean DOUBLE with no nulls and a single currency (USD), so mapping txn_amount to the amount output column preserves the intended meaning.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(txn_amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

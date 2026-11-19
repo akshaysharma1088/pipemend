@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H2-s2",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4154,
+  "output": 2035
+ },
+ "seconds": 8.9,
+ "raw_response": "{\"diagnosis\": \"raw_transactions keeps 26 record_version=2 rows that supersede version-1 rows for the same txn_id, but silver_transactions keeps every version whose status is POSTED, so about 25 txn_ids appear twice. The fix is to keep only the latest record_version per txn_id before applying the POSTED filter. This assumes a later version supersedes the earlier one, including a REVERSED status, which I could not confirm because no v2 sample rows were shown.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [\"CREATE OR REPLACE VIEW txn_latest_version AS SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY record_version DESC, ingest_ts DESC) = 1\"], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM txn_latest_version WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F1b-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4060,
+  "output": 737
+ },
+ "seconds": 6.82,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 12 (ingested 2026-01-17) sends amount as a dollar-prefixed string such as '$75.13' instead of a plain '75.13', so the DECIMAL cast in silver_transactions fails. Currency is uniformly USD and the values otherwise look like normal amounts, so removing the leading '$' (and surrounding whitespace) gives the correct value. Thousands separators are deliberately not stripped, so any other unexpected format will still fail loudly rather than corrupt data.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(trim(amount), '^\\\\$\\\\s*', '') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

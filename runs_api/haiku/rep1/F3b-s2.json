@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F3b-s2",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4613,
+  "output": 1128
+ },
+ "seconds": 5.63,
+ "raw_response": "{\"diagnosis\": \"The DE-412 filter added 2026-01-17 (`ingest_ts - txn_ts <= 26 HOUR`) drops late-arriving batches 3 to 13. Their transactions were ingested about 2 to 3 days after `txn_ts`, and the rows lost (about 23%) match the non-POSTED share only partially, so the time filter is the main cause. Whether those late events are \\\"stale\\\" and should be excluded is a business rule decision from DE-412 that the evidence doesn't settle, so the filter should not be removed or changed unilaterally.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

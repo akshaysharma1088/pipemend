@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "DK-F2c-s5",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 1064
+ },
+ "seconds": 5.04,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions contains 21 txn_ids duplicated by a batch 12 re-delivery at 2026-01-17 22:00. The copies differ in amount, and nothing in the evidence documents which copy is authoritative (latest ingest, original, or a business rule), so no deduplication can be verified as correct. Escalate to the source team to confirm the correct amount for each affected txn_id.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

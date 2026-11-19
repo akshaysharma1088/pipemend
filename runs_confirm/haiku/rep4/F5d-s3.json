@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F5d-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 568
+ },
+ "seconds": 3.11,
+ "raw_response": "{\"diagnosis\": \"Batch 13 (and possibly other batches) carries merchant_id values in a new 'M-0NNN' format that does not match the numeric IDs in raw_merchants. The transactions table has 80 distinct merchant_id values but raw_merchants has only 40, so it is unclear whether 'M-0113' means merchant 113 or a separate identifier. Casting, stripping the prefix, or dropping these rows would silently produce wrong gold aggregates, so the source team must confirm the ID mapping.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

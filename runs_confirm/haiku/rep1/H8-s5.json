@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4037,
+  "output": 2666
+ },
+ "seconds": 10.9,
+ "raw_response": "{\"diagnosis\": \"Batch 12 was re-delivered at 05:00 as duplicate rows for the same txn_id (e.g. 903920), and the re-delivered copies carry txn_ts as epoch milliseconds (1768543211000 = 2026-01-16 06:00:11, matching the original string). The cast fails on those values, and the duplicates would also double-count amounts downstream, since raw has 5320 rows but only 4975 distinct txn_ids. Filter to POSTED, keep one row per txn_id (earliest ingest), and parse epoch-ms timestamps alongside the string format in silver_transactions.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH src AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) AS rn FROM raw_transactions WHERE status = 'POSTED'), d AS (SELECT * FROM src WHERE rn = 1), t1 AS (SELECT txn_id, customer_id, merchant_id, amount, CASE WHEN txn_ts NOT LIKE '%-%' THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts FROM d) SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date FROM t1;\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4071,
+  "output": 1901
+ },
+ "seconds": 9.48,
+ "raw_response": "{\"diagnosis\": \"The 324-row gap is in batch 14 (and possibly other batches): some POSTED transactions carry non-canonical customer_ids such as 'C52', 'C3' and 'C143' instead of the 'C00052' format. The inner join to silver_customers silently drops them, so gold_region_daily undercounts. The correct mapping from these malformed IDs to customers cannot be confirmed from the evidence, so this needs the source team to confirm or re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "DK-H6-s4",
+ "rep": 4,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4336,
+  "output": 234
+ },
+ "seconds": 2.45,
+ "raw_response": "{\"diagnosis\": \"raw_transactions holds 21 txn_ids delivered twice with different amounts. In the example, both copies of 903787 are in the same batch with the same ingest_ts and differ only in amount. Nothing in the evidence (no later batch, no version or ingest ordering, no change note) shows which amount is correct, so deduplicating would silently pick an arbitrary value. The source team needs to confirm the correct amounts or re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

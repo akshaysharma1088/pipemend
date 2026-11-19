@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s4",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1072
+ },
+ "seconds": 5.41,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 4958 rows but only 4814 distinct txn_id values (the full contiguous range 900001-904814), so about 144 rows are re-delivered replays across batches. Whether the copies are identical or conflict (for example, a POSTED row later re-delivered as REVERSED or with a changed amount) is not visible in the evidence, and that determines which copy should survive, so the correct dedup rule is a business decision that needs the source team.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

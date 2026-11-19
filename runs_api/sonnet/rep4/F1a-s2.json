@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F1a-s2",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4079,
+  "output": 522
+ },
+ "seconds": 4.02,
+ "raw_response": "{\"diagnosis\":\"The raw_transactions column `amount` is now named `txn_amount` (DOUBLE, USD only, values 2.34 to 744.06), so the silver_transactions cast fails. The data otherwise looks consistent: txn_ids are unique and there is a single currency. Pointing the cast at `txn_amount` restores the original meaning.\",\"decision\":\"fix\",\"confidence\":0.9,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(txn_amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

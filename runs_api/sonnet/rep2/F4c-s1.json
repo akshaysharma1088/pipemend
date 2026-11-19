@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4c-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 650
+ },
+ "seconds": 5.64,
+ "raw_response": "The raw_customers table holds 230 rows for 200 distinct customers. 200 rows are current (is_current=True, valid_from 2025-01-01) and 30 are historical (is_current=False, valid_from 2023-06-01). This is an SCD2 dimension. silver_customers reads every version, so 30 customers have two rows and the join to the transactions fans out.\n\nThe numbers support this. Silver has 4630 transactions and gold has 5353, an excess of 723. That is plausible for 30 of 200 customers (15%) being duplicated: 4630 \u00d7 0.15 \u2248 694, which is close to 723 given random variation.\n\nThe fix is to keep only current rows in silver_customers. The alternative is a point-in-time join on valid_from. The historical rows have valid_from 2023-06-01 and the current rows 2025-01-01. All transactions fall in January 2026, after both valid_from dates, so a point-in-time join would also pick the current row. Both approaches give the same result, and filtering on is_current is simpler.\n\nEach customer has exactly one current row (200 distinct customers, 200 current rows), so the filter leaves no duplicates and drops no customers. The output columns stay the same.\n\nThe historical rows could carry different regions, but the current region is the sensible choice for a daily region rollup. The existing design already treats the dimension this way.\n\n```json\n{\"diagnosis\": \"raw_customers is an SCD2 dimension (230 rows, 30 non-current historical versions); silver_customers includes all versions so the join to the transactions fans out and inflates the gold_region_daily counts. Filtering to is_current rows leaves one row per customer.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT customer_id, upper(region) AS region FROM raw_customers WHERE is_current = TRUE;\"}}\n```"
+}

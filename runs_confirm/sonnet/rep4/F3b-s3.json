@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F3b-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4607,
+  "output": 869
+ },
+ "seconds": 8.17,
+ "raw_response": "{\"diagnosis\":\"The silver_transactions filter `ingest_ts - txn_ts <= 26 HOUR`, added on 2026-01-17 under DE-412, drops about 25% of POSTED rows in batches 3-14. Those rows were delivered about 3 days after txn_ts. The raw data has no duplicates, so the late rows look legitimate, but the filter was added deliberately and the evidence cannot show whether stale events should be excluded.\",\"decision\":\"escalate\",\"confidence\":0.6,\"pre_sql\":[],\"step_overrides\":{}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H4-s2",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4246,
+  "output": 923
+ },
+ "seconds": 4.29,
+ "raw_response": "{\"diagnosis\": \"silver_customers passes raw region codes '01'-'04' through unmapped, while raw_region_map provides the authoritative code-to-name mapping (01=WEST, 02=EAST, 03=NORTH, 04=SOUTH), and the sample row C00001 is consistent with that mapping. Joining the map in silver_customers fixes the domain values and flows into gold_region_daily on the rebuild.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_customers\": \"CREATE OR REPLACE TABLE silver_customers AS SELECT c.customer_id, COALESCE(m.region_name, upper(c.region)) AS region FROM raw_customers c LEFT JOIN raw_region_map m ON c.region = m.region_code;\"}}"
+}

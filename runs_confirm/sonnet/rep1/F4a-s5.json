@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F4a-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 862
+ },
+ "seconds": 5.85,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (the 2026-01-18 delivery) sends customer_id without zero-padding (e.g. 'C2', 'C139', 'C76' instead of 'C00002', 'C00139', 'C00076'). These ids do not match silver_customers, so the inner join in gold_region_daily drops those rows. The fix is to normalize customer_id to the 'C' plus 5-digit format in silver_transactions, which also repairs gold_customer_spend.\", \"decision\": \"fix\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, 'C' || lpad(regexp_replace(trim(customer_id), '^[Cc]0*', ''), 5, '0') AS customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

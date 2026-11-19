@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H3-s4",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4407,
+  "output": 1187
+ },
+ "seconds": 10.92,
+ "raw_response": "{\"diagnosis\": \"Since the 2026-01-15 rollout, the v2 collector sends txn_ts in UTC while legacy sends America/Chicago local time. The pipeline treats both as the same time, so v2 rows land 6 hours late: evening local transactions show up as 00:00-06:00 and spill into the wrong txn_date, including a spurious 2026-01-19. The fix converts v2 timestamps to Chicago local time (UTC-6 in January; no DST change in the data range) to match legacy and history.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3d-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4108,
+  "output": 1026
+ },
+ "seconds": 8.38,
+ "raw_response": "{\"diagnosis\": \"Batch 12 (ingested 2026-01-17) delivered txn_ts as DD/MM/YYYY HH:MM:SS (e.g. '16/01/2026 06:00:11') rather than ISO format, so the plain TIMESTAMP cast fails. Day 16 is greater than 12 and the batch covers business date 2026-01-16, so day-first is the only valid reading and the values can be parsed deterministically.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CASE WHEN regexp_matches(txn_ts, '^\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{2}:\\\\d{2}:\\\\d{2}$') THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts, CAST(CASE WHEN regexp_matches(txn_ts, '^\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{2}:\\\\d{2}:\\\\d{2}$') THEN strptime(txn_ts, '%d/%m/%Y %H:%M:%S') ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

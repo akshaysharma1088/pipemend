@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4148,
+  "output": 222
+ },
+ "seconds": 3.66,
+ "raw_response": "{\"diagnosis\": \"raw_customers.region holds email addresses for some customers, so the email was written into the region field upstream. The true region cannot be recovered from the evidence. The email is also PII that has propagated into silver and gold, which needs a human decision.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

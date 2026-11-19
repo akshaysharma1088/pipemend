@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F2b-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1457
+ },
+ "seconds": 7.02,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions has 149 surplus rows for 143 txn_ids, and batch txn_id ranges overlap at delivery boundaries (e.g., batch 11 runs into batch 12's first ids), which points to re-delivered overlapping windows. The evidence does not show whether duplicate copies are identical or whether they differ in amount or status (POSTED vs REVERSED), and so does not establish which copy is authoritative.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

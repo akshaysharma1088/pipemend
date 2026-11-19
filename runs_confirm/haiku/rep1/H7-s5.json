@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H7-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 390
+ },
+ "seconds": 2.14,
+ "raw_response": "{\"diagnosis\": \"Starting with batch 11 (ingested 2026-01-16), payments-source changed `amount` to net of interchange fees, and the fee rates vary by merchant category and are published separately. Recent gross-up or per-MCC totals are therefore mixed-basis and cannot be corrected from the evidence, because the fee rates are not in the provided data. The pipeline has no check for this change, which explains why no monitor fired.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

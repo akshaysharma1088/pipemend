@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F3b-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4606,
+  "output": 995
+ },
+ "seconds": 9.97,
+ "raw_response": "{\"diagnosis\": \"The DE-412 change added a filter to silver_transactions that drops POSTED transactions arriving more than 26 hours after txn_ts. The batches routinely carry transactions about 3 days old, so this filter silently drops valid late-arriving transactions from every batch since 3. txn_id is unique across raw, so removing the filter cannot introduce duplicates.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

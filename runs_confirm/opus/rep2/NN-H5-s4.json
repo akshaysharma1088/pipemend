@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H5-s4",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4181,
+  "output": 877
+ },
+ "seconds": 9.58,
+ "raw_response": "{\"diagnosis\": \"A new, unannounced status value 'REVERSAL' (31 rows, carrying orig_txn_id that points at txns from batch 13 onward, such as 904133, which is still POSTED) has appeared in recent batches. The pipeline keeps only POSTED rows, so the reversed originals still count, and with no negative amounts in raw nothing nets them out. Gold totals are therefore overstated for the latest days. The fix needs a business rule the evidence does not settle: whether to drop the original or net the reversal on its own date, how to treat partial reversals, and whether the source will later restate originals as REVERSED.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

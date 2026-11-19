@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6d-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4095,
+  "output": 285
+ },
+ "seconds": 3.26,
+ "raw_response": "{\"diagnosis\": \"Every row in delivery batches 13 and 14 (349 + 362 = 711 rows, txn dates 2026-01-17 and 2026-01-18) arrived with a NULL merchant_id. That leaves 671 POSTED rows with no merchant, and the inner join in gold_mcc_daily drops them. No other column or change note lets us recover the missing merchant_id, so the source team must fix it and re-deliver.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

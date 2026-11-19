@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H6-s1",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4112,
+  "output": 169
+ },
+ "seconds": 2.03,
+ "raw_response": "{\"diagnosis\": \"Batch 13 contains 19 txn_ids delivered twice with differing amounts (e.g., 904167: 7.33 vs 8.27) during a source-side amount recalculation (PAY-77). The source team states that which copy carries the final amount is not yet known, and the duplicates share batch_id and ingest_ts, so no tie-breaker exists in the data.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

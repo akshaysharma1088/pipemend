@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2c-s4",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 895
+ },
+ "seconds": 8.24,
+ "raw_response": "{\"diagnosis\": \"Batch 13 contains a second ingest at 2026-01-18 22:00 alongside its 02:00 load. That partial re-delivery added 21 rows (4835 rows vs 4814 distinct txn_id), producing 20 duplicate txn_ids among POSTED rows in silver. Keeping only the most recently ingested version of each txn_id before applying the status filter removes the duplicates and lets any later status correction win.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT *, row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) AS rn FROM raw_transactions) r WHERE rn = 1 AND status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2d-s4",
+ "rep": 3,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4247,
+  "output": 494
+ },
+ "seconds": 3.71,
+ "raw_response": "The raw_merchants table has 46 rows but only 40 distinct merchant_ids. Six merchant_ids appear twice, and the two copies are identical in every column. The join in gold_mcc_daily therefore fans out and inflates the counts (5317 vs 4582).\n\nDeduplicating silver_merchants fixes this. Because the duplicate copies are fully identical, SELECT DISTINCT is safe and there is no ambiguity about which row to keep. Each merchant_id then maps to one mcc.\n\nCheck on the numbers: 5317 \u2212 4582 = 735 extra rows, which is plausible for 6 duplicated merchants among 40.\n\nsilver_merchants should keep the same columns (merchant_id, mcc). Nothing else needs to change. gold_merchant_daily does not use the merchants table. gold_region_daily joins customers, which are unique.\n\n<br>\n\n{\"diagnosis\": \"raw_merchants contains 6 merchant_ids duplicated as fully identical rows, so the join in gold_mcc_daily fans out and inflates counts. Deduplicating silver_merchants resolves it with no ambiguity.\", \"decision\": \"fix\", \"confidence\": 0.96, \"pre_sql\": [], \"step_overrides\": {\"silver_merchants\": \"CREATE OR REPLACE TABLE silver_merchants AS SELECT DISTINCT CAST(merchant_id AS INTEGER) AS merchant_id, mcc FROM raw_merchants\"}}"
+}

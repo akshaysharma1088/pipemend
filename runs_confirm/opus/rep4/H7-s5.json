@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H7-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 163
+ },
+ "seconds": 1.95,
+ "raw_response": "{\"diagnosis\": \"Starting 2026-01-16, the payments source began reporting amount net of interchange fees. Gold totals for the most recent days are therefore about 2% below the gross settlement figures. The fee rates vary by merchant category and are published separately by the card network, and they are not in any available table, so gross amounts cannot be correctly reconstructed from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

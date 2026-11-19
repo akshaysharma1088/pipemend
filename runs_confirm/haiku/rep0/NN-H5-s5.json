@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H5-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4182,
+  "output": 1746
+ },
+ "seconds": 8.49,
+ "raw_response": "{\"diagnosis\": \"The silver step drops all REVERSAL rows (40 rows, each with an orig_txn_id) and keeps only POSTED rows. If the original transactions they reverse are still POSTED, gross totals would be overstated, which fits Finance's report. However, the evidence does not show whether those originals remain POSTED, whether REVERSED-status rows (236) are already the reversed originals, or whether reversal amounts are meant to net negative, so the correct netting rule cannot be determined from the profiles. Escalate to the source/ledger team to confirm the reversal semantics before changing the pipeline.\", \"decision\": \"escalate\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {}}"
+}

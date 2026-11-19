@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F2a-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4098,
+  "output": 1029
+ },
+ "seconds": 7.52,
+ "raw_response": "{\"diagnosis\":\"Batch 14 was delivered twice (ingest_ts 02:00 and 05:00) with identical rows, so 666 rows landed instead of about 333. silver_transactions has no dedup on txn_id, which doubles the counts in silver and every gold table. txn_ids are otherwise unique (900001 to 904814, 4814 distinct), so keeping one row per txn_id is the correct fix.\",\"decision\":\"fix\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

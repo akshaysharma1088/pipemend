@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H3-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4231,
+  "output": 1852
+ },
+ "seconds": 8.48,
+ "raw_response": "{\"diagnosis\": \"The 36 anomalous 2026-01-19 transactions are very likely `collector = 'v2'` rows from batch 14 whose txn_ts is shifted about +6 hours (for example, sample txn 904491 shows 12:11 where legacy rows show about 06:xx). The offset, its scope across the 135 v2 rows, and whether earlier v2 batches are affected cannot be confirmed from the samples, so the correct timestamp correction is not determinable here and the source team needs to confirm it.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

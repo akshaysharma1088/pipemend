@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F2b-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4053,
+  "output": 1193
+ },
+ "seconds": 11.88,
+ "raw_response": "{\"diagnosis\": \"raw_transactions has 5124 rows but only 4975 distinct txn_ids. The ids are contiguous from 900001 to 904975, so the ~149 extra rows look like re-delivered copies of transactions spread across delivery batches. Silver has no dedup, so the copies flow into silver and inflate every gold count and total.\", \"decision\": \"fix\", \"confidence\": 0.65, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) d WHERE status = 'POSTED'\"}}"
+}

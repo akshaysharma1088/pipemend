@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6a-s1",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4063,
+  "output": 482
+ },
+ "seconds": 5.05,
+ "raw_response": "{\"diagnosis\": \"Batch 14 (business date 2026-01-18) was delivered incomplete. It has 151 rows against about 340 normally. Its txn_ids are sparse: 151 rows spread over the id range 904490\u2013904866, with visible gaps such as 904491\u2013904495 missing. Batches 1\u201313 are contiguous (4488 rows over ids 900001\u2013904489). The missing transactions are absent from the raw data, so the pipeline cannot reconstruct them and the source must re-deliver the full batch.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

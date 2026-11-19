@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "NN-H7-s1",
+ "rep": 4,
+ "condition": "no_change_notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4073,
+  "output": 1526
+ },
+ "seconds": 7.37,
+ "raw_response": "{\"diagnosis\": \"Silver filters to status = 'POSTED', which drops 236 REVERSED rows (about 4.9% of raw). Whether that accounts for the roughly 2% gap to the settlement file depends on how settlement treats reversals (excluded, or netted as offsetting amounts), and the evidence does not show which. Joins and key coverage look complete, so the remaining question is a business-rule decision, and it should go to the source/finance owners with a settlement-to-raw reconciliation for the affected dates.\", \"decision\": \"escalate\", \"confidence\": 0.7, \"pre_sql\": [], \"step_overrides\": {}}"
+}

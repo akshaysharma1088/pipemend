@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6d-s3",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 672
+ },
+ "seconds": 3.51,
+ "raw_response": "{\"diagnosis\": \"The 976 NULL merchant_id rows in silver_transactions come from raw_transactions batches 12-14 (2026-01-16 to 2026-01-18 transactions), where the source omitted merchant_id. gold_mcc_daily's inner join on merchant_id silently drops these rows, which explains the 4558 vs 3582 gap. The correct merchant for these transactions cannot be recovered from the evidence, so this needs a source re-delivery or a business decision, not a pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}

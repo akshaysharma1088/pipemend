@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H8-s2",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4041,
+  "output": 1437
+ },
+ "seconds": 10.09,
+ "raw_response": "{\"diagnosis\":\"The batch 14 redelivery (ingest 05:00) re-sent rows with txn_ts as epoch milliseconds, and the cast to TIMESTAMP fails on them. 1768716104000 ms is exactly 2026-01-18 06:01:44 UTC, the same as the 02:00 copy of txn 904477. The redelivered rows duplicate existing txn_ids: 5128 rows against 4802 distinct ids. The fix parses epoch-ms values and keeps one row per txn_id, preferring the earliest ingest.\",\"decision\":\"fix\",\"confidence\":0.88,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nWITH parsed AS (\\n  SELECT CAST(txn_id AS BIGINT) AS txn_id,\\n         customer_id,\\n         CAST(merchant_id AS INTEGER) AS merchant_id,\\n         CAST(amount AS DECIMAL(12,2)) AS amount,\\n         CASE WHEN regexp_matches(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS txn_ts,\\n         ingest_ts\\n  FROM raw_transactions\\n  WHERE status = 'POSTED'\\n)\\nSELECT txn_id, customer_id, merchant_id, amount, txn_ts, CAST(txn_ts AS DATE) AS txn_date\\nFROM parsed\\nQUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, txn_ts) = 1;\"}}"
+}

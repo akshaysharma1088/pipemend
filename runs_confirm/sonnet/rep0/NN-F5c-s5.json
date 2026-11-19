@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F5c-s5",
+ "rep": 0,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4162,
+  "output": 1033
+ },
+ "seconds": 7.58,
+ "raw_response": "{\"diagnosis\":\"From batch 12 onward the source sends status 'SETTLED' where it used to send 'POSTED'. The silver filter `status = 'POSTED'` therefore drops every non-reversed row in batches 12-14. Batch counts support this: batches 1-11 total 3919 rows, of which 3704 are POSTED, and batches 12-14 total 1056 rows, of which 995 are SETTLED. The REVERSED share is about the same before and after (5.5% vs 5.8%), so SETTLED looks like a rename of POSTED. The fix is to accept both statuses in silver_transactions.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS\\nSELECT CAST(txn_id AS BIGINT) AS txn_id,\\n       customer_id,\\n       CAST(merchant_id AS INTEGER) AS merchant_id,\\n       CAST(amount AS DECIMAL(12,2)) AS amount,\\n       CAST(txn_ts AS TIMESTAMP) AS txn_ts,\\n       CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date\\nFROM raw_transactions\\nWHERE status IN ('POSTED','SETTLED');\"}}"
+}

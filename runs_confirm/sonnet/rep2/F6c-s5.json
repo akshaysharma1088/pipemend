@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6c-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 235
+ },
+ "seconds": 2.25,
+ "raw_response": "{\"diagnosis\": \"Some raw_customers.region values contain email addresses (about 14 of the 19 distinct values are not real regions). This is a PII leak from the source, and the true region for those customers cannot be determined from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

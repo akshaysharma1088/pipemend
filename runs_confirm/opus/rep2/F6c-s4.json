@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6c-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4140,
+  "output": 219
+ },
+ "seconds": 3.39,
+ "raw_response": "```json\n{\"diagnosis\": \"The raw_customers.region column holds email addresses (PII) for some customers instead of region codes. This is an upstream source defect: the true regions cannot be recovered from the evidence, and the PII leaking into silver and gold tables needs a privacy/compliance decision.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}\n```"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H1-s5",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4069,
+  "output": 1587
+ },
+ "seconds": 6.9,
+ "raw_response": "{\"diagnosis\": \"Batch 12 has 345 rows, which equals its lowercase-status count (posted/reversed). The silver filter `status = 'POSTED'` is case-sensitive, so these rows are dropped. Batch 12 amounts also carry a '$' prefix, so the fix must strip it before casting, and the filter must match status case-insensitively.\", \"decision\": \"fix\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(regexp_replace(amount, '[$,]', '', 'g') AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

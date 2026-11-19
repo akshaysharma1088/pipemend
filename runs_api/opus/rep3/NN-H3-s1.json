@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H3-s1",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4287,
+  "output": 1264
+ },
+ "seconds": 11.1,
+ "raw_response": "{\"diagnosis\": \"The new 'v2' collector writes txn_ts 6 hours ahead of the legacy collector, probably UTC versus local UTC-6. In each batch, sequential txn_ids interleave legacy rows at 06:xx with v2 rows at 12:xx, so the shift is exactly +6h. Late-evening v2 transactions therefore land at 00:00-06:00 on the next day, which accounts for both the 33 rows dated 2026-01-19 and the off-hours rows on 2026-01-18.\", \"decision\": \"fix\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS TIMESTAMP) AS txn_ts, CAST(CASE WHEN collector = 'v2' THEN CAST(txn_ts AS TIMESTAMP) - INTERVAL 6 HOUR ELSE CAST(txn_ts AS TIMESTAMP) END AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED';\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "F6a-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 419
+ },
+ "seconds": 4.27,
+ "raw_response": "{\"diagnosis\": \"Delivery batch 14 (business date 2026-01-18) holds only 145 rows, against about 330-380 in every earlier batch. Its txn_ids span roughly 904614-904974 with visible gaps (for example 904616 and 904617 are missing), so the source delivered an incomplete batch rather than the pipeline dropping rows. The missing transactions are not in raw data, so no pipeline change can produce correct silver or gold tables for 2026-01-18; the source team needs to re-deliver the full batch.\", \"decision\": \"escalate\", \"confidence\": 0.88, \"pre_sql\": [], \"step_overrides\": {}}"
+}

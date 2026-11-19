@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "NN-H7-s3",
+ "rep": 2,
+ "condition": "no_change_notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4074,
+  "output": 444
+ },
+ "seconds": 5.09,
+ "raw_response": "{\"diagnosis\": \"Gold is about 2% below the settlement file for recent days, but the pipeline has not changed and the raw data shows no defect the pipeline could correct. There are no duplicates, nulls, currency mixing, schema drift or unusual status values, and the recent batches (9\u201314) are only slightly smaller than earlier ones, which suggests transactions are missing upstream and need re-delivery or reconciliation by the source or settlement team. The correct data cannot be rebuilt from what is available, so this needs human follow-up with the source team rather than a pipeline change.\", \"decision\": \"escalate\", \"confidence\": 0.72, \"pre_sql\": [], \"step_overrides\": {}}"
+}

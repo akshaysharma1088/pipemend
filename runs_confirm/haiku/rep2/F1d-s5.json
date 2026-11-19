@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F1d-s5",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4068,
+  "output": 1079
+ },
+ "seconds": 4.74,
+ "raw_response": "{\"diagnosis\": \"Batch 13 was delivered with lowercase status values ('posted' and 'reversed'), and silver_transactions filters on the exact string status = 'POSTED', so every batch 13 row was dropped. The lowercase counts (327 posted + 22 reversed = 349) match batch 13 exactly, so normalizing case in the filter restores the posted rows and still excludes reversals.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE upper(trim(status)) = 'POSTED';\"}}"
+}

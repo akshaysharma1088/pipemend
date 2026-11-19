@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "DK-F2c-s5",
+ "rep": 0,
+ "condition": "no_change_notes+duplicate_profile",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4351,
+  "output": 1006
+ },
+ "seconds": 7.87,
+ "raw_response": "{\"diagnosis\":\"raw_transactions holds 21 txn_ids delivered twice, once at the batch 12 ingest at 02:00 and again at 22:00. Only amount and ingest_ts differ between copies, so the 22:00 copy looks like a corrected re-delivery. silver_transactions has no dedup, so both copies flow into silver and the gold aggregates. The fix keeps the latest ingest_ts per txn_id.\",\"decision\":\"fix\",\"confidence\":0.65,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM (SELECT * FROM raw_transactions QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts DESC, batch_id DESC) = 1) WHERE status = 'POSTED'\"}}"
+}

@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F6a-s5",
+ "rep": 0,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4062,
+  "output": 801
+ },
+ "seconds": 4.0,
+ "raw_response": "{\"diagnosis\": \"The 2026-01-18 transactions arrive in batch 14, which has only 145 rows versus a typical ~350, and its txn_id range has large gaps (e.g. 904619 to 904615 to 904618 with many IDs absent). The 137 rows after the POSTED filter look like an incomplete source delivery, not a pipeline logic error, and the missing rows cannot be recovered from the raw data, so the source must re-deliver the batch.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

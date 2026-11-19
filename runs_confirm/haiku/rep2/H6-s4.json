@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H6-s4",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4111,
+  "output": 472
+ },
+ "seconds": 2.52,
+ "raw_response": "{\"diagnosis\": \"Raw_transactions has 21 extra rows over distinct txn_id (4835 rows, 4814 distinct), and the PAY-77 note says part of the latest delivery was sent twice with recalculated amounts, with no known final copy. Deduplicating would require choosing between conflicting amounts, which the evidence cannot resolve, so this needs the payments-source team.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

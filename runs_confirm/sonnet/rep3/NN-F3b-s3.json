@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "NN-F3b-s3",
+ "rep": 3,
+ "condition": "no_change_notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4570,
+  "output": 1046
+ },
+ "seconds": 8.16,
+ "raw_response": "{\"diagnosis\":\"silver_transactions has a filter `ingest_ts - txn_ts <= 26 HOUR` that silently drops late-arriving transactions. From batch 3 onward, rows arrive about 3 days after txn_ts (e.g. txn 01-13 06:10 ingested 01-16 02:00), so about 20-25% of each batch is lost. Batches 1-2 raised no alert, which means the 'POSTED' filter alone explains their small loss (REVERSED rows). The late rows are valid POSTED transactions with unique txn_ids, so the lateness filter should be removed.\",\"decision\":\"fix\",\"confidence\":0.8,\"pre_sql\":[],\"step_overrides\":{\"silver_transactions\":\"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, CAST(txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions WHERE status = 'POSTED'\"}}"
+}

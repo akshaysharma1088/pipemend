@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6d-s3",
+ "rep": 3,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4092,
+  "output": 300
+ },
+ "seconds": 2.84,
+ "raw_response": "{\"diagnosis\":\"merchant_id is NULL for every row in batches 12-14 (369+327+338 = 1034 rows, matching the raw NULL count), while earlier batches are populated. The source stopped sending merchant_id, so the inner join to merchants drops those rows. The missing values cannot be derived from the other columns.\",\"decision\":\"escalate\",\"confidence\":0.93,\"pre_sql\":[],\"step_overrides\":{}}"
+}

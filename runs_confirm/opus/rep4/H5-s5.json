@@ -1,0 +1,18 @@
+{
+ "tier": "opus",
+ "case": "H5-s5",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4244,
+  "output": 882
+ },
+ "seconds": 8.14,
+ "raw_response": "{\"diagnosis\": \"Since the 2026-01-17 source change, a reversal arrives as a separate REVERSAL record pointing to the original via orig_txn_id, and the original stays POSTED instead of being updated to REVERSED. The silver filter `status = 'POSTED'` therefore still counts the reversed originals in batches 13-14, which inflates gold totals for the most recent days.\", \"decision\": \"fix\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS SELECT CAST(t.txn_id AS BIGINT) AS txn_id, t.customer_id, CAST(t.merchant_id AS INTEGER) AS merchant_id, CAST(t.amount AS DECIMAL(12,2)) AS amount, CAST(t.txn_ts AS TIMESTAMP) AS txn_ts, CAST(CAST(t.txn_ts AS TIMESTAMP) AS DATE) AS txn_date FROM raw_transactions t WHERE t.status = 'POSTED' AND NOT EXISTS (SELECT 1 FROM raw_transactions r WHERE r.status = 'REVERSAL' AND r.orig_txn_id IS NOT NULL AND r.orig_txn_id = t.txn_id)\"}}"
+}

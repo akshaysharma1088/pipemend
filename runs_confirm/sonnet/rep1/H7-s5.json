@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "H7-s5",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4123,
+  "output": 153
+ },
+ "seconds": 2.07,
+ "raw_response": "{\"diagnosis\": \"Starting 2026-01-16, payments-source reports amount net of interchange fees, which explains gold totals running about 2% below the settlement file for recent days. The fee rates vary by merchant category and are published separately by the card network. They are not in the raw tables, so the gross amount cannot be reconstructed from the data shown.\", \"decision\": \"escalate\", \"confidence\": 0.85, \"pre_sql\": [], \"step_overrides\": {}}"
+}

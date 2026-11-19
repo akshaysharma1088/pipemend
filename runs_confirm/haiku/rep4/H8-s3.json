@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "H8-s3",
+ "rep": 4,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4039,
+  "output": 2711
+ },
+ "seconds": 11.67,
+ "raw_response": "{\"diagnosis\": \"Batch 14 contains a re-delivery of earlier transactions (same txn_id, identical content, one copy with an epoch-millisecond txn_ts such as 1768716261000 that decodes to 2026-01-18 06:04:21, matching the other copy). The cast fails on the epoch string, and any retried rows would double-count once the cast is fixed, so silver needs both timestamp normalisation and dedup on txn_id.\", \"decision\": \"fix\", \"confidence\": 0.6, \"pre_sql\": [], \"step_overrides\": {\"silver_transactions\": \"CREATE OR REPLACE TABLE silver_transactions AS WITH src AS (SELECT *, CASE WHEN regexp_full_match(txn_ts, '^[0-9]+$') THEN epoch_ms(CAST(txn_ts AS BIGINT)) ELSE CAST(txn_ts AS TIMESTAMP) END AS ts_parsed FROM raw_transactions WHERE status = 'POSTED') SELECT CAST(txn_id AS BIGINT) AS txn_id, customer_id, CAST(merchant_id AS INTEGER) AS merchant_id, CAST(amount AS DECIMAL(12,2)) AS amount, ts_parsed AS txn_ts, CAST(ts_parsed AS DATE) AS txn_date FROM src QUALIFY row_number() OVER (PARTITION BY txn_id ORDER BY ingest_ts, batch_id) = 1;\"}}"
+}

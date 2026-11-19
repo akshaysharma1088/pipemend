@@ -1,0 +1,18 @@
+{
+ "tier": "sonnet",
+ "case": "F6a-s3",
+ "rep": 1,
+ "condition": "notes",
+ "requested_model": "claude-sonnet-5-5",
+ "served_model": "claude-sonnet-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4064,
+  "output": 471
+ },
+ "seconds": 3.77,
+ "raw_response": "{\"diagnosis\": \"Batch 14, the only batch with 2026-01-18 transactions, has just 135 rows against a typical ~340. Its txn_ids are sparse (904491, 904494, 904496, ...) and about 200 ids in its range 904491-904825 are missing. This points to a partial or truncated upstream delivery. The pipeline SQL is correct and the missing rows cannot be recovered from the evidence.\", \"decision\": \"escalate\", \"confidence\": 0.9, \"pre_sql\": [], \"step_overrides\": {}}"
+}

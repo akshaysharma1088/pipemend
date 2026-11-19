@@ -1,0 +1,18 @@
+{
+ "tier": "haiku",
+ "case": "F4a-s3",
+ "rep": 2,
+ "condition": "notes",
+ "requested_model": "claude-haiku-5-5",
+ "served_model": "claude-haiku-5-5",
+ "provider": "anthropic",
+ "temperature": null,
+ "max_tokens": 16000,
+ "stop_reason": "end_turn",
+ "usage": {
+  "input": 4071,
+  "output": 1256
+ },
+ "seconds": 6.35,
+ "raw_response": "{\"diagnosis\": \"The 324 rows dropped by the join to silver_customers are most likely transactions whose customer_id does not match the dimension key format (for example 'C52', 'C3', 'C143' in batch 14, and 370 distinct IDs versus 200 customers). The correct mapping is not determinable from the evidence: zero-padding is a guess, and IDs in the valid format but absent from the 200-row dimension may also be missing. This needs a source-team decision, so the pipeline should not be changed.\", \"decision\": \"escalate\", \"confidence\": 0.8, \"pre_sql\": [], \"step_overrides\": {}}"
+}
